@@ -1,2 +1,2 @@
-# cart251_AlanaDeVito
-Alana DeVito's Course Work
+# CART253 Alana DeVito
+Alana DeVito's Course Work for Fall 2020
