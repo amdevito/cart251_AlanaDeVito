@@ -9,7 +9,20 @@ Here is a description of this template p5 project.
 //
 // Description of setup() goes here.
 function setup() {
- // tells p5 to make the background RED 244 = red
+  createCanvas(800, 800); // set canvas size (width, height)
+    background(200, 123, 200);
+rectMode(CORNER);
+  rect(400, 400, 100, 100);
+  rect(400, 400, 80, 80, 0, 0, 20, 0);
+  rect(400, 400, 60, 60);
+  rect(400, 400, 40, 40, 0, 0, 20, 0);
+  rect(400, 400, 20, 20);
+  ellipse(200, 400, 100, 100);
+  ellipse(200, 400, 60, 60);
+  ellipse(200, 400, 20, 20);
+
+
+
 
 }
 
@@ -17,5 +30,5 @@ function setup() {
 //
 // Description of draw() goes here.
 function draw() {
-    background(25, 300, 20);
+
 }
