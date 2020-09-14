@@ -9,7 +9,7 @@ Here is a description of this template p5 project.
 //
 // Description of setup() goes here.
 function setup() {
-  background(25, 300, 20); // tells p5 to make the background RED 244 = red
+ // tells p5 to make the background RED 244 = red
 
 }
 
@@ -17,4 +17,5 @@ function setup() {
 //
 // Description of draw() goes here.
 function draw() {
+    background(25, 300, 20);
 }
