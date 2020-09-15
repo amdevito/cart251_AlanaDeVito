@@ -1,5 +1,5 @@
 /**************************************************
-Variables Experiment
+Variables Experiment 1
 Alana DeVito
 
 As the cursor moves around the black canvas (which is the adaptable size of the browser window),
