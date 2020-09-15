@@ -20,6 +20,40 @@ function setup() {
 //
 // Description of draw() goes here.
 function draw() {
+  //clouds(everything below)
+  noStroke();
+  fill(159, 138, 160);
+  ellipse(25, 45, 200, 15);
+    ellipse(95, 55, 200, 15);
+      ellipse(105, 75, 200, 15);
+        ellipse(160, 65, 200, 15);
+          ellipse(200, 45, 200, 15);
+          ellipse(425, 45, 200, 15);
+            ellipse(395, 55, 200, 15);
+              ellipse(405, 75, 200, 15);
+                ellipse(460, 65, 200, 15);
+                  ellipse(300, 45, 200, 15);
+                  ellipse(560, 65, 200, 15);
+                    ellipse(500, 45, 200, 15);
+                    ellipse(25, 95, 200, 15);
+                    ellipse(395, 85, 200, 15);
+                      ellipse(405, 105, 200, 15);
+                        ellipse(460, 105, 200, 15);
+                          ellipse(300, 95, 200, 15);
+                          ellipse(560, 95, 200, 15);
+                            ellipse(500, 105, 200, 15);
+                            ellipse(105, 108, 200, 15);
+                      ellipse(95, 175, 200, 15);
+                        ellipse(105, 195, 200, 15);
+                          ellipse(160, 195, 200, 15);
+                            ellipse(200, 165, 200, 15);
+                            ellipse(425, 165, 200, 15);
+                              ellipse(395, 175, 200, 15);
+                                ellipse(405, 195, 200, 15);
+                                  ellipse(460, 195, 200, 15);
+                                    ellipse(300, 165, 200, 15);
+                                    ellipse(560, 185, 200, 15);
+                                      ellipse(500, 175, 200, 15);
     noStroke();
   fill(200);//lighter
   ellipse(320, 460, 300, 260) //body
@@ -44,21 +78,6 @@ function draw() {
   strokeWeight(2);
   rect(320, 350, 20, 10, 4, 4, 1, 1)
 
-  //clouds(everything below)
-  noStroke();
-  fill(159, 138, 160);
-  ellipse(25, 45, 200, 15);
-    ellipse(95, 55, 200, 15);
-      ellipse(105, 75, 200, 15);
-        ellipse(160, 65, 200, 15);
-          ellipse(200, 45, 200, 15);
-          ellipse(425, 45, 200, 15);
-            ellipse(395, 55, 200, 15);
-              ellipse(405, 75, 200, 15);
-                ellipse(460, 65, 200, 15);
-                  ellipse(300, 45, 200, 15);
-                  ellipse(560, 65, 200, 15);
-                    ellipse(500, 45, 200, 15);
 //UFO
   fill(50);
   stroke(191, 255, 0);
@@ -69,6 +88,9 @@ fill(244, 222, 19);
 noStroke();
 ellipse(25, 198, 20, 6); //beam hole at bottom of UFO
 
+  noStroke();
+  fill(159, 138, 160);
+  ellipse(25, 170, 200, 15);
 //lights
 fill(25, 198, 229);
 circle(1, 189, 6);
