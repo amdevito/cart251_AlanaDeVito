@@ -43,7 +43,9 @@ function draw() {
   stroke(255, 0, 0);
   strokeWeight(2);
   rect(320, 350, 20, 10, 4, 4, 1, 1)
-  noStroke();//clouds(everything below)
+
+  //clouds(everything below)
+  noStroke();
   fill(159, 138, 160);
   ellipse(25, 45, 200, 15);
     ellipse(95, 55, 200, 15);
@@ -57,7 +59,49 @@ function draw() {
                   ellipse(300, 45, 200, 15);
                   ellipse(560, 65, 200, 15);
                     ellipse(500, 45, 200, 15);
+//UFO
+  fill(50);
+  stroke(191, 255, 0);
+  strokeWeight(2);
+  ellipse(25, 185, 40, 25);
+  ellipse(25, 195, 100, 25);
+fill(244, 222, 19);
+noStroke();
+ellipse(25, 198, 20, 6); //beam hole at bottom of UFO
 
+//lights
+fill(25, 198, 229);
+circle(1, 189, 6);
+fill(255, 0, 0);
+circle(9, 187.9, 6);
+fill(25, 198, 229);
+circle(16.5, 187.5, 6);
+
+fill(255, 0, 0);
+circle(25, 187.5, 6);
+fill(25, 198, 229);
+circle(33, 188, 6);
+
+fill(255, 0, 0);
+circle(42, 188.5, 6);
+fill(25, 198, 229);
+circle(50, 189, 6);
+
+fill(255, 0, 0);
+circle(59, 190.9, 6);
+fill(25, 198, 229);
+circle(68, 193.5, 6);
+
+//beam from UFO
+fill(244, 222, 19, 170);
+triangle(25, 198, 15, 600, 45, 600)
+
+
+
+
+
+
+//see online: https://amdevito.github.io/cart253_AlanaDeVito/Activities/02-draw-an-alien/
 
 
 
