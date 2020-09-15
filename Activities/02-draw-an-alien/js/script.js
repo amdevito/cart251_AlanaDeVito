@@ -54,7 +54,8 @@ function draw() {
                                     ellipse(300, 165, 200, 15);
                                     ellipse(560, 185, 200, 15);
                                       ellipse(500, 175, 200, 15);
-    noStroke();
+//alien
+  noStroke();
   fill(200);//lighter
   ellipse(320, 460, 300, 260) //body
   fill(170);//darker
@@ -88,9 +89,11 @@ fill(244, 222, 19);
 noStroke();
 ellipse(25, 198, 20, 6); //beam hole at bottom of UFO
 
+//clouds just covering UFO
   noStroke();
   fill(159, 138, 160);
   ellipse(25, 170, 200, 15);
+  
 //lights
 fill(25, 198, 229);
 circle(1, 189, 6);
