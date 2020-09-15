@@ -93,33 +93,33 @@ ellipse(25, 198, 20, 6); //beam hole at bottom of UFO
   noStroke();
   fill(159, 138, 160);
   ellipse(25, 170, 200, 15);
-  
+
 //lights
 fill(25, 198, 229);
-circle(1, 189, 6);
+circle(1, 189, 4);
 fill(255, 0, 0);
-circle(9, 187.9, 6);
+circle(9, 187.9, 4);
 fill(25, 198, 229);
-circle(16.5, 187.5, 6);
+circle(16.5, 187.5, 4);
 
 fill(255, 0, 0);
-circle(25, 187.5, 6);
+circle(25, 187.5, 4);
 fill(25, 198, 229);
-circle(33, 188, 6);
+circle(33, 188, 4);
 
 fill(255, 0, 0);
-circle(42, 188.5, 6);
+circle(42, 188.5, 4);
 fill(25, 198, 229);
-circle(50, 189, 6);
+circle(50.4, 189.5, 4);
 
 fill(255, 0, 0);
-circle(59, 190.9, 6);
+circle(59, 190.9, 4);
 fill(25, 198, 229);
-circle(68, 193.5, 6);
+circle(68, 193.5, 4);
 
 //beam from UFO
 fill(244, 222, 19, 170);
-triangle(25, 198, 15, 600, 45, 600)
+triangle(25, 198, 15, 600, 75, 600)
 
 
 
