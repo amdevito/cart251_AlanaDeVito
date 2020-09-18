@@ -5,13 +5,10 @@ Alana DeVito
 
 **************************************************/
 let backgroundShade = 0;
-
-let circle = {
-  x: 0,
-  y: 250, // : says what is inside the property
-  size: 200, // these are all properties
-  speed: 2, //note these things are all one object
-};
+let circleX = 0;
+let circleY = 250;
+let circleSize = 200;
+let circleSpeed = 2;
 
 // setup()
 //
@@ -25,6 +22,9 @@ function setup() {
 // Description of draw() goes here.
 function draw() {
   background(backgroundShade);
-circle.x = circle.x + circle.speed; // getting the different properties for the variable circle
-ellipse(circle.x, circle.y, circle.size);
+circleX += circleSpeed;
+ellipse(circleX, circleY, circleSize);
+
+console.log(`circleX : ${circleX}, circleY : ${circleY}, circleSize : ${circleSize}, circleSpeed : ${circleSpeed}`);
+
 }
