@@ -1,16 +1,16 @@
 /**************************************************
-Variables Experiment 2 -
-Animated piece: Black box with
+Variables Experiment 4 -
+Map and constrain with objects intro
 Alana DeVito
 
 **************************************************/
 let backgroundShade = 0;
 let circle = {
-  x: 250,
+  x: 0,
   y: 250,
   size: 100,
   speed: 1,
-  fill:0,
+  fill: 255,
 }
 // setup()
 //
@@ -25,11 +25,13 @@ function setup() {
 function draw() {
   background(backgroundShade);
 
-  circle.speed = random(-5, 5); //makes the circle 'shiver' or move in a naturally animated way
   circle.x = circle.x + circle.speed;
-  circle.y = random(0, height); // take this away and get a 'rain drop effect' or basically a circle that moves back and forwards.
-  circle.fill = random(0, 255);
-  circle.size = random(-20, 200);
+  circle.x = constrain(circle.x, 0, width);
+
+
+  circle.size = map(mouseY, height, 0, 20, 500);
+
+  circle.fill = map(circle.x, 0, width, 0, 255); //acts like 'scale' in MAXMSP
   fill(circle.fill);
   ellipse(circle.x, circle.y, circle.size);
 
