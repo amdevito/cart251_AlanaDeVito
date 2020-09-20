@@ -5,9 +5,6 @@ Alana DeVito
 ** ask***
 **************************************************/
 
-let windowWidth;
-let windowHeight;
-
 function setup() {
 createCanvas(windowWidth, windowHeight);
 noStroke();
@@ -39,7 +36,7 @@ bg.red = bg.red + windowWidth / 1020;
 bg.red = constrain(bg.red, 0, 255);
 
 fill(1, 119, 181, 170);
-ellipse(circle1.x,circle1.y,circle1.size);
+ellipse(circle1.x, circle1.y, circle1.size);
 circle1.x = circle1.x + circle1.speed;
 circle1.x = constrain(circle1.x, 0, windowWidth / 2);
 circle1.size = circle1.size + 1;
