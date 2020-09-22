@@ -26,7 +26,7 @@ let rect1 = {
   sizeY: 50,
 };
 let rect2 = {
-  x: 90,
+  x: 127,
   y: 700,
   sizeX: 90,
   sizeY: 90,
@@ -38,7 +38,7 @@ let rect3 = {
   sizeY: 50,
 };
 let rect4 = {
-  x: 750,
+  x: 740,
   y: 500,
   sizeX: 30,
   sizeY: 30,
@@ -138,7 +138,7 @@ function draw() {
   rect4.sizeX = rect4.sizeX + mouseX;
   rect4.sizeX = map(rect4.sizeX, 0, 800, 0, 70);
   rect4.sizeY = rect4.sizeY + mouseY;
-  rect4.sizeY = map(rect4.sizeY, 0, 800, 0, 70);
+  rect4.sizeY = map(rect4.sizeY, 0, 800, 0, 50);
 
   //draw circle1 - lower right circle
   //circles move diagonally downwards, stop at right side, bottom
