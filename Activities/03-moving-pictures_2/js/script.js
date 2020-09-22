@@ -5,33 +5,26 @@ Alana DeVito
 
 **************************************************/
 let circle1 = {
-  x: undefined,
-  y: undefined,
-  size: undefined,
-  speed: .01,
-  acceleration: 3.5 //plus moves it right, negative moves left
+  x: 400,
+  y: 400,
+  size: 8,
+  speed: 0.01,
+  acceleration: 0.2 //plus moves it right, negative moves left
 }
 let circle2 = {
-  x: undefined,
-  y: undefined,
-  size: undefined,
-  speed: .01,
-  acceleration: 3.5
+  x: 100,
+  y: 400,
+  size: 8,
+  speed: 0.01,
+  acceleration: 0.2
 }
 let circle3 = {
-  x: undefined,
-  y: undefined,
-  size: undefined,
-  speed: .01,
+  x: 100,
+  y: 200,
+  size: 450,
+  speed: .001,
   acceleration: 3.5,
   fill: (170, 170, 170, 170)
-}
-let circle4 = {
-  x: undefined,
-  y: undefined,
-  size: undefined,
-  speed: .01,
-  acceleration: 3.5
 }
 let bg = {
   red: 0,
@@ -41,7 +34,7 @@ let bg = {
 }
 
 function setup() {
-  createCanvas(windowWidth,windowHeight);
+  createCanvas(800,800);
 background(bg.red, bg.green, bg.blue, bg.alpha);
 
 }
@@ -49,24 +42,31 @@ background(bg.red, bg.green, bg.blue, bg.alpha);
 function draw(){
 
   stroke(0, bg.green , bg.blue, bg.alpha);
-  strokeWeight(1);
+  strokeWeight(2);
 
 
-  circle3.x = width / 3;
-  circle3.y = height / 1.8;
+  //circle 3
 
-  circle3.x = circle3.x + circle3.speed;
-  circle3.y = circle3.y + circle3.speed;
 
-  circle3.size = width / 1.5;
-  circle3.size = circle3.size +3;
+      circle3.x = circle3.x + circle3.speed;
+      circle3.x = constrain(circle3.x, 0, 300);
 
-  fill(circle3.fill);
+      circle3.y = circle3.y + circle3.speed;
+      circle3.y = constrain(circle3.y, 0, 300);
 
-  circle(circle3.x, circle3.y, circle3.size);
+      circle3.speed = circle3.speed + .02;
 
-  circle1.x = width/2;
-  circle1.y = height/2;
+      circle3.size = circle3.size - 3;
+      circle3.size = constrain(circle3.size, -200, 1000);
+
+
+
+      fill(circle3.fill);
+
+      circle(circle3.x, circle3.y, circle3.size);
+
+
+//circle1
 
 
 //circles move diagonally downwards
@@ -75,7 +75,7 @@ function draw(){
 
   circle1.speed = circle1.speed + circle1.acceleration;
 
-  fill(bg.red, bg.green, bg.blue, bg.alpha);
+  fill(255, bg.green, bg.blue, 170);
 
   bg.red = bg.red + mouseX;
   bg.red = map(bg.red, width, height, 0, 255);
@@ -85,15 +85,11 @@ function draw(){
 
 circle(circle1.x, circle1.y, circle1.size);
 
-  circle1.size = width / 4;
-  circle1.size = circle1.size + 20;
-  circle1.size = circle1.size * 0.93;
+  circle1.size = circle1.size + 5;
 
 //circle 2
 
 
-  circle2.x = width/5;
-  circle2.y = height/2;
 
 //circles move diagonally downwards
   circle2.x = circle2.x + circle2.speed;
@@ -101,7 +97,7 @@ circle(circle1.x, circle1.y, circle1.size);
 
   circle2.speed = circle2.speed + circle2.acceleration;
 
-  fill(bg.red, bg.green, bg.blue, bg.alpha);
+  fill(255, bg.green, bg.blue, 100);
 
   bg.red = bg.red + mouseX;
   bg.red = map(bg.red, width, height, 0, 255);
@@ -111,9 +107,8 @@ circle(circle1.x, circle1.y, circle1.size);
 
 circle(circle2.x, circle2.y, circle2.size);
 
-  circle2.size = width / 4;
-  circle2.size = circle2.size + 20;
-  circle2.size = circle2.size * 0.93;
+  circle2.size = circle2.size + 5;
+
 
 
 }
