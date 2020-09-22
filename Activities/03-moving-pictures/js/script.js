@@ -49,11 +49,14 @@ function setup() {
 
 function draw(){
 
-  stroke(0, bg.green, bg.blue, bg.alpha);
+  stroke(bg.red, bg.green, bg.blue, bg.alpha);
   strokeWeight(2);
 
 //circle1
 //circles move diagonally downwards, stop in middle bottom
+stroke(mouseY, 0, 255);
+mouseY = constrain(mouseY, 0, 400, 0, 255);
+
   circle1.x = circle1.x + circle1.speed;
   circle1.x = constrain(circle1.x, 400, 680);
 
@@ -64,10 +67,10 @@ function draw(){
 
   fill(255, bg.green, bg.blue, 170);
 
-  bg.red = bg.red + mouseX;
-  bg.red = map(bg.red, width, height, 0, 255);
+  bg.red = bg.red + mouseY;
+  bg.red = map(bg.red, width, height, 0, 155);
   bg.green = bg.green + mouseY;
-  bg.green = constrain(bg.green, 0, 255);
+  bg.green = constrain(bg.green, 0, 155);
   bg.alpha = bg.alpha + mouseX;
 
 circle(circle1.x, circle1.y, circle1.size);
@@ -78,6 +81,11 @@ circle1.size = constrain(circle1.size, 8, 300);
 
 //circle 2
 //circles move diagonally downwards, stop in middle bottom
+
+  stroke(0, mouseY, 155);
+  mouseY = constrain(mouseY, 0, 800, 0, 255);
+
+
   circle2.x = circle2.x + circle2.speed;
   circle2.x = constrain(circle2.x, 100, 400);
 
@@ -90,7 +98,7 @@ circle1.size = constrain(circle1.size, 8, 300);
 
   bg.green = bg.green + mouseY;
   bg.green = constrain(bg.green, 0, 255);
-  bg.alpha = bg.alpha + mouseX;
+  bg.alpha = bg.alpha + mouseY; /// makes the rings have a ripple effect
 
 circle(circle2.x, circle2.y, circle2.size);
 
@@ -99,6 +107,9 @@ circle2.size = constrain(circle2.size, 8, 300);
 
 
 //circle 3 /// circles moving across from left, get small, big and continue sideways
+
+  stroke(0, 155, mouseY);
+  mouseY = constrain(mouseY, 0, 800, 0, 255);
   circle3.x = circle3.x + circle3.speed;
   circle3.x = constrain(circle3.x, 0, 800);
 
