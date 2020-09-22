@@ -22,7 +22,7 @@ function setup() {
 function draw() { /// writing 1/60th a second 'draw loop' or 'update loop'
 //background(mouseX, mouseY, 0);
   rectMode(CENTER);
-  fill(mouseY / 5, mouseX / 2, mouseY / 10);
+  fill(mouseY / 3, mouseX / 2, mouseY / 10);
   rect(width / 2, height / 2, mouseX / 2, mouseY / 2);//(location determined by mouse, and size determined by mouse)
 
 }

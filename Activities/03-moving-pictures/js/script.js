@@ -2,9 +2,73 @@
 Activity 3: Moving Pictures
 Alana DeVito
 
-** ask***
-**************************************************/
 
+**************************************************/
+let circle1 = {
+  x: undefined,
+  y: undefined,
+  size: undefined,
+  speed: 1,
+  acceleration: 15 //plus moves it right, negative moves left
+};
+let bg = {
+  red: 0,
+  green: 0,
+  blue: 0,
+  alpha: 170
+}
+
+function setup() {
+  createCanvas(windowWidth,windowHeight);
+background(bg.red, bg.green, bg.blue, bg.alpha);
+//  bg.red = bg.red + 100;
+  //bg.red = constrain(bg.red, 0, 155);
+//  bg.green = bg.green + mouseY;
+  //bg.green = constrain(bg.green, 0, 255);
+//  bg.alpha = bg.alpha + mouseX;
+
+}
+
+function draw(){
+/**
+    background(bg.red, bg.green, bg.blue, bg.alpha);
+    bg.red = bg.red + mouseX;
+    //bg.red = constrain(bg.red, 0, 155);
+    bg.green = bg.green + mouseY;
+  //  bg.green = constrain(bg.green, 0, 255);
+  bg.alpha = bg.alpha + mouseX;
+**/
+
+  stroke(0, 255, 0);
+  strokeWeight(2);
+
+  circle1.x = width/2;
+  circle1.y = height/2;
+
+  circle1.size = width / 4;
+  circle1.size = circle1.size - 2;
+
+  circle1.x = circle1.x + circle1.speed;
+  circle1.y = circle1.y + circle1.speed;
+
+  circle1.speed = circle1.speed + circle1.acceleration;
+  ellipse(circle1.x, circle1.y, circle1.size);
+}
+
+/***
+
+backgroundShade = backgroundShade + 2;
+strokeWeight(3);
+stroke(0, 255, 0);
+circleSize = circleSize * 0.93; // keeps moving because program keeps looping around to it
+circleY = circleY * 1.01;
+circleX += circleSpeed; // short hand for circleX = circleX + circleSpeed
+circleSpeed = circleSpeed + circleAcceleration;
+ellipse(circleX, circleY, circleSize);
+
+
+
+/*********
 function setup() {
 createCanvas(windowWidth, windowHeight);
 noStroke();
@@ -57,3 +121,90 @@ circle2.size = constrain(circle2.size, windowWidth / 6, windowWidth / 2);
 
 };
 //(map(0, windowWidth / 60, 0, 255)
+*****/
+
+
+/***
+// setup()
+//
+// Description of setup() goes here.
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  background(0);
+
+}
+
+// draw()
+//
+// Description of draw() goes here.
+function draw() { /// writing 1/60th a second 'draw loop' or 'update loop'
+//background(mouseX, mouseY, 0);
+  rectMode(CENTER);
+  fill(mouseY / 3, mouseX / 2, mouseY / 10);
+  rect(width / 2, height / 2, mouseX / 2, mouseY / 2);//(location determined by mouse, and size determined by mouse)
+
+}
+
+let backgroundShade = 0;
+let circleX = 250;
+let circleY = 250;
+let circleSize = 400; //state variable before set up
+let circleSpeed = -4; // have the negative in the variable not in the arguement
+let circleAcceleration = 0.25;
+// setup()
+//
+// Description of setup() goes here.
+function setup() {
+  createCanvas(500, 500);
+  background(0);
+}
+
+// draw()
+//
+// Description of draw() goes here.
+function draw() { /// writing 1/60th a second 'draw loop' or 'update loop'
+//background(backgroundShade + 2); //activate these and you lose the ripple effect but get the backgroun changing from black to white and the green circle shoots off into the distance
+//backgroundShade = backgroundShade + 2;
+strokeWeight(3);
+stroke(0, 255, 0);
+circleSize = circleSize * 0.93; // keeps moving because program keeps looping around to it
+circleY = circleY * 1.01;
+circleX += circleSpeed; // short hand for circleX = circleX + circleSpeed
+circleSpeed = circleSpeed + circleAcceleration;
+ellipse(circleX, circleY, circleSize);
+}
+
+***/
+
+/**************************************************
+let backgroundShade = 0;
+let circle = {
+  x: 0,
+  y: 250,
+  size: 100,
+  speed: 1,
+  fill: 255,
+}
+// setup()
+//
+// Description of setup() goes here.
+function setup() {
+  createCanvas(500, 500);
+}
+
+// draw()
+//
+// Description of draw() goes here.
+function draw() {
+  background(backgroundShade);
+
+  circle.x = circle.x + circle.speed;
+  circle.x = constrain(circle.x, 0, width);
+
+
+  circle.size = map(mouseY, height, 0, 20, 500);
+
+  circle.fill = map(circle.x, 0, width, 0, 255); //acts like 'scale' in MAXMSP
+  fill(circle.fill);
+  ellipse(circle.x, circle.y, circle.size);
+  ****/
