@@ -2,6 +2,9 @@
 Activity 3: Moving Pictures
 Alana DeVito
 
+Circles and ripples moving across the canvas,
+ripple change colour as you swirl your mouse around the screen.
+
 
 **************************************************/
 let circle1 = {
@@ -27,10 +30,10 @@ let circle3 = {
   fill: (170, 170, 170, 170)
 }
 let circle4 = {
-  x: 700,
-  y: 200,
-  size: 450,
-  speed: .001,
+  x: 480,
+  y: 700,
+  size: 350,
+  speed: .0001,
   acceleration: -3.5,
   fill: (170, 170, 255, 170)
 }
@@ -54,8 +57,8 @@ function draw(){
 
 //circle1
 //circles move diagonally downwards, stop in middle bottom
-stroke(mouseY, 0, 255);
-mouseY = constrain(mouseY, 0, 400, 0, 255);
+  stroke(mouseY, 0, 155);
+  mouseY = map(mouseY, 0, 800, 0, 255);
 
   circle1.x = circle1.x + circle1.speed;
   circle1.x = constrain(circle1.x, 400, 680);
@@ -83,7 +86,7 @@ circle1.size = constrain(circle1.size, 8, 300);
 //circles move diagonally downwards, stop in middle bottom
 
   stroke(0, mouseY, 155);
-  mouseY = constrain(mouseY, 0, 800, 0, 255);
+  mouseY = constrain(mouseY, 0, 255);
 
 
   circle2.x = circle2.x + circle2.speed;
@@ -109,7 +112,7 @@ circle2.size = constrain(circle2.size, 8, 300);
 //circle 3 /// circles moving across from left, get small, big and continue sideways
 
   stroke(0, 155, mouseY);
-  mouseY = constrain(mouseY, 0, 800, 0, 255);
+  mouseY = map(mouseY, 0, 800, 0, 255);
   circle3.x = circle3.x + circle3.speed;
   circle3.x = constrain(circle3.x, 0, 800);
 
@@ -125,4 +128,23 @@ circle2.size = constrain(circle2.size, 8, 300);
 
   circle(circle3.x, circle3.y, circle3.size);
 
+
+  //circle 4 /// circles moving across from right, get small, big and continue sideways
+
+    stroke(0, mouseX, mouseY);
+    mouseY = map(mouseY, 0, 800, 0, 255);
+    circle4.x = circle4.x + circle4.speed;
+    circle4.x = constrain(circle4.x, 0, 800);
+
+    circle4.y = circle4.y + circle4.speed;
+    circle4.y = constrain(circle4.y, 0, 300);
+
+    circle4.speed = circle4.speed + .02;
+
+    circle4.size = circle4.size - 3;
+    circle4.size = constrain(circle4.size, -200, 1000); // mix of constrain and size being changed by a negative number causes the animation quality
+
+    fill(circle4.fill);
+
+    circle(circle4.x, circle4.y, circle4.size);
 }
