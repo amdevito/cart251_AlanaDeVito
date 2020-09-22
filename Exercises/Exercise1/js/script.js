@@ -4,8 +4,18 @@ Alana DeVito
 
 Circles with ripples moving across the canvas.
 Ripples change colour as you swirl your mouse around the screen.
-Floating boxes trace lines and change colour with swirling mouse as well.
+Floating boxes (composed of 2 shapes- square and rectagles) trace lines and change colour with swirling mouse as well.
 Circles grow and shrink as they move across the screen.
+
+Objectives completed:
+1. 3 different shapes (circle, square, rectangle) composing 8 animated forms.
+2. Movement of shapes across canvas.
+3. Size changes - circles change from small to large and back. Rectangles
+trace different sizes of smaller rectangles.
+4. All shapes change colour as the mouse swirls.
+5. Map and constrain used to modulate colour changes and rectangle sizes scaled to design requirements.
+6. Colour flashes and changes and shape sizes responds to mouseX and mouseY.
+
 **************************************************/
 
 //creating all the JavaScript objects used in the scene
