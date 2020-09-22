@@ -32,13 +32,13 @@ let rect2 = {
   sizeY: 90,
 };
 let rect3 = {
-  x: 700,
+  x: 680,
   y: 175,
   sizeX: 50,
   sizeY: 50,
 };
 let rect4 = {
-  x: 740,
+  x: 720,
   y: 500,
   sizeX: 30,
   sizeY: 30,
