@@ -8,7 +8,7 @@ let backgroundShade = 0;
 let circleX = 250;
 let circleY = 250;
 let circleSize = 400; //state variable before set up
-let circleSpeed = -4; // have the negative in the variable not in the argument
+let circleSpeed = -4; // have the negative in the variable not in the arguement
 let circleAcceleration = 0.25;
 // setup()
 //
