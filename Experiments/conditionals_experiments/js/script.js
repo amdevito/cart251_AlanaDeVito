@@ -4,14 +4,7 @@ Pippin Barr
 
 Here is a description of this template p5 project.
 **************************************************/
-let backgroundShade = 0;
-let circle = {
-  x: 0,
-  y: 250,
-  size: 100,
-  speed: 1,
-  fill: 225
-}
+
 // setup()
 //
 // Description of setup() goes here.
@@ -23,16 +16,9 @@ createCanvas(500, 500);
 //
 // Description of draw() goes here.
 function draw() {
-  background(backgroundShade);
-
-  circle.x += circle.speed;
-
-  fill (255, 255, 255);
-
-if (!(circle.x > width/3)) {
-    fill (255, 0, 0);
+  if (keyIsPressed) { //when any key is pressed turn to white
+    background(255);
+  } else {
+    background(0); //when it is not pressed (let go) go back to black
   }
-
-  ellipse(circle.x, circle.y, circle.size);
-
 }
