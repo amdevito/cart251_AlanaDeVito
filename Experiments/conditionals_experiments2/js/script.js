@@ -29,4 +29,4 @@ pop();
 
 angle += 1; //spins on the origin
 rectScale = rectScale + 0.01
-}
+} /// this program is a spinning rectangle that starts small and as zooms forward, gets bigger.
