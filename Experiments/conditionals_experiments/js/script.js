@@ -19,14 +19,21 @@ function draw() {
   background(0);
   noStroke();
   fill(100, 200, 100);
+  //
+  // let x = caterpillar.x;
+  // let numSegments = 10; //how many segments you want to draw
+  // let segmentsDrawn = 0; // how many have been drawn
+  //
+  // while (segmentsDrawn < numSegments) { //while this is true do the next instructions  ALSO: happens at once, not animated
+  //   ellipse(x, caterpillar.y, caterpillar.segmentSize);
+  //   x = x + 40;
+  //   segmentsDrawn ++; // actions are these three lines, you need a progression or the program will freeze
 
   let x = caterpillar.x;
-  let numSegments = 10; //how many segments you want to draw
-  let segmentsDrawn = 0; // how many have been drawn
+  let numSegments = 10;
 
-  while (segmentsDrawn < numSegments) { //while this is true do the next instructions
+  for (let i = 0; i < numSegments; i++) {
     ellipse(x, caterpillar.y, caterpillar.segmentSize);
-    x = x + 40;
-    segmentsDrawn ++;
+    x = x + 40; // for loop :  this is all the same as a while loop, but more consise. i = classic counter variable, instead of segmentsDrawn
   }
 }
