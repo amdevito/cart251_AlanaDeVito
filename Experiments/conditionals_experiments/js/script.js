@@ -4,15 +4,14 @@ Pippin Barr
 
 Here is a description of this template p5 project.
 **************************************************/
-let bg = {
-  r: 0,
-  b: 0,
-  g: 0
-}
+
 let circle ={
   x: 250,
   y: 250,
-  size: 250
+  size: 250,
+  vx: 0, // velocity in x and y
+  vy: 0, // moves up
+  speed: 5
 }
 
 function setup() {
@@ -21,13 +20,24 @@ createCanvas(500, 500);
 
 
 function draw() {
-background(bg.r, bg.g, bg.b);
+background(0);
 
-ellipse(circle.x, circle.y, circle.size);
+if (mouseX < circle.x) {
+  circle.vx = -circle.speed;
+} else { ///must give the else
+  circle.vx = circle.speed;
 }
 
-function mouseWheel() { // event handler = mouseWheel
-  bg.r = random(0, 255);
-  bg.g = random(0, 255);
-  bg.b = random(0, 255);
-} /// when you scroll, the background changes colors
+if (mouseY < circle.y) {
+  circle.vy = -circle.speed;
+} else {
+  circle.vy = circle.speed;
+
+}
+
+circle.x += circle.vx;
+circle.y += circle.vy;
+
+ellipse(circle.x, circle.y, circle.size);
+
+}
