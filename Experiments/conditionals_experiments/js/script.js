@@ -47,4 +47,4 @@ circle.y += circle.vy;
 
 ellipse(circle.x, circle.y, circle.size);
 
-} /// circle 'floats around' following the mouse, accelerating and deccelerating and then spins around the mouse when it 'catches' it.
+} /// circle 'floats around' following the mouse, accelerating and deccelerating and then spins around the mouse when it 'catches' it. // some nice physics simulation
