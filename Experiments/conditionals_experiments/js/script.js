@@ -9,7 +9,7 @@ let circle = {
   x: 0,
   y: 250,
   size: 100,
-  speed: 5,
+  speed: 1,
   fill: 225
 }
 // setup()
@@ -27,22 +27,13 @@ function draw() {
 
   circle.x += circle.speed;
 
-  if (circle.x > width) { // conditional in brackets
-    circle.speed = -circle.speed; //curly brackets = block of code
-  }
-
-  if (circle.x < 0) {
-    circle.speed = -circle.speed;
-  }
-
-  if (mouseY < height/2) {
-    fill(255, 0, 0);
-  }
-
-  if (mouseY > height/2) {
-    fill(0, 0, 255);
-  }
-
+if (mouseX < width/3) {
+  fill(255, 0, 0);
+} else if (mouseX < 2 * width/3){
+  fill (0, 255, 0);
+} else {
+  fill(0, 0, 255); /// colors change from red to blue to green depending on which third of the screen the mouse is in
+}
   ellipse(circle.x, circle.y, circle.size);
 
-} /// this is a circle that bounces back and forth across the screen, and changes color depending on the y coordinates of the mouse.
+}
