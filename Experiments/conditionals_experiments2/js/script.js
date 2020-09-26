@@ -13,15 +13,20 @@ function setup() {
 function draw() {
   background(255);
 
-push(); //save the styling (so the defaul settings)
+push();
   fill(255, 0, 0);
-  stroke(0, 255, 255);
-  strokeWeight(10);
-  rect(100, 100, 100, 100);
-pop(); //restores settings from push - note: dpo this around each shape 'style'
+  rect(0,0, 100, 100);
+pop();
 
 push();
-  fill(0, 0, 255);
-  rect(300,100,100,100);
+  translate(200, 100); ///moved the ORIGIN over 200 px. and down 100 px. // translate is good for 3D animation!
+  fill(0, 255, 0);
+  rect(0,0,100,100);
+pop();
+
+push();
+  translate(0, 200); //because of push pop, translate is reset
+  fill(0,0,255);
+  rect(0,0,100,100);
 pop();
 }
