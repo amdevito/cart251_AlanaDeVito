@@ -8,10 +8,13 @@ Here is a description of this template p5 project.
 let circle ={
   x: 250,
   y: 250,
-  size: 250,
-  vx: 0, // velocity in x and y
-  vy: 0, // moves up
-  speed: 5
+  size: 100,
+  vx: 0,// velocity
+  vy: 0,
+  ax: 0, // acceleration in x and y
+  ay: 0, // moves up
+  axe: 0.25, //acceleration
+  maxSpeed: 5
 }
 
 function setup() {
@@ -23,21 +26,25 @@ function draw() {
 background(0);
 
 if (mouseX < circle.x) {
-  circle.vx = -circle.speed;
+  circle.ax = -circle.axe;
 } else { ///must give the else
-  circle.vx = circle.speed;
+  circle.ax = circle.axe;
 }
 
 if (mouseY < circle.y) {
-  circle.vy = -circle.speed;
+  circle.ay = -circle.axe;
 } else {
-  circle.vy = circle.speed;
-
+  circle.ay = circle.axe;
 }
 
-circle.x += circle.vx;
+circle.vx += circle.ax; // velocity adding acceleration
+circle.vx = constrain(circle.vx, -circle.maxSpeed, circle.maxSpeed);
+circle.vy += circle.ay;
+circle.vy = constrain(circle.vy, -circle.maxSpeed, circle.maxSpeed);
+
+circle.x += circle.vx; // position adding velocity
 circle.y += circle.vy;
 
 ellipse(circle.x, circle.y, circle.size);
 
-}
+} /// circle 'floats around' following the mouse, accelerating and deccelerating and then spins around the mouse when it 'catches' it.
