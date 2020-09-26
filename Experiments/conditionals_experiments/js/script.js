@@ -4,10 +4,15 @@ Pippin Barr
 
 Here is a description of this template p5 project.
 **************************************************/
-let caterpillar ={
-  x: 100,
+let bg = {
+  r: 0,
+  b: 0,
+  g: 0
+}
+let circle ={
+  x: 250,
   y: 250,
-  segmentSize: 50
+  size: 250
 }
 
 function setup() {
@@ -16,24 +21,13 @@ createCanvas(500, 500);
 
 
 function draw() {
-  background(0);
-  noStroke();
-  fill(100, 200, 100);
-  //
-  // let x = caterpillar.x;
-  // let numSegments = 10; //how many segments you want to draw
-  // let segmentsDrawn = 0; // how many have been drawn
-  //
-  // while (segmentsDrawn < numSegments) { //while this is true do the next instructions  ALSO: happens at once, not animated
-  //   ellipse(x, caterpillar.y, caterpillar.segmentSize);
-  //   x = x + 40;
-  //   segmentsDrawn ++; // actions are these three lines, you need a progression or the program will freeze
+background(bg.r, bg.g, bg.b);
 
-  let x = caterpillar.x;
-  let numSegments = 10;
+ellipse(circle.x, circle.y, circle.size);
+}
 
-  for (let i = 0; i < numSegments; i++) {
-    ellipse(x, caterpillar.y, caterpillar.segmentSize);
-    x = x + 40; // for loop :  this is all the same as a while loop, but more consise. i = classic counter variable, instead of segmentsDrawn
-  }
+function mousePressed() { // event handler = mousePressed
+  bg.r = random(0, 255);
+  bg.g = random(0, 255);
+  bg.b = random(0, 255);
 }
