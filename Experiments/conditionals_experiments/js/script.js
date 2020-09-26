@@ -4,7 +4,7 @@ Pippin Barr
 
 Here is a description of this template p5 project.
 **************************************************/
-
+let displayCircle = false;
 // setup()
 //
 // Description of setup() goes here.
@@ -16,9 +16,14 @@ createCanvas(500, 500);
 //
 // Description of draw() goes here.
 function draw() {
-  if (keyIsPressed) { //when any key is pressed turn to white
-    background(255);
-  } else {
-    background(0); //when it is not pressed (let go) go back to black
-  }
+
+background(0);
+
+if (mouseIsPressed) {
+  displayCircle = true;
 }
+
+  if (displayCircle) {
+    ellipse (250, 250, 250);
+  }
+  }
