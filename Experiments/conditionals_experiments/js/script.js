@@ -26,8 +26,8 @@ background(bg.r, bg.g, bg.b);
 ellipse(circle.x, circle.y, circle.size);
 }
 
-function mousePressed() { // event handler = mousePressed
+function mouseWheel() { // event handler = mouseWheel
   bg.r = random(0, 255);
   bg.g = random(0, 255);
   bg.b = random(0, 255);
-}
+} /// when you scroll, the background changes colors
