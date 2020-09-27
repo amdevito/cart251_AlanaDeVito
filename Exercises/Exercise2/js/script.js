@@ -60,8 +60,15 @@ let squrriel = {
   vy: 0,
   ax: 0,
   ax: 0
+
 }
-function preload(){
+
+function setup() {
+  // The background image must be the same size as the parameters
+  // into the createCanvas() method. In this program, the size of
+  // the image is 720x400 pixels.
+  createCanvas(1400, 800);
+  bg = loadImage('assets/images/park.jpg');
   dog1 = loadImage('assets/images/dog1.png');
   dog2 = loadImage('assets/images/dog2.png');
   dog3 = loadImage('assets/images/dog3.png');
@@ -69,18 +76,14 @@ function preload(){
   acorn1 = loadImage('assets/images/acorn1.png');
   acorn2 = loadImage('assets/images/acorn2.png');
   squrriel = loadImage('assets/images/squrriel.png');
-}
 
-function setup() {
-  // The background image must be the same size as the parameters
-  // into the createCanvas() method. In this program, the size of
-  // the image is 720x400 pixels.
-  bg = loadImage('assets/images/park.jpg');
-  createCanvas(1400, 800);
-  
+
+
 }
 
 function draw() {
   background(bg);
-  squirrel()
+
+  image(squrriel, mouseX, mouseY);
+
 }
