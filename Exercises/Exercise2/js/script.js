@@ -111,7 +111,9 @@ pop();
 push();
 imageMode(CENTER);
 image(acorn1, 800, 775, 30, 50);
+
 pop();
+
 
 
 push();
@@ -158,6 +160,7 @@ push();
 imageMode(CENTER);
 image(dog1, 500, 600, 200, 174);
 pop();
+
 
 
 }
