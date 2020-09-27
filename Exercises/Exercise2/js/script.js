@@ -1,10 +1,10 @@
 /**************************************************
-DOdGing DOGS: Adventures with the White Squrriel
+DOdGing DOGS: Adventures of the White Squrriel
 **************************************************/
 let bg;
 let dog1 = {
-  x: 0,
-  y: 0,
+  x: 1300,
+  y: 600,
   vx: 0,
   vy: 0,
   ax: 0,
@@ -34,6 +34,10 @@ let dog4 = {
   ax: 0,
   ax: 0
 }
+function preload(){
+  dog1 = loadImage('assets/images/dog1.png')
+}
+
 function setup() {
   // The background image must be the same size as the parameters
   // into the createCanvas() method. In this program, the size of
