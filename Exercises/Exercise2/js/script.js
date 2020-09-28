@@ -162,7 +162,7 @@ if (acorn2.x > width) {
 
 
 
-
+///squirrel
 
 push(); //must do push and pop so that the squirrel doesnt leave trail on screen
   imageMode(CENTER);
@@ -237,13 +237,13 @@ pop();
 
 push();
 imageMode(CENTER);
-image(dog4, 690, 660, 175, 178);
+image(dog4, 690, 660, 135, 138);
 pop();
 
 
 push();
 imageMode(CENTER);
-image(dog1, 500, 600, 200, 174);
+image(dog1, 500, 600, 175, 143);
 pop();
 
 }
