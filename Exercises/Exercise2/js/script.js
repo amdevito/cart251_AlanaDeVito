@@ -10,6 +10,8 @@ DOdGing DOGS: Adventures of the White Squrriel
 let bg;
 let bgGameOver;
 let angle = 0;
+
+//set keyboard control speed
 let keyboardControl = {
   left: 8,
   right: 8,
@@ -26,7 +28,7 @@ let squirrel = {
   ax: 0,
   ay: 0
 }
-//set acorns object
+//set acorns objects
 let acorn1 = {
   x: 0,
   y: 0,
@@ -187,7 +189,7 @@ function setup() {
   acorn5.vx = acorn5.speed;
   acorn6.vx = acorn6.speed;
 
-
+//make cursor invisible so that the squirrel becomes the user control
   noCursor();
 }
 
@@ -233,30 +235,30 @@ background(bg);
  let d10 = dist(squirrel.x, squirrel.y, acorn5.x, acorn5.y);
  let d11 = dist(squirrel.x, squirrel.y, acorn6.x, acorn6.y);
 
-
+// if distance between acorn and squirrel is less than 50, register a hit and draw a circle in the tree. once you get 5 points, you win.
  if (d6 < 50) {
    fill(153,102,1);
-   circle(100, 340, 100);
+   circle(600, 340, 100);
  }
 
  if (d7 < 50) {
    fill(153,102,1);
-   circle(100, 340, 100);
+   circle(600, 340, 100);
  }
 
  if (d8 < 50) {
    fill(153,102,1);
-   circle(100, 340, 100);
+   circle(600, 340, 100);
  }
 
  if (d9 < 50) {
    fill(153,102,1);
-   circle(100, 340, 100);
+   circle(600, 340, 100);
  }
 
  if (d10 < 50) {
    fill(153,102,1);
-   circle(100, 340, 100);
+   circle(600, 340, 100);
  }
 
  if (d11 < 50) {
@@ -276,7 +278,7 @@ background(bg);
    squirrel.y += keyboardControl.down;
  }
 
- //constrain squirrel movement inside canvas
+ //constrain squirrel movement inside canvas, and below trees
 squirrel.x = constrain(squirrel.x, 0, width);
 squirrel.y = constrain(squirrel.y, 340, 775);
 
@@ -360,7 +362,7 @@ push(); //must do push and pop so that the squirrel doesnt leave trail on screen
   image(squirrel.image, squirrel.x, squirrel.y, 150, 50);
 pop();
 
-//acrons rool across bottom of the screen. when squirrel touches ones it floats to the top of the screen (like keeping score.)
+//acrons move across bottom of the screen. when squirrel touches one, a brown circle is drawn in tree.
 push();
 imageMode(CENTER);
 image(acorn1.image, acorn1.x, 775, 30, 50);
@@ -393,7 +395,7 @@ pop();
 
 
 
-//DOGS /// have all of their stateing positions be different so that they are staggared as they mmove accross the screen.
+//DOGS //
 
 push();
 imageMode(CENTER);
@@ -423,9 +425,3 @@ pop();
 
 
 }
-
-
-///once i need to get the key up and key down function to move the squirrel
-// function keyPressed() {
-//   if (keyCode === UP_ARROW) {
-    //x++
