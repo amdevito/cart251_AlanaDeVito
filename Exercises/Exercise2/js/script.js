@@ -8,9 +8,16 @@ DOdGing DOGS: Adventures of the White Squrriel
 
 // dogs come in from the right at different distances outside of the frame so they are staggerd. so x= 1200 + randomNumber(1200, 1300, y position is randomNumber(height/2, height) midway to bottom
 let bg;
+let angle = 0;
+let keyboardControl = {
+  left: 8,
+  right: 8,
+  up: 10,
+  down: 10
+}
 let squirrel = {
-  x: 0,
-  y: 0,
+  x: 100,
+  y: 340,
   vx: 0,
   vy: 0,
   image: 0,
@@ -186,6 +193,16 @@ background(bg);
 //dog movement -- next need to replace dog's x and y numbers with dog1.x, dog1.y
  //etc..
 
+ if (keyIsDown(LEFT_ARROW)) {
+   squirrel.x -= keyboardControl.left;
+ } else if (keyIsDown(RIGHT_ARROW)){
+   squirrel.x += keyboardControl.right;
+ } else if (keyIsDown(UP_ARROW)) {
+   squirrel.y -= keyboardControl.up;
+ } else if (keyIsDown(DOWN_ARROW)) {
+   squirrel.y += keyboardControl.down;
+ }
+
 dog1.x = dog1.x + dog1.vx;
 dog1.y = dog1.y + dog1.vy;
 
@@ -262,7 +279,7 @@ if (acorn6.x > width) {
 
 push(); //must do push and pop so that the squirrel doesnt leave trail on screen
   imageMode(CENTER);
-  image(squirrel.image, mouseX, mouseY, 150, 50);
+  image(squirrel.image, squirrel.x, squirrel.y, 150, 50);
 pop();
 
 //acrons rool across bottom of the screen. when squirrel touches ones it floats to the top of the screen (like keeping score.)
