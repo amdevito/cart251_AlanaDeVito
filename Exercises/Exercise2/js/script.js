@@ -21,6 +21,7 @@ let acorn1 = {
   y: 0,
   vx: 0,
   vy: 0,
+  speed: 2,
   ax: 0,
   ay: 0
 }
@@ -29,15 +30,16 @@ let acorn2 = {
   y: 0,
   vx: 0,
   vy: 0,
+  speed: 3,
   ax: 0,
   ay: 0
 }
 let dog1 = {
-  x: 0,
-  y: 0,
+  x: 1200,
+  y: 500,
   vx: 0,
   vy: 0,
-  speed: 5,
+  speed: -5,
   ax: 0,
   ay: 0
 }
@@ -46,7 +48,7 @@ let dog2 = {
   y: 0,
   vx: 0,
   vy: 0,
-  speed: 8,
+  speed: -8,
   ax: 0,
   ay: 0
 }
@@ -55,7 +57,7 @@ let dog3 = {
   y: 0,
   vx: 0,
   vy: 0,
-  speed: 2,
+  speed: -2,
   ax: 0,
   ay: 0
 }
@@ -64,7 +66,7 @@ let dog4 = {
   y: 0,
   vx: 0,
   vy: 0,
-  speed: 10,
+  speed: -10,
   ax: 0,
   ay: 0
 }
@@ -83,9 +85,7 @@ function preload() {
 }
 
 function setup() {
-  // The background image must be the same size as the parameters
-  // into the createCanvas() method. In this program, the size of
-  // the image is 720x400 pixels.
+
   createCanvas(1400, 800);
 
   dog1.y = random(50, 500);
@@ -116,11 +116,11 @@ background(bg);
 //dog movement -- next need to replace dog's x and y numbers with dog1.x, dog1.y
  //etc..
 
-dog1.x += dog1.vx;
-dog1.y += dog1.vy;
+dog1.x = dog1.x + dog1.vx;
+dog1.y = dog1.y + dog1.vy;
 
-if (dog1.x > width) {
-  dog1.x = 0;
+if (dog1.x < width) {
+  dog1.x = 1200;
   dog1.y = random(50, 500);
 }
 
@@ -161,7 +161,6 @@ if (acorn2.x > width) {
 }
 
 
-
 ///squirrel
 
 push(); //must do push and pop so that the squirrel doesnt leave trail on screen
@@ -198,8 +197,6 @@ image(acorn1, 800, 775, 30, 50);
 
 pop();
 
-
-
 push();
 imageMode(CENTER);
 image(acorn2, 1000, 775, 30, 50);
@@ -218,6 +215,11 @@ image(acorn2, 1400, 775, 30, 50);
 pop();
 
 //DOGS /// have all of their stateing positions be different so that they are staggared as they mmove accross the screen.
+
+push();
+imageMode(CENTER);
+image(dog1, dog1.x, dog1.y, 175, 143);
+pop();
 
 push();
 imageMode(CENTER);
@@ -240,11 +242,6 @@ imageMode(CENTER);
 image(dog4, 690, 660, 135, 138);
 pop();
 
-
-push();
-imageMode(CENTER);
-image(dog1, 500, 600, 175, 143);
-pop();
 
 }
 
