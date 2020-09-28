@@ -75,6 +75,7 @@ function setup() {
   // into the createCanvas() method. In this program, the size of
   // the image is 720x400 pixels.
   createCanvas(1400, 800);
+  noCursor();
 }
 
 function draw() {
@@ -130,13 +131,14 @@ pop();
 push();
 imageMode(CENTER);
 image(acorn2, 1400, 775, 30, 50);
+
 pop();
 
-//DOGS /// have all of their stateing positions be different so that they are staggared asthe mmove accross the screen.
+//DOGS /// have all of their stateing positions be different so that they are staggared as they mmove accross the screen.
 
 push();
 imageMode(CENTER);
-image(dog2, 1400, 600, 200, 174);//randomize these (for all dogs)
+image(dog2, 1400, 600, 200, 174);//randomize location (for all dogs)
 pop();
 
 push();
@@ -160,8 +162,6 @@ push();
 imageMode(CENTER);
 image(dog1, 500, 600, 200, 174);
 pop();
-
-
 
 }
 
