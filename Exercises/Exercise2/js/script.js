@@ -276,6 +276,10 @@ background(bg);
    squirrel.y += keyboardControl.down;
  }
 
+ //constrain squirrel movement inside canvas
+squirrel.x = constrain(squirrel.x, 0, width);
+squirrel.y = constrain(squirrel.y, 340, 775);
+
 //dogs movement
 dog1.x = dog1.x + dog1.vx;
 dog1.y = dog1.y + dog1.vy;
