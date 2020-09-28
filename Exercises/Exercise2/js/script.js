@@ -119,7 +119,7 @@ background(bg);
 dog1.x = dog1.x + dog1.vx;
 dog1.y = dog1.y + dog1.vy;
 
-if (dog1.x < width) {
+if (dog1.x < 0) {
   dog1.x = 1200;
   dog1.y = random(50, 500);
 }
@@ -127,7 +127,7 @@ if (dog1.x < width) {
 dog2.x += dog2.vx;
 dog2.y += dog2.vy;
 
-if (dog2.x > width) {
+if (dog2.x < 0) {
   dog2.x = 0;
   dog2.y = random(50, 500);
 }
@@ -135,7 +135,7 @@ if (dog2.x > width) {
 dog3.x += dog3.vx;
 dog3.y += dog3.vy;
 
-if (dog3.x > width) {
+if (dog3.x < 0) {
   dog3.x = 0;
   dog3.y = random(50, 500);
 }
@@ -143,7 +143,7 @@ if (dog3.x > width) {
 dog4.x += dog4.vx;
 dog4.y += dog4.vy;
 
-if (dog4.x > width) {
+if (dog4.x < 0) {
   dog4.x = 0;
   dog4.y = random(50, 500);
 }
