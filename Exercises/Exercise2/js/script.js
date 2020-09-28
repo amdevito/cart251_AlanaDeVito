@@ -8,6 +8,7 @@ DOdGing DOGS: Adventures of the White Squrriel
 
 // dogs come in from the right at different distances outside of the frame so they are staggerd. so x= 1200 + randomNumber(1200, 1300, y position is randomNumber(height/2, height) midway to bottom
 let bg;
+let bgGameOver;
 let angle = 0;
 let keyboardControl = {
   left: 8,
@@ -15,6 +16,7 @@ let keyboardControl = {
   up: 10,
   down: 10
 }
+//set squirrel object
 let squirrel = {
   x: 100,
   y: 340,
@@ -24,6 +26,7 @@ let squirrel = {
   ax: 0,
   ay: 0
 }
+//set acorns object
 let acorn1 = {
   x: 0,
   y: 0,
@@ -84,7 +87,7 @@ let acorn6 = {
   ax: 0,
   ay: 0
 }
-
+///setting dog objects
 let dog1 = {
   x: 1400,
   y: 500,
@@ -140,6 +143,7 @@ let dog5 = {
 function preload() {
   squirrel.image = loadImage("assets/images/squirrel.png");
   bg = loadImage('assets/images/park.jpg');
+  bgGameOver = loadImage('assets/images/squirrel_dead.jpg');
   acorn1.image = loadImage('assets/images/acorn1.png');
   acorn2.image = loadImage('assets/images/acorn2.png');
   acorn3.image = loadImage('assets/images/acorn1.png');
@@ -174,7 +178,7 @@ function setup() {
   dog5.y = random(575, 770);
   dog5.vx = dog5.speed;
 
-//acorn set up//
+//acorn movement set up//
 
   acorn1.vx = acorn1.speed;
   acorn2.vx = acorn2.speed;
@@ -193,6 +197,20 @@ background(bg);
 //dog movement -- next need to replace dog's x and y numbers with dog1.x, dog1.y
  //etc..
 
+ // check for when dogs catch squirrel
+ let d1 = dist(squirrel.x, squirrel.y, dog1.x, dog1.y);
+ let d2 = dist(squirrel.x, squirrel.y, dog2.x, dog2.x);
+ let d3 = dist(squirrel.x, squirrel.y, dog3.x, dog3.y);
+ let d4 = dist(squirrel.x, squirrel.y, dog4.x, dog4.y);
+ let d5 = dist(squirrel.x, squirrel.y, dog5.x, dog5.y);
+
+ if (d1 < 50) {
+   noLoop();
+   background(bgGameOver);
+ }
+
+
+//keyboard arrows controlling squirrel movement
  if (keyIsDown(LEFT_ARROW)) {
    squirrel.x -= keyboardControl.left;
  } else if (keyIsDown(RIGHT_ARROW)){
