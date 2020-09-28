@@ -199,12 +199,28 @@ background(bg);
 
  // check for when dogs catch squirrel
  let d1 = dist(squirrel.x, squirrel.y, dog1.x, dog1.y);
- let d2 = dist(squirrel.x, squirrel.y, dog2.x, dog2.x);
+ let d2 = dist(squirrel.x, squirrel.y, dog2.x, dog2.y);
  let d3 = dist(squirrel.x, squirrel.y, dog3.x, dog3.y);
  let d4 = dist(squirrel.x, squirrel.y, dog4.x, dog4.y);
  let d5 = dist(squirrel.x, squirrel.y, dog5.x, dog5.y);
 
- if (d1 < 50) {
+ if (d1 < 75) {
+   noLoop();
+   background(bgGameOver);
+ }
+ if (d2 < 75) {
+   noLoop();
+   background(bgGameOver);
+ }
+ if (d3 < 75) {
+   noLoop();
+   background(bgGameOver);
+ }
+ if (d4 < 75) {
+   noLoop();
+   background(bgGameOver);
+ }
+ if (d5 < 75) {
    noLoop();
    background(bgGameOver);
  }
