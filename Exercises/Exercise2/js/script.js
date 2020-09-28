@@ -40,6 +40,7 @@ let dog1 = {
   vx: 0,
   vy: 0,
   speed: -5,
+  image: 0,
   ax: 0,
   ay: 0
 }
@@ -49,6 +50,7 @@ let dog2 = {
   vx: 0,
   vy: 0,
   speed: -8,
+  image: 0,
   ax: 0,
   ay: 0
 }
@@ -58,6 +60,7 @@ let dog3 = {
   vx: 0,
   vy: 0,
   speed: -2,
+  image: 0,
   ax: 0,
   ay: 0
 }
@@ -67,6 +70,7 @@ let dog4 = {
   vx: 0,
   vy: 0,
   speed: -10,
+  image: 0,
   ax: 0,
   ay: 0
 }
@@ -77,10 +81,10 @@ function preload() {
   bg = loadImage('assets/images/park.jpg');
   acorn1 = loadImage('assets/images/acorn1.png');
   acorn2 = loadImage('assets/images/acorn2.png');
-  dog1 = loadImage('assets/images/dog1.png');
-  dog2 = loadImage('assets/images/dog2.png');
-  dog3 = loadImage('assets/images/dog3.png');
-  dog4 = loadImage('assets/images/dog4.png');
+  dog1.image = loadImage('assets/images/dog1.png');
+  dog2.image = loadImage('assets/images/dog2.png');
+  dog3.image = loadImage('assets/images/dog3.png');
+  dog4.image = loadImage('assets/images/dog4.png');
 
 }
 
@@ -121,7 +125,7 @@ dog1.y = dog1.y + dog1.vy;
 
 if (dog1.x < 0) {
   dog1.x = 1200;
-  dog1.y = random(50, 500);
+  dog1.y = random(575, 770);
 }
 
 dog2.x += dog2.vx;
@@ -218,28 +222,28 @@ pop();
 
 push();
 imageMode(CENTER);
-image(dog1, dog1.x, dog1.y, 175, 143);
+image(dog1.image, dog1.x, dog1.y, 175, 143);
 pop();
 
 push();
 imageMode(CENTER);
-image(dog2, 1400, 600, 200, 174);//randomize location (for all dogs)
+image(dog2.image, 1400, 600, 200, 174);//randomize location (for all dogs)
 pop();
 
 push();
 imageMode(CENTER);
-image(dog3, 1200, 650, 100, 86);
+image(dog3.image, 1200, 650, 100, 86);
 pop();
 
 
 push();
 imageMode(CENTER);
-image(dog3, 1000, 600, 100, 86);
+image(dog3.image, 1000, 600, 100, 86);
 pop();
 
 push();
 imageMode(CENTER);
-image(dog4, 690, 660, 135, 138);
+image(dog4.image, 690, 660, 135, 138);
 pop();
 
 
