@@ -225,6 +225,46 @@ background(bg);
    background(bgGameOver);
  }
 
+ // check for when squirrel gets acorn
+ let d6 = dist(squirrel.x, squirrel.y, acorn1.x, acorn1.y);
+ let d7 = dist(squirrel.x, squirrel.y, acorn2.x, acorn2.y);
+ let d8 = dist(squirrel.x, squirrel.y, acorn3.x, acorn3.y);
+ let d9 = dist(squirrel.x, squirrel.y, acorn4.x, acorn4.y);
+ let d10 = dist(squirrel.x, squirrel.y, acorn5.x, acorn5.y);
+ let d11 = dist(squirrel.x, squirrel.y, acorn6.x, acorn6.y);
+
+
+ if (d6 < 50) {
+   fill(153,102, 1);
+   circle(100, 340, 100);
+
+ }
+ if (d7 < 50) {
+   fill(153,102, 1);
+   circle(100, 340, 100);
+
+ }
+ if (d8 < 50) {
+   fill(153,102, 1);
+   circle(100, 340, 100);
+
+ }
+ if (d9 < 50) {
+   fill(153,102, 1);
+   circle(100, 340, 100);
+
+ }
+ if (d10 < 50) {
+   fill(153,102, 1);
+   circle(100, 340, 100);
+
+ }
+ if (d11 < 50) {
+   fill(153,102, 1);
+   circle(100, 340, 100);
+
+ }
+
 
 //keyboard arrows controlling squirrel movement
  if (keyIsDown(LEFT_ARROW)) {
@@ -237,6 +277,7 @@ background(bg);
    squirrel.y += keyboardControl.down;
  }
 
+//dogs movement
 dog1.x = dog1.x + dog1.vx;
 dog1.y = dog1.y + dog1.vy;
 
@@ -332,7 +373,6 @@ imageMode(CENTER);
 image(acorn3.image, acorn3.x, 775, 30, 50);
 pop();
 
-
 push();
 imageMode(CENTER);
 image(acorn4.image, acorn4.x, 775, 30, 50);
@@ -341,7 +381,6 @@ pop();
 push();
 imageMode(CENTER);
 image(acorn5.image, acorn5.x, 775, 30, 50);
-
 pop();
 
 push();
