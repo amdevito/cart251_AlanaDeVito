@@ -8,11 +8,12 @@ DOdGing DOGS: Adventures of the White Squrriel
 
 // dogs come in from the right at different distances outside of the frame so they are staggerd. so x= 1200 + randomNumber(1200, 1300, y position is randomNumber(height/2, height) midway to bottom
 let bg;
-let squirrelImage = {
+let squirrel = {
   x: 0,
   y: 0,
   vx: 0,
   vy: 0,
+  image: 0,
   ax: 0,
   ay: 0
 }
@@ -22,6 +23,7 @@ let acorn1 = {
   vx: 0,
   vy: 0,
   speed: 2,
+  image: 0,
   ax: 0,
   ay: 0
 }
@@ -30,12 +32,54 @@ let acorn2 = {
   y: 0,
   vx: 0,
   vy: 0,
-  speed: 3,
+  speed: 5,
+  image: 0,
   ax: 0,
   ay: 0
 }
+let acorn3 = {
+  x: -100,
+  y: 0,
+  vx: 0,
+  vy: 0,
+  speed: 3,
+  image: 0,
+  ax: 0,
+  ay: 0
+}
+let acorn4 = {
+  x: -10,
+  y: 0,
+  vx: 0,
+  vy: 0,
+  speed: 6,
+  image: 0,
+  ax: 0,
+  ay: 0
+}
+let acorn5 = {
+  x: -250,
+  y: 0,
+  vx: 0,
+  vy: 0,
+  speed: 1,
+  image: 0,
+  ax: 0,
+  ay: 0
+}
+let acorn6 = {
+  x: -800,
+  y: 0,
+  vx: 0,
+  vy: 0,
+  speed: 7,
+  image: 0,
+  ax: 0,
+  ay: 0
+}
+
 let dog1 = {
-  x: 1200,
+  x: 1400,
   y: 500,
   vx: 0,
   vy: 0,
@@ -45,7 +89,7 @@ let dog1 = {
   ay: 0
 }
 let dog2 = {
-  x: 0,
+  x: 1400,
   y: 0,
   vx: 0,
   vy: 0,
@@ -55,7 +99,7 @@ let dog2 = {
   ay: 0
 }
 let dog3 = {
-  x: 0,
+  x: 1400,
   y: 0,
   vx: 0,
   vy: 0,
@@ -65,7 +109,7 @@ let dog3 = {
   ay: 0
 }
 let dog4 = {
-  x: 0,
+  x: 1400,
   y: 0,
   vx: 0,
   vy: 0,
@@ -74,17 +118,33 @@ let dog4 = {
   ax: 0,
   ay: 0
 }
+let dog5 = {
+  x: 1400,
+  y: 0,
+  vx: 0,
+  vy: 0,
+  speed: -3,
+  image: 0,
+  ax: 0,
+  ay: 0
+}
 
 
 function preload() {
-  squirrelImage = loadImage("assets/images/squirrel.png");
+  squirrel.image = loadImage("assets/images/squirrel.png");
   bg = loadImage('assets/images/park.jpg');
-  acorn1 = loadImage('assets/images/acorn1.png');
-  acorn2 = loadImage('assets/images/acorn2.png');
+  acorn1.image = loadImage('assets/images/acorn1.png');
+  acorn2.image = loadImage('assets/images/acorn2.png');
+  acorn3.image = loadImage('assets/images/acorn1.png');
+  acorn4.image = loadImage('assets/images/acorn2.png');
+  acorn5.image = loadImage('assets/images/acorn1.png');
+  acorn6.image = loadImage('assets/images/acorn2.png');
   dog1.image = loadImage('assets/images/dog1.png');
   dog2.image = loadImage('assets/images/dog2.png');
   dog3.image = loadImage('assets/images/dog3.png');
   dog4.image = loadImage('assets/images/dog4.png');
+  dog5.image = loadImage('assets/images/dog3.png');
+
 
 }
 
@@ -92,23 +152,29 @@ function setup() {
 
   createCanvas(1400, 800);
 
-  dog1.y = random(50, 500);
+  dog1.y = random(575, 770);
   dog1.vx = dog1.speed;
 
-  dog2.y = random(50, 500);
+  dog2.y = random(575, 770);
   dog2.vx = dog2.speed;
 
-  dog3.y = random(50, 500);
+  dog3.y = random(575, 770);
   dog3.vx = dog3.speed;
 
-  dog4.y = random(50, 500);
+  dog4.y = random(575, 770);
   dog4.vx = dog4.speed;
+
+  dog5.y = random(575, 770);
+  dog5.vx = dog5.speed;
 
 //acorn set up//
 
   acorn1.vx = acorn1.speed;
-
   acorn2.vx = acorn2.speed;
+  acorn3.vx = acorn3.speed;
+  acorn4.vx = acorn4.speed;
+  acorn5.vx = acorn5.speed;
+  acorn6.vx = acorn6.speed;
 
 
   noCursor();
@@ -124,7 +190,7 @@ dog1.x = dog1.x + dog1.vx;
 dog1.y = dog1.y + dog1.vy;
 
 if (dog1.x < 0) {
-  dog1.x = 1200;
+  dog1.x = 1400;
   dog1.y = random(575, 770);
 }
 
@@ -132,36 +198,63 @@ dog2.x += dog2.vx;
 dog2.y += dog2.vy;
 
 if (dog2.x < 0) {
-  dog2.x = 0;
-  dog2.y = random(50, 500);
+  dog2.x = 1400;
+  dog2.y = random(575, 770);
 }
 
 dog3.x += dog3.vx;
 dog3.y += dog3.vy;
 
 if (dog3.x < 0) {
-  dog3.x = 0;
-  dog3.y = random(50, 500);
+  dog3.x = 1400;
+  dog3.y = random(575, 770);
 }
 
 dog4.x += dog4.vx;
 dog4.y += dog4.vy;
 
 if (dog4.x < 0) {
-  dog4.x = 0;
-  dog4.y = random(50, 500);
+  dog4.x = 1400;
+  dog4.y = random(575, 770);
+}
+
+dog5.x += dog5.vx;
+dog5.y += dog5.vy;
+
+if (dog5.x < 0) {
+  dog5.x = 1400;
+  dog5.y = random(575, 770);
 }
 
 //acorn movement
 acorn1.x += acorn1.vx;
-
 if (acorn1.x > width) {
   acorn1.x = 0;
 }
-acorn2.x += acorn2.vx;
 
+acorn2.x += acorn2.vx;
 if (acorn2.x > width) {
   acorn2.x = 0;
+}
+
+acorn3.x += acorn3.vx;
+if (acorn3.x > width) {
+  acorn3.x = 0;
+}
+
+acorn4.x += acorn4.vx;
+if (acorn4.x > width) {
+  acorn4.x = 0;
+}
+
+acorn5.x += acorn5.vx;
+if (acorn5.x > width) {
+  acorn5.x = 0;
+}
+
+acorn6.x += acorn6.vx;
+if (acorn6.x > width) {
+  acorn6.x = 0;
 }
 
 
@@ -169,54 +262,43 @@ if (acorn2.x > width) {
 
 push(); //must do push and pop so that the squirrel doesnt leave trail on screen
   imageMode(CENTER);
-  image(squirrelImage, mouseX, mouseY, 150, 50);
+  image(squirrel.image, mouseX, mouseY, 150, 50);
 pop();
 
 //acrons rool across bottom of the screen. when squirrel touches ones it floats to the top of the screen (like keeping score.)
 push();
 imageMode(CENTER);
-image(acorn1, 10, 775, 30, 50);
+image(acorn1.image, acorn1.x, 775, 30, 50);
+pop();
+
+push();
+imageMode(CENTER);
+image(acorn2.image, acorn2.x, 775, 30, 50);
+pop();
+
+push();
+imageMode(CENTER);
+image(acorn3.image, acorn3.x, 775, 30, 50);
 pop();
 
 
 push();
 imageMode(CENTER);
-image(acorn2, 200, 775, 30, 50);
+image(acorn4.image, acorn4.x, 775, 30, 50);
 pop();
 
 push();
 imageMode(CENTER);
-image(acorn1, 400, 775, 30, 50);
-pop();
-
-
-push();
-imageMode(CENTER);
-image(acorn2, 600, 775, 30, 50);
-pop();
-
-push();
-imageMode(CENTER);
-image(acorn1, 800, 775, 30, 50);
+image(acorn5.image, acorn5.x, 775, 30, 50);
 
 pop();
 
 push();
 imageMode(CENTER);
-image(acorn2, 1000, 775, 30, 50);
-pop();
-
-push();
-imageMode(CENTER);
-image(acorn1, 1200, 775, 30, 50);
+image(acorn6.image, acorn6.x, 775, 30, 50);
 pop();
 
 
-push();
-imageMode(CENTER);
-image(acorn2, 1400, 775, 30, 50);
-
-pop();
 
 //DOGS /// have all of their stateing positions be different so that they are staggared as they mmove accross the screen.
 
@@ -227,23 +309,23 @@ pop();
 
 push();
 imageMode(CENTER);
-image(dog2.image, 1400, 600, 200, 174);//randomize location (for all dogs)
+image(dog2.image, dog2.x, dog2.y, 200, 174);//randomize location (for all dogs)
 pop();
 
 push();
 imageMode(CENTER);
-image(dog3.image, 1200, 650, 100, 86);
+image(dog3.image, dog3.x, dog3.y, 100, 86);
 pop();
 
 
 push();
 imageMode(CENTER);
-image(dog3.image, 1000, 600, 100, 86);
+image(dog5.image, dog5.x, dog5.y, 100, 86);
 pop();
 
 push();
 imageMode(CENTER);
-image(dog4.image, 690, 660, 135, 138);
+image(dog4.image, dog4.x, dog4.y, 135, 138);
 pop();
 
 
