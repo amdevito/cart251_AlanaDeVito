@@ -42,7 +42,7 @@ let acorn1 = {
   y: 775,
   vx: 0,
   vy: 0,
-  speed: 2,
+  speed: 3,
   image: 0,
   ax: 0,
   ay: 0
@@ -52,7 +52,7 @@ let acorn2 = {
   y: 775,
   vx: 0,
   vy: 0,
-  speed: 5,
+  speed: 10,
   image: 0,
   ax: 0,
   ay: 0
@@ -72,7 +72,7 @@ let acorn4 = {
   y: 775,
   vx: 0,
   vy: 0,
-  speed: 6,
+  speed: 8,
   image: 0,
   ax: 0,
   ay: 0
@@ -82,7 +82,7 @@ let acorn5 = {
   y: 775,
   vx: 0,
   vy: 0,
-  speed: 1,
+  speed: 3,
   image: 0,
   ax: 0,
   ay: 0
@@ -92,7 +92,7 @@ let acorn6 = {
   y: 775,
   vx: 0,
   vy: 0,
-  speed: 7,
+  speed: 8,
   image: 0,
   ax: 0,
   ay: 0
