@@ -38,7 +38,7 @@ let squirrelWin = {
 
 //set acorns object
 let acorn1 = {
-  x: -350,
+  x: -450,
   y: 775,
   vx: 0,
   vy: 0,
@@ -48,7 +48,7 @@ let acorn1 = {
   ay: 0
 }
 let acorn2 = {
-  x: -450,
+  x: -650,
   y: 775,
   vx: 0,
   vy: 0,
@@ -58,7 +58,7 @@ let acorn2 = {
   ay: 0
 }
 let acorn3 = {
-  x: -400,
+  x: -750,
   y: 775,
   vx: 0,
   vy: 0,
@@ -68,7 +68,7 @@ let acorn3 = {
   ay: 0
 }
 let acorn4 = {
-  x: -1000,
+  x: -850,
   y: 775,
   vx: 0,
   vy: 0,
@@ -78,7 +78,7 @@ let acorn4 = {
   ay: 0
 }
 let acorn5 = {
-  x: -250,
+  x: -950,
   y: 775,
   vx: 0,
   vy: 0,
@@ -88,7 +88,7 @@ let acorn5 = {
   ay: 0
 }
 let acorn6 = {
-  x: -800,
+  x: -1050,
   y: 775,
   vx: 0,
   vy: 0,
