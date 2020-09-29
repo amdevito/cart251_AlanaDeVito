@@ -1,7 +1,7 @@
 /**************************************************
 DOdGing DOGS: Adventures of the White Squrriel
 
-Dogs in park chase after the elusive white squirrel. Move the squirrel around the arrow keys to avoid the dogs and collect acorns. When you collect 5 acorns, you WIN! When a dog catches you, YOU LOSE.
+Dogs in park chase after the elusive white squirrel. Move the squirrel around the arrow keys to avoid the dogs and collect acorns. When you collect 6 acorns, you WIN! When a dog catches you, YOU LOSE.
 
 **************************************************/
 
@@ -25,10 +25,20 @@ let squirrel = {
   ax: 0,
   ay: 0
 }
+let squirrelWin = {
+  x: 575,
+  y: 400,
+  vx: 0,
+  vy: 0,
+  image: 0,
+  ax: 0,
+  ay: 0
+}
+
 
 //set acorns object
 let acorn1 = {
-  x: 0,
+  x: -350,
   y: 775,
   vx: 0,
   vy: 0,
@@ -38,7 +48,7 @@ let acorn1 = {
   ay: 0
 }
 let acorn2 = {
-  x: 0,
+  x: -450,
   y: 775,
   vx: 0,
   vy: 0,
@@ -48,7 +58,7 @@ let acorn2 = {
   ay: 0
 }
 let acorn3 = {
-  x: -100,
+  x: -400,
   y: 775,
   vx: 0,
   vy: 0,
@@ -58,7 +68,7 @@ let acorn3 = {
   ay: 0
 }
 let acorn4 = {
-  x: -10,
+  x: -1000,
   y: 775,
   vx: 0,
   vy: 0,
@@ -159,14 +169,15 @@ let scoreDots = {
   offset3: 165,
   offset4: 220,
   color:{
-    r: 255,
-    g: 0,
-    b: 0
+    r: 94,
+    g: 69,
+    b: 35
   }
 }
 
 function preload() {
   squirrel.image = loadImage("assets/images/squirrel.png");
+  squirrelWin.image = loadImage('assets/images/squirrel_youWin.jpg');
   bg = loadImage('assets/images/park.jpg');
   bgGameOver = loadImage('assets/images/squirrel_dead.jpg');
   acorn1.image = loadImage('assets/images/acorn1.png');
@@ -291,6 +302,7 @@ function draw() {
   //CIRCLES FOR SCORE TALLY//
 
 if (score >= 1){
+  fill(94, 69, 35);
   circle(scoreDots.x,scoreDots.y,scoreDots.radius);
 }
 if (score >= 2){
@@ -307,8 +319,8 @@ if (score >= 5){
 }
 if (score >= 6){
   noLoop();
-  rect(400,370,205,50);
-  text("REAL WINNERS DONT USE DRUGS",400,400);
+  imageMode(CENTER);
+  image(squirrelWin.image, squirrelWin.x, squirrelWin.y, 300, 254);
 }
 
   //keyboard arrows controlling squirrel movement
@@ -321,6 +333,10 @@ if (score >= 6){
   } else if (keyIsDown(DOWN_ARROW)) {
     squirrel.y += keyboardControl.down;
   }
+
+  //constrain squirrel movement inside canvas, and below trees
+ squirrel.x = constrain(squirrel.x, 0, width);
+ squirrel.y = constrain(squirrel.y, 550, 775);
 
   //dogs movement
   dog1.x = dog1.x + dog1.vx;
