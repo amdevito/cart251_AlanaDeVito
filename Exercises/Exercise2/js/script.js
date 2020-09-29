@@ -1,13 +1,19 @@
 /**************************************************
 DOdGing DOGS: Adventures of the White Squrriel
 
-Dogs in park chase after the elusive white squirrel. Move the squirrel around the arrow keys to avoid the dogs and collect acorns. When you collect 6 acorns, you WIN! When a dog catches you, YOU LOSE.
+Dogs in park chase after the elusive white squirrel. Move the squirrel around with the arrow keys to avoid the dogs and collect acorns. When you collect 6 acorns, you WIN! When a dog catches you, YOU LOSE.
 
+Brief and objectives met:
+1. User controls squirrel with arrow keys.
+2. Many new if statements.
+3. Brand new concept and look.
+4. Program uses all image files, using loadImage() (except for score circles in the tree.)
 **************************************************/
 
 let bg;
 let bgGameOver;
 let angle = 0;
+//set keyboard control variables.
 let keyboardControl = {
   left: 8,
   right: 8,
@@ -174,7 +180,7 @@ let scoreDots = {
     b: 35
   }
 }
-
+///load all images used in this program
 function preload() {
   squirrel.image = loadImage("assets/images/squirrel.png");
   squirrelWin.image = loadImage('assets/images/squirrel_youWin.jpg');
@@ -194,7 +200,7 @@ function preload() {
 
 
 }
-
+//dog movement set up
 function setup() {
 
   createCanvas(1400, 800);
@@ -224,14 +230,14 @@ function setup() {
   acorn6.vx = acorn6.speed;
 
 
-  noCursor();
+  noCursor(); // make cursor arrow invisible so that the squirrel is the user
 }
 
 function draw() {
   background(bg);
 
   //dog movement
-  // check for when dogs catch squirrel
+  // check for when dogs catch squirrel, then go to dead squirrel image in background
 
   let d1 = dist(squirrel.x, squirrel.y, dog1.x, dog1.y);
   let d2 = dist(squirrel.x, squirrel.y, dog2.x, dog2.y);
@@ -299,7 +305,7 @@ function draw() {
     acorn6.x = -60000;
   }
 
-  //CIRCLES FOR SCORE TALLY//
+  //Circles for score tally
 
 if (score >= 1){
   fill(94, 69, 35);
@@ -336,7 +342,7 @@ if (score >= 6){
 
   //constrain squirrel movement inside canvas, and below trees
  squirrel.x = constrain(squirrel.x, 0, width);
- squirrel.y = constrain(squirrel.y, 550, 775);
+ squirrel.y = constrain(squirrel.y, 550, 770);
 
   //dogs movement
   dog1.x = dog1.x + dog1.vx;
@@ -450,7 +456,7 @@ if (score >= 6){
 
 
 
-  //DOGS ///
+  //Dogs ///
 
   push();
   imageMode(CENTER);
