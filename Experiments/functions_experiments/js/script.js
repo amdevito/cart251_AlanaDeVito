@@ -34,19 +34,40 @@ function setup() { //function definition - 'function and then the name of the fu
 function draw() {
   background(0);
 
-circle.x += circle.vx;
-circle.y += circle.vy;
+  move(); /// moves the circle
+  wrap(); /// wraps the cicle (makes it start at the beginning of the screen)
+  display(); //displays the circle
 
-if (circle.x > width) {
+}
+
+function move() {
+  circle.x += circle.vx;
+  circle.y += circle.vy;
+}
+
+function wrap() {
+  if (circle.x > width) {
+    reset();
+  }
+}
+
+function display(){
+  fill(circle.r, circle.g, circle.b);
+  rectMode(CENTER);
+  rect(circle.x, circle.y, circle.size);
+}
+
+function reset() { //defining our own function
   circle.x = 0;
   circle.vx += 1;
+  circle.vy += - 0.25;
   circle.size += 5;
+
   circle.r = random(0, 255);
   circle.g = random(0, 255);
   circle.b = random(0, 255);
 }
 
-  fill(circle.r, circle.g, circle.b);
-  ellipse(circle.x, circle.y, circle.size);
-
+function mousePressed() {
+reset(); // calling the made function
 }
