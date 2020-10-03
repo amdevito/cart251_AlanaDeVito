@@ -40,7 +40,8 @@ function draw() {
 
 }
 
-function move() {
+function move() { /// modularity - the code is in blocks
+  //reusability because the functions are working all over the place//
   circle.x += circle.vx;
   circle.y += circle.vy;
 }
@@ -53,8 +54,7 @@ function wrap() {
 
 function display(){
   fill(circle.r, circle.g, circle.b);
-  rectMode(CENTER);
-  rect(circle.x, circle.y, circle.size);
+  ellipse(circle.x, circle.y, circle.size);
 }
 
 function reset() { //defining our own function
