@@ -65,6 +65,7 @@ function setupCircles() {
 function draw() {
   background(0);
 
+//set states
   if (state === `title`) {
     title();
   }
@@ -72,25 +73,62 @@ function draw() {
     simulation();
   }
   else if ( state === `love`) {
+    love();
 
   }
   else if (state === `sadness`) {
+    sadness();
+  }
+}
 
+function checkOffScreen () {
+  //check if the circles have gone off screen
+  if (isOffScreen(circle1) || isOffScreen(circle2)) {
+    state = `sadness`;
+  }
+}
+
+function isOffScreen(circle) {
+  if (circle.x < 0 || circle.x > width || circle.y < 0 || circle.y > height) {
+    return true;
+  }
+  else {
+    return false;
   }
 }
 
 function title() {
-  textSize(height/width*64);
+  push();
+  textSize(unit(64));
   fill(200, 100, 100);
   textAlign(CENTER, CENTER);
   text(`Love?`, width/2, height/2);
+  pop();
 }
 
-function simulation () {
+function simulation() {
     move();
     checkOffScreen();
     checkOverlap();
     display();
+}
+
+function love() {
+  push();
+  textSize(unit(64));
+  fill(255, 100, 150);
+  textAlign(CENTER, CENTER);
+  text(`Love!`, width/2, height/2);
+  pop();
+}
+
+function sadness() {
+  push();
+  textSize(unit(64));
+  fill(0, 50, 150);
+  textAlign(CENTER, CENTER);
+  text(`:'(`, width/2, height/2);
+  pop();
 }
 
 function move() {
@@ -106,16 +144,17 @@ function checkOffScreen() {
 
   //check if the circles have gone offscreen
   if (circle1.x < 0 || circle1.x > width || circle1.y < 0 || circle1.y > height || circle2.x < 0 || circle2.x > width || circle2.y < 0 || circle2.y > height) {
-    //SAD ENDING
-  }
+      state = `sadness`;
+    }
 }
 
 function checkOverlap() {
   //check if the circles overlap
+  //when they over lap, change state to love
 
   let d = dist(circle1.x, circle2.y, circle2.x, circle2.y);
   if (d < circle1.size/2 + circle2.size/2) {
-    // Love ENDING!
+    state = `love`;
   }
 }
 
@@ -124,4 +163,24 @@ function display() {
   //display circles
     ellipse(circle1.x, circle1.y, circle1.size);
     ellipse(circle2.x, circle2.y, circle2.size);
+}
+
+///this is the function to get all values in relation to the user's screen//
+function unit(u) {
+ if (height >= width){
+  let unit = height/width * u;
+ return unit;
+}
+else if (width >= height){
+let unit = width/height * u
+return unit;
+}
+}
+
+function mousePressed() {
+  if (state === `title`) {
+    state = `simulation`;
+
+  }
+
 }
