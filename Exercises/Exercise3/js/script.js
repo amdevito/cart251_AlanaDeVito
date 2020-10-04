@@ -64,8 +64,10 @@ let title = {
   size: 0,
 };
 
+//add additional lines for instructions to break up the lines that are too long
+
 let instruction1 = {
-  string: `You are the blue circle and the green circle.`,
+  string: `You are the blue circle AND the green circle.`,
   x: 0,
   y: 0,
   vx: 0,
@@ -74,7 +76,7 @@ let instruction1 = {
 };
 
 let instruction2 = {
-  string: `Use the letter keys to control the green circle on the left: A (move back), W (move up), S (move down), D (move forward), and Q (to shoot)`,
+  string: `Use the following letter keys to control the GREEN circle:`,
   x: 0,
   y: 0,
   vx: 0,
@@ -83,7 +85,7 @@ let instruction2 = {
 };
 
 let instruction3 = {
-  string: `Use the arrow keys to control the blue circle on the right and press '?' (question mark) to SHOOT.`,
+  string: `A = Back, W = UP, S = DOWN, D = FORWARD, and Q = SHOOT.`,
   x: 0,
   y: 0,
   vx: 0,
@@ -92,14 +94,29 @@ let instruction3 = {
 };
 
 let instruction4 = {
+  string: `Use the arrow keys to control the BLUE circle`,
+  x: 0,
+  y: 0,
+  vx: 0,
+  vy: 0,
+  size: 0,
+};
+let instruction5 = {
+  string: `and press '?' (question mark) to SHOOT.`,
+  x: 0,
+  y: 0,
+  vx: 0,
+  vy: 0,
+  size: 0,
+};
+let instruction6 = {
   string: `Don't let the flashing red circle touch YOU!`,
   x: 0,
   y: 0,
   vx: 0,
   vy: 0,
   size: 0,
-
-}
+};
 
 let state = `title`; //Can be title, love, or sadness.
 
@@ -114,6 +131,8 @@ function setup() {
   setUpInstruction2();
   setUpInstruction3();
   setUpInstruction4();
+  setUpInstruction5();
+  setUpInstruction6();
 
 }
 
@@ -128,31 +147,45 @@ function setupTitle() {
 ///setUpInstruction starts after title passes bottom?
 function setUpInstruction1() {
   instruction1.x = width / 2;
-  instruction1.y = height*1.5;
+  instruction1.y = height;
   instruction1.vx = unit(5);
   instruction1.vy = unit(1);
-  instruction1.size = unit(35);
+  instruction1.size = unit(30);
 }
 function setUpInstruction2() {
   instruction2.x = width / 2;
-  instruction2.y = height*1.6;
+  instruction2.y = height*1.05;
   instruction2.vx = unit(5);
   instruction2.vy = unit(1);
-  instruction2.size = unit(35);
+  instruction2.size = unit(30);
 }
 function setUpInstruction3() {
   instruction3.x = width / 2;
-  instruction3.y = height*1.7;
+  instruction3.y = height*1.1;
   instruction3.vx = unit(5);
   instruction3.vy = unit(1);
-  instruction3.size = unit(35);
+  instruction3.size = unit(30);
 }
 function setUpInstruction4() {
   instruction4.x = width / 2;
-  instruction4.y = height*1.8;
+  instruction4.y = height;
   instruction4.vx = unit(5);
   instruction4.vy = unit(1);
-  instruction4.size = unit(35);
+  instruction4.size = unit(30);
+}
+function setUpInstruction5() {
+  instruction4.x = width / 2;
+  instruction4.y = height*1.2;
+  instruction4.vx = unit(5);
+  instruction4.vy = unit(1);
+  instruction4.size = unit(30);
+}
+function setUpInstruction6() {
+  instruction4.x = width / 2;
+  instruction4.y = height*1.3;
+  instruction4.vx = unit(5);
+  instruction4.vy = unit(1);
+  instruction4.size = unit(30);
 }
 
 function setupCircles() {
@@ -233,39 +266,44 @@ function titleStart() {
   textStyle(BOLD);
   textFont("Luminari");
   stroke(50, 200, 50);
-  strokeWeight(unit(1));
+  strokeWeight(unit(0.5));
 
-  title.y += -unit(0.8);
-  title.size = title.size - unit(0.1);
+  title.y += -unit(0.5);
+  title.size = title.size - unit(0.05);
 
-  text(title.string, title.x, title.y); //(text in ``, x, y)
+  text(title.string, title.x, title.y);
   pop();
 
 }
 
 function instructionStart() {
   push();
-  textSize(instruction1.size);
-  fill(random(0, 255), random(0, 255), random(0, 255));
+  fill(255);
   textAlign(CENTER, CENTER);
-  textStyle(BOLD);
-  textFont("Didot");
-  stroke(50, 200, 50);
-  strokeWeight(unit(1));
+  textStyle();
+  textFont("Bradley Hand");
+  stroke(random(0, 255), random(0, 255), random(0, 255));
+  strokeWeight(unit(0.7));
 
-  instruction1.size = instruction1.size - unit(0.1);
+  textSize(instruction1.size);
+  instruction1.size = instruction1.size - unit(0.01);
 
-  instruction1.y += -unit(0.8);
-  instruction2.y += -unit(0.8);
-  instruction3.y += -unit(0.8);
-  instruction4.y += -unit(0.8);
+  instruction1.y += -unit(0.3);
+  instruction2.y += -unit(0.3);
+  instruction3.y += -unit(0.3);
+  instruction4.y += -unit(0.3);
+  instruction5.y += -unit(0.3);
+  instruction6.y += -unit(0.3);
 
 
   text(instruction1.string, instruction1.x, instruction1.y);
   text(instruction2.string, instruction2.x, instruction2.y);
   text(instruction3.string, instruction3.x, instruction3.y);
   text(instruction4.string, instruction4.x, instruction4.y);
+  text(instruction5.string, instruction5.x, instruction5.y);
+  text(instruction6.string, instruction6.x, instruction6.y);
 
+console.log(instruction6.string);
 
   pop();
   // font options: Arial, Verdana, Trebuchet MS, Times New Roman, Didot, American Typewriter, Andale Mono, Courier, Bradley Hand, Luminari ~ Sans-serif, serif, Monospace, Cursive, Fantasy, Impact, Trattatello
@@ -354,6 +392,9 @@ function unit(u) {
 
 function mousePressed() {
   if (state === `title`) {
+    state = `instructionStart`;
+  }
+  else if (state === `instructionStart`) {
     state = `simulation`;
   }
 }
