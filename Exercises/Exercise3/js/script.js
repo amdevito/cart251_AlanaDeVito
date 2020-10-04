@@ -4,7 +4,12 @@ Exercise 3: Love Actually
 Alana DeVito
 
 Click through title and instructions.
-control two circles with 2 hands (can play with another person)
+() added colour to circles and made flicker (maybe take flicker away and save for attacker?)
+()added a third circle that will flicker red
+() get title from other project and place in title area
+
+
+control two circles with 2 hands (or can play with another person)
 one person - arrows with ? as shooter
 second person - awds with q as shooter
 
@@ -19,7 +24,11 @@ let circle1 = {
   size: 0,
   vx: 0,
   vy: 0,
-  speed: 0
+  speed: 0,
+  r: 0,
+  g: 255,
+  b: 0
+
 };
 
 let circle2 = {
@@ -28,8 +37,24 @@ let circle2 = {
   size: 0,
   vx: 0,
   vy: 0,
-  speed: 0
+  speed: 0,
+  r: 0,
+  g: 0,
+  b: 255
 };
+
+let circle3 = {
+  x: undefined,
+  y: 0,
+  size: 0,
+  vx: 0,
+  vy: 0,
+  speed: 0,
+  r: 255,
+  g: 0,
+  b: 0
+};
+
 
 let state = `title`; //Can be title, love, or sadness.
 
@@ -45,35 +70,49 @@ function setupCircles() {
   //set circle values in range of the user's screen size
   //position circles seperated from one another
   //set circles in random positions away from each other
+
+
+  //circle one - green - controller left
   circle1.x = width/3;
   circle1.y = height/2;
   circle1.size = width/10;
 
-  //why can't I get map to work here?
   circle1.speed = width/height*3;
-  // circle1.speed = constrain(circle1.speed, 0, width);
-
-
   circle1.vx = random(circle1.speed,-circle1.speed);
   circle1.vy = random(-circle1.speed,circle1.speed);
 
+
+  //circle two - blue - controller right
   circle2.x = width/3 * 2;
   circle2.y = height/2;
   circle2.size = width/10;
 
-//why can't I get map to work here?
   circle2.speed = width/height*3;
-  // circle2.speed = constrain(circle2.speed, 0, width);
-
   circle2.vx = random(circle2.speed, -circle2.speed);
   circle2.vy = random(-circle2.speed, circle2.speed);
+
+
+  //circle three - red - computer - attacking?  - eventually flashing red
+  circle3.x = width/3 * 2;
+  circle3.y = height/2;
+  circle3.size = width/10;
+
+
+  circle3.speed = width/height*3;
+  circle3.vx = random(circle3.speed, -circle3.speed);
+  circle3.vy = random(-circle3.speed, circle3.speed);
 }
 
-// draw()
-//
-// Description of draw() goes here.
+
 function draw() {
   background(0);
+
+  //make circles flicker (must be in draw to make the flickering animation)
+  circle1.g = random(50, 255);
+  circle2.b = random(50, 255);
+  circle3.r = random(50, 255);
+
+
 
 //set states
   if (state === `title`) {
@@ -171,8 +210,12 @@ function checkOverlap() {
 function display() {
 
   //display circles
+  push();
+    fill(circle1.r, circle1.g, circle1.b);
     ellipse(circle1.x, circle1.y, circle1.size);
+    fill(circle2.r, circle2.g, circle2.b);
     ellipse(circle2.x, circle2.y, circle2.size);
+  pop();
 }
 
 ///this is the function to get all values in relation to the user's screen//
