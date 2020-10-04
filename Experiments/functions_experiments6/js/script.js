@@ -2,7 +2,7 @@
 Functions
 Alana DeVito
 
-Functions Experiments6
+Functions Experiments 6
 States - how to click through the title, game instructions and then go add this to White Squirrel title page
 **************************************************/
 
