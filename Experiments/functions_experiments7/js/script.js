@@ -9,18 +9,14 @@ let bg = 0;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-
 }
 
-function draw(){
+function draw() {
   background(bg);
 
-  textAlign(CENTER, CENTER);
-  textSize(width/height*64);
-  fill(255);
-  text(key, width/2,height/2);///key pressed is displayed
-
+//65 is A
+if (keyIsDown(65))  {
+  rectMode(CENTER);
+  rect(width/2, height/2, 250, 250);
 }
-
-function keyPressed(){
 }
