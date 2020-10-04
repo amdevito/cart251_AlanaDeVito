@@ -4,7 +4,7 @@ Alana DeVito
 
 Functions Experiments3
 Functions with return values
-See below for a possible function 
+See below for a possible function
 **************************************************/
 
 function setup() {
