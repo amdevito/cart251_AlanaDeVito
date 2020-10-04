@@ -3,7 +3,7 @@ Functions
 Alana DeVito
 
 Functions Experiments6
-States
+States - how to click through the title, game instructions and then go add this to White Squirrel title page
 **************************************************/
 
 let circle = {
@@ -15,14 +15,14 @@ let circle = {
   speed: 0
 };
 
-let state = `title`;
+let state = `title`; //possible states are title, animation , ending
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
     circle.x = 0;
     circle.y = height/2;
-    circle.vx = height/width*5;
+    circle.vx = width/height*5;
     circle.vy = height/width;
     circle.size = width/height*50;
     circle.speed = width/height*2;
@@ -35,20 +35,55 @@ function setup() {
 function draw() {
   background(0);
 
+if (state === `title`) {
+  title();
+}
+else if (state === `animation`) {
+animation();
+  }
+
+
+else if (state === `ending`){
+//Ending
+ending();
+
+}
+}
+
+function title() {
   //Title
   fill(255);
   text(`Life.`, width/2, height/2);
+}
 
+function animation() {
   //Animation
   circle.x += circle.vx;
-  // circle.y += circle.vy;
+  //circle.y += circle.vy;
 
-  ellipse(circle.x, circle.y, circle.size);
+  if (circle.x > width) {
+    state = `ending`;
+}
+ellipse(circle.x, circle.y, circle.size);
+}
 
-  //Ending
+
+function ending() {
+  //ending
   fill(127);
   text(`It's all over.`, width/2, height/2);
 }
+
+function keyPressed() {
+  if (state === `title`) {
+state = `animation`;
+  }
+}
+
+
+
+
+
 // //function unit(u) = {
 //   let unit = height/width * u;
 //  return unit;
