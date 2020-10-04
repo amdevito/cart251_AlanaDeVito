@@ -3,20 +3,38 @@ Functions
 Alana DeVito
 
 Functions Experiments 7
-keyboard input
+Automated Movement - jittery, animated, random behavior
 **************************************************/
-let bg = 0;
 
+let circle = {
+  x: 0,
+  y: 0,
+  size: 0,
+  vx: 0,
+  vy: 0,
+  speed: 0
+}
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  circle.x = width/2;
+  circle.y = height/2;
+  circle.size = width/height*100;
+  circle.speed = width/height*2;
 }
 
-function draw() {
-  background(bg);
+function draw () {
+  background(0);
 
-//65 is A
-if (keyIsDown(65))  {
-  rectMode(CENTER);
-  rect(width/2, height/2, 250, 250);
-}
+  let change = random();
+  if (change < 0.05) {
+      circle.vx = random(-circle.speed, circle.speed);
+      circle.vy = random(-circle.speed, circle.speed);
+  }
+
+
+  circle.x += circle.vx;
+  circle.y += circle.vy;
+
+  ellipse(circle.x, circle.y, circle.size);
+
 }
