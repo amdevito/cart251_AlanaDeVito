@@ -55,6 +55,15 @@ let circle3 = {
   b: 0
 };
 
+let title = {
+  string: `The Darker Side of Love`,
+  x: 0,
+  y: 0,
+  vx: 0,
+  vy: 0,
+  size: 0
+}
+
 
 let state = `title`; //Can be title, love, or sadness.
 
@@ -64,6 +73,16 @@ let state = `title`; //Can be title, love, or sadness.
 function setup() {
 createCanvas(windowWidth, windowHeight);
 setupCircles();
+setupTitle();
+
+}
+
+function setupTitle() {
+title.x = width/2;
+title.y = height;
+title.vx = unit(5);
+title.vy = unit(1);
+title.size = unit(50);
 }
 
 function setupCircles() {
@@ -116,7 +135,7 @@ function draw() {
 
 //set states
   if (state === `title`) {
-    title();
+    titleStart();
   }
   else if (state === `simulation`) {
     simulation();
@@ -146,13 +165,31 @@ function isOffScreen(circle) {
   }
 }
 
-function title() {
+function titleStart() {
   push();
-  textSize(unit(64));
-  fill(200, 100, 100);
+  textSize(title.size);
+  fill(random(0, 255),random(0,255), random(0,255));
   textAlign(CENTER, CENTER);
-  text(`Love?`, width/2, height/2);
+  textStyle(BOLD);
+  textFont('Luminari');
+  stroke(50, 200, 50);
+  strokeWeight(unit(1));
+
+  title.y += -unit(0.8);
+  title.size = title.size - (unit(0.1));
+
+  text(title.string, title.x, title.y); //(text in ``, x, y)
   pop();
+
+
+    // squirrelTitle.x += width/height;
+
+
+    // font options: Arial, Verdana, Trebuchet MS, Times New Roman, Didot, American Typewriter, Andale Mono, Courier, Bradley Hand, Luminari ~ Sans-serif, serif, Monospace, Cursive, Fantasy, Impact, Trattatello
+
+
+
+
 }
 
 function simulation() {
