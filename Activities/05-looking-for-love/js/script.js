@@ -21,27 +21,42 @@ let circle2 = {
   speed: 0
 };
 
+let state = `title`; //Can be title, love, or sadness.
+
 // setup()
 //
 // Description of setup() goes here.
 function setup() {
 createCanvas(windowWidth, windowHeight);
-//set circle values in range of the user's screen size
-//position circles seperated from one another
-//set circles in random positions away from each other
-circle1.x = width/3;
-circle1.y = height/2;
-circle1.size = width/10;
-circle1.speed = width/height*3;
-circle1.vx = random(circle1.speed,-circle1.speed);
-circle1.vy = random(-circle1.speed,circle1.speed);
+setupCircles();
+}
 
-circle2.x = width/3 * 2;
-circle2.y = height/2;
-circle2.size = width/10;
-circle2.speed = width/height*3;
-circle2.vx = random(circle2.speed, -circle2.speed);
-circle2.vy = random(-circle2.speed, circle2.speed);
+function setupCircles() {
+  //set circle values in range of the user's screen size
+  //position circles seperated from one another
+  //set circles in random positions away from each other
+  circle1.x = width/3;
+  circle1.y = height/2;
+  circle1.size = width/10;
+
+  //why can't I get map to work here?
+  circle1.speed = width/height*3;
+  // circle1.speed = constrain(circle1.speed, 0, width);
+
+
+  circle1.vx = random(circle1.speed,-circle1.speed);
+  circle1.vy = random(-circle1.speed,circle1.speed);
+
+  circle2.x = width/3 * 2;
+  circle2.y = height/2;
+  circle2.size = width/10;
+
+//why can't I get map to work here?
+  circle2.speed = width/height*3;
+  // circle2.speed = constrain(circle2.speed, 0, width);
+
+  circle2.vx = random(circle2.speed, -circle2.speed);
+  circle2.vy = random(-circle2.speed, circle2.speed);
 }
 
 // draw()
@@ -50,11 +65,32 @@ circle2.vy = random(-circle2.speed, circle2.speed);
 function draw() {
   background(0);
 
-  move();
-  checkOffScreen();
+  if (state === `title`) {
+    title();
+  }
+  else if (state === `simulation`) {
+    simulation();
+  }
+  else if ( state === `love`) {
 
-  checkOverlap();
-  display();
+  }
+  else if (state === `sadness`) {
+
+  }
+}
+
+function title() {
+  textSize(height/width*64);
+  fill(200, 100, 100);
+  textAlign(CENTER, CENTER);
+  text(`Love?`, width/2, height/2);
+}
+
+function simulation () {
+    move();
+    checkOffScreen();
+    checkOverlap();
+    display();
 }
 
 function move() {
