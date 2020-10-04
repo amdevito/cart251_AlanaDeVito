@@ -85,7 +85,7 @@ let instruction2 = {
 };
 
 let instruction3 = {
-  string: `A = Back, W = UP, S = DOWN, D = FORWARD, and Q = SHOOT.`,
+  string: `A = Back, W = UP, S = DOWN, D = FORWARD, Q = SHOOT`,
   x: 0,
   y: 0,
   vx: 0,
@@ -101,6 +101,7 @@ let instruction4 = {
   vy: 0,
   size: 0,
 };
+
 let instruction5 = {
   string: `and press '?' (question mark) to SHOOT.`,
   x: 0,
@@ -109,6 +110,7 @@ let instruction5 = {
   vy: 0,
   size: 0,
 };
+
 let instruction6 = {
   string: `Don't let the flashing red circle touch YOU!`,
   x: 0,
@@ -168,7 +170,7 @@ function setUpInstruction3() {
 }
 function setUpInstruction4() {
   instruction4.x = width / 2;
-  instruction4.y = height;
+  instruction4.y = height*1.15;
   instruction4.vx = unit(5);
   instruction4.vy = unit(1);
   instruction4.size = unit(30);
@@ -182,7 +184,7 @@ function setUpInstruction5() {
 }
 function setUpInstruction6() {
   instruction4.x = width / 2;
-  instruction4.y = height*1.3;
+  instruction4.y = height*1.25;
   instruction4.vx = unit(5);
   instruction4.vy = unit(1);
   instruction4.size = unit(30);
@@ -288,14 +290,6 @@ function instructionStart() {
   textSize(instruction1.size);
   instruction1.size = instruction1.size - unit(0.01);
 
-  instruction1.y += -unit(0.3);
-  instruction2.y += -unit(0.3);
-  instruction3.y += -unit(0.3);
-  instruction4.y += -unit(0.3);
-  instruction5.y += -unit(0.3);
-  instruction6.y += -unit(0.3);
-
-
   text(instruction1.string, instruction1.x, instruction1.y);
   text(instruction2.string, instruction2.x, instruction2.y);
   text(instruction3.string, instruction3.x, instruction3.y);
@@ -303,7 +297,13 @@ function instructionStart() {
   text(instruction5.string, instruction5.x, instruction5.y);
   text(instruction6.string, instruction6.x, instruction6.y);
 
-console.log(instruction6.string);
+  instruction1.y += -unit(0.3);
+  instruction2.y += -unit(0.3);
+  instruction3.y += -unit(0.3);
+  instruction4.y += -unit(0.3);
+  instruction5.y += -unit(0.3);
+  instruction6.y += -unit(0.3);
+
 
   pop();
   // font options: Arial, Verdana, Trebuchet MS, Times New Roman, Didot, American Typewriter, Andale Mono, Courier, Bradley Hand, Luminari ~ Sans-serif, serif, Monospace, Cursive, Fantasy, Impact, Trattatello
