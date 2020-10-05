@@ -38,42 +38,41 @@ let keyboardControl = {
 let bullet1 = {
   x: 0,
   y: 0,
-  sizeW: 0,
-  sizeH: 0,
+  size: 0,
   speed: 0,
   vx: 0,
   vy: 0,
   r: 241,
   g: 247,
-  b: 71
+  b: 71,
+  fired: false
 }
 //set bullet variables for circle 2(orange squares)
 let bullet2 = {
   x: 0,
   y: 0,
-  sizeW: 0,
-  sizeH: 0,
+  size: 0,
   speed: 0,
   vx: 0,
   vy: 0,
   r: 247,
   g: 165,
-  b: 71
+  b: 71,
+  fired: false
 }
 
-//set bullet variables for circle 3(green squares) green shoots one bullet forward every 4 seconds
-let bullet3 = {
-  x: 0,
-  y: 0,
-  sizeW: 0,
-  sizeH: 0,
-  speed: 0,
-  vx: 0,
-  vy: 0,
-  r: 153,
-  g: 247,
-  b: 71
-}
+// //set bullet variables for circle 3(green squares) green shoots one bullet forward every 4 seconds
+// let bullet3 = {
+//   x: 0,
+//   y: 0,
+//   size: 0,
+//   speed: 0,
+//   vx: 0,
+//   vy: 0,
+//   r: 153,
+//   g: 247,
+//   b: 71
+// }
 
 //green circle (left letters controller)
 let circle1 = {
@@ -106,12 +105,13 @@ let circle3 = {
   x: undefined,
   y: 0,
   size: 0,
-  vx: 5,//moves slightly slower than other circles but more spastically
+  vx: 5, //moves slightly slower than other circles but more spastically
   vy: 5,
   speed: 0,
   r: 255,
   g: 0,
   b: 0,
+  active: true
 };
 
 let title = {
@@ -207,10 +207,10 @@ let instruction8 = {
 
 let state = `title`; //Can be title, love, or sadness.
 
-
 function setup() {
   createCanvas(windowWidth, windowHeight);
   setupCircles();
+  setUpBullets();
   setupTitle();
   setUpInstruction();
   setUpInstruction1();
@@ -222,6 +222,22 @@ function setup() {
   setUpInstruction7();
   setUpInstruction8();
 
+}
+
+function setUpBullets() {
+    bullet1.x = 0;
+    bullet1.y = 0;
+    bullet1.size = unit(5);
+    bullet1.speed = unit(2);
+    bullet1.vx = unit(1);
+    bullet1.vy = unit(1);
+
+    bullet2.x: 0,
+    bullet2.y: 0,
+    bullet2.size = unit(5);
+    bullet2.speed = unit(2);
+    bullet2.vx = unit(1);
+    bullet2.vy = unit(1);
 }
 
 function setupTitle() {
@@ -333,12 +349,48 @@ function setupCircles() {
 function draw() {
   background(0);
 
-  //make circles flicker (must be in draw to make the flickering animation)
-  // circle1.g = random(50, 255);
-  // circle2.b = random(50, 255);
+  //make attacking circle flash RED
   circle3.r = random(0, 176);
 
-  //set states
+  // bullets move
+  bullet1.x += bullet1.vx;
+  bullet1.y += bullet1.vy;
+
+  bullet2.x += bullet2.vx;
+  bullet2.y += bullet2.vy;
+
+  //check if bullets 1 and 2 are offscreen
+  if (bullet1.x > width) {
+    bullet1.fired = false;
+  }
+  if (bullet2.x > width) {
+      bullet2.fired = false;
+  }
+
+  //check if bullet1 hits red circle3
+  let d = dist(bullet1.x, bullet1.y, circle3.x, circle3.y);
+  if (bullet1.fired && circle3.active && d < bullet1.size / 2 + circle3.size / 2) {
+  // Stop the bullet
+  bullet1.fired = false;
+  // Kill the enemy
+  circle3.active = false;
+  }
+
+  //check if bullet2 hits red circle3
+  let d = dist(bullet2.x, bullet2.y, circle3.x, circle3.y);
+  if (bullet2.fired && circle3.active && d < bullet2.size / 2 + circle3.size / 2) {
+  // Stop the bullet
+  bullet2.fired = false;
+  // Kill the enemy
+  circle3.active = false;
+  }
+
+  //bullet1 fired
+  if (bullet1.fired) {
+    ellipse(bullet1.x, bullet1.y, bullet1.size);
+  }
+
+  //set states *** CHANGE THESE TO WIN OR LOSE
   if (state === `title`) {
     titleStart();
   } else if (state === `instructionStart`) {
@@ -351,8 +403,8 @@ function draw() {
     sadness();
   }
 
-  //keyboard arrows controlling blue circle movement
-    if (keyIsDown(LEFT_ARROW)) {
+  //keyboard arrows controlling blue circle (circle2 and bullet2) movement
+  if (keyIsDown(LEFT_ARROW)) {
       circle2.x -= keyboardControl.left;
     } else if (keyIsDown(RIGHT_ARROW)) {
       circle2.x += keyboardControl.right;
@@ -360,6 +412,11 @@ function draw() {
       circle2.y -= keyboardControl.up;
     } else if (keyIsDown(DOWN_ARROW)) {
       circle2.y += keyboardControl.down;
+    } else if (keyIsDown(OPTION)) { //try SHIFT or command if this doesn't work
+      bullet2.fired = true;
+      bullet2.x = circle2.x;
+      bullet2.y = circle2.y;
+      bullet2.vx = bullet2.speed;
     }
 
 //keyboard letters AWSD controlling green circle movement
@@ -375,6 +432,12 @@ if (keyIsPressed) {
     }
     else if (key == 's') {
     circle1.y += keyboardControl.down;
+    }
+    else if (key == 'q') {
+    bullet1.fired = true;
+    bullet1.x = circle1.x;
+    bullet1.y = circle1.y;
+    bullet1.vx = bullet1.speed;
     }
   }
 
@@ -395,6 +458,7 @@ function isTitleOffScreen(title) {
   }
 }
 
+//change this to lose
 function checkOffScreen() {
   //check if the circles have gone off screen
   if (isOffScreen(circle1) || isOffScreen(circle2)) {
@@ -536,8 +600,22 @@ function display() {
   ellipse(circle1.x, circle1.y, circle1.size);
   fill(circle2.r, circle2.g, circle2.b);
   ellipse(circle2.x, circle2.y, circle2.size);
+
+  // circle3 (red enemy)
+  if (circle3.active) {
   fill(circle3.r, circle3.g, circle3.b);
   ellipse(circle3.x, circle3.y, circle3.size);
+  }
+
+  //draw bullets when fired
+  if (bullet1.fired) {
+    fill(bullet1.r, bullet1.g, bullet1.b);
+    ellipse(bullet1.x, bullet1.y, bullet1.size);
+  }
+  if (bullet2.fired) {
+    fill(bullet2.r, bullet2.g, bullet2.b);
+    ellipse(bullet2.x, bullet2.y, bullet2.size);
+  }
   pop();
 }
 ///this is the function to get all values in relation to the user's screen//
