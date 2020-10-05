@@ -327,6 +327,7 @@ function isOffScreen(circle) {
 
 function titleStart() {
   push();
+  checkTitleOffScreen();
   textSize(title.size);
   fill(random(0, 255), random(0, 255), random(0, 255));
   textAlign(CENTER, CENTER);
