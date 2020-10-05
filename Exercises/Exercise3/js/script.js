@@ -16,7 +16,9 @@ Click through title and instructions.
 () get red circle to move more spastically in the canvas (constrain to canvas size) - move towards which ever circle is closest?
 () get the green circle to shoot yellow 'bullets' using ?
 ()get blue circle to shoot orange 'bullets' using q
-() get red circle to shoot one random bullet forward every 4 seconds?
+() get red circle to shoot one random bullet forward every 4 seconds
+() change logic to win screen when you shoot red circle
+() change logic to lose when circle 1 or 2 touches red circle or gets shot by red circle
 
 
 third circle moves around spastically and you have to shoot it
@@ -177,7 +179,7 @@ let instruction5 = {
 };
 
 let instruction6 = {
-  string: `Don't let the flashing red circle touch YOU!`,
+  string: `Don't let the flashing red circle touch or shoot YOU!`,
   x: 0,
   y: 0,
   vx: 0,
@@ -195,7 +197,7 @@ let instruction7 = {
 };
 
 let instruction8 = {
-  string: `START THE GAME`,
+  string: `START THE GAME!!!`,
   x: 0,
   y: 0,
   vx: 0,
@@ -268,28 +270,28 @@ function setUpInstruction4() {
 }
 function setUpInstruction5() {
   instruction5.x = width / 2;
-  instruction5.y = height*1.5;
+  instruction5.y = height*1.45;
   instruction5.vx = unit(5);
   instruction5.vy = unit(1);
   instruction5.size = unit(40);
 }
 function setUpInstruction6() {
   instruction6.x = width / 2;
-  instruction6.y = height*1.6;
+  instruction6.y = height*1.55;
   instruction6.vx = unit(5);
   instruction6.vy = unit(1);
   instruction6.size = unit(40);
 }
 function setUpInstruction7() {
   instruction7.x = width / 2;
-  instruction7.y = height*1.7;
+  instruction7.y = height*1.65;
   instruction7.vx = unit(5);
   instruction7.vy = unit(1);
   instruction7.size = unit(40);
 }
 function setUpInstruction8() {
   instruction8.x = width / 2;
-  instruction8.y = height*1.8;
+  instruction8.y = height*1.75;
   instruction8.vx = unit(5);
   instruction8.vy = unit(1);
   instruction8.size = unit(40);
