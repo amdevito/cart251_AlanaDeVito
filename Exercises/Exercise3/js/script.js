@@ -210,6 +210,7 @@ let state = `title`; //Can be title, love, or sadness.
 function setup() {
   createCanvas(windowWidth, windowHeight);
   setupCircles();
+  setUpCircle3 ();
   setUpBullets();
   setupTitle();
   setUpInstruction();
@@ -232,8 +233,8 @@ function setUpBullets() {
     bullet1.vx = unit(1);
     bullet1.vy = unit(1);
 
-    bullet2.x: 0,
-    bullet2.y: 0,
+    bullet2.x = 0,
+    bullet2.y = 0,
     bullet2.size = unit(5);
     bullet2.speed = unit(2);
     bullet2.vx = unit(1);
@@ -261,7 +262,7 @@ function setUpInstruction1() {
   instruction1.y = height*1.1;
   instruction1.vx = unit(5);
   instruction1.vy = unit(1);
-  instruction1.size = unit(30);
+  instruction1.size = unit(20);
 }
 function setUpInstruction2() {
   instruction2.x = width / 2;
@@ -286,28 +287,28 @@ function setUpInstruction4() {
 }
 function setUpInstruction5() {
   instruction5.x = width / 2;
-  instruction5.y = height*1.45;
+  instruction5.y = height*1.5;
   instruction5.vx = unit(5);
   instruction5.vy = unit(1);
   instruction5.size = unit(40);
 }
 function setUpInstruction6() {
   instruction6.x = width / 2;
-  instruction6.y = height*1.55;
+  instruction6.y = height*1.6;
   instruction6.vx = unit(5);
   instruction6.vy = unit(1);
   instruction6.size = unit(40);
 }
 function setUpInstruction7() {
   instruction7.x = width / 2;
-  instruction7.y = height*1.65;
+  instruction7.y = height*1.7;
   instruction7.vx = unit(5);
   instruction7.vy = unit(1);
   instruction7.size = unit(40);
 }
 function setUpInstruction8() {
   instruction8.x = width / 2;
-  instruction8.y = height*1.75;
+  instruction8.y = height*1.8;
   instruction8.vx = unit(5);
   instruction8.vy = unit(1);
   instruction8.size = unit(40);
@@ -320,34 +321,37 @@ function setupCircles() {
 
   //circle one - green - controller left
   circle1.x = width / 3;
-  circle1.y = height / 2;
-  circle1.size = width / 10;
+  circle1.y = height / 4;
+  circle1.size = width / 12;
 
-  circle1.speed = (width / height) * 3;
+  circle1.speed = unit(3);
   circle1.vx = random(circle1.speed, -circle1.speed);
   circle1.vy = random(-circle1.speed, circle1.speed);
 
   //circle two - blue - controller right
   circle2.x = (width / 3) * 2;
-  circle2.y = height / 2;
-  circle2.size = width / 10;
+  circle2.y = height / 4;
+  circle2.size = width / 12;
 
-  circle2.speed = (width / height) * 3;
+  circle2.speed = unit(3);
   circle2.vx = random(circle2.speed, -circle2.speed);
   circle2.vy = random(-circle2.speed, circle2.speed);
+}
 
-  //circle three - red - computer - attacking?  - eventually flashing red
-  circle3.x = (width / 3) * 2;
-  circle3.y = height / 2;
-  circle3.size = width / 10;
+function setUpCircle3 () {
+    //circle three - red - computer - attacking
+    circle3.x = width / 2;
+    circle3.y = height / 2;
+    circle3.size = width / 16;
 
-  circle3.speed = (width / height) * 3;
-  circle3.vx = random(circle3.speed, -circle3.speed);
-  circle3.vy = random(-circle3.speed, circle3.speed);
+    circle3.speed = unit(4);
+    circle3.vy = random(0, circle3.speed);
 }
 
 function draw() {
   background(0);
+  wrap();
+
 
   //make attacking circle flash RED
   circle3.r = random(0, 176);
@@ -368,8 +372,8 @@ function draw() {
   }
 
   //check if bullet1 hits red circle3
-  let d = dist(bullet1.x, bullet1.y, circle3.x, circle3.y);
-  if (bullet1.fired && circle3.active && d < bullet1.size / 2 + circle3.size / 2) {
+  let d1 = dist(bullet1.x, bullet1.y, circle3.x, circle3.y);
+  if (bullet1.fired && circle3.active && d1 < bullet1.size / 2 + circle3.size / 2) {
   // Stop the bullet
   bullet1.fired = false;
   // Kill the enemy
@@ -377,8 +381,8 @@ function draw() {
   }
 
   //check if bullet2 hits red circle3
-  let d = dist(bullet2.x, bullet2.y, circle3.x, circle3.y);
-  if (bullet2.fired && circle3.active && d < bullet2.size / 2 + circle3.size / 2) {
+  let d2 = dist(bullet2.x, bullet2.y, circle3.x, circle3.y);
+  if (bullet2.fired && circle3.active && d2 < bullet2.size / 2 + circle3.size / 2) {
   // Stop the bullet
   bullet2.fired = false;
   // Kill the enemy
@@ -412,7 +416,7 @@ function draw() {
       circle2.y -= keyboardControl.up;
     } else if (keyIsDown(DOWN_ARROW)) {
       circle2.y += keyboardControl.down;
-    } else if (keyIsDown(OPTION)) { //try SHIFT or command if this doesn't work
+    } else if (keyIsDown(SHIFT)) { //try SHIFT or command if this doesn't work
       bullet2.fired = true;
       bullet2.x = circle2.x;
       bullet2.y = circle2.y;
@@ -525,7 +529,6 @@ function instructionStart() {
   instruction7.y += -unit(0.9);
   instruction8.y += -unit(0.9);
 
-
   pop();
   // font options: Arial, Verdana, Trebuchet MS, Times New Roman, Didot, American Typewriter, Andale Mono, Courier, Bradley Hand, Luminari ~ Sans-serif, serif, Monospace, Cursive, Fantasy, Impact, Trattatello
 }
@@ -543,7 +546,7 @@ function love() {
   textSize(unit(64));
   fill(255, 100, 150);
   textAlign(CENTER, CENTER);
-  text(`Love!`, width / 2, height / 2);
+  text(`Love WINS!`, width / 2, height / 2);
   pop();
 }
 
@@ -557,12 +560,6 @@ function sadness() {
 }
 
 function move() {
-  //move the circles <<< CHANGE HERE TO CONTROL CIRCLES
-  // circle1.x += circle1.vx;
-  // circle1.y += circle1.vy;
-
-  //changed from circle 2 to circle 3
-
   circle3.x += circle3.vx;
   circle3.y += circle3.vy;
 }
@@ -591,6 +588,18 @@ function checkOverlap() {
   if (d < circle1.size / 2 + circle2.size / 2) {
     state = `love`;
   }
+}
+
+function wrap() {
+  if (circle3.x > width || circle3.x < 0 || circle3.y > height || circle3.y < 0 ) {
+    reset();
+  }
+}
+
+
+function reset() {
+  circle3.x = random(0, width);
+  circle3.y = random(height/3, height);
 }
 
 function display() {
