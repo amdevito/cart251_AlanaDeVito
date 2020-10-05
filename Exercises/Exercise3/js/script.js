@@ -19,6 +19,15 @@ third circle moves around spastically and you have to shoot it
 
 
 **************************************************/
+//set keyboard control variables.
+let keyboardControl = {
+  left: 8,
+  right: 8,
+  up: 10,
+  down: 10
+}
+
+//green circle (left letters controller)
 let circle1 = {
   x: undefined,
   y: 0,
@@ -31,6 +40,7 @@ let circle1 = {
   b: 0,
 };
 
+//blue circles (arrow keys)
 let circle2 = {
   x: undefined,
   y: 0,
@@ -43,6 +53,7 @@ let circle2 = {
   b: 255,
 };
 
+//flashing red 'evil circle'
 let circle3 = {
   x: undefined,
   y: 0,
@@ -148,9 +159,7 @@ let instruction8 = {
 
 let state = `title`; //Can be title, love, or sadness.
 
-// setup()
-//
-// Description of setup() goes here.
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
   setupCircles();
@@ -293,6 +302,19 @@ function draw() {
   } else if (state === `sadness`) {
     sadness();
   }
+
+  //keyboard arrows controlling blue circle movement
+    if (keyIsDown(LEFT_ARROW)) {
+      circle2.x -= keyboardControl.left;
+    } else if (keyIsDown(RIGHT_ARROW)) {
+      circle2.x += keyboardControl.right;
+    } else if (keyIsDown(UP_ARROW)) {
+      circle2.y -= keyboardControl.up;
+    } else if (keyIsDown(DOWN_ARROW)) {
+      circle2.y += keyboardControl.down;
+    }
+
+
 }
 
 function checkTitleOffScreen() {
@@ -408,12 +430,14 @@ function sadness() {
 }
 
 function move() {
-  //move the circles
-  circle1.x += circle1.vx;
-  circle1.y += circle1.vy;
+  //move the circles <<< CHANGE HERE TO CONTROL CIRCLES
+  // circle1.x += circle1.vx;
+  // circle1.y += circle1.vy;
 
-  circle2.x += circle2.vx;
-  circle2.y += circle2.vy;
+  //changed from circle 2 to circle 3
+
+  circle3.x += circle3.vx;
+  circle3.y += circle3.vy;
 }
 
 function checkOffScreen() {
@@ -449,6 +473,8 @@ function display() {
   ellipse(circle1.x, circle1.y, circle1.size);
   fill(circle2.r, circle2.g, circle2.b);
   ellipse(circle2.x, circle2.y, circle2.size);
+  fill(circle3.r, circle3.g, circle3.b);
+  ellipse(circle3.x, circle3.y, circle3.size);
   pop();
 }
 ///this is the function to get all values in relation to the user's screen//
