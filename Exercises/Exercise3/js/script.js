@@ -65,9 +65,17 @@ let title = {
 };
 
 //add additional lines for instructions to break up the lines that are too long
+let instruction = {
+  string: `HOW TO PLAY:`,
+  x: 0,
+  y: 0,
+  vx: 0,
+  vy: 0,
+  size: 0,
+};
 
 let instruction1 = {
-  string: `You are the blue circle AND the green circle.`,
+  string: `You are the green circle AND the blue circle.`,
   x: 0,
   y: 0,
   vx: 0,
@@ -120,6 +128,24 @@ let instruction6 = {
   size: 0,
 };
 
+let instruction7 = {
+  string: `When you are ready, click the mouse to . . .`,
+  x: 0,
+  y: 0,
+  vx: 0,
+  vy: 0,
+  size: 0,
+};
+
+let instruction8 = {
+  string: `START THE GAME`,
+  x: 0,
+  y: 0,
+  vx: 0,
+  vy: 0,
+  size: 0,
+};
+
 let state = `title`; //Can be title, love, or sadness.
 
 // setup()
@@ -129,12 +155,15 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   setupCircles();
   setupTitle();
+  setUpInstruction();
   setUpInstruction1();
   setUpInstruction2();
   setUpInstruction3();
   setUpInstruction4();
   setUpInstruction5();
   setUpInstruction6();
+  setUpInstruction7();
+  setUpInstruction8();
 
 }
 
@@ -143,51 +172,72 @@ function setupTitle() {
   title.y = height;
   title.vx = unit(5);
   title.vy = unit(1);
-  title.size = unit(50);
+  title.size = unit(60);
 }
 
 ///setUpInstruction starts after title passes bottom?
+function setUpInstruction() {
+  instruction.x = width / 2;
+  instruction.y = height;
+  instruction.vx = unit(5);
+  instruction.vy = unit(1);
+  instruction.size = unit(30);
+}
 function setUpInstruction1() {
   instruction1.x = width / 2;
-  instruction1.y = height;
+  instruction1.y = height*1.1;
   instruction1.vx = unit(5);
   instruction1.vy = unit(1);
   instruction1.size = unit(30);
 }
 function setUpInstruction2() {
   instruction2.x = width / 2;
-  instruction2.y = height*1.05;
+  instruction2.y = height*1.2;
   instruction2.vx = unit(5);
   instruction2.vy = unit(1);
-  instruction2.size = unit(30);
+  instruction2.size = unit(40);
 }
 function setUpInstruction3() {
   instruction3.x = width / 2;
-  instruction3.y = height*1.1;
+  instruction3.y = height*1.3;
   instruction3.vx = unit(5);
   instruction3.vy = unit(1);
-  instruction3.size = unit(30);
+  instruction3.size = unit(40);
 }
 function setUpInstruction4() {
   instruction4.x = width / 2;
-  instruction4.y = height*1.15;
+  instruction4.y = height*1.4;
   instruction4.vx = unit(5);
   instruction4.vy = unit(1);
-  instruction4.size = unit(30);
+  instruction4.size = unit(40);
 }
 function setUpInstruction5() {
-  instruction4.x = width / 2;
-  instruction4.y = height*1.2;
-  instruction4.vx = unit(5);
-  instruction4.vy = unit(1);
-  instruction4.size = unit(30);
+  instruction5.x = width / 2;
+  instruction5.y = height*1.5;
+  instruction5.vx = unit(5);
+  instruction5.vy = unit(1);
+  instruction5.size = unit(40);
 }
 function setUpInstruction6() {
-  instruction4.x = width / 2;
-  instruction4.y = height*1.25;
-  instruction4.vx = unit(5);
-  instruction4.vy = unit(1);
-  instruction4.size = unit(30);
+  instruction6.x = width / 2;
+  instruction6.y = height*1.6;
+  instruction6.vx = unit(5);
+  instruction6.vy = unit(1);
+  instruction6.size = unit(40);
+}
+function setUpInstruction7() {
+  instruction7.x = width / 2;
+  instruction7.y = height*1.7;
+  instruction7.vx = unit(5);
+  instruction7.vy = unit(1);
+  instruction7.size = unit(40);
+}
+function setUpInstruction8() {
+  instruction8.x = width / 2;
+  instruction8.y = height*1.8;
+  instruction8.vx = unit(5);
+  instruction8.vy = unit(1);
+  instruction8.size = unit(40);
 }
 
 function setupCircles() {
@@ -245,6 +295,21 @@ function draw() {
   }
 }
 
+function checkTitleOffScreen() {
+  //check if the title has gone offscreen
+  if (isTitleOffScreen(title)) {
+    state = `instructionStart`;
+  }
+}
+
+function isTitleOffScreen(title) {
+  if (title.y < 0) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 function checkOffScreen() {
   //check if the circles have gone off screen
   if (isOffScreen(circle1) || isOffScreen(circle2)) {
@@ -268,10 +333,10 @@ function titleStart() {
   textStyle(BOLD);
   textFont("Luminari");
   stroke(50, 200, 50);
-  strokeWeight(unit(0.5));
+  strokeWeight(unit(0.9));
 
-  title.y += -unit(0.5);
-  title.size = title.size - unit(0.05);
+  title.y += -unit(2);
+  title.size = title.size - unit(0.17);
 
   text(title.string, title.x, title.y);
   pop();
@@ -285,24 +350,30 @@ function instructionStart() {
   textStyle();
   textFont("Bradley Hand");
   stroke(random(0, 255), random(0, 255), random(0, 255));
-  strokeWeight(unit(0.7));
+  strokeWeight(unit(0.9));
 
   textSize(instruction1.size);
-  instruction1.size = instruction1.size - unit(0.01);
+  instruction1.size = instruction1.size - unit(0.02);
 
+  text(instruction.string, instruction.x, instruction.y);
   text(instruction1.string, instruction1.x, instruction1.y);
   text(instruction2.string, instruction2.x, instruction2.y);
   text(instruction3.string, instruction3.x, instruction3.y);
   text(instruction4.string, instruction4.x, instruction4.y);
   text(instruction5.string, instruction5.x, instruction5.y);
   text(instruction6.string, instruction6.x, instruction6.y);
+  text(instruction7.string, instruction7.x, instruction7.y);
+  text(instruction8.string, instruction8.x, instruction8.y);
 
-  instruction1.y += -unit(0.3);
-  instruction2.y += -unit(0.3);
-  instruction3.y += -unit(0.3);
-  instruction4.y += -unit(0.3);
-  instruction5.y += -unit(0.3);
-  instruction6.y += -unit(0.3);
+  instruction.y += -unit(0.9);
+  instruction1.y += -unit(0.9);
+  instruction2.y += -unit(0.9);
+  instruction3.y += -unit(0.9);
+  instruction4.y += -unit(0.9);
+  instruction5.y += -unit(0.9);
+  instruction6.y += -unit(0.9);
+  instruction7.y += -unit(0.9);
+  instruction8.y += -unit(0.9);
 
 
   pop();
