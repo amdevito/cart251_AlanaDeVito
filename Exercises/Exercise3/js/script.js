@@ -7,12 +7,17 @@ Click through title and instructions.
 (x) added colour to circles and made flicker (maybe take flicker away and save for attacker?)
 (x)added a third circle that will flicker red
 (x) get title from other project and place in title area
-() add instructions - make seperate function and variable and call this when the title moves past half of the screen
+(x) add instructions - make seperate function and variable and call this when the title moves past the top of the screen
+(x)added arow controls for blue circle (arrow control) circle 2
+(x)added letters (awsd) controls for green circle circle 1
+    control two circles with 2 hands (or can play with another person)
+    one person - arrows with ? as shooter
+    second person - awds with q as shooter
+() get red circle to move more spastically in the canvas (constrain to canvas size) - move towards which ever circle is closest?
+() get the green circle to shoot yellow 'bullets' using ?
+()get blue circle to shoot orange 'bullets' using q
+() get red circle to shoot one random bullet forward every 4 seconds?
 
-
-control two circles with 2 hands (or can play with another person)
-one person - arrows with ? as shooter
-second person - awds with q as shooter
 
 third circle moves around spastically and you have to shoot it
  __ maybe it shoots things too?
@@ -25,6 +30,47 @@ let keyboardControl = {
   right: 8,
   up: 10,
   down: 10
+}
+
+//set bullet variables for circle 1 (yellow squares)
+let bullet1 = {
+  x: 0,
+  y: 0,
+  sizeW: 0,
+  sizeH: 0,
+  speed: 0,
+  vx: 0,
+  vy: 0,
+  r: 241,
+  g: 247,
+  b: 71
+}
+//set bullet variables for circle 2(orange squares)
+let bullet2 = {
+  x: 0,
+  y: 0,
+  sizeW: 0,
+  sizeH: 0,
+  speed: 0,
+  vx: 0,
+  vy: 0,
+  r: 247,
+  g: 165,
+  b: 71
+}
+
+//set bullet variables for circle 3(green squares) green shoots one bullet forward every 4 seconds
+let bullet3 = {
+  x: 0,
+  y: 0,
+  sizeW: 0,
+  sizeH: 0,
+  speed: 0,
+  vx: 0,
+  vy: 0,
+  r: 153,
+  g: 247,
+  b: 71
 }
 
 //green circle (left letters controller)
@@ -58,8 +104,8 @@ let circle3 = {
   x: undefined,
   y: 0,
   size: 0,
-  vx: 0,
-  vy: 0,
+  vx: 5,//moves slightly slower than other circles but more spastically
+  vy: 5,
   speed: 0,
   r: 255,
   g: 0,
