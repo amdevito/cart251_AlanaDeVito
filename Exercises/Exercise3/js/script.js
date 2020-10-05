@@ -13,17 +13,14 @@ Click through title and instructions.
     control two circles with 2 hands (or can play with another person)
     one person - arrows with ? as shooter
     second person - awds with q as shooter
-() get red circle to move more spastically in the canvas (constrain to canvas size) - move towards which ever circle is closest?
-() get the green circle to shoot yellow 'bullets' using ?
-()get blue circle to shoot orange 'bullets' using q
-() get red circle to shoot one random bullet forward every 4 seconds
+(x) get red circle to move more spastically in the canvas
+(x) get the green circle to shoot yellow 'bullets' using ?
+(x)get blue circle to shoot orange 'bullets' using q
+() get red circle to shoot one random (from it's top) bullet forward every 4 seconds?
 () change logic to win screen when you shoot red circle
 () change logic to lose when circle 1 or 2 touches red circle or gets shot by red circle
 
-
-third circle moves around spastically and you have to shoot it
- __ maybe it shoots things too?
-
+ green and blue circle to reset on other side of screen that it moved out from
 
 **************************************************/
 //set keyboard control variables.
@@ -230,15 +227,15 @@ function setUpBullets() {
     bullet1.y = 0;
     bullet1.size = unit(5);
     bullet1.speed = unit(2);
-    bullet1.vx = unit(1);
-    bullet1.vy = unit(1);
+    bullet1.vx = unit(3);
+    bullet1.vy = unit(6);
 
     bullet2.x = 0,
     bullet2.y = 0,
     bullet2.size = unit(5);
     bullet2.speed = unit(2);
-    bullet2.vx = unit(1);
-    bullet2.vy = unit(1);
+    bullet2.vx = unit(3);
+    bullet2.vy = unit(6);
 }
 
 function setupTitle() {
@@ -387,6 +384,7 @@ function draw() {
   bullet2.fired = false;
   // Kill the enemy
   circle3.active = false;
+  
   }
 
   //bullet1 fired
