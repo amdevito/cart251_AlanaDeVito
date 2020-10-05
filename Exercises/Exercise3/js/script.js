@@ -286,9 +286,9 @@ function draw() {
   background(0);
 
   //make circles flicker (must be in draw to make the flickering animation)
-  circle1.g = random(50, 255);
-  circle2.b = random(50, 255);
-  circle3.r = random(50, 255);
+  // circle1.g = random(50, 255);
+  // circle2.b = random(50, 255);
+  circle3.r = random(0, 176);
 
   //set states
   if (state === `title`) {
@@ -314,6 +314,21 @@ function draw() {
       circle2.y += keyboardControl.down;
     }
 
+//keyboard letters AWSD controlling green circle movement
+if (keyIsPressed) {
+    if (key == 'a') {
+    circle1.x -= keyboardControl.left;;
+    }
+    else if (key == 'd') {
+    circle1.x += keyboardControl.right;;
+    }
+    else if (key == 'w') {
+    circle1.y -= keyboardControl.up;
+    }
+    else if (key == 's') {
+    circle1.y += keyboardControl.down;
+    }
+  }
 
 }
 
