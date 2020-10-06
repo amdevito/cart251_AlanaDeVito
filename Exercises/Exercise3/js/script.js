@@ -263,14 +263,14 @@ function setUpBullets() {
     bullet1.size = unit(5);
     bullet1.speed = unit(2);
     bullet1.vx = unit(3);
-    bullet1.vy = unit(6);
+    bullet1.vy = unit(10);
 
     bullet2.x = 0,
     bullet2.y = 0,
     bullet2.size = unit(5);
     bullet2.speed = unit(2);
     bullet2.vx = unit(3);
-    bullet2.vy = unit(6);
+    bullet2.vy = unit(10);
 }
 
 function setupTitle() {
@@ -654,7 +654,14 @@ function sadness() {
   pop();
 }
 
+//map movement with Perlin Noise to make jittery red attack Circles3 & 4
 function move() {
+  circle3.vx = map(noise(circle3.x), 0, 1, 0, 30);
+  circle3.vy = map(noise(circle3.y), 0, 1, 0, 20);
+
+  circle4.vx = map(noise(circle4.x), 0, 1, 0, 30);
+  circle4.vy = map(noise(circle4.y), 0, 1, 0, 20);
+
   circle3.x += circle3.vx;
   circle3.y += circle3.vy;
 
