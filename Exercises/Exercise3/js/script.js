@@ -367,7 +367,7 @@ function setupCircles() {
 
   //circle one - green - controller left
   circle1.x = width / 3;
-  circle1.y = height / 4;
+  circle1.y = height / 5;
   circle1.size = width / 12;
 
   circle1.speed = unit(3);
@@ -376,7 +376,7 @@ function setupCircles() {
 
   //circle two - blue - controller right
   circle2.x = (width / 3) * 2;
-  circle2.y = height / 4;
+  circle2.y = height / 5;
   circle2.size = width / 12;
 
   circle2.speed = unit(3);
