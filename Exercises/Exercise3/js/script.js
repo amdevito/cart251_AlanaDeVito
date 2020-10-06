@@ -145,7 +145,7 @@ let instruction = {
 };
 
 let instruction1 = {
-  string: `1 or 2 Players: Play as one circle each or both at the same time`,
+  string: `1 or 2 Players: Play as one circle each or one plays as both at the same time.`,
   x: 0,
   y: 0,
   vx: 0,
@@ -656,11 +656,11 @@ function sadness() {
 
 //map movement with Perlin Noise to make jittery red attack Circles3 & 4
 function move() {
-  circle3.vx = map(noise(circle3.x), 0, 1, 0, 30);
-  circle3.vy = map(noise(circle3.y), 0, 1, 0, 20);
+  circle3.vx = map(noise(circle3.x), 0, 1, 0, 25);
+  circle3.vy = map(noise(circle3.y), 0, 1, 0, 15);
 
-  circle4.vx = map(noise(circle4.x), 0, 1, 0, 30);
-  circle4.vy = map(noise(circle4.y), 0, 1, 0, 20);
+  circle4.vx = map(noise(circle4.x), 0, 1, 0, 25);
+  circle4.vy = map(noise(circle4.y), 0, 1, 0, 15);
 
   circle3.x += circle3.vx;
   circle3.y += circle3.vy;
