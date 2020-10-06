@@ -154,7 +154,7 @@ let instruction1 = {
 };
 
 let instruction2 = {
-  string: `Use the following letter keys to control the GREEN circle:`,
+  string: `Use the letter keys to control the GREEN circle:`,
   x: 0,
   y: 0,
   vx: 0,
@@ -163,7 +163,7 @@ let instruction2 = {
 };
 
 let instruction3 = {
-  string: `A = Back, W = UP, S = DOWN, D = FORWARD, Q = SHOOT`,
+  string: `A = BACK, W = UP, S = DOWN, D = FORWARD, Q = SHOOT`,
   x: 0,
   y: 0,
   vx: 0,
@@ -181,7 +181,7 @@ let instruction4 = {
 };
 
 let instruction5 = {
-  string: `and press '?' (question mark) to SHOOT.`,
+  string: `and press 'SHIFT' to SHOOT.`,
   x: 0,
   y: 0,
   vx: 0,
@@ -190,7 +190,7 @@ let instruction5 = {
 };
 
 let instruction6 = {
-  string: `Don't let the flashing red circle touch YOU!`,
+  string: `Don't let the flashing red circles touch YOU!`,
   x: 0,
   y: 0,
   vx: 0,
@@ -199,7 +199,7 @@ let instruction6 = {
 };
 
 let instruction7 = {
-  string: `When you are ready, click the mouse to . . .`,
+  string: `Don't go out of bounds!`,
   x: 0,
   y: 0,
   vx: 0,
@@ -208,6 +208,23 @@ let instruction7 = {
 };
 
 let instruction8 = {
+  string: `Destroy both flashing red circles to prove that together, LOVE WINS!`,
+  x: 0,
+  y: 0,
+  vx: 0,
+  vy: 0,
+  size: 0,
+};
+
+let instruction9 = {
+  string: `When you are ready, click the mouse to . . .`,
+  x: 0,
+  y: 0,
+  vx: 0,
+  vy: 0,
+  size: 0,
+};
+let instruction10 = {
   string: `START THE GAME!!!`,
   x: 0,
   y: 0,
@@ -234,6 +251,9 @@ function setup() {
   setUpInstruction6();
   setUpInstruction7();
   setUpInstruction8();
+  setUpInstruction9();
+  setUpInstruction10();
+
 
 }
 
@@ -325,6 +345,20 @@ function setUpInstruction8() {
   instruction8.vy = unit(1);
   instruction8.size = unit(40);
 }
+function setUpInstruction9() {
+  instruction9.x = width / 2;
+  instruction9.y = height*1.9;
+  instruction9.vx = unit(5);
+  instruction9.vy = unit(1);
+  instruction9.size = unit(40);
+}
+function setUpInstruction10() {
+  instruction10.x = width / 2;
+  instruction10.y = height*2;
+  instruction10.vx = unit(5);
+  instruction10.vy = unit(1);
+  instruction10.size = unit(40);
+}
 
 function setupCircles() {
   //set circle values in range of the user's screen size
@@ -352,7 +386,7 @@ function setupCircles() {
 
 function setUpCircle3 () {
     //circle three - red - computer - attacking
-    circle3.x = width / 2;
+    circle3.x = random(0, width);
     circle3.y = height / 2;
     circle3.size = width / 16;
 
@@ -503,7 +537,22 @@ function isTitleOffScreen(title) {
   }
 }
 
-//change this to lose
+function checkLoveWins() {
+  if (checkWin(circle)) {
+    state = 'love';
+  }
+}
+
+function checkWin(circle) {
+  if (circle3.active === false && circle4.active === false) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+
+//if circles go out of bounds you lose as well
 function checkOffScreen() {
   //check if the circles have gone off screen
   if (isOffScreen(circle1) || isOffScreen(circle2)) {
@@ -559,6 +608,8 @@ function instructionStart() {
   text(instruction6.string, instruction6.x, instruction6.y);
   text(instruction7.string, instruction7.x, instruction7.y);
   text(instruction8.string, instruction8.x, instruction8.y);
+  text(instruction9.string, instruction9.x, instruction9.y);
+  text(instruction10.string, instruction10.x, instruction10.y);
 
   instruction.y += -unit(0.9);
   instruction1.y += -unit(0.9);
@@ -569,6 +620,8 @@ function instructionStart() {
   instruction6.y += -unit(0.9);
   instruction7.y += -unit(0.9);
   instruction8.y += -unit(0.9);
+  instruction9.y += -unit(0.9);
+  instruction10.y += -unit(0.9);
 
   pop();
   // font options: Arial, Verdana, Trebuchet MS, Times New Roman, Didot, American Typewriter, Andale Mono, Courier, Bradley Hand, Luminari ~ Sans-serif, serif, Monospace, Cursive, Fantasy, Impact, Trattatello
@@ -578,6 +631,7 @@ function instructionStart() {
 function simulation() {
   move();
   checkOffScreen();
+  checkLoveWins();
   checkOverlap();
   display();
 }
@@ -593,10 +647,10 @@ function love() {
 
 function sadness() {
   push();
-  textSize(unit(64));
+  textSize(unit(30));
   fill(0, 50, 150);
   textAlign(CENTER, CENTER);
-  text(`:'(`, width / 2, height / 2);
+  text(`Sometimes love is not enough. YOU LOSE.`, width / 2, height / 2);
   pop();
 }
 
