@@ -111,6 +111,20 @@ let circle3 = {
   active: true
 };
 
+//flashing red 'evil circle'
+let circle4 = {
+  x: undefined,
+  y: 0,
+  size: 0,
+  vx: 5, //moves slightly slower than other circles but more spastically
+  vy: 5,
+  speed: 0,
+  r: 255,
+  g: 0,
+  b: 0,
+  active: true
+};
+
 let title = {
   string: `The Darker Side of Love`,
   x: 0,
@@ -131,7 +145,7 @@ let instruction = {
 };
 
 let instruction1 = {
-  string: `You are the green circle AND the blue circle.`,
+  string: `1 or 2 Players: Play as one circle each or both at the same time`,
   x: 0,
   y: 0,
   vx: 0,
@@ -176,7 +190,7 @@ let instruction5 = {
 };
 
 let instruction6 = {
-  string: `Don't let the flashing red circle touch or shoot YOU!`,
+  string: `Don't let the flashing red circle touch YOU!`,
   x: 0,
   y: 0,
   vx: 0,
@@ -207,7 +221,8 @@ let state = `title`; //Can be title, love, or sadness.
 function setup() {
   createCanvas(windowWidth, windowHeight);
   setupCircles();
-  setUpCircle3 ();
+  setUpCircle3();
+  setUpCircle4();
   setUpBullets();
   setupTitle();
   setUpInstruction();
@@ -341,17 +356,29 @@ function setUpCircle3 () {
     circle3.y = height / 2;
     circle3.size = width / 16;
 
-    circle3.speed = unit(4);
+    circle3.speed = unit(3);
     circle3.vy = random(0, circle3.speed);
+}
+
+function setUpCircle4 () {
+    //circle three - red - computer - attacking
+    circle4.x = random(0, width);
+    circle4.y = height / 2;
+    circle4.size = width / 16;
+
+    circle4.speed = unit(3);
+    circle4.vy = random(0, circle4.speed);
 }
 
 function draw() {
   background(0);
   wrap();
+  wrap2();
 
 
   //make attacking circle flash RED
   circle3.r = random(0, 176);
+  circle4.r = random(0, 255);
 
   // bullets move
   bullet1.x += bullet1.vx;
@@ -384,7 +411,23 @@ function draw() {
   bullet2.fired = false;
   // Kill the enemy
   circle3.active = false;
-  
+  }
+  //check if bullet1 hits red circle4
+  let d3 = dist(bullet1.x, bullet1.y, circle4.x, circle4.y);
+  if (bullet1.fired && circle4.active && d3 < bullet1.size / 2 + circle4.size / 2) {
+  // Stop the bullet
+  bullet1.fired = false;
+  // Kill the enemy
+  circle4.active = false;
+  }
+
+  //check if bullet2 hits red circle4
+  let d4 = dist(bullet2.x, bullet2.y, circle4.x, circle4.y);
+  if (bullet2.fired && circle4.active && d4 < bullet2.size / 2 + circle4.size / 2) {
+  // Stop the bullet
+  bullet2.fired = false;
+  // Kill the enemy
+  circle4.active = false;
   }
 
   //bullet1 fired
@@ -469,7 +512,7 @@ function checkOffScreen() {
 }
 
 function isOffScreen(circle) {
-  if (circle.x < 0 || circle.x > width || circle.y < 0 || circle.y > height) {
+  if (circle1.x < 0 || circle1.x > width || circle2.y < 0 || circle2.y > height) {
     return true;
   } else {
     return false;
@@ -560,6 +603,9 @@ function sadness() {
 function move() {
   circle3.x += circle3.vx;
   circle3.y += circle3.vy;
+
+  circle4.x += circle4.vx;
+  circle4.y += circle4.vy;
 }
 
 function checkOffScreen() {
@@ -580,11 +626,23 @@ function checkOffScreen() {
 
 function checkOverlap() {
   //check if the circles overlap
-  //when they over lap, change state to love
+  //when they over lap, change state to sadness
 
-  let d = dist(circle1.x, circle2.y, circle2.x, circle2.y);
-  if (d < circle1.size / 2 + circle2.size / 2) {
-    state = `love`;
+  let d5 = dist(circle1.x, circle1.y, circle3.x, circle3.y);
+  if (d5 < circle1.size / 2 + circle3.size / 2) {
+    state = `sadness`;
+  }
+  let d6 = dist(circle2.x, circle2.y, circle3.x, circle3.y);
+  if (d6 < circle2.size / 2 + circle3.size / 2) {
+    state = `sadness`;
+  }
+  let d7 = dist(circle1.x, circle1.y, circle4.x, circle4.y);
+  if (d7 < circle1.size / 2 + circle4.size / 2) {
+    state = `sadness`;
+  }
+  let d8 = dist(circle2.x, circle2.y, circle4.x, circle4.y);
+  if (d8 < circle2.size / 2 + circle4.size / 2) {
+    state = `sadness`;
   }
 }
 
@@ -593,11 +651,21 @@ function wrap() {
     reset();
   }
 }
+function wrap2() {
+  if (circle4.x > width || circle4.x < 0 || circle4.y > height || circle4.y < 0 ) {
+    reset2();
+  }
+}
 
 
 function reset() {
   circle3.x = random(0, width);
   circle3.y = random(height/3, height);
+
+}
+function reset2() {
+  circle4.x = random(0, width);
+  circle4.y = random(height/3, height);
 }
 
 function display() {
@@ -612,6 +680,11 @@ function display() {
   if (circle3.active) {
   fill(circle3.r, circle3.g, circle3.b);
   ellipse(circle3.x, circle3.y, circle3.size);
+  }
+  // circle4 (red enemy)
+  if (circle4.active) {
+  fill(circle4.r, circle4.g, circle4.b);
+  ellipse(circle4.x, circle4.y, circle4.size);
   }
 
   //draw bullets when fired
