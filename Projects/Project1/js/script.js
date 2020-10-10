@@ -1,7 +1,7 @@
 /**************************************************
 Alana DeVito
 Project 1:
-Tumbling through Madness: The Adventures of the White Squirrel
+Tumbling through Madness: The Great White Squirrel Caper of 2020
 
 **************************************************/
 //Set up objects for game play
@@ -627,18 +627,18 @@ let state = 'enter'; //different states: enter>title>level1>gameover>win>level2>
 //preload images for background and characters
 function preload() {
   //backgrounds
-  bg1 = loadImage('assets/images/park.jpg');//morning
-  bg2 = loadImage('assets/images/park2.jpg');//afternoon**
-  bg3 = loadImage('assets/images/park3.jpg');//evening**
+  bg1 = loadImage('assets/images/park.jpg');//morning_gorlitzer
+  bg2 = loadImage('assets/images/park1.jpg');//afternoon_mont royal
+  bg3 = loadImage('assets/images/park2.jpg');//evening_trinity bellewoods
   bgGameOver = loadImage('assets/images/squirrel_dead.jpg');
 
   //win images
   squirrelWin.image = loadImage('assets/images/squirrel_youWin.jpg');
-  squirrelBothWin.image = loadImage('assets/images/squirrel_youWin.jpg');//**
+  squirrelBothWin.image = loadImage('assets/images/squirrelBothWin.jpg');//
 
   //squirrel characters
   squirrel.image = loadImage("assets/images/squirrel.png");
-  squirrel2.image = loadImage("assets/images/squirrel.png");//**
+  squirrel2.image = loadImage("assets/images/squirrel2.png");//
 
   //level one, acorns to collet
   acorn1.image = loadImage('assets/images/acorn1.png');
@@ -656,21 +656,21 @@ function preload() {
   dog5.image = loadImage('assets/images/dog3.png');
 
   //level two, bread to collect
-  bread1.image = loadImage('assets/images/dog1.png');//*
-  bread2.image = loadImage('assets/images/dog2.png');//*
-  bread3.image = loadImage('assets/images/dog3.png');//*
-  bread4.image = loadImage('assets/images/dog4.png');//*
-  bread5.image = loadImage('assets/images/dog3.png');//*
-  bread6.image = loadImage('assets/images/dog3.png');//*
+  bread1.image = loadImage('assets/images/bread.png');//
+  bread2.image = loadImage('assets/images/bread.png');//
+  bread3.image = loadImage('assets/images/bread.png');//
+  bread4.image = loadImage('assets/images/bread.png');//
+  bread5.image = loadImage('assets/images/bread.png');//
+  bread6.image = loadImage('assets/images/bread.png');//
 
 
   //level two, anti-maskers
-  antiMasker1.image = loadImage('assets/images/dog1.png');//*
-  antiMasker2.image = loadImage('assets/images/dog2.png');//*
-  antiMasker3.image = loadImage('assets/images/dog3.png');//*
-  antiMasker4.image = loadImage('assets/images/dog4.png');//*
-  antiMasker5.image = loadImage('assets/images/dog3.png');//*
-  antiMasker6.image = loadImage('assets/images/dog3.png');//*
+  antiMasker1.image = loadImage('assets/images/antiMasker1.png');//
+  antiMasker2.image = loadImage('assets/images/antiMasker2.png');//
+  antiMasker3.image = loadImage('assets/images/antiMasker3.png');//
+  antiMasker4.image = loadImage('assets/images/antiMasker4.png');//
+  antiMasker5.image = loadImage('assets/images/antiMasker2.png');//
+  antiMasker6.image = loadImage('assets/images/antiMasker4.png');//
 
   //level three, WASPS
   wasp1.image = loadImage('assets/images/dog1.png');//*
@@ -679,6 +679,14 @@ function preload() {
   wasp4.image = loadImage('assets/images/dog4.png');//*
   wasp5.image = loadImage('assets/images/dog3.png');//*
   wasp6.image = loadImage('assets/images/dog3.png');//*
+
+  //level three, acorns to throw
+  acornBullet1.image = loadImage('assets/images/acorn1.png');
+  acornBullet2.image = loadImage('assets/images/acorn1.png');
+  acornBullet3.image = loadImage('assets/images/acorn1.png');
+  acornBullet4.image = loadImage('assets/images/acorn2.png');
+  acornBullet5.image = loadImage('assets/images/acorn2.png');
+  acornBullet6.image = loadImage('assets/images/acorn2.png');
 
 }
 
