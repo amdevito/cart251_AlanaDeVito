@@ -673,12 +673,12 @@ function preload() {
   antiMasker6.image = loadImage('assets/images/antiMasker4.png');//
 
   //level three, WASPS
-  wasp1.image = loadImage('assets/images/dog1.png');//*
-  wasp2.image = loadImage('assets/images/dog2.png');//*
-  wasp3.image = loadImage('assets/images/dog3.png');//*
-  wasp4.image = loadImage('assets/images/dog4.png');//*
-  wasp5.image = loadImage('assets/images/dog3.png');//*
-  wasp6.image = loadImage('assets/images/dog3.png');//*
+  wasp1.image = loadImage('assets/images/wasp.png');//
+  wasp2.image = loadImage('assets/images/wasp.png');//
+  wasp3.image = loadImage('assets/images/wasp.png');//
+  wasp4.image = loadImage('assets/images/wasp.png');//
+  wasp5.image = loadImage('assets/images/wasp.png');//
+  wasp6.image = loadImage('assets/images/wasp.png');//
 
   //level three, acorns to throw
   acornBullet1.image = loadImage('assets/images/acorn1.png');
@@ -691,15 +691,13 @@ function preload() {
 }
 
 // setup()
-//
-// Description of setup() goes here.
+
 function setup() {
 
 }
 
 // draw()
-//
-// Description of draw() goes here.
+
 function draw() {
 
 }
