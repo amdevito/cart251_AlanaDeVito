@@ -8,8 +8,16 @@ Tumbling through Madness: The Adventures of the White Squirrel
 
 //OPENING:
 //enter Screen//After clicking to continue music should start with the title screen.//make this screen early internet style? photo?// or just in american typewriter?
-let title = {
-  string: `Error 404: Gender Not Found. Please click to Continue.`,
+let enterScreen1 = {
+  string: `Error 404: Gender Not Found.`,
+  x: 0,
+  y: 0,
+  vx: 0,
+  vy: 0,
+  size: 0,
+};
+let enterScreen2 = {
+  string: `Please click to Continue.`,
   x: 0,
   y: 0,
   vx: 0,
@@ -19,7 +27,7 @@ let title = {
 
 //title//
 let title = {
-  string: `Tumbling Through Madness: The Great White Squirrel Caper of 2020`,
+  string: `Tumbling Through Madness: \n The Great White Squirrel Caper of 2020`,
   x: 0,
   y: 0,
   vx: 0,
@@ -29,7 +37,7 @@ let title = {
 
 //instructions//
 let instruction1 = {
-  string: `Level ONE: It all Started like any Other Day... HOW TO PLAY: Use the arrow keys to control the white squirrel. Collect 6 acorns and save them in your home tree. Be careful! The dogs are out to play today!`,
+  string: `Level ONE: \n It all Started like any Other Day... \n HOW TO PLAY: Use the arrow keys to control the white squirrel. \n Collect 6 acorns and save them in your home tree. \n Be careful! The dogs are out to play today!`,
   x: 0,
   y: 0,
   vx: 0,
@@ -38,7 +46,7 @@ let instruction1 = {
 };
 
 let instruction2 = {
-  string: `Level TWO: Let the Madness Begin... HOW TO PLAY: Use the arrow keys to control the white squirrel. Collect 6 loaves of homemade sourdough bread and save them in your home tree. Be careful! The Anti-Mask Protestors have taken over the park and are spreading the Virus! Studies haven't shown that white squirrels are immune yet...`,
+  string: `Level TWO: \n Let the Madness Begin... \n HOW TO PLAY: Use the arrow keys to control the white squirrel. \n Collect 6 loaves of homemade sourdough bread and save them in your home tree. \n Be careful! \n The Anti-Mask Protestors have taken over the park and are spreading the Virus! \n Studies haven't shown that white squirrels are immune yet...`,
   x: 0,
   y: 0,
   vx: 0,
@@ -47,7 +55,7 @@ let instruction2 = {
 };
 
 let instruction3 = {
-  string: `Level THREE: Take Back the Park! HOW TO PLAY: Team Up with black squirrel and fight off the growing swarms of WASPS! Use the arrow keys to control the white squirrel and hit SHIFT to shoot acorns. Use AWSD keys to control the black squirrel and 'Q' to shoot. Careful, you only have 3 acorns to shoot each! Fight off the WASPS for 90 seconds and they just might retreat!`,
+  string: `Level THREE: \n Take Back the Park! \n HOW TO PLAY: \n Team Up with black squirrel and fight off the growing swarms of WASPS! \n Use the arrow keys to control the white squirrel and hit SHIFT to shoot acorns. \n Use AWSD keys to control the black squirrel and 'Q' to shoot. \n Careful, you only have 3 acorns to shoot each! \n Fight off the WASPS for 90 seconds and they just might retreat!`,
   x: 0,
   y: 0,
   vx: 0,
@@ -614,24 +622,63 @@ let acornBullet6 = {
   fired: false
 }
 
+let state = 'enter'; //different states: enter>title>level1>gameover>win>level2>level3
+
 //preload images for background and characters
 function preload() {
-  squirrel.image = loadImage("assets/images/squirrel.png");
-  squirrelWin.image = loadImage('assets/images/squirrel_youWin.jpg');
-  bg1 = loadImage('assets/images/park.jpg');
+  //backgrounds
+  bg1 = loadImage('assets/images/park.jpg');//morning
+  bg2 = loadImage('assets/images/park2.jpg');//afternoon**
+  bg3 = loadImage('assets/images/park3.jpg');//evening**
   bgGameOver = loadImage('assets/images/squirrel_dead.jpg');
+
+  //win images
+  squirrelWin.image = loadImage('assets/images/squirrel_youWin.jpg');
+  squirrelBothWin.image = loadImage('assets/images/squirrel_youWin.jpg');//**
+
+  //squirrel characters
+  squirrel.image = loadImage("assets/images/squirrel.png");
+  squirrel2.image = loadImage("assets/images/squirrel.png");//**
+
+  //level one, acorns to collet
   acorn1.image = loadImage('assets/images/acorn1.png');
   acorn2.image = loadImage('assets/images/acorn2.png');
   acorn3.image = loadImage('assets/images/acorn1.png');
   acorn4.image = loadImage('assets/images/acorn2.png');
   acorn5.image = loadImage('assets/images/acorn1.png');
   acorn6.image = loadImage('assets/images/acorn2.png');
+
+  //level one, dogs attacking
   dog1.image = loadImage('assets/images/dog1.png');
   dog2.image = loadImage('assets/images/dog2.png');
   dog3.image = loadImage('assets/images/dog3.png');
   dog4.image = loadImage('assets/images/dog4.png');
   dog5.image = loadImage('assets/images/dog3.png');
 
+  //level two, bread to collect
+  bread1.image = loadImage('assets/images/dog1.png');//*
+  bread2.image = loadImage('assets/images/dog2.png');//*
+  bread3.image = loadImage('assets/images/dog3.png');//*
+  bread4.image = loadImage('assets/images/dog4.png');//*
+  bread5.image = loadImage('assets/images/dog3.png');//*
+  bread6.image = loadImage('assets/images/dog3.png');//*
+
+
+  //level two, anti-maskers
+  antiMasker1.image = loadImage('assets/images/dog1.png');//*
+  antiMasker2.image = loadImage('assets/images/dog2.png');//*
+  antiMasker3.image = loadImage('assets/images/dog3.png');//*
+  antiMasker4.image = loadImage('assets/images/dog4.png');//*
+  antiMasker5.image = loadImage('assets/images/dog3.png');//*
+  antiMasker6.image = loadImage('assets/images/dog3.png');//*
+
+  //level three, WASPS
+  wasp1.image = loadImage('assets/images/dog1.png');//*
+  wasp2.image = loadImage('assets/images/dog2.png');//*
+  wasp3.image = loadImage('assets/images/dog3.png');//*
+  wasp4.image = loadImage('assets/images/dog4.png');//*
+  wasp5.image = loadImage('assets/images/dog3.png');//*
+  wasp6.image = loadImage('assets/images/dog3.png');//*
 
 }
 
