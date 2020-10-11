@@ -3,6 +3,8 @@ Alana DeVito
 Project 1:
 Tumbling through Madness: The Great White Squirrel Caper of 2020
 
+**Note some values are left in the inital variable set up, so that when the values are converted using the unit(); function
+you can refer to the original ratios in case some values need to be adjusted.
 **************************************************/
 //Set up objects for game play
 
@@ -97,6 +99,16 @@ let squirrelWin = {
   ay: 0
 }
 
+let squirrelWin2 = { //squirrel with bread
+  x: 575,
+  y: 400,
+  vx: 0,
+  vy: 0,
+  image: 0,
+  ax: 0,
+  ay: 0
+}
+
 //BLACK SQUIRREL
 let squirrel2 = {
   x: 100,
@@ -133,12 +145,12 @@ let scoreDots = {
   r: 94,
   g: 69,
   b: 35
-}
+} /// **these need to be adjusted for window size
 
 //LEVEL specific OBJECTS
 
 //LEVEL1:
-//Acorns to Collect
+//setting Acorns to Collect
 let acorn1 = {
   x: -450,
   y: 775,
@@ -198,6 +210,12 @@ let acorn6 = {
   image: 0,
   ax: 0,
   ay: 0
+}
+
+//Contained acorn spawn//
+let randomAcornSpawn = {
+  min:575,
+  max:770
 }
 
 //DOGS
@@ -338,6 +356,12 @@ let bread6 = {
   image: 0,
   ax: 0,
   ay: 0
+}
+
+//Contained bread spawn//
+let randomBreadSpawn = {
+  min:575,
+  max:770
 }
 
 //Anti-maskers
@@ -546,6 +570,26 @@ let wasp6 = {
   ax: 0,
   ay: 0
 }
+let wasp7 = {
+  x: 1400,
+  y: 0,
+  vx: 0,
+  vy: 0,
+  speed: -3,
+  image: 0,
+  ax: 0,
+  ay: 0
+}
+let wasp8 = {
+  x: 1400,
+  y: 0,
+  vx: 0,
+  vy: 0,
+  speed: -3,
+  image: 0,
+  ax: 0,
+  ay: 0
+}
 
 //Contained wasp spawn//
 let randomWaspSpawn = {
@@ -558,87 +602,68 @@ let randomWaspSpawn = {
 let acornBullet1 = {
   x: 0,
   y: 0,
-  size: 0,
+  image: 0,
   speed: 0,
   vx: 0,
   vy: 0,
-  r: 255,
-  g: 0,
-  b: 0,
   fired: false
 }
 let acornBullet2 = {
   x: 0,
   y: 0,
-  size: 0,
+  image: 0,
   speed: 0,
   vx: 0,
   vy: 0,
-  r: 255,
-  g: 0,
-  b: 0,
   fired: false
 }
 let acornBullet3 = {
   x: 0,
   y: 0,
-  size: 0,
+  image: 0,
   speed: 0,
   vx: 0,
   vy: 0,
-  r: 255,
-  g: 0,
-  b: 0,
   fired: false
 }
 let acornBullet4 = {
   x: 0,
   y: 0,
-  size: 0,
+  image: 0,
   speed: 0,
   vx: 0,
   vy: 0,
-  r: 255,
-  g: 0,
-  b: 0,
   fired: false
 }
 let acornBullet5 = {
   x: 0,
   y: 0,
-  size: 0,
+  image: 0,
   speed: 0,
   vx: 0,
   vy: 0,
-  r: 255,
-  g: 0,
-  b: 0,
   fired: false
 }
 let acornBullet6 = {
   x: 0,
   y: 0,
-  size: 0,
+  image: 0,
   speed: 0,
   vx: 0,
   vy: 0,
-  r: 255,
-  g: 0,
-  b: 0,
   fired: false
 }
 
 let state = 'enter'; //different states: enter>title>level1>gameover>win>level2>level3
 
 //Set up Functions
-function setUpEnterScreen() {//static in center of screen
+function setUpEnterScreen() {
   enterScreen.x = width / 2;
   enterScreen.y = height;
   enterScreen.vx = unit(5);
   enterScreen.vy = unit(1);
   enterScreen.size = unit(30);
 }
-
 
 function setUpTitle() {
   title.x = width / 2;
@@ -654,7 +679,7 @@ function setUpInstruction1() {
   instruction1.vy = unit(1);
   instruction1.size = unit(30);
 }
-}
+
 function setUpInstruction2() {
   instruction2.x = width / 2;
   instruction2.y = height*1.2;
@@ -670,7 +695,267 @@ function setUpInstruction3() {
   instruction3.size = unit(40);
 }
 
+function setUpScoreDots() {
+  scoreDots.x = unit(45);
+  scoreDots.y = unit(34);
+  scoreDots.radius = unit(5);
+  scoreDots.offset1 = unit(6);
+  scoreDots.offset2 = unit(11);
+  scoreDots.offset3 = unit(17);
+  scoreDots.offset4 = unit(22);
+}
+
+function setUpSpawn() {
+  //L1
+randomDogSpawn.min = unit(58);
+randomDogSpawn.max = unit(77);
+
+randomAcornSpawn.min = unit(58);
+randomAcornSpawn.max = unit(77);
+
+  //L2
+randomAntiMaskSpawn.min = unit(58);
+randomAntiMaskSpawn.max = unit(77);
+
+randomBreadSpawn.min = unit(58);
+randomBreadSpawn.max = unit(77);
+
+  //L3
+randomWaspSpawn.min = unit(58);
+randomWaspSpawn.max = unit(77);
+
+}
+
+//LEVEL ONE: setups
+
+function setUpDogs() {
+  dog1.x = width;
+  dog1.y = random(randomDogSpawn.min, randomDogSpawn.max);
+  dog1.vx = dog1.speed;
+
+  dog2.x = width;
+  dog2.y = random(randomDogSpawn.min, randomDogSpawn.max);
+  dog2.vx = dog2.speed;
+
+  dog3.x = width;
+  dog3.y = random(randomDogSpawn.min, randomDogSpawn.max);
+  dog3.vx = dog3.speed;
+
+  dog4.x = width;
+  dog4.y = random(randomDogSpawn.min, randomDogSpawn.max);
+  dog4.vx = dog4.speed;
+
+  dog5.x = width;
+  dog5.y = random(randomDogSpawn.min, randomDogSpawn.max);
+  dog5.vx = dog5.speed;
+}
+
+function setUpAcorns() {
+  acorn1.x = -450; //start far off screen, each acorn staggared -- could change this to unit(100), etc...*try later*
+  acorn1.y = random(randomAcornSpawn.min, randomAcornSpawn.max);
+  acorn1.vx = acorn1.speed;
+
+  acorn2.x = -550;
+  acorn2.y = random(randomAcornSpawn.min, randomAcornSpawn.max);
+  acorn2.vx = acorn2.speed;
+
+  acorn3.x = -650;
+  acorn3.y = random(randomAcornSpawn.min, randomAcornSpawn.max);
+  acorn3.vx = acorn3.speed;
+
+  acorn4.x = -750;
+  acorn4.y = random(randomAcornSpawn.min, randomAcornSpawn.max);
+  acorn4.vx = acorn4.speed;
+
+  acorn5.x = -850;
+  acorn5.y = random(randomAcornSpawn.min, randomAcornSpawn.max);
+  acorn5.vx = acorn5.speed;
+
+  acorn6.x = -950;
+  acorn6.y = random(randomAcornSpawn.min, randomAcornSpawn.max);
+  acorn6.vx = acorn6.speed;
+
+}
+
+
+///LEVEL TWO: setups
+function setUpAntiMaskers() {
+  antiMasker1.x = width;
+  antiMasker1.y = random(randomAntiMaskSpawn.min, randomAntiMaskSpawn.max);
+  antiMasker1.vx = antiMasker1.speed;
+
+  antiMasker2.x = width;
+  antiMasker2.y = random(randomAntiMaskSpawn.min, randomAntiMaskSpawn.max);
+  antiMasker2.vx = antiMasker2.speed;
+
+  antiMasker3.x = width;
+  antiMasker3.y = random(randomAntiMaskSpawn.min, randomAntiMaskSpawn.max);
+  antiMasker3.vx = antiMasker3.speed;
+
+  antiMasker4.x = width;
+  antiMasker4.y = random(randomAntiMaskSpawn.min, randomAntiMaskSpawn.max);
+  antiMasker4.vx = antiMasker4.speed;
+
+  antiMasker5.x = width;
+  antiMasker5.y = random(randomAntiMaskSpawn.min, randomAntiMaskSpawn.max);
+  antiMasker5.vx = antiMasker5.speed;
+
+  antiMasker6.x = width;
+  antiMasker6.y = random(randomAntiMaskSpawn.min, randomAntiMaskSpawn.max);
+  antiMasker6.vx = antiMasker6.speed;
+}
+
+function setUpCovid() {
+    covid1.x = 0;
+    covid1.y = 0;
+    covid1.size = unit(5);
+    covid1.speed = unit(2);
+    covid1.vx = unit(3);
+    covid1.vy = unit(10);
+
+    covid2.x = 0,
+    covid2.y = 0,
+    covid2.size = unit(5);
+    covid2.speed = unit(2);
+    covid2.vx = unit(3);
+    covid2.vy = unit(10);
+
+    covid3.x = 0;
+    covid3.y = 0;
+    covid3.size = unit(5);
+    covid3.speed = unit(2);
+    covid3.vx = unit(3);
+    covid3.vy = unit(10);
+
+    covid4.x = 0,
+    covid4.y = 0,
+    covid4.size = unit(5);
+    covid4.speed = unit(2);
+    covid4.vx = unit(3);
+    covid4.vy = unit(10);
+
+    covid5.x = 0;
+    covid5.y = 0;
+    covid5.size = unit(5);
+    covid5.speed = unit(2);
+    covid5.vx = unit(3);
+    covid5.vy = unit(10);
+
+    covid6.x = 0,
+    covid6.y = 0,
+    covid6.size = unit(5);
+    covid6.speed = unit(2);
+    covid6.vx = unit(3);
+    covid6.vy = unit(10);
+}
+
+function setUpBread() {
+  bread1.x = -450;
+  bread1.y = random(randomBreadSpawn.min, randomBreadSpawn.max);
+  bread1.vx = bread1.speed;
+
+  bread2.x = -550;
+  bread2.y = random(randomBreadSpawn.min, randomBreadSpawn.max);
+  bread2.vx = bread2.speed;
+
+  bread3.x = -650;
+  bread3.y = random(randomBreadSpawn.min, randomBreadSpawn.max);
+  bread3.vx = bread3.speed;
+
+  bread4.x = -750;
+  bread4.y = random(randomBreadSpawn.min, randomBreadSpawn.max);
+  bread4.vx = bread4.speed;
+
+  bread5.x = -850;
+  bread5.y = random(randomBreadSpawn.min, randomBreadSpawn.max);
+  bread5.vx = bread5.speed;
+
+  bread6.x = -950;
+  bread6.y = random(randomBreadSpawn.min, randomBreadSpawn.max);
+  bread6.vx = bread6.speed;
+
+
+
+}
+
+//LEVEL THREE: setUps
+
+function setUpWasps(){
+  wasp1.x = width;
+  wasp1.y = random(randomWaspSpawn.min, randomWaspSpawn.max);
+  wasp1.vx = wasp1.speed;
+
+  wasp2.x = width;
+  wasp2.y = random(randomWaspSpawn.min, randomWaspSpawn.max);
+  wasp2.vx = wasp2.speed;
+
+  wasp3.x = width;
+  wasp3.y = random(randomWaspSpawn.min, randomWaspSpawn.max);
+  wasp3.vx = wasp3.speed;
+
+  wasp4.x = width;
+  wasp4.y = random(randomWaspSpawn.min, randomWaspSpawn.max);
+  wasp4.vx = wasp4.speed;
+
+  wasp5.x = width;
+  wasp5.y = random(randomWaspSpawn.min, randomWaspSpawn.max);
+  wasp5.vx = wasp5.speed;
+
+  wasp6.x = width;
+  wasp6.y = random(randomWaspSpawn.min, randomWaspSpawn.max);
+  wasp6.vx = wasp6.speed;
+
+  wasp7.x = width;
+  wasp7.y = random(randomWaspSpawn.min, randomWaspSpawn.max);
+  wasp7.vx = wasp7.speed;
+
+  wasp8.x = width;
+  wasp8.y = random(randomWaspSpawn.min, randomWaspSpawn.max);
+  wasp8.vx = wasp8.speed;
+
+}
+
+function setUpAcornBullets() {
+    acornBullet1.x = 0;
+    acornBullet1.y = 0;
+    acornBullet1.speed = unit(2);
+    acornBullet1.vx = unit(3);
+    acornBullet1.vy = unit(10);
+
+    acornBullet2.x = 0;
+    acornBullet2.y = 0;
+    acornBullet2.speed = unit(2);
+    acornBullet2.vx = unit(3);
+    acornBullet2.vy = unit(10);
+
+    acornBullet3.x = 0;
+    acornBullet3.y = 0;
+    acornBullet3.speed = unit(2);
+    acornBullet3.vx = unit(3);
+    acornBullet3.vy = unit(10);
+
+    acornBullet4.x = 0;
+    acornBullet4.y = 0;
+    acornBullet4.speed = unit(2);
+    acornBullet4.vx = unit(3);
+    acornBullet4.vy = unit(10);
+
+    acornBullet5.x = 0;
+    acornBullet5.y = 0;
+    acornBullet5.speed = unit(2);
+    acornBullet5.vx = unit(3);
+    acornBullet5.vy = unit(10);
+
+    acornBullet6.x = 0;
+    acornBullet6.y = 0;
+    acornBullet6.speed = unit(2);
+    acornBullet6.vx = unit(3);
+    acornBullet6.vy = unit(10);
+}
+
+//start Functions
 function enterStart() { //****need to update this to current game play
+
   push();
   mousePressed();
   background(0);
@@ -688,6 +973,7 @@ function enterStart() { //****need to update this to current game play
 }
 
 function titleStart() { //****need to update this to current game play
+
   push();
   checkTitleOffScreen();
   textSize(title.size);
@@ -707,7 +993,9 @@ function titleStart() { //****need to update this to current game play
 }
 
 function instructionStart1() { /// need to update this to current game play**
+
   push();
+
   fill(255);
   textAlign(CENTER, CENTER);
   textStyle();
@@ -722,14 +1010,14 @@ function instructionStart1() { /// need to update this to current game play**
 
   instruction1.y += -unit(0.9);
 
-
-
   pop();
   // font options: Arial, Verdana, Trebuchet MS, Times New Roman, Didot, American Typewriter, Andale Mono, Courier, Bradley Hand, Luminari ~ Sans-serif, serif, Monospace, Cursive, Fantasy, Impact, Trattatello
 }
 
 function instructionStart2() { /// need to update this to current game play**
+
   push();
+
   fill(255);
   textAlign(CENTER, CENTER);
   textStyle();
@@ -744,13 +1032,14 @@ function instructionStart2() { /// need to update this to current game play**
 
   instruction2.y += -unit(0.9);
 
-
   pop();
 
 }
 
 function instructionStart3() { /// need to update this to current game play**
+
   push();
+
   fill(255);
   textAlign(CENTER, CENTER);
   textStyle();
@@ -765,10 +1054,11 @@ function instructionStart3() { /// need to update this to current game play**
 
   instruction3.y += -unit(0.9);
 
-
   pop();
 }
+
 ///function to convert units to adjust to the size of the user's window
+/// best way to use this is consider all values are in the range of 100x100
 function unit(u) {
   if (height >= width) {
     let unit = (height / width) * u;
@@ -778,22 +1068,26 @@ function unit(u) {
     return unit;
   }
 }
+///
+///
 
 function simulation1() {
   move1();
-  checkOverlap();
-  display();
+  checkOverlap1();
+  display1();
 }
 function simulation2() {
   move2();
-  checkOverlap();
-  display();
+  checkOverlap2();
+  display2();
 }
 function simulation3() {
   move3();
-  checkOverlap();
-  display();
+  checkOverlap3();
+  display3();
 }
+
+///**NEXT --- fix movement 
 
 function move1() { ///*** NEED TO MAKE this dogs moving and acorns moving
   circle3.vx = map(noise(circle3.x), 0, 1, 0, 25);
@@ -898,7 +1192,7 @@ function checkOverlap3() { //check if wasp hits white squirrel or black squirrel
 }
 
 
-function love() { ///**change to win1 - white squirrel with acorns (also one with bread if time)
+function win1() { ///**change to win1 - white squirrel with acorns (also one with bread if time)
   push();
   textSize(unit(64));
   fill(255, 100, 150);
@@ -906,7 +1200,15 @@ function love() { ///**change to win1 - white squirrel with acorns (also one wit
   text(`Love WINS!`, width / 2, height / 2);
   pop();
 }
-function love2() { ///**change to win2 - white and black squirrel win
+function win2() { ///**change to win2 - white squirrel with bread
+  push();
+  textSize(unit(64));
+  fill(255, 100, 150);
+  textAlign(CENTER, CENTER);
+  text(`Love WINS!`, width / 2, height / 2);
+  pop();
+}
+function win3() { ///**change to win2 - white and black squirrel win
   push();
   textSize(unit(64));
   fill(255, 100, 150);
@@ -915,7 +1217,7 @@ function love2() { ///**change to win2 - white and black squirrel win
   pop();
 }
 
-function sadness() { /// ** change to lose with squirrel_dead image
+function lose() { /// ** change to lose with squirrel_dead image
   push();
   textSize(unit(30));
   fill(0, 50, 150);
@@ -932,17 +1234,22 @@ function mousePressed() {
     state = `instruction1Start`;
   } else if (state === `instruction1Start`) {
     state = `simulation1`;
+  } else if (state === `win1`) {
+    state = `instruction2Start`;
   } else if (state === `instruction2Start`) {
     state = `simulation2`;
+  } else if (state === `win2`) {
+    state = `instruction3Start`;
   } else if (state === `instruction3Start`) {
     state = `simulation3`;
   }
 }
 
+//function to automatically run instruction 1
 function checkTitleOffScreen() {
 //check if the title has gone offscreen
 if (isTitleOffScreen(title)) {
-  state = `instructionStart`;
+  state = `instruction1Start`;
 }
 }
 
@@ -1009,6 +1316,8 @@ function preload() {
   wasp4.image = loadImage('assets/images/wasp.png');//
   wasp5.image = loadImage('assets/images/wasp.png');//
   wasp6.image = loadImage('assets/images/wasp.png');//
+  wasp7.image = loadImage('assets/images/wasp.png');//
+  wasp8.image = loadImage('assets/images/wasp.png');//
 
   //level three, acorns to throw
   acornBullet1.image = loadImage('assets/images/acorn1.png');
@@ -1026,12 +1335,13 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
   setUpEnterScreen1();
-  setUpEnterScreen2();
   setUpTitle();
-  setUpInstruction();
   setUpInstruction1();
   setUpInstruction2();
   setUpInstruction3();
+  setUpAcornBullets();
+  setUpCovid();
+
 
 }
 
@@ -1055,17 +1365,17 @@ function draw() {
   } else if (state === `simulation1`) { //start level one
     simulation1();
   } else if (state === `win1`) {
-    love();
+    win1();
   } else if (state === `simulation2`) { //start level two
     simulation2();
   } else if (state === `win2`) {
-    love();
+    win2();
   } else if (state === `simulation3`) { //start level three
     simulation3();
   } else if (state === `win3`) {
-    love();
+    win3();
   } else if (state === `lose`) {
-    sadness();
+    lose();
   }
 
   //KEYBOARD CONTROLS

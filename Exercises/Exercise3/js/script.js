@@ -569,6 +569,7 @@ function isOffScreen(circle) {
 }
 
 function titleStart() {
+
   push();
   checkTitleOffScreen();
   textSize(title.size);
@@ -588,7 +589,9 @@ function titleStart() {
 }
 
 function instructionStart() {
+
   push();
+  
   fill(255);
   textAlign(CENTER, CENTER);
   textStyle();
