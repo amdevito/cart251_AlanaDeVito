@@ -624,6 +624,37 @@ let acornBullet6 = {
 
 let state = 'enter'; //different states: enter>title>level1>gameover>win>level2>level3
 
+//Set up Functions
+function setupTitle() {
+  title.x = width / 2;
+  title.y = height;
+  title.vx = unit(5);
+  title.vy = unit(1);
+  title.size = unit(60);
+}
+function setUpInstruction1() {
+  instruction1.x = width / 2;
+  instruction1.y = height;
+  instruction1.vx = unit(5);
+  instruction1.vy = unit(1);
+  instruction1.size = unit(30);
+}
+}
+function setUpInstruction2() {
+  instruction2.x = width / 2;
+  instruction2.y = height*1.2;
+  instruction2.vx = unit(5);
+  instruction2.vy = unit(1);
+  instruction2.size = unit(40);
+}
+function setUpInstruction3() {
+  instruction3.x = width / 2;
+  instruction3.y = height*1.3;
+  instruction3.vx = unit(5);
+  instruction3.vy = unit(1);
+  instruction3.size = unit(40);
+}
+
 //preload images for background and characters
 function preload() {
   //backgrounds
@@ -690,7 +721,8 @@ function preload() {
 
 }
 
-// setup()
+// group setup()
+
 
 function setup() {
 
@@ -699,5 +731,31 @@ function setup() {
 // draw()
 
 function draw() {
+  //set states *** //different states: enter>title>level1>gameover>win>level2>level3
+  if (state === `enter`) {
+    enterStart();
+  } else if (state === `title`) {
+    titleStart();
+  } else if (state === `instruction1Start`) {
+    instruction1Start();
+  } else if (state === `instruction2Start`) {
+    instruction2Start();
+  } else if (state === `instruction3Start`) {
+    instruction3Start();
+  } else if (state === `simulation1`) { //start level one
+    simulation1();
+  } else if (state === `win1`) {
+    love();
+  } else if (state === `simulation2`) { //start level two
+    simulation2();
+  } else if (state === `win2`) {
+    love();
+  } else if (state === `simulation3`) { //start level three
+    simulation3();  
+  } else if (state === `win3`) {
+    love();
+  } else if (state === `lose`) {
+    sadness();
+  }
 
 }
