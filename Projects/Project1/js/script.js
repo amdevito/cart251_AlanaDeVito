@@ -428,7 +428,7 @@ let antiMasker6 = {
 }
 
 //Contained AntiMasker spawn//
-let randomAntiMaskSpawn = {
+let randomAntiMaskerSpawn = {
   min:575,
   max:770
 }
@@ -714,8 +714,8 @@ randomAcornSpawn.min = unit(58);
 randomAcornSpawn.max = unit(77);
 
   //L2
-randomAntiMaskSpawn.min = unit(58);
-randomAntiMaskSpawn.max = unit(77);
+randomAntiMaskerSpawn.min = unit(58);
+randomAntiMaskerSpawn.max = unit(77);
 
 randomBreadSpawn.min = unit(58);
 randomBreadSpawn.max = unit(77);
@@ -781,27 +781,27 @@ function setUpAcorns() {
 ///LEVEL TWO: setups
 function setUpAntiMaskers() {
   antiMasker1.x = width;
-  antiMasker1.y = random(randomAntiMaskSpawn.min, randomAntiMaskSpawn.max);
+  antiMasker1.y = random(randomAntiMaskerSpawn.min, randomAntiMaskerSpawn.max);
   antiMasker1.vx = antiMasker1.speed;
 
   antiMasker2.x = width;
-  antiMasker2.y = random(randomAntiMaskSpawn.min, randomAntiMaskSpawn.max);
+  antiMasker2.y = random(randomAntiMaskerSpawn.min, randomAntiMaskerSpawn.max);
   antiMasker2.vx = antiMasker2.speed;
 
   antiMasker3.x = width;
-  antiMasker3.y = random(randomAntiMaskSpawn.min, randomAntiMaskSpawn.max);
+  antiMasker3.y = random(randomAntiMaskerSpawn.min, randomAntiMaskerSpawn.max);
   antiMasker3.vx = antiMasker3.speed;
 
   antiMasker4.x = width;
-  antiMasker4.y = random(randomAntiMaskSpawn.min, randomAntiMaskSpawn.max);
+  antiMasker4.y = random(randomAntiMaskerSpawn.min, randomAntiMaskerSpawn.max);
   antiMasker4.vx = antiMasker4.speed;
 
   antiMasker5.x = width;
-  antiMasker5.y = random(randomAntiMaskSpawn.min, randomAntiMaskSpawn.max);
+  antiMasker5.y = random(randomAntiMaskerSpawn.min, randomAntiMaskerSpawn.max);
   antiMasker5.vx = antiMasker5.speed;
 
   antiMasker6.x = width;
-  antiMasker6.y = random(randomAntiMaskSpawn.min, randomAntiMaskSpawn.max);
+  antiMasker6.y = random(randomAntiMaskerSpawn.min, randomAntiMaskerSpawn.max);
   antiMasker6.vx = antiMasker6.speed;
 }
 
@@ -1087,48 +1087,336 @@ function simulation3() {
   display3();
 }
 
-///**NEXT --- fix movement 
+///**NEXT --- fix movement
 
-function move1() { ///*** NEED TO MAKE this dogs moving and acorns moving
-  circle3.vx = map(noise(circle3.x), 0, 1, 0, 25);
-  circle3.vy = map(noise(circle3.y), 0, 1, 0, 15);
+function move1() { ///ALL LEVEL ONE automated MOVEMENT - DOGS AND ACORNS
 
-  circle4.vx = map(noise(circle4.x), 0, 1, 0, 25);
-  circle4.vy = map(noise(circle4.y), 0, 1, 0, 15);
+  //LEVEL ONE: Dog movement
+  dog1.x += dog1.vx;
+  dog1.y += dog1.vy;
 
-  circle3.x += circle3.vx;
-  circle3.y += circle3.vy;
+  if (dog1.x < 0) {
+    dog1.x = 1400;
+    dog1.y = random(randomDogSpawn.min, randomDogSpawn.max);
+  }
 
-  circle4.x += circle4.vx;
-  circle4.y += circle4.vy;
+  dog2.x += dog2.vx;
+  dog2.y += dog2.vy;
+
+
+  if (dog2.x < 0) {
+    dog2.x = 1400;
+    dog2.y = random(randomDogSpawn.min, randomDogSpawn.max);
+  }
+
+  dog3.x += dog3.vx;
+  dog3.y += dog3.vy;
+
+
+
+  if (dog3.x < 0) {
+    dog3.x = 1400;
+    dog3.y = random(randomDogSpawn.min, randomDogSpawn.max);
+  }
+
+  dog4.x += dog4.vx;
+  dog4.y += dog4.vy;
+
+
+
+  if (dog4.x < 0) {
+    dog4.x = 1400;
+    dog4.y = random(randomDogSpawn.min, randomDogSpawn.max);
+  }
+
+  dog5.x += dog5.vx;
+  dog5.y += dog5.vy;
+
+
+
+  if (dog5.x < 0) {
+    dog5.x = 1400;
+    dog5.y = random(randomDogSpawn.min, randomDogSpawn.max);
+  }
+
+  //LEVEL ONE: Acorn Movement
+  acorn1.x += acorn1.vx;
+  if (acorn1.x > width) {
+    acorn1.x = 0;
+    acorn1.y = random(randomAcornSpawn.min, randomAcornSpawn.max);
+  }
+
+  acorn2.x += acorn2.vx;
+  if (acorn2.x > width) {
+    acorn2.x = 0;
+    acorn2.y = random(randomAcornSpawn.min, randomAcornSpawn.max);
+  }
+
+  acorn3.x += acorn3.vx;
+  if (acorn3.x > width) {
+    acorn3.x = 0;
+    acorn3.y = random(randomAcornSpawn.min, randomAcornSpawn.max);
+  }
+
+  acorn4.x += acorn4.vx;
+  if (acorn4.x > width) {
+    acorn4.x = 0;
+    acorn4.y = random(randomAcornSpawn.min, randomAcornSpawn.max);
+  }
+
+  acorn5.x += acorn5.vx;
+  if (acorn5.x > width) {
+    acorn5.x = 0;
+    acorn5.y = random(randomAcornSpawn.min, randomAcornSpawn.max);
+  }
+
+  acorn6.x += acorn6.vx;
+  if (acorn6.x > width) {
+    acorn6.x = 0;
+    acorn6.y = random(randomAcornSpawn.min, randomAcornSpawn.max);
 }
 
-function move2() { ///*** NEED TO MAKE THIS antimasker's movement and shooting covid and rolling bread (like acorns before)
-  circle3.vx = map(noise(circle3.x), 0, 1, 0, 25);
-  circle3.vy = map(noise(circle3.y), 0, 1, 0, 15);
 
-  circle4.vx = map(noise(circle4.x), 0, 1, 0, 25);
-  circle4.vy = map(noise(circle4.y), 0, 1, 0, 15);
+}
 
-  circle3.x += circle3.vx;
-  circle3.y += circle3.vy;
+function move2() { ///ALL LEVEL 3 automated movement - antimaskers, covid firing from antimaskers, rolling bread to collect
+  //LEVEL TWO: AntiMasker movement
+  antiMasker1.x += antiMasker1.vx;
+  antiMasker1.y += antiMasker1.vy;
 
-  circle4.x += circle4.vx;
-  circle4.y += circle4.vy;
+  if (antiMasker1.x < 0) {
+    antiMasker1.x = 1400;
+    antiMasker1.y = random(randomAntiMaskerSpawn.min, randomAntiMaskerSpawn.max);
+  }
+
+//
+  antiMasker2.x += antiMasker2.vx;
+  antiMasker2.y += antiMasker2.vy;
+
+  if (antiMasker2.x < 0) {
+    antiMasker2.x = 1400;
+    antiMasker2.y = random(randomAntiMaskerSpawn.min, randomAntiMaskerSpawn.max);
+  }
+
+//
+  antiMasker3.x += antiMasker3.vx;
+  antiMasker3.y += antiMasker3.vy;
+
+  if (antiMasker3.x < 0) {
+    antiMasker3.x = 1400;
+    antiMasker3.y = random(randomAntiMaskerSpawn.min, randomAntiMaskerSpawn.max);
+  }
+
+//
+  antiMasker4.x += antiMasker4.vx;
+  antiMasker4.y += antiMasker4.vy;
+
+  if (antiMasker4.x < 0) {
+    antiMasker4.x = 1400;
+    antiMasker4.y = random(randomAntiMaskerSpawn.min, randomAntiMaskerSpawn.max);
+  }
+
+//
+  antiMasker5.x += antiMasker5.vx;
+  antiMasker5.y += antiMasker5.vy;
+
+  if (antiMasker5.x < 0) {
+    antiMasker5.x = 1400;
+    antiMasker5.y = random(randomAntiMaskerSpawn.min, randomAntiMaskerSpawn.max);
+  }
+
+//
+  antiMasker6.x += antiMasker6.vx;
+  antiMasker6.y += antiMasker6.vy;
+
+  if (antiMasker6.x < 0) {
+    antiMasker6.x = 1400;
+    antiMasker6.y = random(randomAntiMaskerSpawn.min, randomAntiMaskerSpawn.max);
+  }
+
+  //LEVEL TWO: BREAD Movement
+  bread1.x += bread1.vx;
+  if (bread1.x > width) {
+    bread1.x = 0;
+    bread1.y = random(randomBreadSpawn.min, randomBreadSpawn.max);
+  }
+
+  bread2.x += bread2.vx;
+  if (bread2.x > width) {
+    bread2.x = 0;
+    bread2.y = random(randomBreadSpawn.min, randomBreadSpawn.max);
+  }
+
+  bread3.x += bread3.vx;
+  if (acorn3.x > width) {
+    acorn3.x = 0;
+    acorn3.y = random(randomBreadSpawn.min, randomBreadSpawn.max);
+  }
+
+  bread4.x += bread4.vx;
+  if (bread4.x > width) {
+    bread4.x = 0;
+    bread4.y = random(randomBreadSpawn.min, randomBreadSpawn.max);
+  }
+
+  bread5.x += bread5.vx;
+  if (bread5.x > width) {
+    bread5.x = 0;
+    bread5.y = random(randomBreadSpawn.min, randomBreadSpawn.max);
+  }
+
+  bread6.x += bread6.vx;
+  if (bread6.x > width) {
+    bread6.x = 0;
+    bread6.y = random(randomBreadSpawn.min, randomBreadSpawn.max);
+}
+
+/// LEVEL TWO: COVID MOVEMENT - experimental
+if ((antiMasker1.x = width - 50)) {
+  covid1.fired = true;
+  covid1.x = antiMasker1.x;
+  covid1.y = antiMasker1.y;
+  covid1.vx = covid1.speed;
+}
+if ((antiMasker2.x = width - 50)) {
+  covid2.fired = true;
+  covid2.x = antiMasker2.x;
+  covid2.y = antiMasker2.y;
+  covid2.vx = covid2.speed;
+}
+if ((antiMasker3.x = width - 50)) {
+  covid3.fired = true;
+  covid3.x = antiMasker3.x;
+  covid3.y = antiMasker3.y;
+  covid3.vx = covid3.speed;
+}
+
+///if covid fires, draw covid
+if (covid1.fired) {
+  fill(covid1.r, covid1.g, covid1.b);
+  ellipse(covid1.x, covid1.y, covid1.size);
+}
+if (covid2.fired) {
+  fill(covid2.r, covid2.g, covid2.b);
+  ellipse(covid2.x, covid2.y, covid2.size);
+}
+if (covid3.fired) {
+  fill(covid3.r, covid3.g, covid3.b);
+  ellipse(covid3.x, covid3.y, covid3.size);
+}
+
+// covid move
+covid1.x += covid1.vx;
+covid1.y += covid1.vy;
+
+covid2.x += covid2.vx;
+covid2.y += covid2.vy;
+
+covid3.x += covid3.vx;
+covid3.y += covid3.vy;
+
+//check if covid are offscreen
+if (covid1.x > width) {
+  covid1.fired = false;
+}
+if (covid2.x > width) {
+    covid2.fired = false;
+}
+if (covid3.x > width) {
+    covid3.fired = false;
+}
+
 }
 
 function move3() { /// need to make this wasps that start at 4 moving wild and increses to 6 and then 8, fast and with perlin noise movement
-  circle3.vx = map(noise(circle3.x), 0, 1, 0, 25);
-  circle3.vy = map(noise(circle3.y), 0, 1, 0, 15);
 
-  circle4.vx = map(noise(circle4.x), 0, 1, 0, 25);
-  circle4.vy = map(noise(circle4.y), 0, 1, 0, 15);
+//LEVEL 3: WACKY WASPS
+  wasp1.x += wasp1.vx;
+  wasp1.y += wasp1.vy;
+  wasp1.vy = map(noise(wasp1.y), 0, 1, 0, 15);
 
-  circle3.x += circle3.vx;
-  circle3.y += circle3.vy;
+  if (wasp1.x < 0) {
+    wasp1.x = 1400;
+    wasp1.y = random(randomDogSpawn.min, randomDogSpawn.max);
+  }
 
-  circle4.x += circle4.vx;
-  circle4.y += circle4.vy;
+//
+  wasp2.x += wasp2.vx;
+  wasp2.y += wasp2.vy;
+  wasp2.vy = map(noise(wasp2.y), 0, 1, 0, 15);
+
+
+  if (wasp2.x < 0) {
+    wasp2.x = 1400;
+    wasp2.y = random(randomDogSpawn.min, randomDogSpawn.max);
+  }
+
+//
+  wasp3.x += wasp3.vx;
+  wasp3.y += wasp3.vy;
+  wasp3.vy = map(noise(wasp3.y), 0, 1, 0, 15);
+
+
+  if (wasp3.x < 0) {
+    wasp3.x = 1400;
+    wasp3.y = random(randomDogSpawn.min, randomDogSpawn.max);
+  }
+
+//
+  wasp4.x += wasp4.vx;
+  wasp4.y += wasp4.vy;
+  wasp4.vy = map(noise(wasp4.y), 0, 1, 0, 15);
+
+
+  if (wasp4.x < 0) {
+    wasp4.x = 1400;
+    wasp4.y = random(randomDogSpawn.min, randomDogSpawn.max);
+  }
+
+//
+  wasp5.x += wasp5.vx;
+  wasp5.y += wasp5.vy;
+  wasp5.vy = map(noise(wasp5.y), 0, 1, 0, 15);
+
+
+  if (wasp5.x < 0) {
+    wasp5.x = 1400;
+    wasp5.y = random(randomDogSpawn.min, randomDogSpawn.max);
+  }
+
+//
+  wasp6.x += wasp6.vx;
+  wasp6.y += wasp6.vy;
+  dog6.vy = map(noise(wasp6.y), 0, 1, 0, 15);
+
+
+  if (wasp6.x < 0) {
+    wasp6.x = 1400;
+    wasp6.y = random(randomDogSpawn.min, randomDogSpawn.max);
+  }
+
+//
+  wasp7.x += wasp7.vx;
+  wasp7.y += wasp7.vy;
+  wasp7.vy = map(noise(wasp7.y), 0, 1, 0, 15);
+
+
+  if (wasp7.x < 0) {
+    wasp7.x = 1400;
+    wasp7.y = random(randomDogSpawn.min, randomDogSpawn.max);
+  }
+
+//
+  wasp8.x += wasp8.vx;
+  wasp8.y += wasp8.vy;
+  wasp8.vy = map(noise(wasp8.y), 0, 1, 0, 15);
+
+
+  if (wasp8.x < 0) {
+    wasp8.x = 1400;
+    wasp8.y = random(randomDogSpawn.min, randomDogSpawn.max);
+  }
+
 }
 
 function checkOverlap1() { //check if dogs hit squirrel or squirrel collects acorns
@@ -1341,6 +1629,8 @@ function setup() {
   setUpInstruction3();
   setUpAcornBullets();
   setUpCovid();
+
+  noCursor();
 
 
 }
