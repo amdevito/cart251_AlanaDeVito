@@ -1087,7 +1087,7 @@ function simulation3() {
   display3();
 }
 
-///**NEXT --- fix movement
+///
 
 function move1() { ///ALL LEVEL ONE automated MOVEMENT - DOGS AND ACORNS
 
@@ -1179,7 +1179,7 @@ function move1() { ///ALL LEVEL ONE automated MOVEMENT - DOGS AND ACORNS
 
 }
 
-function move2() { ///ALL LEVEL 3 automated movement - antimaskers, covid firing from antimaskers, rolling bread to collect
+function move2() { ///ALL LEVEL TWO automated movement - antimaskers, covid firing from antimaskers, rolling bread to collect
   //LEVEL TWO: AntiMasker movement
   antiMasker1.x += antiMasker1.vx;
   antiMasker1.y += antiMasker1.vy;
@@ -1328,7 +1328,8 @@ if (covid3.x > width) {
 
 }
 
-function move3() { /// need to make this wasps that start at 4 moving wild and increses to 6 and then 8, fast and with perlin noise movement
+function move3() { /// ALL LEVEL THREE automated movement - wacky wasps
+  ///add acorn bullets here if time!
 
 //LEVEL 3: WACKY WASPS
   wasp1.x += wasp1.vx;
@@ -1419,7 +1420,9 @@ function move3() { /// need to make this wasps that start at 4 moving wild and i
 
 }
 
-function checkOverlap1() { //check if dogs hit squirrel or squirrel collects acorns
+
+///*** NEED TO DO OVERPLAP
+function checkOverlap1() { //**check if dogs hit squirrel or squirrel collects acorns
 
   let d5 = dist(circle1.x, circle1.y, circle3.x, circle3.y);
   if (d5 < circle1.size / 2 + circle3.size / 2) {
@@ -1439,7 +1442,7 @@ function checkOverlap1() { //check if dogs hit squirrel or squirrel collects aco
   }
 }
 
-function checkOverlap2() { //check if squirrel collects bread, check if covid hits squirrel, check if anti-masker hits squirrel
+function checkOverlap2() { //**check if squirrel collects bread, check if covid hits squirrel, check if anti-masker hits squirrel
 
   let d5 = dist(circle1.x, circle1.y, circle3.x, circle3.y);
   if (d5 < circle1.size / 2 + circle3.size / 2) {
@@ -1459,7 +1462,7 @@ function checkOverlap2() { //check if squirrel collects bread, check if covid hi
   }
 }
 
-function checkOverlap3() { //check if wasp hits white squirrel or black squirrel, check if acornBullets hit wasp.
+function checkOverlap3() { //**check if wasp hits white squirrel or black squirrel, check if acornBullets hit wasp.
 
   let d5 = dist(circle1.x, circle1.y, circle3.x, circle3.y);
   if (d5 < circle1.size / 2 + circle3.size / 2) {
@@ -1477,6 +1480,147 @@ function checkOverlap3() { //check if wasp hits white squirrel or black squirrel
   if (d8 < circle2.size / 2 + circle4.size / 2) {
     state = `sadness`;
   }
+}
+
+///**** ALL DISPLAY NEEDS TO BE CORRECTED for this game play
+function display1() { // dogs, squirrel, acorns, scoreDots?
+  push();
+  imageMode(CENTER);
+  image(squirrel.image, squirrel.x, squirrel.y, 150, 50);
+  pop();
+
+  push();
+  imageMode(CENTER);
+  image(acorn1.image, acorn1.x, acorn1.y, 30, 50);
+  pop();
+
+  push();
+  imageMode(CENTER);
+  image(acorn2.image, acorn2.x, acorn2.y, 30, 50);
+  pop();
+
+  push();
+  imageMode(CENTER);
+  image(acorn3.image, acorn3.x, acorn3.y, 30, 50);
+  pop();
+
+  push();
+  imageMode(CENTER);
+  image(acorn4.image, acorn4.x, acorn4.y, 30, 50);
+  pop();
+
+  push();
+  imageMode(CENTER);
+  image(acorn5.image, acorn5.x, acorn5.y, 30, 50);
+  pop();
+
+  push();
+  imageMode(CENTER);
+  image(acorn6.image, acorn6.x, acorn6.y, 30, 50);
+  pop();
+
+  //Dogs ///
+
+  push();
+  imageMode(CENTER);
+  image(dog1.image, dog1.x, dog1.y, 175, 143);
+  pop();
+
+  push();
+  imageMode(CENTER);
+  image(dog2.image, dog2.x, dog2.y, 200, 174);
+  pop();
+
+  push();
+  imageMode(CENTER);
+  image(dog3.image, dog3.x, dog3.y, 100, 86);
+  pop();
+
+
+  push();
+  imageMode(CENTER);
+  image(dog5.image, dog5.x, dog5.y, 100, 86);
+  pop();
+
+  push();
+  imageMode(CENTER);
+  image(dog4.image, dog4.x, dog4.y, 135, 138);
+  pop();
+
+
+}
+
+function display2() { // antimaskers, covid
+  push();
+  imageMode(CENTER);
+  image(squirrel.image, squirrel.x, squirrel.y, 150, 50);
+  pop();
+
+  push();
+  imageMode(CENTER);
+  image(acorn1.image, acorn1.x, acorn1.y, 30, 50);
+  pop();
+
+  push();
+  imageMode(CENTER);
+  image(acorn2.image, acorn2.x, acorn2.y, 30, 50);
+  pop();
+
+  push();
+  imageMode(CENTER);
+  image(acorn3.image, acorn3.x, acorn3.y, 30, 50);
+  pop();
+
+  push();
+  imageMode(CENTER);
+  image(acorn4.image, acorn4.x, acorn4.y, 30, 50);
+  pop();
+
+  push();
+  imageMode(CENTER);
+  image(acorn5.image, acorn5.x, acorn5.y, 30, 50);
+  pop();
+
+  push();
+  imageMode(CENTER);
+  image(acorn6.image, acorn6.x, acorn6.y, 30, 50);
+  pop();
+
+
+
+  //Dogs ///
+
+  push();
+  imageMode(CENTER);
+  image(dog1.image, dog1.x, dog1.y, 175, 143);
+  pop();
+
+  push();
+  imageMode(CENTER);
+  image(dog2.image, dog2.x, dog2.y, 200, 174); //randomize y location (for all dogs)
+  pop();
+
+  push();
+  imageMode(CENTER);
+  image(dog3.image, dog3.x, dog3.y, 100, 86);
+  pop();
+
+
+  push();
+  imageMode(CENTER);
+  image(dog5.image, dog5.x, dog5.y, 100, 86);
+  pop();
+
+  push();
+  imageMode(CENTER);
+  image(dog4.image, dog4.x, dog4.y, 135, 138);
+  pop();
+
+
+}
+
+function display3() {
+
 }
 
 
