@@ -8,16 +8,8 @@ Tumbling through Madness: The Great White Squirrel Caper of 2020
 
 //OPENING:
 //enter Screen//After clicking to continue music should start with the title screen.//make this screen early internet style? photo?// or just in american typewriter?
-let enterScreen1 = {
-  string: `Error 404: Gender Not Found.`,
-  x: 0,
-  y: 0,
-  vx: 0,
-  vy: 0,
-  size: 0,
-};
-let enterScreen2 = {
-  string: `Please click to Continue.`,
+let enterScreen = {
+  string: `Error 404: Gender Not Found. \n Please click to Continue.`,
   x: 0,
   y: 0,
   vx: 0,
@@ -128,6 +120,20 @@ let squirrelBothWin = {
 }
 
 
+//SCORE DOTS//
+let score = 0;
+let scoreDots = {
+  x: 450,
+  y: 340,
+  radius: 50,
+  offset1: 55,
+  offset2: 110,
+  offset3: 165,
+  offset4: 220,
+  r: 94,
+  g: 69,
+  b: 35
+}
 
 //LEVEL specific OBJECTS
 
@@ -625,7 +631,16 @@ let acornBullet6 = {
 let state = 'enter'; //different states: enter>title>level1>gameover>win>level2>level3
 
 //Set up Functions
-function setupTitle() {
+function setUpEnterScreen() {//static in center of screen
+  enterScreen.x = width / 2;
+  enterScreen.y = height;
+  enterScreen.vx = unit(5);
+  enterScreen.vy = unit(1);
+  enterScreen.size = unit(30);
+}
+
+
+function setUpTitle() {
   title.x = width / 2;
   title.y = height;
   title.vx = unit(5);
@@ -653,6 +668,290 @@ function setUpInstruction3() {
   instruction3.vx = unit(5);
   instruction3.vy = unit(1);
   instruction3.size = unit(40);
+}
+
+function enterStart() { //****need to update this to current game play
+  push();
+  mousePressed();
+  background(0);
+  textSize(enterScreen.size);
+  fill(255, 0, 0);
+  textAlign(CENTER, CENTER);
+  textStyle(BOLD);
+  textFont("American Typewriter");
+  stroke(50, 200, 50);
+  strokeWeight(unit(0.9));
+
+  text(enterScreen.string, enterScreen.x, enterScreen.y);
+  pop();
+
+}
+
+function titleStart() { //****need to update this to current game play
+  push();
+  checkTitleOffScreen();
+  textSize(title.size);
+  fill(random(0, 255), random(0, 255), random(0, 255));
+  textAlign(CENTER, CENTER);
+  textStyle(BOLD);
+  textFont("Luminari");
+  stroke(50, 200, 50);
+  strokeWeight(unit(0.9));
+
+  title.y += -unit(2);
+  title.size = title.size - unit(0.17);
+
+  text(title.string, title.x, title.y);
+  pop();
+
+}
+
+function instructionStart1() { /// need to update this to current game play**
+  push();
+  fill(255);
+  textAlign(CENTER, CENTER);
+  textStyle();
+  textFont("American Typewriter");
+  stroke(random(0, 255), random(0, 255), random(0, 255));
+  strokeWeight(unit(0.9));
+
+  textSize(instruction1.size);
+  instruction1.size = instruction1.size - unit(0.02);
+
+  text(instruction1.string, instruction1.x, instruction1.y);
+
+  instruction1.y += -unit(0.9);
+
+
+
+  pop();
+  // font options: Arial, Verdana, Trebuchet MS, Times New Roman, Didot, American Typewriter, Andale Mono, Courier, Bradley Hand, Luminari ~ Sans-serif, serif, Monospace, Cursive, Fantasy, Impact, Trattatello
+}
+
+function instructionStart2() { /// need to update this to current game play**
+  push();
+  fill(255);
+  textAlign(CENTER, CENTER);
+  textStyle();
+  textFont("American Typewriter");
+  stroke(random(0, 255), random(0, 255), random(0, 255));
+  strokeWeight(unit(0.9));
+
+  textSize(instruction2.size);
+  instruction2.size = instruction2.size - unit(0.02);
+
+  text(instruction2.string, instruction2.x, instruction2.y);
+
+  instruction2.y += -unit(0.9);
+
+
+  pop();
+
+}
+
+function instructionStart3() { /// need to update this to current game play**
+  push();
+  fill(255);
+  textAlign(CENTER, CENTER);
+  textStyle();
+  textFont("American Typewriter");
+  stroke(random(0, 255), random(0, 255), random(0, 255));
+  strokeWeight(unit(0.9));
+
+  textSize(instruction3.size);
+  instruction3.size = instruction3.size - unit(0.02);
+
+  text(instruction3.string, instruction3.x, instruction3.y);
+
+  instruction3.y += -unit(0.9);
+
+
+  pop();
+}
+///function to convert units to adjust to the size of the user's window
+function unit(u) {
+  if (height >= width) {
+    let unit = (height / width) * u;
+    return unit;
+  } else if (width >= height) {
+    let unit = (width / height) * u;
+    return unit;
+  }
+}
+
+function simulation1() {
+  move1();
+  checkOverlap();
+  display();
+}
+function simulation2() {
+  move2();
+  checkOverlap();
+  display();
+}
+function simulation3() {
+  move3();
+  checkOverlap();
+  display();
+}
+
+function move1() { ///*** NEED TO MAKE this dogs moving and acorns moving
+  circle3.vx = map(noise(circle3.x), 0, 1, 0, 25);
+  circle3.vy = map(noise(circle3.y), 0, 1, 0, 15);
+
+  circle4.vx = map(noise(circle4.x), 0, 1, 0, 25);
+  circle4.vy = map(noise(circle4.y), 0, 1, 0, 15);
+
+  circle3.x += circle3.vx;
+  circle3.y += circle3.vy;
+
+  circle4.x += circle4.vx;
+  circle4.y += circle4.vy;
+}
+
+function move2() { ///*** NEED TO MAKE THIS antimasker's movement and shooting covid and rolling bread (like acorns before)
+  circle3.vx = map(noise(circle3.x), 0, 1, 0, 25);
+  circle3.vy = map(noise(circle3.y), 0, 1, 0, 15);
+
+  circle4.vx = map(noise(circle4.x), 0, 1, 0, 25);
+  circle4.vy = map(noise(circle4.y), 0, 1, 0, 15);
+
+  circle3.x += circle3.vx;
+  circle3.y += circle3.vy;
+
+  circle4.x += circle4.vx;
+  circle4.y += circle4.vy;
+}
+
+function move3() { /// need to make this wasps that start at 4 moving wild and increses to 6 and then 8, fast and with perlin noise movement
+  circle3.vx = map(noise(circle3.x), 0, 1, 0, 25);
+  circle3.vy = map(noise(circle3.y), 0, 1, 0, 15);
+
+  circle4.vx = map(noise(circle4.x), 0, 1, 0, 25);
+  circle4.vy = map(noise(circle4.y), 0, 1, 0, 15);
+
+  circle3.x += circle3.vx;
+  circle3.y += circle3.vy;
+
+  circle4.x += circle4.vx;
+  circle4.y += circle4.vy;
+}
+
+function checkOverlap1() { //check if dogs hit squirrel or squirrel collects acorns
+
+  let d5 = dist(circle1.x, circle1.y, circle3.x, circle3.y);
+  if (d5 < circle1.size / 2 + circle3.size / 2) {
+    state = `sadness`;
+  }
+  let d6 = dist(circle2.x, circle2.y, circle3.x, circle3.y);
+  if (d6 < circle2.size / 2 + circle3.size / 2) {
+    state = `sadness`;
+  }
+  let d7 = dist(circle1.x, circle1.y, circle4.x, circle4.y);
+  if (d7 < circle1.size / 2 + circle4.size / 2) {
+    state = `sadness`;
+  }
+  let d8 = dist(circle2.x, circle2.y, circle4.x, circle4.y);
+  if (d8 < circle2.size / 2 + circle4.size / 2) {
+    state = `sadness`;
+  }
+}
+
+function checkOverlap2() { //check if squirrel collects bread, check if covid hits squirrel, check if anti-masker hits squirrel
+
+  let d5 = dist(circle1.x, circle1.y, circle3.x, circle3.y);
+  if (d5 < circle1.size / 2 + circle3.size / 2) {
+    state = `sadness`;
+  }
+  let d6 = dist(circle2.x, circle2.y, circle3.x, circle3.y);
+  if (d6 < circle2.size / 2 + circle3.size / 2) {
+    state = `sadness`;
+  }
+  let d7 = dist(circle1.x, circle1.y, circle4.x, circle4.y);
+  if (d7 < circle1.size / 2 + circle4.size / 2) {
+    state = `sadness`;
+  }
+  let d8 = dist(circle2.x, circle2.y, circle4.x, circle4.y);
+  if (d8 < circle2.size / 2 + circle4.size / 2) {
+    state = `sadness`;
+  }
+}
+
+function checkOverlap3() { //check if wasp hits white squirrel or black squirrel, check if acornBullets hit wasp.
+
+  let d5 = dist(circle1.x, circle1.y, circle3.x, circle3.y);
+  if (d5 < circle1.size / 2 + circle3.size / 2) {
+    state = `sadness`;
+  }
+  let d6 = dist(circle2.x, circle2.y, circle3.x, circle3.y);
+  if (d6 < circle2.size / 2 + circle3.size / 2) {
+    state = `sadness`;
+  }
+  let d7 = dist(circle1.x, circle1.y, circle4.x, circle4.y);
+  if (d7 < circle1.size / 2 + circle4.size / 2) {
+    state = `sadness`;
+  }
+  let d8 = dist(circle2.x, circle2.y, circle4.x, circle4.y);
+  if (d8 < circle2.size / 2 + circle4.size / 2) {
+    state = `sadness`;
+  }
+}
+
+
+function love() { ///**change to win1 - white squirrel with acorns (also one with bread if time)
+  push();
+  textSize(unit(64));
+  fill(255, 100, 150);
+  textAlign(CENTER, CENTER);
+  text(`Love WINS!`, width / 2, height / 2);
+  pop();
+}
+function love2() { ///**change to win2 - white and black squirrel win
+  push();
+  textSize(unit(64));
+  fill(255, 100, 150);
+  textAlign(CENTER, CENTER);
+  text(`Love WINS!`, width / 2, height / 2);
+  pop();
+}
+
+function sadness() { /// ** change to lose with squirrel_dead image
+  push();
+  textSize(unit(30));
+  fill(0, 50, 150);
+  textAlign(CENTER, CENTER);
+  text(`Sometimes love is not enough. YOU LOSE.`, width / 2, height / 2);
+  pop();
+}
+
+//clicking through instrucitons and levels, changing state
+function mousePressed() {
+  if (state === `enter`) {
+    state = `title`;
+  } else if (state === `title`) {
+    state = `instruction1Start`;
+  } else if (state === `instruction1Start`) {
+    state = `simulation1`;
+  } else if (state === `instruction2Start`) {
+    state = `simulation2`;
+  } else if (state === `instruction3Start`) {
+    state = `simulation3`;
+  }
+}
+
+function checkTitleOffScreen() {
+//check if the title has gone offscreen
+if (isTitleOffScreen(title)) {
+  state = `instructionStart`;
+}
+}
+
+function isTitleOffScreen(title) {
+if (title.y < 0) {
+  return true;
+} else {
+  return false;
+}
 }
 
 //preload images for background and characters
@@ -725,13 +1024,24 @@ function preload() {
 
 
 function setup() {
+  createCanvas(windowWidth, windowHeight);
+  setUpEnterScreen1();
+  setUpEnterScreen2();
+  setUpTitle();
+  setUpInstruction();
+  setUpInstruction1();
+  setUpInstruction2();
+  setUpInstruction3();
 
 }
 
 // draw()
 
 function draw() {
-  //set states *** //different states: enter>title>level1>gameover>win>level2>level3
+
+  //STATES
+
+  //different states: enter>title>level1>gameover>win>level2>level3
   if (state === `enter`) {
     enterStart();
   } else if (state === `title`) {
@@ -751,11 +1061,53 @@ function draw() {
   } else if (state === `win2`) {
     love();
   } else if (state === `simulation3`) { //start level three
-    simulation3();  
+    simulation3();
   } else if (state === `win3`) {
     love();
   } else if (state === `lose`) {
     sadness();
   }
+
+  //KEYBOARD CONTROLS
+
+  //keyboard arrows controlling WHITE SQUIRREL and acorn bullet movement **NEED //TO CHANGE THIS to appropriate variables ie to squirrel
+  if (keyIsDown(LEFT_ARROW)) {
+      circle2.x -= keyboardControl.left;
+    } else if (keyIsDown(RIGHT_ARROW)) {
+      circle2.x += keyboardControl.right;
+    } else if (keyIsDown(UP_ARROW)) {
+      circle2.y -= keyboardControl.up;
+    } else if (keyIsDown(DOWN_ARROW)) {
+      circle2.y += keyboardControl.down;
+    } else if (keyIsDown(SHIFT)) {
+      bullet2.fired = true;
+      bullet2.x = circle2.x;
+      bullet2.y = circle2.y;
+      bullet2.vx = bullet2.speed;
+    }
+
+  //keyboard letters AWSD controlling BLACK SQUIRREL movement **NEED TO CHANGE TO appropriate variables circle TO squirrel2
+  if (keyIsPressed) {
+    if (key == 'a') {
+    circle1.x -= keyboardControl.left;;
+    }
+    else if (key == 'd') {
+    circle1.x += keyboardControl.right;;
+    }
+    else if (key == 'w') {
+    circle1.y -= keyboardControl.up;
+    }
+    else if (key == 's') {
+    circle1.y += keyboardControl.down;
+    }
+    else if (key == 'q') {
+    bullet1.fired = true;
+    bullet1.x = circle1.x;
+    bullet1.y = circle1.y;
+    bullet1.vx = bullet1.speed;
+    }
+  }
+
+  ////
 
 }
