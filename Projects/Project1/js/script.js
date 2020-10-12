@@ -982,7 +982,7 @@ function simulation3() {
   move3();
   checkOverlap3();
   display3();
-  keepScore3(); //**NOTE for EDITS: you have to kill 6 wasps to win third level? or change to keepScore3 and have the acorns thrown take a circle away instead and keep score by 90 second timer?
+  keepScore3(); //you have to kill 6 wasps to win third level
 }
 
 ///
@@ -2154,15 +2154,15 @@ function draw() {
 
   //KEYBOARD CONTROLS
 
-  //keyboard arrows controlling WHITE SQUIRREL and acorn bullet movement **NEED //TO CHANGE THIS to appropriate variables ie to squirrel
+  //keyboard arrows controlling WHITE SQUIRREL and acorn bullet movement
   if (keyIsDown(LEFT_ARROW)) {
-      circle2.x -= keyboardControl.left;
+      squirrel.x -= keyboardControl.left;
     } else if (keyIsDown(RIGHT_ARROW)) {
-      circle2.x += keyboardControl.right;
+      squirrel.x += keyboardControl.right;
     } else if (keyIsDown(UP_ARROW)) {
-      circle2.y -= keyboardControl.up;
+      squirrel.y -= keyboardControl.up;
     } else if (keyIsDown(DOWN_ARROW)) {
-      circle2.y += keyboardControl.down;
+      squirrel.y += keyboardControl.down;
     } else if (keyIsDown(SHIFT)) {
       acornBullet1.fired = true;
       acornBullet1.x = squirrel.x;
@@ -2170,7 +2170,7 @@ function draw() {
       acornBullet1.vx = acornBullet1.speed;
     }
 
-  //keyboard letters AWSD controlling BLACK SQUIRREL movement **NEED TO CHANGE TO appropriate variables circle TO squirrel2
+  //keyboard letters AWSD controlling BLACK SQUIRREL movement
   if (keyIsPressed) {
     if (key == 'a') {
     squirrel2.x -= keyboardControl.left;
