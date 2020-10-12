@@ -89,6 +89,8 @@ let squirrel = {
   ay: 0
 }
 
+
+//squirrel WIN screens
 let squirrelWin = {
   x: 575,
   y: 400,
@@ -109,10 +111,10 @@ let squirrelWin2 = { //squirrel with bread
   ay: 0
 }
 
-//BLACK SQUIRREL
-let squirrel2 = {
-  x: 100,
-  y: 340,
+//black and white squirrel win, final screen
+let squirrelBothWin = {
+  x: 575,
+  y: 400,
   vx: 0,
   vy: 0,
   image: 0,
@@ -120,10 +122,10 @@ let squirrel2 = {
   ay: 0
 }
 
-//black and white squirrel win, final screen
-let squirrelBothWin = {
-  x: 575,
-  y: 400,
+//BLACK SQUIRREL
+let squirrel2 = {
+  x: 100,
+  y: 340,
   vx: 0,
   vy: 0,
   image: 0,
@@ -1698,9 +1700,7 @@ function keepScore1() {
     circle(scoreDots.x + scoreDots.offset4,scoreDots.y,scoreDots.radius);
   }
   if (score >= 6){
-    noLoop();
-    imageMode(CENTER);
-    image(squirrelWin.image, squirrelWin.x, squirrelWin.y, 300, 254);
+    win1();
   }
 }
 
@@ -1722,9 +1722,7 @@ function keepScore2() {
     circle(scoreDots.x + scoreDots.offset4,scoreDots.y,scoreDots.radius);
   }
   if (score >= 6){
-    noLoop();
-    imageMode(CENTER);
-    image(squirrelWin2.image, squirrelWin2.x, squirrelWin2.y, 300, 254);
+    win2();
   }
 }
 
@@ -1746,14 +1744,13 @@ function keepScore3() {
     circle(scoreDots.x + scoreDots.offset4,scoreDots.y,scoreDots.radius);
   }
   if (score >= 6){
-    noLoop();
-    imageMode(CENTER);
-    image(squirrelBothWin.image, squirrelBothWin.x, squirrelBothWin.y, 300, 254);
+    win3();
   }
 }
 
 ///**** ALL DISPLAY NEEDS TO BE CORRECTED for this game play
 function display1() { // dogs, squirrel, acorns
+  background(bg);
 
 //display squirrel
   push();
@@ -1822,6 +1819,7 @@ function display1() { // dogs, squirrel, acorns
 }
 
 function display2() { // squirrel, bread, antimaskers
+  background(bg2);
 
 //display squirrel
   push();
@@ -1907,6 +1905,7 @@ function display2() { // squirrel, bread, antimaskers
 }
 
 function display3() { //display white squirrel, black squirrel, wasps, acorn bullets
+  background(bg3);
 
   //display squirrel
     push();
@@ -1966,35 +1965,34 @@ function display3() { //display white squirrel, black squirrel, wasps, acorn bul
 
 function win1() { ///**change to win1 - white squirrel with acorns (also one with bread if time)
   push();
-  textSize(unit(64));
-  fill(255, 100, 150);
-  textAlign(CENTER, CENTER);
-  text(`Love WINS!`, width / 2, height / 2);
+  background(bg);
+  noLoop(); /// not sure if needed
+  imageMode(CENTER);
+  image(squirrelWin.image, squirrelWin.x, squirrelWin.y, unit(300), unit(254));
   pop();
 }
+
 function win2() { ///**change to win2 - white squirrel with bread
   push();
-  textSize(unit(64));
-  fill(255, 100, 150);
-  textAlign(CENTER, CENTER);
-  text(`Love WINS!`, width / 2, height / 2);
+  background(bg2);
+  noLoop(); /// not sure if needed
+  imageMode(CENTER);
+  image(squirrelWin2.image, squirrelWin2.x, squirrelWin2.y, unit(300), unit(254));
   pop();
 }
 function win3() { ///**change to win2 - white and black squirrel win
   push();
-  textSize(unit(64));
-  fill(255, 100, 150);
-  textAlign(CENTER, CENTER);
-  text(`Love WINS!`, width / 2, height / 2);
+  background(bg3);
+  noLoop(); /// not sure if needed
+  imageMode(CENTER);
+  image(squirrelBothWin.image, squirrelBothWin.x, squirrelBothWin.y, unit(300), unit(254));
   pop();
 }
 
 function lose() { /// ** change to lose with squirrel_dead image
   push();
-  textSize(unit(30));
-  fill(0, 50, 150);
-  textAlign(CENTER, CENTER);
-  text(`Sometimes love is not enough. YOU LOSE.`, width / 2, height / 2);
+  background(bgGameOver);
+  noLoop(); /// not sure if needed
   pop();
 }
 
@@ -2046,12 +2044,13 @@ function preload() {
   bgGameOver = loadImage('assets/images/squirrel_dead.jpg');
 
   //win images
-  squirrelWin.image = loadImage('assets/images/squirrel_youWin.jpg');
-  squirrelBothWin.image = loadImage('assets/images/squirrelBothWin.jpg');//
+  squirrelWin.image = loadImage('assets/images/squirrel_youWin.png');
+  squirrelWin2.image = loadImage('assets/images/squirrelWin2.png');
+  squirrelBothWin.image = loadImage('assets/images/squirrelBothWin.png');//
 
   //squirrel characters
-  squirrel.image = loadImage("assets/images/squirrel.png");
-  squirrel2.image = loadImage("assets/images/squirrel2.png");//
+  squirrel.image = loadImage('assets/images/squirrel.png');
+  squirrel2.image = loadImage('assets/images/squirrel2.png');//
 
   //level one, acorns to collet
   acorn1.image = loadImage('assets/images/acorn1.png');
@@ -2117,12 +2116,12 @@ function setup() {
   setUpCovid();
 
   noCursor();
-
 }
 
 // draw()
 
 function draw() {
+
 
   //STATES
 
