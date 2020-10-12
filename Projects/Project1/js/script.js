@@ -470,42 +470,7 @@ let covid3 = {
   b: 0,
   fired: false
 }
-let covid4 = {
-  x: 0,
-  y: 0,
-  size: 0,
-  speed: 0,
-  vx: 0,
-  vy: 0,
-  r: 255,
-  g: 0,
-  b: 0,
-  fired: false
-}
-let covid5 = {
-  x: 0,
-  y: 0,
-  size: 0,
-  speed: 0,
-  vx: 0,
-  vy: 0,
-  r: 255,
-  g: 0,
-  b: 0,
-  fired: false
-}
-let covid6 = {
-  x: 0,
-  y: 0,
-  size: 0,
-  speed: 0,
-  vx: 0,
-  vy: 0,
-  r: 255,
-  g: 0,
-  b: 0,
-  fired: false
-}
+
 
 //LEVEL 3:
 //Wacky wasps
@@ -617,24 +582,6 @@ let acornBullet1 = {
   fired: false
 }
 let acornBullet2 = {
-  x: 0,
-  y: 0,
-  image: 0,
-  speed: 0,
-  vx: 0,
-  vy: 0,
-  fired: false
-}
-let acornBullet3 = {
-  x: 0,
-  y: 0,
-  image: 0,
-  speed: 0,
-  vx: 0,
-  vy: 0,
-  fired: false
-}
-let acornBullet4 = {
   x: 0,
   y: 0,
   image: 0,
@@ -818,26 +765,6 @@ function setUpCovid() {
     covid3.vx = unit(3);
     covid3.vy = unit(10);
 
-    covid4.x = 0,
-    covid4.y = 0,
-    covid4.size = unit(5);
-    covid4.speed = unit(2);
-    covid4.vx = unit(3);
-    covid4.vy = unit(10);
-
-    covid5.x = 0;
-    covid5.y = 0;
-    covid5.size = unit(5);
-    covid5.speed = unit(2);
-    covid5.vx = unit(3);
-    covid5.vy = unit(10);
-
-    covid6.x = 0,
-    covid6.y = 0,
-    covid6.size = unit(5);
-    covid6.speed = unit(2);
-    covid6.vx = unit(3);
-    covid6.vy = unit(10);
 }
 
 function setUpBread() {
@@ -917,15 +844,6 @@ function setUpAcornBullets() {
     acornBullet2.speed = unit(2);
     acornBullet2.vx = unit(3);
 
-    acornBullet3.x = 0;
-    acornBullet3.y = 0;
-    acornBullet3.speed = unit(2);
-    acornBullet3.vx = unit(3);
-
-    acornBullet4.x = 0;
-    acornBullet4.y = 0;
-    acornBullet4.speed = unit(2);
-    acornBullet4.vx = unit(3);
 }
 
 //start Functions
@@ -1284,23 +1202,20 @@ if (covid3.fired) {
 }
 
 // covid move
-covid1.x += covid1.vx;
-covid1.y += covid1.vy;
+covid1.x -= covid1.vx;
 
-covid2.x += covid2.vx;
-covid2.y += covid2.vy;
+covid2.x -= covid2.vx;
 
-covid3.x += covid3.vx;
-covid3.y += covid3.vy;
+covid3.x -= covid3.vx;
 
 //check if covid are offscreen
-if (covid1.x > width) {
+if (covid1.x < 0) {
   covid1.fired = false;
 }
-if (covid2.x > width) {
+if (covid2.x < 0) {
     covid2.fired = false;
 }
-if (covid3.x > width) {
+if (covid3.x < 0) {
     covid3.fired = false;
 }
 
@@ -1538,7 +1453,7 @@ function checkOverlap2() { //check if squirrel collects bread, check if covid hi
   }
 }
 
-function checkOverlap3() { //**check if wasp hits white squirrel or black squirrel, check if acornBullets hit wasp.
+function checkOverlap3() { //check if wasp hits white squirrel or black squirrel, check if acornBullets hit wasp.
 
 //wasp hits white squirrel
 let d27 = dist(squirrel.x, squirrel.y, wasp1.x, wasp1.y);
@@ -1589,7 +1504,7 @@ if (d37 < unit(75)) {
   state = `lose`;
 }
 let d38 = dist(squirrel2.x, squirrel2.y, wasp2.x, wasp2.y);
-if (328 < unit(75)) {
+if (d38 < unit(75)) {
   state = `lose`;
 }
 let d39 = dist(squirrel2.x, squirrel2.y, wasp3.x, wasp3.y);
@@ -1647,7 +1562,7 @@ wasp2.active = false;
 score ++;
 }
 let d47 = dist(acornBullet1.x, acornBullet1.y, wasp3.x, wasp3.y);
-if (acornBullet1.fired && wasp1.active && d47 < unit(75)) {
+if (acornBullet1.fired && wasp3.active && d47 < unit(75)) {
 // Stop the bullet
 acornBullet1.fired = false;
 // Kill the enemy
@@ -1655,7 +1570,7 @@ wasp3.active = false;
 score ++;
 }
 let d48 = dist(acornBullet1.x, acornBullet1.y, wasp4.x, wasp4.y);
-if (acornBullet1.fired && wasp1.active && d48 < unit(75)) {
+if (acornBullet1.fired && wasp4.active && d48 < unit(75)) {
 // Stop the bullet
 acornBullet1.fired = false;
 // Kill the enemy
@@ -1663,7 +1578,7 @@ wasp4.active = false;
 score ++;
 }
 let d49 = dist(acornBullet1.x, acornBullet1.y, wasp5.x, wasp5.y);
-if (acornBullet1.fired && wasp1.active && d49 < unit(75)) {
+if (acornBullet1.fired && wasp5.active && d49 < unit(75)) {
 // Stop the bullet
 acornBullet1.fired = false;
 // Kill the enemy
@@ -1671,7 +1586,7 @@ wasp5.active = false;
 score ++;
 }
 let d50 = dist(acornBullet1.x, acornBullet1.y, wasp6.x, wasp6.y);
-if (acornBullet1.fired && wasp1.active && d50 < unit(75)) {
+if (acornBullet1.fired && wasp6.active && d50 < unit(75)) {
 // Stop the bullet
 acornBullet1.fired = false;
 // Kill the enemy
@@ -1679,7 +1594,7 @@ wasp6.active = false;
 score ++;
 }
 let d51 = dist(acornBullet1.x, acornBullet1.y, wasp7.x, wasp7.y);
-if (acornBullet1.fired && wasp1.active && d51 < unit(75)) {
+if (acornBullet1.fired && wasp7.active && d51 < unit(75)) {
 // Stop the bullet
 acornBullet1.fired = false;
 // Kill the enemy
@@ -1687,7 +1602,7 @@ wasp7.active = false;
 score ++;
 }
 let d52 = dist(acornBullet1.x, acornBullet1.y, wasp8.x, wasp8.y);
-if (acornBullet1.fired && wasp1.active && d52 < unit(75)) {
+if (acornBullet1.fired && wasp8.active && d52 < unit(75)) {
 // Stop the bullet
 acornBullet1.fired = false;
 // Kill the enemy
@@ -1714,7 +1629,7 @@ wasp2.active = false;
 score ++;
 }
 let d55 = dist(acornBullet2.x, acornBullet2.y, wasp3.x, wasp3.y);
-if (acornBullet2.fired && wasp1.active && d55 < unit(75)) {
+if (acornBullet2.fired && wasp3.active && d55 < unit(75)) {
 // Stop the bullet
 acornBullet2.fired = false;
 // Kill the enemy
@@ -1722,7 +1637,7 @@ wasp3.active = false;
 score ++;
 }
 let d56 = dist(acornBullet2.x, acornBullet2.y, wasp4.x, wasp4.y);
-if (acornBullet2.fired && wasp1.active && d56 < unit(75)) {
+if (acornBullet2.fired && wasp4.active && d56 < unit(75)) {
 // Stop the bullet
 acornBullet2.fired = false;
 // Kill the enemy
@@ -1730,7 +1645,7 @@ wasp4.active = false;
 score ++;
 }
 let d57 = dist(acornBullet2.x, acornBullet2.y, wasp5.x, wasp5.y);
-if (acornBullet2.fired && wasp1.active && d57 < unit(75)) {
+if (acornBullet2.fired && wasp5.active && d57 < unit(75)) {
 // Stop the bullet
 acornBullet2.fired = false;
 // Kill the enemy
@@ -1738,7 +1653,7 @@ wasp5.active = false;
 score ++;
 }
 let d58 = dist(acornBullet2.x, acornBullet2.y, wasp6.x, wasp6.y);
-if (acornBullet2.fired && wasp1.active && d58 < unit(75)) {
+if (acornBullet2.fired && wasp6.active && d58 < unit(75)) {
 // Stop the bullet
 acornBullet2.fired = false;
 // Kill the enemy
@@ -1746,7 +1661,7 @@ wasp6.active = false;
 score ++;
 }
 let d59 = dist(acornBullet2.x, acornBullet2.y, wasp7.x, wasp7.y);
-if (acornBullet2.fired && wasp1.active && d59 < unit(75)) {
+if (acornBullet2.fired && wasp7.active && d59 < unit(75)) {
 // Stop the bullet
 acornBullet2.fired = false;
 // Kill the enemy
@@ -1754,7 +1669,7 @@ wasp7.active = false;
 score ++;
 }
 let d60 = dist(acornBullet2.x, acornBullet2.y, wasp8.x, wasp8.y);
-if (acornBullet2.fired && wasp1.active && d60 < unit(75)) {
+if (acornBullet2.fired && wasp8.active && d60 < unit(75)) {
 // Stop the bullet
 acornBullet2.fired = false;
 // Kill the enemy
@@ -1762,140 +1677,6 @@ wasp8.active = false;
 score ++;
 }
 
-//acornBullet3 hits wasps1-8
-
-let d61 = dist(acornBullet3.x, acornBullet3.y, wasp1.x, wasp1.y);
-if (acornBullet3.fired && wasp1.active && d61 < unit(75)) {
-// Stop the bullet
-acornBullet3.fired = false;
-// Kill the enemy
-wasp1.active = false;
-score ++;
-}
-let d62 = dist(acornBullet3.x, acornBullet3.y, wasp2.x, wasp2.y);
-if (acornBullet3.fired && wasp2.active && d62 < unit(75)) {
-// Stop the bullet
-acornBullet3.fired = false;
-// Kill the enemy
-wasp2.active = false;
-score ++;
-}
-let d63 = dist(acornBullet3.x, acornBullet3.y, wasp3.x, wasp3.y);
-if (acornBullet3.fired && wasp1.active && d63 < unit(75)) {
-// Stop the bullet
-acornBullet3.fired = false;
-// Kill the enemy
-wasp3.active = false;
-score ++;
-}
-let d64 = dist(acornBullet3.x, acornBullet3.y, wasp4.x, wasp4.y);
-if (acornBullet3.fired && wasp1.active && d64 < unit(75)) {
-// Stop the bullet
-acornBullet3.fired = false;
-// Kill the enemy
-wasp4.active = false;
-score ++;
-}
-let d65 = dist(acornBullet3.x, acornBullet3.y, wasp5.x, wasp5.y);
-if (acornBullet3.fired && wasp1.active && d65 < unit(75)) {
-// Stop the bullet
-acornBullet3.fired = false;
-// Kill the enemy
-wasp5.active = false;
-score ++;
-}
-let d66 = dist(acornBullet3.x, acornBullet3.y, wasp6.x, wasp6.y);
-if (acornBullet3.fired && wasp1.active && d66 < unit(75)) {
-// Stop the bullet
-acornBullet3.fired = false;
-// Kill the enemy
-wasp6.active = false;
-score ++;
-}
-let d67 = dist(acornBullet3.x, acornBullet3.y, wasp7.x, wasp7.y);
-if (acornBullet3.fired && wasp1.active && d67 < unit(75)) {
-// Stop the bullet
-acornBullet3.fired = false;
-// Kill the enemy
-wasp7.active = false;
-score ++;
-}
-let d68 = dist(acornBullet3.x, acornBullet3.y, wasp8.x, wasp8.y);
-if (acornBullet3.fired && wasp1.active && d68 < unit(75)) {
-// Stop the bullet
-acornBullet3.fired = false;
-// Kill the enemy
-wasp8.active = false;
-score ++;
-}
-
-
-//acornBullet4 hits wasps1-8
-
-let d69 = dist(acornBullet4.x, acornBullet4.y, wasp1.x, wasp1.y);
-if (acornBullet4.fired && wasp1.active && d69 < unit(75)) {
-// Stop the bullet
-acornBullet4.fired = false;
-// Kill the enemy
-wasp1.active = false;
-score ++;
-}
-let d70 = dist(acornBullet4.x, acornBullet4.y, wasp2.x, wasp2.y);
-if (acornBullet4.fired && wasp2.active && d70 < unit(75)) {
-// Stop the bullet
-acornBullet4.fired = false;
-// Kill the enemy
-wasp2.active = false;
-score ++;
-}
-let d71 = dist(acornBullet4.x, acornBullet4.y, wasp3.x, wasp3.y);
-if (acornBullet4.fired && wasp1.active && d71 < unit(75)) {
-// Stop the bullet
-acornBullet4.fired = false;
-// Kill the enemy
-wasp3.active = false;
-score ++;
-}
-let d72 = dist(acornBullet4.x, acornBullet4.y, wasp4.x, wasp4.y);
-if (acornBullet4.fired && wasp1.active && d72 < unit(75)) {
-// Stop the bullet
-acornBullet4.fired = false;
-// Kill the enemy
-wasp4.active = false;
-score ++;
-}
-let d73 = dist(acornBullet4.x, acornBullet4.y, wasp5.x, wasp5.y);
-if (acornBullet4.fired && wasp1.active && d73 < unit(75)) {
-// Stop the bullet
-acornBullet4.fired = false;
-// Kill the enemy
-wasp5.active = false;
-score ++;
-}
-let d74 = dist(acornBullet4.x, acornBullet4.y, wasp6.x, wasp6.y);
-if (acornBullet4.fired && wasp1.active && d74 < unit(75)) {
-// Stop the bullet
-acornBullet4.fired = false;
-// Kill the enemy
-wasp6.active = false;
-score ++;
-}
-let d75 = dist(acornBullet4.x, acornBullet4.y, wasp7.x, wasp7.y);
-if (acornBullet4.fired && wasp1.active && d75 < unit(75)) {
-// Stop the bullet
-acornBullet4.fired = false;
-// Kill the enemy
-wasp7.active = false;
-score ++;
-}
-let d76 = dist(acornBullet4.x, acornBullet4.y, wasp8.x, wasp8.y);
-if (acornBullet4.fired && wasp1.active && d76 < unit(75)) {
-// Stop the bullet
-acornBullet4.fired = false;
-// Kill the enemy
-wasp8.active = false;
-score ++;
-}
 }
 
 
@@ -1972,143 +1753,213 @@ function keepScore3() {
 }
 
 ///**** ALL DISPLAY NEEDS TO BE CORRECTED for this game play
-function display1() { // dogs, squirrel, acorns, scoreDots?
+function display1() { // dogs, squirrel, acorns
+
+//display squirrel
   push();
   imageMode(CENTER);
-  image(squirrel.image, squirrel.x, squirrel.y, 150, 50);
+  image(squirrel.image, squirrel.x, squirrel.y, unit(15),unit(50));
+  pop();
+
+//display acorns
+  push();
+  imageMode(CENTER);
+  image(acorn1.image, acorn1.x, acorn1.y, unit(30), unit(50));
   pop();
 
   push();
   imageMode(CENTER);
-  image(acorn1.image, acorn1.x, acorn1.y, 30, 50);
+  image(acorn2.image, acorn2.x, acorn2.y, unit(30), unit(50));
   pop();
 
   push();
   imageMode(CENTER);
-  image(acorn2.image, acorn2.x, acorn2.y, 30, 50);
+  image(acorn3.image, acorn3.x, acorn3.y, unit(30), unit(50));
   pop();
 
   push();
   imageMode(CENTER);
-  image(acorn3.image, acorn3.x, acorn3.y, 30, 50);
+  image(acorn4.image, acorn4.x, acorn4.y, unit(30), unit(50));
   pop();
 
   push();
   imageMode(CENTER);
-  image(acorn4.image, acorn4.x, acorn4.y, 30, 50);
+  image(acorn5.image, acorn5.x, acorn5.y, unit(30), unit(50));
   pop();
 
   push();
   imageMode(CENTER);
-  image(acorn5.image, acorn5.x, acorn5.y, 30, 50);
+  image(acorn6.image, acorn6.x, acorn6.y, unit(30), unit(50));
+  pop();
+
+//display dogs
+
+  push();
+  imageMode(CENTER);
+  image(dog1.image, dog1.x, dog1.y, unit(175), unit(143));
   pop();
 
   push();
   imageMode(CENTER);
-  image(acorn6.image, acorn6.x, acorn6.y, 30, 50);
-  pop();
-
-  //Dogs ///
-
-  push();
-  imageMode(CENTER);
-  image(dog1.image, dog1.x, dog1.y, 175, 143);
+  image(dog2.image, dog2.x, dog2.y, unit(200), unit(174));
   pop();
 
   push();
   imageMode(CENTER);
-  image(dog2.image, dog2.x, dog2.y, 200, 174);
+  image(dog3.image, dog3.x, dog3.y, unit(100), unit(86);)
   pop();
 
   push();
   imageMode(CENTER);
-  image(dog3.image, dog3.x, dog3.y, 100, 86);
-  pop();
-
-
-  push();
-  imageMode(CENTER);
-  image(dog5.image, dog5.x, dog5.y, 100, 86);
+  image(dog4.image, dog4.x, dog4.y, unit(135), unit(138));
   pop();
 
   push();
   imageMode(CENTER);
-  image(dog4.image, dog4.x, dog4.y, 135, 138);
+  image(dog5.image, dog5.x, dog5.y, unit(100), unit(86);)
   pop();
-
 
 }
 
-function display2() { // antimaskers, covid
+function display2() { // squirrel, bread, antimaskers
+
+//display squirrel
   push();
   imageMode(CENTER);
-  image(squirrel.image, squirrel.x, squirrel.y, 150, 50);
+  image(squirrel.image, squirrel.x, squirrel.y, unit(15), unit(50));
+  pop();
+
+//display bread
+  push();
+  imageMode(CENTER);
+  image(bread1.image, bread1.x, bread1.y, unit(30), unit(50));
   pop();
 
   push();
   imageMode(CENTER);
-  image(acorn1.image, acorn1.x, acorn1.y, 30, 50);
+  image(bread2.image, bread2.x, bread2.y, unit(30), unit(50));
   pop();
 
   push();
   imageMode(CENTER);
-  image(acorn2.image, acorn2.x, acorn2.y, 30, 50);
+  image(bread3.image, bread3.x, bread3.y, unit(30), unit(50));
   pop();
 
   push();
   imageMode(CENTER);
-  image(acorn3.image, acorn3.x, acorn3.y, 30, 50);
+  image(bread4.image, bread4.x, bread4.y, unit(30), unit(50));
   pop();
 
   push();
   imageMode(CENTER);
-  image(acorn4.image, acorn4.x, acorn4.y, 30, 50);
+  image(bread5.image, bread5.x, bread5.y, unit(30), unit(50));
   pop();
 
   push();
   imageMode(CENTER);
-  image(acorn5.image, acorn5.x, acorn5.y, 30, 50);
+  image(bread6.image, bread6.x, bread6.y, unit(30), unit(50));
+  pop();
+
+//display antimaskers
+  push();
+  imageMode(CENTER);
+  image(antiMasker1.image, antiMasker1.x, antiMasker1.y, unit(100), unit(86));
   pop();
 
   push();
   imageMode(CENTER);
-  image(acorn6.image, acorn6.x, acorn6.y, 30, 50);
-  pop();
-
-
-
-  //Dogs ///
-
-  push();
-  imageMode(CENTER);
-  image(dog1.image, dog1.x, dog1.y, 175, 143);
+  image(antiMasker2.image, antiMasker2.x, antiMasker2.y, unit(100), unit(86));
   pop();
 
   push();
   imageMode(CENTER);
-  image(dog2.image, dog2.x, dog2.y, 200, 174); //randomize y location (for all dogs)
+  image(antiMasker3.image, antiMasker3.x, antiMasker3.y, unit(100), unit(86));
   pop();
 
   push();
   imageMode(CENTER);
-  image(dog3.image, dog3.x, dog3.y, 100, 86);
-  pop();
-
-
-  push();
-  imageMode(CENTER);
-  image(dog5.image, dog5.x, dog5.y, 100, 86);
+  image(antiMasker4.image, antiMasker4.x, antiMasker4.y, unit(100), unit(86));
   pop();
 
   push();
   imageMode(CENTER);
-  image(dog4.image, dog4.x, dog4.y, 135, 138);
+  image(antiMasker5.image, antiMasker5.x, antiMasker5.y, unit(100), unit(86));
   pop();
 
+  push();
+  imageMode(CENTER);
+  image(antiMasker6.image, antiMasker6.x, antiMasker6.y, unit(100), unit(86));
+  pop();
+
+//draw acornbullets when fired
+
+  push();
+  if (acornBullet1.fired) {
+    imageMode(CENTER);
+    image(acornBullet1.image, squirrel.x, squirrel.y, unit(30), unit(50));
+  }
+  if (acornBullet2.fired) {
+    imageMode(CENTER);
+    image(acornBullet2.image, squirrel2.x, squirrel2.y, unit(30), unit(50));
+  }
+  pop();
 
 }
 
-function display3() {
+function display3() { //display white squirrel, black squirrel, wasps, acorn bullets
+
+  //display squirrel
+    push();
+    imageMode(CENTER);
+    image(squirrel.image, squirrel.x, squirrel.y, unit(15), unit(50));
+    pop();
+
+  //display black squirrel (squirrel2)
+    push();
+    imageMode(CENTER);
+    image(squirrel2.image, squirrel2.x, squirrel2.y, unit(15), unit(50));
+    pop();
+
+  //display wasps
+    push();
+    imageMode(CENTER);
+    image(wasp1.image, wasp1.x, wasp1.y, unit(100), unit(86));
+    pop();
+
+    push();
+    imageMode(CENTER);
+    image(wasp2.image, wasp2.x, wasp2.y, unit(100), unit(86));
+    pop();
+
+    push();
+    imageMode(CENTER);
+    image(wasp3.image, wasp3.x, wasp3.y, unit(100), unit(86));
+    pop();
+
+    push();
+    imageMode(CENTER);
+    image(wasp4.image, wasp4.x, wasp4.y, unit(100), unit(86));
+    pop();
+
+    push();
+    imageMode(CENTER);
+    image(wasp5.image, wasp5.x, wasp5.y, unit(100), unit(86));
+    pop();
+
+    push();
+    imageMode(CENTER);
+    image(wasp6.image, wasp6.x, wasp6.y, unit(100), unit(86));
+    pop();
+
+    push();
+    imageMode(CENTER);
+    image(wasp7.image, wasp7.x, wasp7.y, unit(100), unit(86));
+    pop();
+
+    push();
+    imageMode(CENTER);
+    image(wasp8.image, wasp8.x, wasp8.y, unit(100), unit(86));
+    pop();
 
 }
 
@@ -2255,7 +2106,6 @@ function preload() {
 
 // group setup()
 
-
 function setup() {
   createCanvas(windowWidth, windowHeight);
   setUpEnterScreen1();
@@ -2267,7 +2117,6 @@ function setup() {
   setUpCovid();
 
   noCursor();
-
 
 }
 
@@ -2316,31 +2165,31 @@ function draw() {
     } else if (keyIsDown(DOWN_ARROW)) {
       circle2.y += keyboardControl.down;
     } else if (keyIsDown(SHIFT)) {
-      bullet2.fired = true;
-      bullet2.x = circle2.x;
-      bullet2.y = circle2.y;
-      bullet2.vx = bullet2.speed;
+      acornBullet1.fired = true;
+      acornBullet1.x = squirrel.x;
+      acornBullet1.y = squirrel.y;
+      acornBullet1.vx = acornBullet1.speed;
     }
 
   //keyboard letters AWSD controlling BLACK SQUIRREL movement **NEED TO CHANGE TO appropriate variables circle TO squirrel2
   if (keyIsPressed) {
     if (key == 'a') {
-    circle1.x -= keyboardControl.left;;
+    squirrel2.x -= keyboardControl.left;
     }
     else if (key == 'd') {
-    circle1.x += keyboardControl.right;;
+    squirrel2.x += keyboardControl.right;
     }
     else if (key == 'w') {
-    circle1.y -= keyboardControl.up;
+    squirrel2.y -= keyboardControl.up;
     }
     else if (key == 's') {
-    circle1.y += keyboardControl.down;
+    squirrel2.y += keyboardControl.down;
     }
     else if (key == 'q') {
-    bullet1.fired = true;
-    bullet1.x = circle1.x;
-    bullet1.y = circle1.y;
-    bullet1.vx = bullet1.speed;
+    acornBullet2.fired = true;
+    acornBullet2.x = squirrel2.x;
+    acornBullet2.y = squirrel2.y;
+    acornBullet2.vx = acornBullet2.speed;
     }
   }
 
