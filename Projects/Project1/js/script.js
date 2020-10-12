@@ -508,8 +508,8 @@ let covid6 = {
 }
 
 //LEVEL 3:
-//Anti-maskers
-///setting anti-masker character objects
+//Wacky wasps
+///setting wasp character objects
 let wasp1 = {
   x: 1400,
   y: 500,
@@ -518,7 +518,8 @@ let wasp1 = {
   speed: -5,
   image: 0,
   ax: 0,
-  ay: 0
+  ay: 0,
+  active: true
 }
 let wasp2 = {
   x: 1400,
@@ -528,7 +529,8 @@ let wasp2 = {
   speed: -8,
   image: 0,
   ax: 0,
-  ay: 0
+  ay: 0,
+  active: true
 }
 let wasp3 = {
   x: 1400,
@@ -538,7 +540,8 @@ let wasp3 = {
   speed: -2,
   image: 0,
   ax: 0,
-  ay: 0
+  ay: 0,
+  active: true
 }
 let wasp4 = {
   x: 1400,
@@ -548,7 +551,8 @@ let wasp4 = {
   speed: -10,
   image: 0,
   ax: 0,
-  ay: 0
+  ay: 0,
+  active: true
 }
 let wasp5 = {
   x: 1400,
@@ -558,7 +562,8 @@ let wasp5 = {
   speed: -3,
   image: 0,
   ax: 0,
-  ay: 0
+  ay: 0,
+  active: true
 }
 let wasp6 = {
   x: 1400,
@@ -568,7 +573,8 @@ let wasp6 = {
   speed: -3,
   image: 0,
   ax: 0,
-  ay: 0
+  ay: 0,
+  active: true
 }
 let wasp7 = {
   x: 1400,
@@ -578,7 +584,8 @@ let wasp7 = {
   speed: -3,
   image: 0,
   ax: 0,
-  ay: 0
+  ay: 0,
+  active: true
 }
 let wasp8 = {
   x: 1400,
@@ -588,7 +595,8 @@ let wasp8 = {
   speed: -3,
   image: 0,
   ax: 0,
-  ay: 0
+  ay: 0,
+  active: true
 }
 
 //Contained wasp spawn//
@@ -635,25 +643,8 @@ let acornBullet4 = {
   vy: 0,
   fired: false
 }
-let acornBullet5 = {
-  x: 0,
-  y: 0,
-  image: 0,
-  speed: 0,
-  vx: 0,
-  vy: 0,
-  fired: false
-}
-let acornBullet6 = {
-  x: 0,
-  y: 0,
-  image: 0,
-  speed: 0,
-  vx: 0,
-  vy: 0,
-  fired: false
-}
 
+//set inital state
 let state = 'enter'; //different states: enter>title>level1>gameover>win>level2>level3
 
 //Set up Functions
@@ -920,37 +911,21 @@ function setUpAcornBullets() {
     acornBullet1.y = 0;
     acornBullet1.speed = unit(2);
     acornBullet1.vx = unit(3);
-    acornBullet1.vy = unit(10);
 
     acornBullet2.x = 0;
     acornBullet2.y = 0;
     acornBullet2.speed = unit(2);
     acornBullet2.vx = unit(3);
-    acornBullet2.vy = unit(10);
 
     acornBullet3.x = 0;
     acornBullet3.y = 0;
     acornBullet3.speed = unit(2);
     acornBullet3.vx = unit(3);
-    acornBullet3.vy = unit(10);
 
     acornBullet4.x = 0;
     acornBullet4.y = 0;
     acornBullet4.speed = unit(2);
     acornBullet4.vx = unit(3);
-    acornBullet4.vy = unit(10);
-
-    acornBullet5.x = 0;
-    acornBullet5.y = 0;
-    acornBullet5.speed = unit(2);
-    acornBullet5.vx = unit(3);
-    acornBullet5.vy = unit(10);
-
-    acornBullet6.x = 0;
-    acornBullet6.y = 0;
-    acornBullet6.speed = unit(2);
-    acornBullet6.vx = unit(3);
-    acornBullet6.vy = unit(10);
 }
 
 //start Functions
@@ -1058,7 +1033,7 @@ function instructionStart3() { /// need to update this to current game play**
 }
 
 ///function to convert units to adjust to the size of the user's window
-/// best way to use this is consider all values are in the range of 100x100
+/// best way to use this is consider all values are in the range of 1000x1000
 function unit(u) {
   if (height >= width) {
     let unit = (height / width) * u;
@@ -1075,16 +1050,19 @@ function simulation1() {
   move1();
   checkOverlap1();
   display1();
+  keepScore1();
 }
 function simulation2() {
   move2();
   checkOverlap2();
   display2();
+  keepScore2();
 }
 function simulation3() {
   move3();
   checkOverlap3();
   display3();
+  keepScore3(); //**NOTE for EDITS: you have to kill 6 wasps to win third level? or change to keepScore3 and have the acorns thrown take a circle away instead and keep score by 90 second timer?
 }
 
 ///
@@ -1422,63 +1400,574 @@ function move3() { /// ALL LEVEL THREE automated movement - wacky wasps
 
 
 ///*** NEED TO DO OVERPLAP
-function checkOverlap1() { //**check if dogs hit squirrel or squirrel collects acorns
+function checkOverlap1() { //check if dogs hit squirrel or squirrel collects acorns
 
-  let d5 = dist(circle1.x, circle1.y, circle3.x, circle3.y);
-  if (d5 < circle1.size / 2 + circle3.size / 2) {
-    state = `sadness`;
+//check if dog catches squirrel - game over -
+
+  let d1 = dist(squirrel.x, squirrel.y, dog1.x, dog1.y);
+  if (d1 < unit(75)) {
+    state = `lose`;
   }
-  let d6 = dist(circle2.x, circle2.y, circle3.x, circle3.y);
-  if (d6 < circle2.size / 2 + circle3.size / 2) {
-    state = `sadness`;
+  let d2 = dist(squirrel.x, squirrel.y, dog2.x, dog2.y);
+  if (d2 < unit(75)) {
+    state = `lose`;
   }
-  let d7 = dist(circle1.x, circle1.y, circle4.x, circle4.y);
-  if (d7 < circle1.size / 2 + circle4.size / 2) {
-    state = `sadness`;
+  let d3 = dist(squirrel.x, squirrel.y, dog3.x, dog3.y);
+  if (d3 < unit(75)) {
+    state = `lose`;
   }
-  let d8 = dist(circle2.x, circle2.y, circle4.x, circle4.y);
-  if (d8 < circle2.size / 2 + circle4.size / 2) {
-    state = `sadness`;
+  let d4 = dist(squirrel.x, squirrel.y, dog4.x, dog4.y);
+  if (d4 < unit(75)) {
+    state = `lose`;
   }
+  let d5 = dist(squirrel.x, squirrel.y, dog5.x, dog5.y);
+  if (d5 < unit(75)) {
+    state = `lose`;
+  }
+
+//check if squirrel gets acorn, add to scoreDots
+
+  let d6 = dist(squirrel.x, squirrel.y, acorn1.x, acorn1.y);
+  if (d6 < unit(50)) {
+    score ++;
+    acorn1.x = -60000;
+  }
+  let d7 = dist(squirrel.x, squirrel.y, acorn2.x, acorn2.y);
+  if (d7 < unit(50)) {
+    score ++;
+    acorn2.x = -60000;
+  }
+  let d8 = dist(squirrel.x, squirrel.y, acorn3.x, acorn3.y);
+  if (d8 < unit(50)) {
+    score ++;
+    acorn3.x = -60000;
+  }
+  let d9 = dist(squirrel.x, squirrel.y, acorn4.x, acorn4.y);
+  if (d9 < unit(50)) {
+    score ++;
+    acorn4.x = -60000;
+  }
+  let d10 = dist(squirrel.x, squirrel.y, acorn5.x, acorn5.y);
+  if (d10 < unit(50)) {
+    score ++;
+    acorn5.x = -60000;
+  }
+  let d11 = dist(squirrel.x, squirrel.y, acorn6.x, acorn6.y);
+  if (d11 < unit(50)) {
+    score ++;
+    acorn6.x = -60000;
+  }
+
 }
 
-function checkOverlap2() { //**check if squirrel collects bread, check if covid hits squirrel, check if anti-masker hits squirrel
+function checkOverlap2() { //check if squirrel collects bread, check if covid hits squirrel, check if anti-masker hits squirrel
 
-  let d5 = dist(circle1.x, circle1.y, circle3.x, circle3.y);
-  if (d5 < circle1.size / 2 + circle3.size / 2) {
-    state = `sadness`;
+  //check if antimasker catches squirrel - game over -
+
+  let d12 = dist(squirrel.x, squirrel.y, antiMasker1.x, antiMasker1.y);
+  if (d12 < unit(75)) {
+    state = `lose`;
   }
-  let d6 = dist(circle2.x, circle2.y, circle3.x, circle3.y);
-  if (d6 < circle2.size / 2 + circle3.size / 2) {
-    state = `sadness`;
+  let d13 = dist(squirrel.x, squirrel.y, antiMasker2.x, antiMasker2.y);
+  if (d13 < unit(75)) {
+    state = `lose`;
   }
-  let d7 = dist(circle1.x, circle1.y, circle4.x, circle4.y);
-  if (d7 < circle1.size / 2 + circle4.size / 2) {
-    state = `sadness`;
+  let d14 = dist(squirrel.x, squirrel.y, antiMasker3.x, antiMasker3.y);
+  if (d14 < unit(75)) {
+    state = `lose`;
   }
-  let d8 = dist(circle2.x, circle2.y, circle4.x, circle4.y);
-  if (d8 < circle2.size / 2 + circle4.size / 2) {
-    state = `sadness`;
+  let d15 = dist(squirrel.x, squirrel.y, antiMasker4.x, antiMasker4.y);
+  if (d15 < unit(75)) {
+    state = `lose`;
+  }
+  let d16 = dist(squirrel.x, squirrel.y, antiMasker5.x, antiMasker5.y);
+  if (d16 < unit(75)) {
+    state = `lose`;
+  }
+  let d17 = dist(squirrel.x, squirrel.y, antiMasker6.x, antiMasker6.y);
+  if (d17 < unit(75)) {
+    state = `lose`;
+  }
+
+    //check if covid gets squirrel - game over - * note, only 3 covid shoot from only 3 antiMaskers.
+
+  let d18 = dist(squirrel.x, squirrel.y, covid1.x, covid1.y);
+  if (d18 < unit(75)) {
+    state = `lose`;
+  }
+  let d19 = dist(squirrel.x, squirrel.y, covid2.x, covid2.y);
+  if (d19 < unit(75) {
+    state = `lose`;
+  }
+  let d20 = dist(squirrel.x, squirrel.y, covid3.x, covid3.y);
+  if (d20 < unit(75) {
+    state = `lose`;
+  }
+
+  //check if squirrel gets bread, add to scoreDots
+
+  let d21 = dist(squirrel.x, squirrel.y, bread1.x, bread1.y);
+  if (d21 < 50) {
+    score ++;
+    bread1.x = -60000;
+  }
+  let d22 = dist(squirrel.x, squirrel.y, bread2.x, bread2.y);
+  if (d22 < 50) {
+    score ++;
+    bread2.x = -60000;
+  }
+  let d23 = dist(squirrel.x, squirrel.y, bread3.x, bread3.y);
+  if (d23 < 50) {
+    score ++;
+    bread3.x = -60000;
+  }
+  let d24 = dist(squirrel.x, squirrel.y, bread4.x, bread4.y);
+  if (d24 < 50) {
+    score ++;
+    bread4.x = -60000;
+  }
+  let d25 = dist(squirrel.x, squirrel.y, bread5.x, bread5.y);
+  if (d25 < 50) {
+    score ++;
+    abread5.x = -60000;
+  }
+  let d26 = dist(squirrel.x, squirrel.y, bread6.x, bread6.y);
+  if (d26 < 50) {
+    score ++;
+    bread6.x = -60000;
   }
 }
 
 function checkOverlap3() { //**check if wasp hits white squirrel or black squirrel, check if acornBullets hit wasp.
 
-  let d5 = dist(circle1.x, circle1.y, circle3.x, circle3.y);
-  if (d5 < circle1.size / 2 + circle3.size / 2) {
-    state = `sadness`;
+//wasp hits white squirrel
+let d27 = dist(squirrel.x, squirrel.y, wasp1.x, wasp1.y);
+if (d27 < unit(75)) {
+  state = `lose`;
+}
+let d28 = dist(squirrel.x, squirrel.y, wasp2.x, wasp2.y);
+if (d28 < unit(75)) {
+  state = `lose`;
+}
+let d29 = dist(squirrel.x, squirrel.y, wasp3.x, wasp3.y);
+if (d29 < unit(75)) {
+  state = `lose`;
+}
+let d30 = dist(squirrel.x, squirrel.y, wasp4.x, wasp4.y);
+if (d30 < unit(75)) {
+  state = `lose`;
+}
+let d31 = dist(squirrel.x, squirrel.y, wasp5.x, wasp5.y);
+if (d31 < unit(75)) {
+  state = `lose`;
+}
+let d32 = dist(squirrel.x, squirrel.y, wasp6.x, wasp6.y);
+if (d32 < unit(75)) {
+  state = `lose`;
+}
+let d33 = dist(squirrel.x, squirrel.y, wasp5.x, wasp5.y);
+if (d33 < unit(75)) {
+  state = `lose`;
+}
+let d34 = dist(squirrel.x, squirrel.y, wasp6.x, wasp6.y);
+if (d34 < unit(75)) {
+  state = `lose`;
+}
+let d35 = dist(squirrel.x, squirrel.y, wasp7.x, wasp7.y);
+if (d35 < unit(75)) {
+  state = `lose`;
+}
+let d36 = dist(squirrel.x, squirrel.y, wasp8.x, wasp8.y);
+if (d36 < unit(75)) {
+  state = `lose`;
+}
+
+//wasp hits black squirrel(squirrel2)
+
+let d37 = dist(squirrel2.x, squirrel2.y, wasp1.x, wasp1.y);
+if (d37 < unit(75)) {
+  state = `lose`;
+}
+let d38 = dist(squirrel2.x, squirrel2.y, wasp2.x, wasp2.y);
+if (328 < unit(75)) {
+  state = `lose`;
+}
+let d39 = dist(squirrel2.x, squirrel2.y, wasp3.x, wasp3.y);
+if (d39 < unit(75)) {
+  state = `lose`;
+}
+let d40 = dist(squirrel2.x, squirrel2.y, wasp4.x, wasp4.y);
+if (d40 < unit(75)) {
+  state = `lose`;
+}
+let d41 = dist(squirrel2.x, squirrel2.y, wasp5.x, wasp5.y);
+if (d41 < unit(75)) {
+  state = `lose`;
+}
+let d42 = dist(squirrel2.x, squirrel2.y, wasp6.x, wasp6.y);
+if (d42 < unit(75)) {
+  state = `lose`;
+}
+let d43 = dist(squirrel2.x, squirrel2.y, wasp5.x, wasp5.y);
+if (d43 < unit(75)) {
+  state = `lose`;
+}
+let d44 = dist(squirrel2.x, squirrel2.y, wasp6.x, wasp6.y);
+if (d44 < unit(75)) {
+  state = `lose`;
+}
+let d45 = dist(squirrel2.x, squirrel2.y, wasp7.x, wasp7.y);
+if (d45 < unit(75)) {
+  state = `lose`;
+}
+let d46 = dist(squirrel2.x, squirrel2.y, wasp8.x, wasp8.y);
+if (d46 < unit(75)) {
+  state = `lose`;
+}
+
+//acornBullet hits wasps
+
+//check if acornBullets 1-6 hits wasps1-8 - hit 6, win! add to score
+
+//acornBullet1 hits wasps1-8
+let d47 = dist(acornBullet1.x, acornBullet1.y, wasp1.x, wasp1.y);
+if (acornBullet1.fired && wasp1.active && d47 < unit(75)) {
+// Stop the bullet
+acornBullet1.fired = false;
+// Kill the enemy
+wasp1.active = false;
+score ++;
+}
+let d48 = dist(acornBullet1.x, acornBullet1.y, wasp2.x, wasp2.y);
+if (acornBullet1.fired && wasp2.active && d48 < unit(75)) {
+// Stop the bullet
+acornBullet1.fired = false;
+// Kill the enemy
+wasp2.active = false;
+score ++;
+}
+let d47 = dist(acornBullet1.x, acornBullet1.y, wasp3.x, wasp3.y);
+if (acornBullet1.fired && wasp1.active && d47 < unit(75)) {
+// Stop the bullet
+acornBullet1.fired = false;
+// Kill the enemy
+wasp3.active = false;
+score ++;
+}
+let d48 = dist(acornBullet1.x, acornBullet1.y, wasp4.x, wasp4.y);
+if (acornBullet1.fired && wasp1.active && d48 < unit(75)) {
+// Stop the bullet
+acornBullet1.fired = false;
+// Kill the enemy
+wasp4.active = false;
+score ++;
+}
+let d49 = dist(acornBullet1.x, acornBullet1.y, wasp5.x, wasp5.y);
+if (acornBullet1.fired && wasp1.active && d49 < unit(75)) {
+// Stop the bullet
+acornBullet1.fired = false;
+// Kill the enemy
+wasp5.active = false;
+score ++;
+}
+let d50 = dist(acornBullet1.x, acornBullet1.y, wasp6.x, wasp6.y);
+if (acornBullet1.fired && wasp1.active && d50 < unit(75)) {
+// Stop the bullet
+acornBullet1.fired = false;
+// Kill the enemy
+wasp6.active = false;
+score ++;
+}
+let d51 = dist(acornBullet1.x, acornBullet1.y, wasp7.x, wasp7.y);
+if (acornBullet1.fired && wasp1.active && d51 < unit(75)) {
+// Stop the bullet
+acornBullet1.fired = false;
+// Kill the enemy
+wasp7.active = false;
+score ++;
+}
+let d52 = dist(acornBullet1.x, acornBullet1.y, wasp8.x, wasp8.y);
+if (acornBullet1.fired && wasp1.active && d52 < unit(75)) {
+// Stop the bullet
+acornBullet1.fired = false;
+// Kill the enemy
+wasp8.active = false;
+score ++;
+}
+
+//acornBullet2 hits wasps1-8
+
+let d53 = dist(acornBullet2.x, acornBullet2.y, wasp1.x, wasp1.y);
+if (acornBullet2.fired && wasp1.active && d53 < unit(75)) {
+// Stop the bullet
+acornBullet2.fired = false;
+// Kill the enemy
+wasp1.active = false;
+score ++;
+}
+let d54 = dist(acornBullet2.x, acornBullet2.y, wasp2.x, wasp2.y);
+if (acornBullet2.fired && wasp2.active && d54 < unit(75)) {
+// Stop the bullet
+acornBullet2.fired = false;
+// Kill the enemy
+wasp2.active = false;
+score ++;
+}
+let d55 = dist(acornBullet2.x, acornBullet2.y, wasp3.x, wasp3.y);
+if (acornBullet2.fired && wasp1.active && d55 < unit(75)) {
+// Stop the bullet
+acornBullet2.fired = false;
+// Kill the enemy
+wasp3.active = false;
+score ++;
+}
+let d56 = dist(acornBullet2.x, acornBullet2.y, wasp4.x, wasp4.y);
+if (acornBullet2.fired && wasp1.active && d56 < unit(75)) {
+// Stop the bullet
+acornBullet2.fired = false;
+// Kill the enemy
+wasp4.active = false;
+score ++;
+}
+let d57 = dist(acornBullet2.x, acornBullet2.y, wasp5.x, wasp5.y);
+if (acornBullet2.fired && wasp1.active && d57 < unit(75)) {
+// Stop the bullet
+acornBullet2.fired = false;
+// Kill the enemy
+wasp5.active = false;
+score ++;
+}
+let d58 = dist(acornBullet2.x, acornBullet2.y, wasp6.x, wasp6.y);
+if (acornBullet2.fired && wasp1.active && d58 < unit(75)) {
+// Stop the bullet
+acornBullet2.fired = false;
+// Kill the enemy
+wasp6.active = false;
+score ++;
+}
+let d59 = dist(acornBullet2.x, acornBullet2.y, wasp7.x, wasp7.y);
+if (acornBullet2.fired && wasp1.active && d59 < unit(75)) {
+// Stop the bullet
+acornBullet2.fired = false;
+// Kill the enemy
+wasp7.active = false;
+score ++;
+}
+let d60 = dist(acornBullet2.x, acornBullet2.y, wasp8.x, wasp8.y);
+if (acornBullet2.fired && wasp1.active && d60 < unit(75)) {
+// Stop the bullet
+acornBullet2.fired = false;
+// Kill the enemy
+wasp8.active = false;
+score ++;
+}
+
+//acornBullet3 hits wasps1-8
+
+let d61 = dist(acornBullet3.x, acornBullet3.y, wasp1.x, wasp1.y);
+if (acornBullet3.fired && wasp1.active && d61 < unit(75)) {
+// Stop the bullet
+acornBullet3.fired = false;
+// Kill the enemy
+wasp1.active = false;
+score ++;
+}
+let d62 = dist(acornBullet3.x, acornBullet3.y, wasp2.x, wasp2.y);
+if (acornBullet3.fired && wasp2.active && d62 < unit(75)) {
+// Stop the bullet
+acornBullet3.fired = false;
+// Kill the enemy
+wasp2.active = false;
+score ++;
+}
+let d63 = dist(acornBullet3.x, acornBullet3.y, wasp3.x, wasp3.y);
+if (acornBullet3.fired && wasp1.active && d63 < unit(75)) {
+// Stop the bullet
+acornBullet3.fired = false;
+// Kill the enemy
+wasp3.active = false;
+score ++;
+}
+let d64 = dist(acornBullet3.x, acornBullet3.y, wasp4.x, wasp4.y);
+if (acornBullet3.fired && wasp1.active && d64 < unit(75)) {
+// Stop the bullet
+acornBullet3.fired = false;
+// Kill the enemy
+wasp4.active = false;
+score ++;
+}
+let d65 = dist(acornBullet3.x, acornBullet3.y, wasp5.x, wasp5.y);
+if (acornBullet3.fired && wasp1.active && d65 < unit(75)) {
+// Stop the bullet
+acornBullet3.fired = false;
+// Kill the enemy
+wasp5.active = false;
+score ++;
+}
+let d66 = dist(acornBullet3.x, acornBullet3.y, wasp6.x, wasp6.y);
+if (acornBullet3.fired && wasp1.active && d66 < unit(75)) {
+// Stop the bullet
+acornBullet3.fired = false;
+// Kill the enemy
+wasp6.active = false;
+score ++;
+}
+let d67 = dist(acornBullet3.x, acornBullet3.y, wasp7.x, wasp7.y);
+if (acornBullet3.fired && wasp1.active && d67 < unit(75)) {
+// Stop the bullet
+acornBullet3.fired = false;
+// Kill the enemy
+wasp7.active = false;
+score ++;
+}
+let d68 = dist(acornBullet3.x, acornBullet3.y, wasp8.x, wasp8.y);
+if (acornBullet3.fired && wasp1.active && d68 < unit(75)) {
+// Stop the bullet
+acornBullet3.fired = false;
+// Kill the enemy
+wasp8.active = false;
+score ++;
+}
+
+
+//acornBullet4 hits wasps1-8
+
+let d69 = dist(acornBullet4.x, acornBullet4.y, wasp1.x, wasp1.y);
+if (acornBullet4.fired && wasp1.active && d69 < unit(75)) {
+// Stop the bullet
+acornBullet4.fired = false;
+// Kill the enemy
+wasp1.active = false;
+score ++;
+}
+let d70 = dist(acornBullet4.x, acornBullet4.y, wasp2.x, wasp2.y);
+if (acornBullet4.fired && wasp2.active && d70 < unit(75)) {
+// Stop the bullet
+acornBullet4.fired = false;
+// Kill the enemy
+wasp2.active = false;
+score ++;
+}
+let d71 = dist(acornBullet4.x, acornBullet4.y, wasp3.x, wasp3.y);
+if (acornBullet4.fired && wasp1.active && d71 < unit(75)) {
+// Stop the bullet
+acornBullet4.fired = false;
+// Kill the enemy
+wasp3.active = false;
+score ++;
+}
+let d72 = dist(acornBullet4.x, acornBullet4.y, wasp4.x, wasp4.y);
+if (acornBullet4.fired && wasp1.active && d72 < unit(75)) {
+// Stop the bullet
+acornBullet4.fired = false;
+// Kill the enemy
+wasp4.active = false;
+score ++;
+}
+let d73 = dist(acornBullet4.x, acornBullet4.y, wasp5.x, wasp5.y);
+if (acornBullet4.fired && wasp1.active && d73 < unit(75)) {
+// Stop the bullet
+acornBullet4.fired = false;
+// Kill the enemy
+wasp5.active = false;
+score ++;
+}
+let d74 = dist(acornBullet4.x, acornBullet4.y, wasp6.x, wasp6.y);
+if (acornBullet4.fired && wasp1.active && d74 < unit(75)) {
+// Stop the bullet
+acornBullet4.fired = false;
+// Kill the enemy
+wasp6.active = false;
+score ++;
+}
+let d75 = dist(acornBullet4.x, acornBullet4.y, wasp7.x, wasp7.y);
+if (acornBullet4.fired && wasp1.active && d75 < unit(75)) {
+// Stop the bullet
+acornBullet4.fired = false;
+// Kill the enemy
+wasp7.active = false;
+score ++;
+}
+let d76 = dist(acornBullet4.x, acornBullet4.y, wasp8.x, wasp8.y);
+if (acornBullet4.fired && wasp1.active && d76 < unit(75)) {
+// Stop the bullet
+acornBullet4.fired = false;
+// Kill the enemy
+wasp8.active = false;
+score ++;
+}
+}
+
+
+function keepScore1() {
+  if (score >= 1){
+    fill(94, 69, 35);
+    circle(scoreDots.x,scoreDots.y,scoreDots.radius);
   }
-  let d6 = dist(circle2.x, circle2.y, circle3.x, circle3.y);
-  if (d6 < circle2.size / 2 + circle3.size / 2) {
-    state = `sadness`;
+  if (score >= 2){
+    circle(scoreDots.x + scoreDots.offset1,scoreDots.y,scoreDots.radius);
   }
-  let d7 = dist(circle1.x, circle1.y, circle4.x, circle4.y);
-  if (d7 < circle1.size / 2 + circle4.size / 2) {
-    state = `sadness`;
+  if (score >= 3){
+    circle(scoreDots.x + scoreDots.offset2,scoreDots.y,scoreDots.radius);
   }
-  let d8 = dist(circle2.x, circle2.y, circle4.x, circle4.y);
-  if (d8 < circle2.size / 2 + circle4.size / 2) {
-    state = `sadness`;
+  if (score >= 4){
+    circle(scoreDots.x + scoreDots.offset3,scoreDots.y,scoreDots.radius);
+  }
+  if (score >= 5){
+    circle(scoreDots.x + scoreDots.offset4,scoreDots.y,scoreDots.radius);
+  }
+  if (score >= 6){
+    noLoop();
+    imageMode(CENTER);
+    image(squirrelWin.image, squirrelWin.x, squirrelWin.y, 300, 254);
+  }
+}
+
+function keepScore2() {
+  if (score >= 1){
+    fill(94, 69, 35);
+    circle(scoreDots.x,scoreDots.y,scoreDots.radius);
+  }
+  if (score >= 2){
+    circle(scoreDots.x + scoreDots.offset1,scoreDots.y,scoreDots.radius);
+  }
+  if (score >= 3){
+    circle(scoreDots.x + scoreDots.offset2,scoreDots.y,scoreDots.radius);
+  }
+  if (score >= 4){
+    circle(scoreDots.x + scoreDots.offset3,scoreDots.y,scoreDots.radius);
+  }
+  if (score >= 5){
+    circle(scoreDots.x + scoreDots.offset4,scoreDots.y,scoreDots.radius);
+  }
+  if (score >= 6){
+    noLoop();
+    imageMode(CENTER);
+    image(squirrelWin2.image, squirrelWin2.x, squirrelWin2.y, 300, 254);
+  }
+}
+
+function keepScore3() {
+  if (score >= 1){
+    fill(94, 69, 35);
+    circle(scoreDots.x,scoreDots.y,scoreDots.radius);
+  }
+  if (score >= 2){
+    circle(scoreDots.x + scoreDots.offset1,scoreDots.y,scoreDots.radius);
+  }
+  if (score >= 3){
+    circle(scoreDots.x + scoreDots.offset2,scoreDots.y,scoreDots.radius);
+  }
+  if (score >= 4){
+    circle(scoreDots.x + scoreDots.offset3,scoreDots.y,scoreDots.radius);
+  }
+  if (score >= 5){
+    circle(scoreDots.x + scoreDots.offset4,scoreDots.y,scoreDots.radius);
+  }
+  if (score >= 6){
+    noLoop();
+    imageMode(CENTER);
+    image(squirrelBothWin.image, squirrelBothWin.x, squirrelBothWin.y, 300, 254);
   }
 }
 
@@ -1668,12 +2157,16 @@ function mousePressed() {
     state = `simulation1`;
   } else if (state === `win1`) {
     state = `instruction2Start`;
+    score -= 6; //restart scoreDots
   } else if (state === `instruction2Start`) {
     state = `simulation2`;
   } else if (state === `win2`) {
     state = `instruction3Start`;
+    score -= 6;//restart scoreDots
   } else if (state === `instruction3Start`) {
     state = `simulation3`;
+  } else if (state === `lose`) {
+    state = `instruction1Start`; // restart game after losing
   }
 }
 
@@ -1754,10 +2247,9 @@ function preload() {
   //level three, acorns to throw
   acornBullet1.image = loadImage('assets/images/acorn1.png');
   acornBullet2.image = loadImage('assets/images/acorn1.png');
-  acornBullet3.image = loadImage('assets/images/acorn1.png');
+  acornBullet3.image = loadImage('assets/images/acorn2.png');
   acornBullet4.image = loadImage('assets/images/acorn2.png');
-  acornBullet5.image = loadImage('assets/images/acorn2.png');
-  acornBullet6.image = loadImage('assets/images/acorn2.png');
+
 
 }
 
