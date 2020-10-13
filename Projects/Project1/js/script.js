@@ -590,7 +590,7 @@ function setUpEnterScreen() {
 
 function setUpTitle() {
   title.x = width / 2;
-  title.y = height/2;
+  title.y = height;
   title.vx = unit(5);
   title.vy = unit(1);
   title.size = unit(60);
@@ -605,7 +605,7 @@ function setUpInstruction1() {
 
 function setUpInstruction2() {
   instruction2.x = width / 2;
-  instruction2.y = height*1.2;
+  instruction2.y = height;
   instruction2.vx = unit(5);
   instruction2.vy = unit(1);
   instruction2.size = unit(40);
@@ -900,7 +900,7 @@ function instruction1Start() { /// need to update this to current game play**
 }
 
 function instruction2Start() { /// need to update this to current game play**
-
+  console.log('instruction 2 start');
   push();
 
   fill(255);
@@ -948,7 +948,8 @@ function unit(u) {
   if (height >= width) {
     let unit = (height / width) * u;
     return unit;
-  } else if (width >= height) {
+  }
+    else if (width >= height) {
     let unit = (width / height) * u;
     return unit;
   }
@@ -1653,7 +1654,7 @@ function keepScore1() {
 
   }
   if (score >= 6){
-    win1();
+    state = 'win1'
 
   }
 }
@@ -1913,25 +1914,21 @@ function display3() { //display white squirrel, black squirrel, wasps, acorn bul
     imageMode(CENTER);
     image(wasp8.image, wasp8.x, wasp8.y, unit(100), unit(86));
     pop();
-
 }
 
-
 function win1() {
-
   background(0);
   noLoop();
   imageMode(CENTER);
   image(squirrelWin.image, squirrelWin.x, squirrelWin.y, width/ 3, height/2);
+  console.log(state);
 }
 
 function win2() { ///**change to win2 - white squirrel with bread
-  push();
-  background(bg2);
-  noLoop(); /// not sure if needed
+  background(0);
+  noLoop();
   imageMode(CENTER);
-  image(squirrelWin2.image, squirrelWin2.x, squirrelWin2.y, unit(300), unit(254));
-  pop();
+  image(squirrelWin2.image, squirrelWin2.x, squirrelWin2.y, width/ 3, height/2);
 }
 function win3() { ///**change to win2 - white and black squirrel win
   push();
@@ -1959,10 +1956,13 @@ function mousePressed() {
   } else if (state === `instruction1Start`) {
     state = `simulation1`;
   } else if (state === `win1`) {
+    console.log(state);
     state = `instruction2Start`;
+    console.log(state);
     score -= 6; //restart scoreDots
   } else if (state === `instruction2Start`) {
     state = `simulation2`;
+    console.log(state)
   } else if (state === `win2`) {
     state = `instruction3Start`;
     score -= 6;//restart scoreDots
@@ -2099,30 +2099,50 @@ function draw() {
 
   //different states: enter>title>level1>gameover>win>level2>level3
   if (state === `enter`) {
+    console.log(state)
+    console.log('ENTER')
     enterStart();
   } else if (state === `title`) {
+    console.log(state)
+    console.log('TITLE')
     titleStart();
   } else if (state === `instruction1Start`) {
+    console.log(state)
+    console.log('INSTRUCTION1')
     instruction1Start();
-  } else if (state === `instruction2Start`) {
-    instruction2Start();
-  } else if (state === `instruction3Start`) {
-    instruction3Start();
   } else if (state === `simulation1`) { //start level one
+    console.log(state)
+    console.log('SIMULATION1')
     simulation1();
   } else if (state === `win1`) {
+    console.log(state)
+    console.log('WIN1')
     win1();
+  } else if (state === `instruction2Start`) {
+    console.log(state)
+    console.log('INSTRUCTION2')
+    instruction2Start();
   } else if (state === `simulation2`) { //start level two
+    console.log(state)
+    console.log('SIMULATION2')
     simulation2();
   } else if (state === `win2`) {
     win2();
+  } else if (state === `instruction3Start`) {
+    instruction3Start();
   } else if (state === `simulation3`) { //start level three
     simulation3();
   } else if (state === `win3`) {
-    win3();
+      win3();
   } else if (state === `lose`) {
     lose();
   }
+
+
+
+
+
+
 
 
 
