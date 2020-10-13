@@ -3,8 +3,6 @@ Alana DeVito
 Project 1:
 Tumbling through Madness: The Great White Squirrel Caper of 2020
 
-**Note some values are left in the inital variable set up, so that when the values are converted using the unit(); function
-you can refer to the original ratios in case some values need to be adjusted.
 **************************************************/
 //Set up objects for game play
 
@@ -17,6 +15,7 @@ let enterScreen = {
   vx: 0,
   vy: 0,
   size: 0,
+  active: true
 };
 
 //title//
@@ -69,7 +68,7 @@ let keyboardControl = {
 
 //backdrops
 //level one background
-let bg1;
+let bg;
 //level two background
 let bg2;
 //level three background
@@ -147,7 +146,7 @@ let scoreDots = {
   r: 94,
   g: 69,
   b: 35
-} /// **these need to be adjusted for window size
+}
 
 //LEVEL specific OBJECTS
 
@@ -279,23 +278,6 @@ let randomDogSpawn = {
   max:770
 }
 
-
-//SCORE//
-let score = 0;
-let scoreDots = {
-  x: 450,
-  y: 340,
-  radius: 50,
-  offset1: 55,
-  offset2: 110,
-  offset3: 165,
-  offset4: 220,
-  color:{
-    r: 94,
-    g: 69,
-    b: 35
-  }
-}
 
 //LEVEL 2:
 //Bread to Collect
@@ -599,15 +581,17 @@ let state = 'enter'; //different states: enter>title>level1>gameover>win>level2>
 //Set up Functions
 function setUpEnterScreen() {
   enterScreen.x = width / 2;
-  enterScreen.y = height;
+  enterScreen.y = height/2;
   enterScreen.vx = unit(5);
   enterScreen.vy = unit(1);
   enterScreen.size = unit(30);
 }
 
+
+
 function setUpTitle() {
   title.x = width / 2;
-  title.y = height;
+  title.y = height/2;
   title.vx = unit(5);
   title.vy = unit(1);
   title.size = unit(60);
@@ -850,9 +834,6 @@ function setUpAcornBullets() {
 
 //start Functions
 function enterStart() { //****need to update this to current game play
-
-  push();
-  mousePressed();
   background(0);
   textSize(enterScreen.size);
   fill(255, 0, 0);
@@ -863,14 +844,16 @@ function enterStart() { //****need to update this to current game play
   strokeWeight(unit(0.9));
 
   text(enterScreen.string, enterScreen.x, enterScreen.y);
-  pop();
+
 
 }
 
 function titleStart() { //****need to update this to current game play
 
-  push();
+console.log(title);
+
   checkTitleOffScreen();
+  isTitleOffScreen();
   textSize(title.size);
   fill(random(0, 255), random(0, 255), random(0, 255));
   textAlign(CENTER, CENTER);
@@ -883,11 +866,11 @@ function titleStart() { //****need to update this to current game play
   title.size = title.size - unit(0.17);
 
   text(title.string, title.x, title.y);
-  pop();
+
 
 }
 
-function instructionStart1() { /// need to update this to current game play**
+function instruction1Start() { /// need to update this to current game play**
 
   push();
 
@@ -909,7 +892,7 @@ function instructionStart1() { /// need to update this to current game play**
   // font options: Arial, Verdana, Trebuchet MS, Times New Roman, Didot, American Typewriter, Andale Mono, Courier, Bradley Hand, Luminari ~ Sans-serif, serif, Monospace, Cursive, Fantasy, Impact, Trattatello
 }
 
-function instructionStart2() { /// need to update this to current game play**
+function instruction2Start() { /// need to update this to current game play**
 
   push();
 
@@ -931,7 +914,7 @@ function instructionStart2() { /// need to update this to current game play**
 
 }
 
-function instructionStart3() { /// need to update this to current game play**
+function instruction3Start() { /// need to update this to current game play**
 
   push();
 
@@ -969,20 +952,26 @@ function unit(u) {
 function simulation1() {
   move1();
   checkOverlap1();
-  display1();
   keepScore1();
+  display1();
+  win1();
+  lose();
 }
 function simulation2() {
   move2();
   checkOverlap2();
-  display2();
   keepScore2();
+  display2();
+  win2();
+  lose();
 }
 function simulation3() {
   move3();
   checkOverlap3();
+  keepScore3();
   display3();
-  keepScore3(); //you have to kill 6 wasps to win third level
+  win3();
+  lose();
 }
 
 ///
@@ -1283,7 +1272,7 @@ function move3() { /// ALL LEVEL THREE automated movement - wacky wasps
 //
   wasp6.x += wasp6.vx;
   wasp6.y += wasp6.vy;
-  dog6.vy = map(noise(wasp6.y), 0, 1, 0, 15);
+  wasp6.vy = map(noise(wasp6.y), 0, 1, 0, 15);
 
 
   if (wasp6.x < 0) {
@@ -1378,48 +1367,6 @@ function checkOverlap1() { //check if dogs hit squirrel or squirrel collects aco
 }
 
 function checkOverlap2() { //check if squirrel collects bread, check if covid hits squirrel, check if anti-masker hits squirrel
-
-  //check if antimasker catches squirrel - game over -
-
-  let d12 = dist(squirrel.x, squirrel.y, antiMasker1.x, antiMasker1.y);
-  if (d12 < unit(75)) {
-    state = `lose`;
-  }
-  let d13 = dist(squirrel.x, squirrel.y, antiMasker2.x, antiMasker2.y);
-  if (d13 < unit(75)) {
-    state = `lose`;
-  }
-  let d14 = dist(squirrel.x, squirrel.y, antiMasker3.x, antiMasker3.y);
-  if (d14 < unit(75)) {
-    state = `lose`;
-  }
-  let d15 = dist(squirrel.x, squirrel.y, antiMasker4.x, antiMasker4.y);
-  if (d15 < unit(75)) {
-    state = `lose`;
-  }
-  let d16 = dist(squirrel.x, squirrel.y, antiMasker5.x, antiMasker5.y);
-  if (d16 < unit(75)) {
-    state = `lose`;
-  }
-  let d17 = dist(squirrel.x, squirrel.y, antiMasker6.x, antiMasker6.y);
-  if (d17 < unit(75)) {
-    state = `lose`;
-  }
-
-    //check if covid gets squirrel - game over - * note, only 3 covid shoot from only 3 antiMaskers.
-
-  let d18 = dist(squirrel.x, squirrel.y, covid1.x, covid1.y);
-  if (d18 < unit(75)) {
-    state = `lose`;
-  }
-  let d19 = dist(squirrel.x, squirrel.y, covid2.x, covid2.y);
-  if (d19 < unit(75) {
-    state = `lose`;
-  }
-  let d20 = dist(squirrel.x, squirrel.y, covid3.x, covid3.y);
-  if (d20 < unit(75) {
-    state = `lose`;
-  }
 
   //check if squirrel gets bread, add to scoreDots
 
@@ -1563,48 +1510,48 @@ acornBullet1.fired = false;
 wasp2.active = false;
 score ++;
 }
-let d47 = dist(acornBullet1.x, acornBullet1.y, wasp3.x, wasp3.y);
-if (acornBullet1.fired && wasp3.active && d47 < unit(75)) {
+let d49 = dist(acornBullet1.x, acornBullet1.y, wasp3.x, wasp3.y);
+if (acornBullet1.fired && wasp3.active && d49 < unit(75)) {
 // Stop the bullet
 acornBullet1.fired = false;
 // Kill the enemy
 wasp3.active = false;
 score ++;
 }
-let d48 = dist(acornBullet1.x, acornBullet1.y, wasp4.x, wasp4.y);
-if (acornBullet1.fired && wasp4.active && d48 < unit(75)) {
+let d50 = dist(acornBullet1.x, acornBullet1.y, wasp4.x, wasp4.y);
+if (acornBullet1.fired && wasp4.active && d50 < unit(75)) {
 // Stop the bullet
 acornBullet1.fired = false;
 // Kill the enemy
 wasp4.active = false;
 score ++;
 }
-let d49 = dist(acornBullet1.x, acornBullet1.y, wasp5.x, wasp5.y);
-if (acornBullet1.fired && wasp5.active && d49 < unit(75)) {
+let d51 = dist(acornBullet1.x, acornBullet1.y, wasp5.x, wasp5.y);
+if (acornBullet1.fired && wasp5.active && d51 < unit(75)) {
 // Stop the bullet
 acornBullet1.fired = false;
 // Kill the enemy
 wasp5.active = false;
 score ++;
 }
-let d50 = dist(acornBullet1.x, acornBullet1.y, wasp6.x, wasp6.y);
-if (acornBullet1.fired && wasp6.active && d50 < unit(75)) {
+let d52 = dist(acornBullet1.x, acornBullet1.y, wasp6.x, wasp6.y);
+if (acornBullet1.fired && wasp6.active && d52 < unit(75)) {
 // Stop the bullet
 acornBullet1.fired = false;
 // Kill the enemy
 wasp6.active = false;
 score ++;
 }
-let d51 = dist(acornBullet1.x, acornBullet1.y, wasp7.x, wasp7.y);
-if (acornBullet1.fired && wasp7.active && d51 < unit(75)) {
+let d53 = dist(acornBullet1.x, acornBullet1.y, wasp7.x, wasp7.y);
+if (acornBullet1.fired && wasp7.active && d53 < unit(75)) {
 // Stop the bullet
 acornBullet1.fired = false;
 // Kill the enemy
 wasp7.active = false;
 score ++;
 }
-let d52 = dist(acornBullet1.x, acornBullet1.y, wasp8.x, wasp8.y);
-if (acornBullet1.fired && wasp8.active && d52 < unit(75)) {
+let d54 = dist(acornBullet1.x, acornBullet1.y, wasp8.x, wasp8.y);
+if (acornBullet1.fired && wasp8.active && d54 < unit(75)) {
 // Stop the bullet
 acornBullet1.fired = false;
 // Kill the enemy
@@ -1614,64 +1561,64 @@ score ++;
 
 //acornBullet2 hits wasps1-8
 
-let d53 = dist(acornBullet2.x, acornBullet2.y, wasp1.x, wasp1.y);
-if (acornBullet2.fired && wasp1.active && d53 < unit(75)) {
+let d55 = dist(acornBullet2.x, acornBullet2.y, wasp1.x, wasp1.y);
+if (acornBullet2.fired && wasp1.active && d55 < unit(75)) {
 // Stop the bullet
 acornBullet2.fired = false;
 // Kill the enemy
 wasp1.active = false;
 score ++;
 }
-let d54 = dist(acornBullet2.x, acornBullet2.y, wasp2.x, wasp2.y);
-if (acornBullet2.fired && wasp2.active && d54 < unit(75)) {
+let d56 = dist(acornBullet2.x, acornBullet2.y, wasp2.x, wasp2.y);
+if (acornBullet2.fired && wasp2.active && d56 < unit(75)) {
 // Stop the bullet
 acornBullet2.fired = false;
 // Kill the enemy
 wasp2.active = false;
 score ++;
 }
-let d55 = dist(acornBullet2.x, acornBullet2.y, wasp3.x, wasp3.y);
-if (acornBullet2.fired && wasp3.active && d55 < unit(75)) {
+let d57 = dist(acornBullet2.x, acornBullet2.y, wasp3.x, wasp3.y);
+if (acornBullet2.fired && wasp3.active && d57 < unit(75)) {
 // Stop the bullet
 acornBullet2.fired = false;
 // Kill the enemy
 wasp3.active = false;
 score ++;
 }
-let d56 = dist(acornBullet2.x, acornBullet2.y, wasp4.x, wasp4.y);
-if (acornBullet2.fired && wasp4.active && d56 < unit(75)) {
+let d58 = dist(acornBullet2.x, acornBullet2.y, wasp4.x, wasp4.y);
+if (acornBullet2.fired && wasp4.active && d58 < unit(75)) {
 // Stop the bullet
 acornBullet2.fired = false;
 // Kill the enemy
 wasp4.active = false;
 score ++;
 }
-let d57 = dist(acornBullet2.x, acornBullet2.y, wasp5.x, wasp5.y);
-if (acornBullet2.fired && wasp5.active && d57 < unit(75)) {
+let d59 = dist(acornBullet2.x, acornBullet2.y, wasp5.x, wasp5.y);
+if (acornBullet2.fired && wasp5.active && d59 < unit(75)) {
 // Stop the bullet
 acornBullet2.fired = false;
 // Kill the enemy
 wasp5.active = false;
 score ++;
 }
-let d58 = dist(acornBullet2.x, acornBullet2.y, wasp6.x, wasp6.y);
-if (acornBullet2.fired && wasp6.active && d58 < unit(75)) {
+let d60 = dist(acornBullet2.x, acornBullet2.y, wasp6.x, wasp6.y);
+if (acornBullet2.fired && wasp6.active && d60 < unit(75)) {
 // Stop the bullet
 acornBullet2.fired = false;
 // Kill the enemy
 wasp6.active = false;
 score ++;
 }
-let d59 = dist(acornBullet2.x, acornBullet2.y, wasp7.x, wasp7.y);
-if (acornBullet2.fired && wasp7.active && d59 < unit(75)) {
+let d61 = dist(acornBullet2.x, acornBullet2.y, wasp7.x, wasp7.y);
+if (acornBullet2.fired && wasp7.active && d61 < unit(75)) {
 // Stop the bullet
 acornBullet2.fired = false;
 // Kill the enemy
 wasp7.active = false;
 score ++;
 }
-let d60 = dist(acornBullet2.x, acornBullet2.y, wasp8.x, wasp8.y);
-if (acornBullet2.fired && wasp8.active && d60 < unit(75)) {
+let d62 = dist(acornBullet2.x, acornBullet2.y, wasp8.x, wasp8.y);
+if (acornBullet2.fired && wasp8.active && d62 < unit(75)) {
 // Stop the bullet
 acornBullet2.fired = false;
 // Kill the enemy
@@ -1803,7 +1750,7 @@ function display1() { // dogs, squirrel, acorns
 
   push();
   imageMode(CENTER);
-  image(dog3.image, dog3.x, dog3.y, unit(100), unit(86);)
+  image(dog3.image, dog3.x, dog3.y, unit(100), unit(86));
   pop();
 
   push();
@@ -1813,7 +1760,7 @@ function display1() { // dogs, squirrel, acorns
 
   push();
   imageMode(CENTER);
-  image(dog5.image, dog5.x, dog5.y, unit(100), unit(86);)
+  image(dog5.image, dog5.x, dog5.y, unit(100), unit(86));
   pop();
 
 }
@@ -1963,10 +1910,10 @@ function display3() { //display white squirrel, black squirrel, wasps, acorn bul
 }
 
 
-function win1() { ///**change to win1 - white squirrel with acorns (also one with bread if time)
+function win1() {
   push();
   background(bg);
-  noLoop(); /// not sure if needed
+  noLoop();
   imageMode(CENTER);
   image(squirrelWin.image, squirrelWin.x, squirrelWin.y, unit(300), unit(254));
   pop();
@@ -2000,6 +1947,7 @@ function lose() { /// ** change to lose with squirrel_dead image
 function mousePressed() {
   if (state === `enter`) {
     state = `title`;
+    enterScreen.x = 10000;
   } else if (state === `title`) {
     state = `instruction1Start`;
   } else if (state === `instruction1Start`) {
@@ -2022,23 +1970,25 @@ function mousePressed() {
 //function to automatically run instruction 1
 function checkTitleOffScreen() {
 //check if the title has gone offscreen
-if (isTitleOffScreen(title)) {
+if (isTitleOffScreen()) {
   state = `instruction1Start`;
 }
 }
 
-function isTitleOffScreen(title) {
+function isTitleOffScreen() {
 if (title.y < 0) {
   return true;
 } else {
   return false;
+
 }
 }
+
 
 //preload images for background and characters
 function preload() {
   //backgrounds
-  bg1 = loadImage('assets/images/park.jpg');//morning_gorlitzer
+  bg = loadImage('assets/images/park.jpg');//morning_gorlitzer
   bg2 = loadImage('assets/images/park1.jpg');//afternoon_mont royal
   bg3 = loadImage('assets/images/park2.jpg');//evening_trinity bellewoods
   bgGameOver = loadImage('assets/images/squirrel_dead.jpg');
@@ -2096,10 +2046,7 @@ function preload() {
 
   //level three, acorns to throw
   acornBullet1.image = loadImage('assets/images/acorn1.png');
-  acornBullet2.image = loadImage('assets/images/acorn1.png');
-  acornBullet3.image = loadImage('assets/images/acorn2.png');
-  acornBullet4.image = loadImage('assets/images/acorn2.png');
-
+  acornBullet2.image = loadImage('assets/images/acorn2.png');
 
 }
 
@@ -2107,21 +2054,36 @@ function preload() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  setUpEnterScreen1();
+  setUpEnterScreen();
   setUpTitle();
   setUpInstruction1();
   setUpInstruction2();
   setUpInstruction3();
   setUpAcornBullets();
+  setUpScoreDots();
+  setUpSpawn();
+  setUpDogs();
+  setUpAcorns();
+  setUpAntiMaskers();
   setUpCovid();
+  setUpBread();
+  setUpWasps();
+  setUpAcornBullets();
 
-  noCursor();
 }
 
 // draw()
 
 function draw() {
-
+  enterStart();
+  // mousePressed();
+  // titleStart();
+  // unit();
+  // checkTitleOffScreen();
+  // isTitleOffScreen(title);
+  // simulation1();
+  // simulation2();
+  // simulation3();
 
   //STATES
 
@@ -2151,6 +2113,8 @@ function draw() {
   } else if (state === `lose`) {
     lose();
   }
+
+
 
   //KEYBOARD CONTROLS
 
@@ -2191,7 +2155,6 @@ function draw() {
     acornBullet2.vx = acornBullet2.speed;
     }
   }
-
-  ////
+  ///
 
 }
