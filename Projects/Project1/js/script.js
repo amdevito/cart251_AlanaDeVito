@@ -1393,7 +1393,7 @@ function checkOverlap1() { //check if dogs hit squirrel or squirrel collects aco
 
 }
 
-function checkOverlap2() { //check if squirrel collects bread, check if covid hits squirrel, check if anti-masker hits squirrel
+function checkOverlap2() { //check if squirrel collects bread, check if covid hits squirrel, check if anti-masker hits squirrel, check if acornBullet kills antimasker
 
   //check if squirrel gets bread, add to scoreDots
 
@@ -1456,16 +1456,43 @@ function checkOverlap2() { //check if squirrel collects bread, check if covid hi
 
   //check if covid hits squirrel
     let d2211 = dist(squirrel.x, squirrel.y, covid1.x, covid1.y);
-    if (d2211 < unit(75)) {
+    if (d2211 < unit(30)) {
       state = `lose`;
     }
     let d2222 = dist(squirrel.x, squirrel.y, covid2.x, covid2.y);
-    if (d2222 < unit(75)) {
+    if (d2222 < unit(30)) {
       state = `lose`;
     }
     let d2333 = dist(squirrel.x, squirrel.y, covid3.x, covid3.y);
-    if (d2333 < unit(75)) {
+    if (d2333 < unit(30)) {
       state = `lose`;
+    }
+
+    //check if acornBullet hits antiMasker
+
+    let da1 = dist(acornBullet1.x, acornBullet1.y, antiMasker1.x, antiMasker1.y);
+    if (da1 < unit(75)) {
+      antiMasker1.y = -60000;
+    }
+    let da2 = dist(acornBullet1.x, acornBullet1.y, antiMasker2.x, antiMasker2.y);
+    if (da2 < unit(75)) {
+      antiMasker2.y = -60000;
+    }
+    let da3 = dist(acornBullet1.x, acornBullet1.y, antiMasker3.x, antiMasker3.y);
+    if (da3 < unit(75)) {
+      antiMasker3.y = -60000;
+    }
+    let da4 = dist(acornBullet1.x, acornBullet1.y, antiMasker4.x, antiMasker4.y);
+    if (da4 < unit(75)) {
+      antiMasker4.y = -60000;
+    }
+    let da5 = dist(acornBullet1.x, acornBullet1.y, antiMasker5.x, antiMasker5.y);
+    if (da5 < unit(75)) {
+      antiMasker5.y = -60000;
+    }
+    let da6 = dist(acornBullet1.x, acornBullet1.y, antiMasker6.x, antiMasker6.y);
+    if (da6 < unit(75)) {
+      antiMasker6.y = -60000;
     }
 
 
