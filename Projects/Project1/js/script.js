@@ -834,18 +834,18 @@ function setUpWasps(){
 function setUpAcornBullets() {
     acornBullet1.x = 0;
     acornBullet1.y = 0;
-    acornBullet1.speed = unit(2);
-    acornBullet1.vx = unit(3);
+    acornBullet1.speed = unit(20);
+    acornBullet1.vx = unit(15);
 
     acornBullet2.x = 0;
     acornBullet2.y = 0;
-    acornBullet2.speed = unit(2);
-    acornBullet2.vx = unit(3);
+    acornBullet2.speed = unit(20);
+    acornBullet2.vx = unit(15);
 
 }
 
 //start Functions
-function enterStart() { //****need to update this to current game play
+function enterStart() { // set up click to enter screen
 
   background(0);
   textSize(enterScreen.size);
@@ -861,7 +861,7 @@ function enterStart() { //****need to update this to current game play
 
 }
 
-function titleStart() { //****need to update this to current game play
+function titleStart() { // set up title scrolling screen
 
   checkTitleOffScreen();
   isTitleOffScreen();
@@ -881,7 +881,7 @@ function titleStart() { //****need to update this to current game play
 
 }
 
-function instruction1Start() { /// need to update this to current game play**
+function instruction1Start() { ///
 
   push();
 
@@ -903,7 +903,7 @@ function instruction1Start() { /// need to update this to current game play**
   // font options: Arial, Verdana, Trebuchet MS, Times New Roman, Didot, American Typewriter, Andale Mono, Courier, Bradley Hand, Luminari ~ Sans-serif, serif, Monospace, Cursive, Fantasy, Impact, Trattatello
 }
 
-function instruction2Start() { /// need to update this to current game play**
+function instruction2Start() { ///
   push();
 
   fill(255);
@@ -924,7 +924,7 @@ function instruction2Start() { /// need to update this to current game play**
 
 }
 
-function instruction3Start() { /// need to update this to current game play**
+function instruction3Start() { ///
 
   push();
 
@@ -1126,6 +1126,14 @@ function move2() { ///ALL LEVEL TWO automated movement - antimaskers, covid firi
     antiMasker6.x = width;
     antiMasker6.y = random(randomAntiMaskerSpawn.min, randomAntiMaskerSpawn.max);
   }
+
+  antiMasker6.x += antiMasker6.vx;
+  antiMasker6.y += antiMasker6.vy;
+
+  // LEVEL two: acornBullet shoot
+  acornBullet1.x += acornBullet1.vx;
+  acornBullet1.y += acornBullet1.vy;
+
 
   //LEVEL TWO: BREAD Movement
   bread1.x += bread1.vx;
@@ -1409,6 +1417,48 @@ function checkOverlap2() { //check if squirrel collects bread, check if covid hi
     score ++;
     bread6.x = 0;
   }
+
+//check if antimasker hits squirrel
+  let d211 = dist(squirrel.x, squirrel.y, antiMasker1.x, antiMasker1.y);
+  if (d211 < unit(75)) {
+    state = `lose`;
+  }
+  let d222 = dist(squirrel.x, squirrel.y, antiMasker2.x, antiMasker2.y);
+  if (d222 < unit(75)) {
+    state = `lose`;
+  }
+  let d233 = dist(squirrel.x, squirrel.y, antiMasker3.x, antiMasker3.y);
+  if (d233 < unit(75)) {
+    state = `lose`;
+  }
+  let d244 = dist(squirrel.x, squirrel.y, antiMasker4.x, antiMasker4.y);
+  if (d244 < unit(75)) {
+    state = `lose`;
+  }
+  let d255 = dist(squirrel.x, squirrel.y, antiMasker5.x, antiMasker5.y);
+  if (d255 < unit(75)) {
+    state = `lose`;
+  }
+  let d266 = dist(squirrel.x, squirrel.y, antiMasker6.x, antiMasker6.y);
+  if (d266 < unit(75)) {
+    state = `lose`;
+  }
+
+  //check if covid hits squirrel
+    let d2211 = dist(squirrel.x, squirrel.y, covid1.x, covid1.y);
+    if (d2211 < unit(75)) {
+      state = `lose`;
+    }
+    let d2222 = dist(squirrel.x, squirrel.y, covid2.x, covid2.y);
+    if (d2222 < unit(75)) {
+      state = `lose`;
+    }
+    let d2333 = dist(squirrel.x, squirrel.y, covid3.x, covid3.y);
+    if (d2333 < unit(75)) {
+      state = `lose`;
+    }
+
+
 }
 
 function checkOverlap3() { //check if wasp hits white squirrel or black squirrel, check if acornBullets hit wasp.
@@ -1661,7 +1711,7 @@ function keepScore1() {
 
   }
   if (score >= 6){
-    state = 'win1'
+    state = 'win1';
 
   }
 }
@@ -1684,7 +1734,7 @@ function keepScore2() {
     circle(scoreDots.x + scoreDots.offset4,scoreDots.y -150,scoreDots.radius);
   }
   if (score >= 6){
-    win2();
+    state = 'win2';
   }
 }
 
@@ -1859,22 +1909,22 @@ function display2() { // squirrel, bread, antimaskers
   push();
   if (acornBullet1.fired) {
     imageMode(CENTER);
-    image(acornBullet1.image, squirrel.x, squirrel.y, unit(10), unit(12));
-    acornBullet1.x += 1;
+    image(acornBullet1.image, acornBullet1.x, acornBullet1.y, unit(10), unit(12));
 
   }
   if (acornBullet2.fired) {
     imageMode(CENTER);
-    image(acornBullet2.image, squirrel2.x, squirrel2.y, unit(6), unit(10));
-    acornBullet2.x += 1;
+    image(acornBullet2.image, acornBullet2.x, acornBullet2.y, unit(6), unit(10));
   }
   pop();
 
 }
 
 function display3() { //display white squirrel, black squirrel, wasps, acorn bullets
+  push();
+  imageMode(CORNERS);
   background(bg3);
-
+  pop();
   //display squirrel
     push();
     imageMode(CENTER);
@@ -1951,6 +2001,7 @@ function win3() { ///**change to win2 - white and black squirrel win
 
 function lose() { /// ** change to lose with squirrel_dead image
   push();
+  imageMode(CORNERS);
   background(bgGameOver);
   noLoop(); /// not sure if needed
   pop();
@@ -1979,7 +2030,7 @@ function mousePressed() {
     loop();
     state = `simulation3`;
   } else if (state === `lose`) {
-    state = `instruction1Start`; // restart game after losing
+    state = `title`; // restart game after losing
     loop();
   }
 }
@@ -2088,7 +2139,6 @@ function setup() {
   setUpCovid();
   setUpBread();
   setUpWasps();
-  setUpAcornBullets();
 
 }
 
