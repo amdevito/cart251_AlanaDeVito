@@ -644,21 +644,21 @@ function setUpSquirrelWin() {
 function setUpSpawn() {
   //L1
 randomDogSpawn.min = unit(380);
-randomDogSpawn.max = unit(470);
+randomDogSpawn.max = unit(600);
 
 randomAcornSpawn.min = unit(58);
 randomAcornSpawn.max = unit(77);
 
   //L2
 randomAntiMaskerSpawn.min = unit(380);
-randomAntiMaskerSpawn.max = unit(670);
+randomAntiMaskerSpawn.max = unit(600);
 
 randomBreadSpawn.min = unit(58);
 randomBreadSpawn.max = unit(77);
 
   //L3
 randomWaspSpawn.min = unit(380);
-randomWaspSpawn.max = unit(370);
+randomWaspSpawn.max = unit(600);
 
 }
 
