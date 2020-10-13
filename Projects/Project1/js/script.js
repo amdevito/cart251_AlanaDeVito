@@ -615,15 +615,15 @@ function setUpInstruction2() {
 }
 function setUpInstruction3() {
   instruction3.x = width / 2;
-  instruction3.y = height*1.3;
+  instruction3.y = height;
   instruction3.vx = unit(5);
   instruction3.vy = unit(1);
-  instruction3.size = unit(40);
+  instruction3.size = unit(25);
 }
 
 function setUpScoreDots() {
   scoreDots.x = unit(30);
-  scoreDots.y = unit(250);
+  scoreDots.y = unit(220);
   scoreDots.radius = unit(10);
   scoreDots.offset1 = unit(10.75);
   scoreDots.offset2 = unit(21);
@@ -687,7 +687,7 @@ function setUpDogs() {
 }
 
 function setUpAcorns() {
-  acorn1.x = -450; //start far off screen, each acorn staggared -- could change this to unit(100), etc...*try later*
+  acorn1.x = -450;
   acorn1.y = random(randomAcornSpawn.min, randomAcornSpawn.max);
   acorn1.vx = acorn1.speed;
 
@@ -744,21 +744,21 @@ function setUpAntiMaskers() {
 function setUpCovid() {
     covid1.x = 0;
     covid1.y = 0;
-    covid1.size = unit(7);
+    covid1.size = unit(20);
     covid1.speed = unit(7);
     covid1.vx = unit(3);
     covid1.vy = unit(10);
 
     covid2.x = 0,
     covid2.y = 0,
-    covid2.size = unit(7);
+    covid2.size = unit(20);
     covid2.speed = unit(7);
     covid2.vx = unit(3);
     covid2.vy = unit(10);
 
     covid3.x = 0;
     covid3.y = 0;
-    covid3.size = unit(7);
+    covid3.size = unit(20);
     covid3.speed = unit(7);
     covid3.vx = unit(3);
     covid3.vy = unit(10);
@@ -1669,19 +1669,19 @@ function keepScore1() {
 function keepScore2() {
   if (score >= 1){
     fill(94, 69, 35);
-    circle(scoreDots.x,scoreDots.y,scoreDots.radius);
+    circle(scoreDots.x,scoreDots.y-150,scoreDots.radius);
   }
   if (score >= 2){
-    circle(scoreDots.x + scoreDots.offset1,scoreDots.y,scoreDots.radius);
+    circle(scoreDots.x + scoreDots.offset1,scoreDots.y-150,scoreDots.radius);
   }
   if (score >= 3){
-    circle(scoreDots.x + scoreDots.offset2,scoreDots.y,scoreDots.radius);
+    circle(scoreDots.x + scoreDots.offset2,scoreDots.y-150,scoreDots.radius);
   }
   if (score >= 4){
-    circle(scoreDots.x + scoreDots.offset3,scoreDots.y,scoreDots.radius);
+    circle(scoreDots.x + scoreDots.offset3,scoreDots.y-150,scoreDots.radius);
   }
   if (score >= 5){
-    circle(scoreDots.x + scoreDots.offset4,scoreDots.y,scoreDots.radius);
+    circle(scoreDots.x + scoreDots.offset4,scoreDots.y -150,scoreDots.radius);
   }
   if (score >= 6){
     win2();
@@ -1973,12 +1973,14 @@ function mousePressed() {
     state = `simulation2`;
   } else if (state === `win2`) {
     state = `instruction3Start`;
-    score -= 6;//restart scoreDots
     loop();
+    score -= 6;//restart scoreDots
   } else if (state === `instruction3Start`) {
+    loop();
     state = `simulation3`;
   } else if (state === `lose`) {
     state = `instruction1Start`; // restart game after losing
+    loop();
   }
 }
 
