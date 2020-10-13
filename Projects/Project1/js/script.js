@@ -38,7 +38,7 @@ let instruction1 = {
 };
 
 let instruction2 = {
-  string: `Level TWO: \n Let the Madness Begin... \n HOW TO PLAY: Use the arrow keys to control the white squirrel. \n Collect 6 loaves of homemade sourdough bread and save them in your home tree. \n Be careful! \n The Anti-Mask Protestors have taken over the park and are spreading the Virus! \n Studies haven't shown that white squirrels are immune yet...`,
+  string: `Level TWO: \n Let the Madness Begin... \n HOW TO PLAY: Use the arrow keys to control the white squirrel. \n Collect 6 loaves of homemade sourdough bread and save them in your home tree. \n Be careful! \n The Anti-Mask Protestors have taken over the park and are spreading the Virus! \n Studies haven't shown that white squirrels are immune yet...\n When you're ready... \n CLICK TO START!`,
   x: 0,
   y: 0,
   vx: 0,
@@ -608,7 +608,7 @@ function setUpInstruction2() {
   instruction2.y = height;
   instruction2.vx = unit(5);
   instruction2.vy = unit(1);
-  instruction2.size = unit(40);
+  instruction2.size = unit(25);
 }
 function setUpInstruction3() {
   instruction3.x = width / 2;
@@ -843,6 +843,7 @@ function setUpAcornBullets() {
 
 //start Functions
 function enterStart() { //****need to update this to current game play
+
   background(0);
   textSize(enterScreen.size);
   fill(255, 0, 0);
@@ -900,7 +901,6 @@ function instruction1Start() { /// need to update this to current game play**
 }
 
 function instruction2Start() { /// need to update this to current game play**
-  console.log('instruction 2 start');
   push();
 
   fill(255);
@@ -915,7 +915,7 @@ function instruction2Start() { /// need to update this to current game play**
 
   text(instruction2.string, instruction2.x, instruction2.y);
 
-  instruction2.y += -unit(0.9);
+  instruction2.y += -unit(0.7);
 
   pop();
 
@@ -966,8 +966,9 @@ function simulation1() {
 function simulation2() {
   move2();
   checkOverlap2();
-  keepScore2();
   display2();
+  keepScore2();
+
 }
 function simulation3() {
   move3();
@@ -1161,19 +1162,19 @@ function move2() { ///ALL LEVEL TWO automated movement - antimaskers, covid firi
 }
 
 /// LEVEL TWO: COVID MOVEMENT - experimental
-if ((antiMasker1.x = width - 50)) {
+if (antiMasker1.x = width - 50) {
   covid1.fired = true;
   covid1.x = antiMasker1.x;
   covid1.y = antiMasker1.y;
   covid1.vx = covid1.speed;
 }
-if ((antiMasker2.x = width - 50)) {
+if (antiMasker2.x = width - 50) {
   covid2.fired = true;
   covid2.x = antiMasker2.x;
   covid2.y = antiMasker2.y;
   covid2.vx = covid2.speed;
 }
-if ((antiMasker3.x = width - 50)) {
+if (antiMasker3.x = width - 50) {
   covid3.fired = true;
   covid3.x = antiMasker3.x;
   covid3.y = antiMasker3.y;
@@ -1307,7 +1308,7 @@ function move3() { /// ALL LEVEL THREE automated movement - wacky wasps
 }
 
 
-///*** NEED TO DO OVERPLAP
+///
 function checkOverlap1() { //check if dogs hit squirrel or squirrel collects acorns
 
 //check if dog catches squirrel - game over -
@@ -1395,7 +1396,7 @@ function checkOverlap2() { //check if squirrel collects bread, check if covid hi
   let d25 = dist(squirrel.x, squirrel.y, bread5.x, bread5.y);
   if (d25 < 50) {
     score ++;
-    abread5.x = -60000;
+    bread5.x = -60000;
   }
   let d26 = dist(squirrel.x, squirrel.y, bread6.x, bread6.y);
   if (d26 < 50) {
@@ -1779,7 +1780,7 @@ function display2() { // squirrel, bread, antimaskers
 //display squirrel
   push();
   imageMode(CENTER);
-  image(squirrel.image, squirrel.x, squirrel.y, unit(15), unit(50));
+  image(squirrel.image, squirrel.x, squirrel.y, unit(80),unit(30));
   pop();
 
 //display bread
@@ -1816,32 +1817,32 @@ function display2() { // squirrel, bread, antimaskers
 //display antimaskers
   push();
   imageMode(CENTER);
-  image(antiMasker1.image, antiMasker1.x, antiMasker1.y, unit(100), unit(86));
+  image(antiMasker1.image, antiMasker1.x, antiMasker1.y, unit(80), unit(150));
   pop();
 
   push();
   imageMode(CENTER);
-  image(antiMasker2.image, antiMasker2.x, antiMasker2.y, unit(100), unit(86));
+  image(antiMasker2.image, antiMasker2.x, antiMasker2.y, unit(80), unit(150));
   pop();
 
   push();
   imageMode(CENTER);
-  image(antiMasker3.image, antiMasker3.x, antiMasker3.y, unit(100), unit(86));
+  image(antiMasker3.image, antiMasker3.x, antiMasker3.y, unit(80), unit(150));
   pop();
 
   push();
   imageMode(CENTER);
-  image(antiMasker4.image, antiMasker4.x, antiMasker4.y, unit(100), unit(86));
+  image(antiMasker4.image, antiMasker4.x, antiMasker4.y, unit(80), unit(150));
   pop();
 
   push();
   imageMode(CENTER);
-  image(antiMasker5.image, antiMasker5.x, antiMasker5.y, unit(100), unit(86));
+  image(antiMasker5.image, antiMasker5.x, antiMasker5.y, unit(80), unit(150));
   pop();
 
   push();
   imageMode(CENTER);
-  image(antiMasker6.image, antiMasker6.x, antiMasker6.y, unit(100), unit(86));
+  image(antiMasker6.image, antiMasker6.x, antiMasker6.y, unit(80), unit(150));
   pop();
 
 //draw acornbullets when fired
@@ -1849,11 +1850,14 @@ function display2() { // squirrel, bread, antimaskers
   push();
   if (acornBullet1.fired) {
     imageMode(CENTER);
-    image(acornBullet1.image, squirrel.x, squirrel.y, unit(30), unit(50));
+    image(acornBullet1.image, squirrel.x, squirrel.y, unit(10), unit(12));
+    acornBullet1.x += 1;
+
   }
   if (acornBullet2.fired) {
     imageMode(CENTER);
-    image(acornBullet2.image, squirrel2.x, squirrel2.y, unit(30), unit(50));
+    image(acornBullet2.image, squirrel2.x, squirrel2.y, unit(6), unit(10));
+    acornBullet2.x += 1;
   }
   pop();
 
@@ -1921,7 +1925,6 @@ function win1() {
   noLoop();
   imageMode(CENTER);
   image(squirrelWin.image, squirrelWin.x, squirrelWin.y, width/ 3, height/2);
-  console.log(state);
 }
 
 function win2() { ///**change to win2 - white squirrel with bread
@@ -1931,12 +1934,10 @@ function win2() { ///**change to win2 - white squirrel with bread
   image(squirrelWin2.image, squirrelWin2.x, squirrelWin2.y, width/ 3, height/2);
 }
 function win3() { ///**change to win2 - white and black squirrel win
-  push();
-  background(bg3);
-  noLoop(); /// not sure if needed
+  background(0);
+  noLoop();
   imageMode(CENTER);
-  image(squirrelBothWin.image, squirrelBothWin.x, squirrelBothWin.y, unit(300), unit(254));
-  pop();
+  image(squirrelBothWin.image, squirrelBothWin.x, squirrelBothWin.y, width/ 3, height/2);
 }
 
 function lose() { /// ** change to lose with squirrel_dead image
@@ -1956,16 +1957,15 @@ function mousePressed() {
   } else if (state === `instruction1Start`) {
     state = `simulation1`;
   } else if (state === `win1`) {
-    console.log(state);
     state = `instruction2Start`;
-    console.log(state);
+    loop();
     score -= 6; //restart scoreDots
   } else if (state === `instruction2Start`) {
     state = `simulation2`;
-    console.log(state)
   } else if (state === `win2`) {
     state = `instruction3Start`;
     score -= 6;//restart scoreDots
+    loop();
   } else if (state === `instruction3Start`) {
     state = `simulation3`;
   } else if (state === `lose`) {
@@ -2099,32 +2099,18 @@ function draw() {
 
   //different states: enter>title>level1>gameover>win>level2>level3
   if (state === `enter`) {
-    console.log(state)
-    console.log('ENTER')
     enterStart();
   } else if (state === `title`) {
-    console.log(state)
-    console.log('TITLE')
     titleStart();
   } else if (state === `instruction1Start`) {
-    console.log(state)
-    console.log('INSTRUCTION1')
     instruction1Start();
   } else if (state === `simulation1`) { //start level one
-    console.log(state)
-    console.log('SIMULATION1')
     simulation1();
   } else if (state === `win1`) {
-    console.log(state)
-    console.log('WIN1')
     win1();
   } else if (state === `instruction2Start`) {
-    console.log(state)
-    console.log('INSTRUCTION2')
     instruction2Start();
   } else if (state === `simulation2`) { //start level two
-    console.log(state)
-    console.log('SIMULATION2')
     simulation2();
   } else if (state === `win2`) {
     win2();
@@ -2137,12 +2123,6 @@ function draw() {
   } else if (state === `lose`) {
     lose();
   }
-
-
-
-
-
-
 
 
 
