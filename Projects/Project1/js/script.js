@@ -1979,31 +1979,31 @@ function display3() { //display white squirrel, black squirrel, wasps, acorn bul
     pop();
 }
 
-function win1() {
+function win1() {//white squirrel with acorns
   background(0);
   noLoop();
   imageMode(CENTER);
   image(squirrelWin.image, squirrelWin.x, squirrelWin.y, width/ 3, height/2);
 }
 
-function win2() { ///**change to win2 - white squirrel with bread
+function win2() { ///white squirrel with bread
   background(0);
   noLoop();
   imageMode(CENTER);
   image(squirrelWin2.image, squirrelWin2.x, squirrelWin2.y, width/ 3, height/2);
 }
-function win3() { ///**change to win2 - white and black squirrel win
+function win3() { //white and black squirrel win
   background(0);
   noLoop();
   imageMode(CENTER);
   image(squirrelBothWin.image, squirrelBothWin.x, squirrelBothWin.y, width/ 3, height/2);
 }
 
-function lose() { /// ** change to lose with squirrel_dead image
+function lose() { ///
   push();
   imageMode(CORNERS);
   background(bgGameOver);
-  noLoop(); /// not sure if needed
+  noLoop();
   pop();
 }
 
@@ -2147,14 +2147,6 @@ function setup() {
 function draw() {
   enterStart();
   setUpSpawn();
-  // mousePressed();
-  // titleStart();
-  // unit();
-  // checkTitleOffScreen();
-  // isTitleOffScreen(title);
-  // simulation1();
-  // simulation2();
-  // simulation3();
 
   //STATES
 
@@ -2182,6 +2174,7 @@ function draw() {
   } else if (state === `win3`) {
       win3();
   } else if (state === `lose`) {
+    console.log('LOSE')
     lose();
   }
 
