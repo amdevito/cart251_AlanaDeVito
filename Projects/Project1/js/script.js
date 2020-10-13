@@ -1657,70 +1657,122 @@ score ++;
 
 //acornBullet2 hits wasps1-8
 
-let d55 = dist(acornBullet2.x, acornBullet2.y, wasp1.x, wasp1.y);
-if (acornBullet2.fired && wasp1.active && d55 < unit(75)) {
-// Stop the bullet
-acornBullet2.fired = false;
-// Kill the enemy
-wasp1.active = false;
-score ++;
+let d55 = dist(acornBullet1.x, acornBullet1.y, wasp1.x, wasp1.y);
+if (d55 < unit(75)) {
+  wasp1.x = unit(10000);
+  score++;
 }
-let d56 = dist(acornBullet2.x, acornBullet2.y, wasp2.x, wasp2.y);
-if (acornBullet2.fired && wasp2.active && d56 < unit(75)) {
-// Stop the bullet
-acornBullet2.fired = false;
-// Kill the enemy
-wasp2.active = false;
-score ++;
+let d56 = dist(acornBullet1.x, acornBullet1.y, wasp2.x, wasp2.y);
+if (d56 < unit(75)) {
+  wasp2.x = unit(10000);
+  score++;
 }
-let d57 = dist(acornBullet2.x, acornBullet2.y, wasp3.x, wasp3.y);
-if (acornBullet2.fired && wasp3.active && d57 < unit(75)) {
-// Stop the bullet
-acornBullet2.fired = false;
-// Kill the enemy
-wasp3.active = false;
-score ++;
+let d57 = dist(acornBullet1.x, acornBullet1.y, wasp3.x, wasp3.y);
+if (d57 < unit(75)) {
+  wasp3.x = unit(10000);
+  score++;
 }
-let d58 = dist(acornBullet2.x, acornBullet2.y, wasp4.x, wasp4.y);
-if (acornBullet2.fired && wasp4.active && d58 < unit(75)) {
-// Stop the bullet
-acornBullet2.fired = false;
-// Kill the enemy
-wasp4.active = false;
-score ++;
+let d58 = dist(acornBullet1.x, acornBullet1.y, wasp4.x, wasp4.y);
+if (d58 < unit(75)) {
+  wasp4.x = unit(10000);
+  score++;
 }
-let d59 = dist(acornBullet2.x, acornBullet2.y, wasp5.x, wasp5.y);
-if (acornBullet2.fired && wasp5.active && d59 < unit(75)) {
-// Stop the bullet
-acornBullet2.fired = false;
-// Kill the enemy
-wasp5.active = false;
-score ++;
+let d59 = dist(acornBullet1.x, acornBullet1.y, wasp5.x, wasp5.y);
+if (d59 < unit(75)) {
+  wasp5.x = unit(10000);
+  score++;
 }
-let d60 = dist(acornBullet2.x, acornBullet2.y, wasp6.x, wasp6.y);
-if (acornBullet2.fired && wasp6.active && d60 < unit(75)) {
-// Stop the bullet
-acornBullet2.fired = false;
-// Kill the enemy
-wasp6.active = false;
-score ++;
+let d60 = dist(acornBullet1.x, acornBullet1.y, wasp6.x, wasp6.y);
+if (d60 < unit(75)) {
+  wasp6.x = unit(10000);
+  score++;
 }
-let d61 = dist(acornBullet2.x, acornBullet2.y, wasp7.x, wasp7.y);
-if (acornBullet2.fired && wasp7.active && d61 < unit(75)) {
-// Stop the bullet
-acornBullet2.fired = false;
-// Kill the enemy
-wasp7.active = false;
-score ++;
+let d61 = dist(acornBullet1.x, acornBullet1.y, wasp5.x, wasp5.y);
+if (d61 < unit(75)) {
+  wasp5.x = unit(10000);
+  score++;
 }
-let d62 = dist(acornBullet2.x, acornBullet2.y, wasp8.x, wasp8.y);
-if (acornBullet2.fired && wasp8.active && d62 < unit(75)) {
-// Stop the bullet
-acornBullet2.fired = false;
-// Kill the enemy
-wasp8.active = false;
-score ++;
+let d62 = dist(acornBullet1.x, acornBullet1.y, wasp6.x, wasp6.y);
+if (d62 < unit(75)) {
+  wasp6.x = unit(10000);
+  score++;
 }
+let d63 = dist(acornBullet1.x, acornBullet1.y, wasp7.x, wasp7.y);
+if (d63 < unit(75)) {
+  wasp7.x = unit(10000);
+  score++;
+}
+let d64 = dist(acornBullet1.x, acornBullet1.y, wasp8.x, wasp8.y);
+if (d64 < unit(75)) {
+  wasp8.x = unit(10000);
+  score++;
+}
+
+
+// let d55 = dist(acornBullet2.x, acornBullet2.y, wasp1.x, wasp1.y);
+// if (acornBullet2.fired && wasp1.active && d55 < unit(75)) {
+// // Stop the bullet
+// acornBullet2.fired = false;
+// // Kill the enemy
+// wasp1.active = false;
+// score ++;
+// }
+// let d56 = dist(acornBullet2.x, acornBullet2.y, wasp2.x, wasp2.y);
+// if (acornBullet2.fired && wasp2.active && d56 < unit(75)) {
+// // Stop the bullet
+// acornBullet2.fired = false;
+// // Kill the enemy
+// wasp2.active = false;
+// score ++;
+// }
+// let d57 = dist(acornBullet2.x, acornBullet2.y, wasp3.x, wasp3.y);
+// if (acornBullet2.fired && wasp3.active && d57 < unit(75)) {
+// // Stop the bullet
+// acornBullet2.fired = false;
+// // Kill the enemy
+// wasp3.active = false;
+// score ++;
+// }
+// let d58 = dist(acornBullet2.x, acornBullet2.y, wasp4.x, wasp4.y);
+// if (acornBullet2.fired && wasp4.active && d58 < unit(75)) {
+// // Stop the bullet
+// acornBullet2.fired = false;
+// // Kill the enemy
+// wasp4.active = false;
+// score ++;
+// }
+// let d59 = dist(acornBullet2.x, acornBullet2.y, wasp5.x, wasp5.y);
+// if (acornBullet2.fired && wasp5.active && d59 < unit(75)) {
+// // Stop the bullet
+// acornBullet2.fired = false;
+// // Kill the enemy
+// wasp5.active = false;
+// score ++;
+// }
+// let d60 = dist(acornBullet2.x, acornBullet2.y, wasp6.x, wasp6.y);
+// if (acornBullet2.fired && wasp6.active && d60 < unit(75)) {
+// // Stop the bullet
+// acornBullet2.fired = false;
+// // Kill the enemy
+// wasp6.active = false;
+// score ++;
+// }
+// let d61 = dist(acornBullet2.x, acornBullet2.y, wasp7.x, wasp7.y);
+// if (acornBullet2.fired && wasp7.active && d61 < unit(75)) {
+// // Stop the bullet
+// acornBullet2.fired = false;
+// // Kill the enemy
+// wasp7.active = false;
+// score ++;
+// }
+// let d62 = dist(acornBullet2.x, acornBullet2.y, wasp8.x, wasp8.y);
+// if (acornBullet2.fired && wasp8.active && d62 < unit(75)) {
+// // Stop the bullet
+// acornBullet2.fired = false;
+// // Kill the enemy
+// wasp8.active = false;
+// score ++;
+// }
 
 }
 
