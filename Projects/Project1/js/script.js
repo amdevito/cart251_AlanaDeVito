@@ -3,6 +3,9 @@ Alana DeVito
 Project 1:
 Tumbling through Madness: The Great White Squirrel Caper of 2020
 
+3 level / simulation game.
+
+
 **************************************************/
 //Set up objects for game play
 
@@ -657,8 +660,8 @@ randomBreadSpawn.min = unit(58);
 randomBreadSpawn.max = unit(77);
 
   //L3
-randomWaspSpawn.min = unit(380);
-randomWaspSpawn.max = unit(600);
+randomWaspSpawn.min = 0;
+randomWaspSpawn.max = unit(100);
 
 }
 
@@ -799,35 +802,35 @@ function setUpBread() {
 function setUpWasps(){
   wasp1.x = width;
   wasp1.y = random(randomWaspSpawn.min, randomWaspSpawn.max);
-  wasp1.vx = wasp1.speed;
+  wasp1.vx = wasp1.speed*3;
 
   wasp2.x = width;
   wasp2.y = random(randomWaspSpawn.min, randomWaspSpawn.max);
-  wasp2.vx = wasp2.speed;
+  wasp2.vx = wasp2.speed*3;
 
   wasp3.x = width;
   wasp3.y = random(randomWaspSpawn.min, randomWaspSpawn.max);
-  wasp3.vx = wasp3.speed;
+  wasp3.vx = wasp3.speed*3;
 
   wasp4.x = width;
   wasp4.y = random(randomWaspSpawn.min, randomWaspSpawn.max);
-  wasp4.vx = wasp4.speed;
+  wasp4.vx = wasp4.speed*2;
 
   wasp5.x = width;
   wasp5.y = random(randomWaspSpawn.min, randomWaspSpawn.max);
-  wasp5.vx = wasp5.speed;
+  wasp5.vx = wasp5.speed*2;
 
   wasp6.x = width;
   wasp6.y = random(randomWaspSpawn.min, randomWaspSpawn.max);
-  wasp6.vx = wasp6.speed;
+  wasp6.vx = wasp6.speed*3;
 
   wasp7.x = width;
   wasp7.y = random(randomWaspSpawn.min, randomWaspSpawn.max);
-  wasp7.vx = wasp7.speed;
+  wasp7.vx = wasp7.speed*3;
 
   wasp8.x = width;
   wasp8.y = random(randomWaspSpawn.min, randomWaspSpawn.max);
-  wasp8.vx = wasp8.speed;
+  wasp8.vx = wasp8.speed*3;
 
 }
 
@@ -1238,8 +1241,8 @@ function move3() { /// ALL LEVEL THREE automated movement - wacky wasps
   wasp1.vy = map(noise(wasp1.y), 0, 1, 0, 15);
 
   if (wasp1.x < 0) {
-    wasp1.x = 1400;
-    wasp1.y = random(randomDogSpawn.min, randomDogSpawn.max);
+    wasp1.x = width;
+    wasp1.y = random(randomWaspSpawn.min, randomWaspSpawn.max);
   }
 
 //
@@ -1249,8 +1252,8 @@ function move3() { /// ALL LEVEL THREE automated movement - wacky wasps
 
 
   if (wasp2.x < 0) {
-    wasp2.x = 1400;
-    wasp2.y = random(randomDogSpawn.min, randomDogSpawn.max);
+    wasp2.x = width;
+    wasp2.y = random(randomWaspSpawn.min, randomWaspSpawn.max);
   }
 
 //
@@ -1260,8 +1263,8 @@ function move3() { /// ALL LEVEL THREE automated movement - wacky wasps
 
 
   if (wasp3.x < 0) {
-    wasp3.x = 1400;
-    wasp3.y = random(randomDogSpawn.min, randomDogSpawn.max);
+    wasp3.x = width;
+    wasp3.y = random(randomWaspSpawn.min, randomWaspSpawn.max);
   }
 
 //
@@ -1271,8 +1274,8 @@ function move3() { /// ALL LEVEL THREE automated movement - wacky wasps
 
 
   if (wasp4.x < 0) {
-    wasp4.x = 1400;
-    wasp4.y = random(randomDogSpawn.min, randomDogSpawn.max);
+    wasp4.x = width;
+    wasp4.y = random(randomWaspSpawn.min, randomWaspSpawn.max);
   }
 
 //
@@ -1282,8 +1285,8 @@ function move3() { /// ALL LEVEL THREE automated movement - wacky wasps
 
 
   if (wasp5.x < 0) {
-    wasp5.x = 1400;
-    wasp5.y = random(randomDogSpawn.min, randomDogSpawn.max);
+    wasp5.x = width;
+    wasp5.y = random(randomWaspSpawn.min, randomWaspSpawn.max);
   }
 
 //
@@ -1293,8 +1296,8 @@ function move3() { /// ALL LEVEL THREE automated movement - wacky wasps
 
 
   if (wasp6.x < 0) {
-    wasp6.x = 1400;
-    wasp6.y = random(randomDogSpawn.min, randomDogSpawn.max);
+    wasp6.x = width;
+    wasp6.y = random(randomWaspSpawn.min, randomWaspSpawn.max);
   }
 
 //
@@ -1304,8 +1307,8 @@ function move3() { /// ALL LEVEL THREE automated movement - wacky wasps
 
 
   if (wasp7.x < 0) {
-    wasp7.x = 1400;
-    wasp7.y = random(randomDogSpawn.min, randomDogSpawn.max);
+    wasp7.x = width;
+    wasp7.y = random(randomWaspSpawn.min, randomWaspSpawn.max);
   }
 
 //
@@ -1315,9 +1318,16 @@ function move3() { /// ALL LEVEL THREE automated movement - wacky wasps
 
 
   if (wasp8.x < 0) {
-    wasp8.x = 1400;
-    wasp8.y = random(randomDogSpawn.min, randomDogSpawn.max);
+    wasp8.x = width;
+    wasp8.y = random(randomWaspSpawn.min, randomWaspSpawn.max);
   }
+
+  // LEVEL three: acornBullet shoot
+  acornBullet1.x += acornBullet1.vx;
+  acornBullet1.y += acornBullet1.vy;
+
+  acornBullet2.x += acornBullet2.vx;
+  acornBullet2.y += acornBullet2.vy;
 
 }
 
@@ -1830,7 +1840,7 @@ function display1() { // dogs, squirrel, acorns
 
 }
 
-function display2() { // squirrel, bread, antimaskers
+function display2() { // squirrel, bread, antimaskers, acornbullets
   push();
   imageMode(CORNERS);
   background(bg2);
@@ -1928,54 +1938,66 @@ function display3() { //display white squirrel, black squirrel, wasps, acorn bul
   //display squirrel
     push();
     imageMode(CENTER);
-    image(squirrel.image, squirrel.x, squirrel.y, unit(15), unit(50));
+    image(squirrel.image, squirrel.x, squirrel.y, unit(80),unit(30));
     pop();
 
   //display black squirrel (squirrel2)
     push();
     imageMode(CENTER);
-    image(squirrel2.image, squirrel2.x, squirrel2.y, unit(15), unit(50));
+    image(squirrel2.image, squirrel2.x, squirrel2.y, unit(100), unit(50));
     pop();
 
   //display wasps
     push();
     imageMode(CENTER);
-    image(wasp1.image, wasp1.x, wasp1.y, unit(100), unit(86));
+    image(wasp1.image, wasp1.x, wasp1.y, unit(80), unit(100));
     pop();
 
     push();
     imageMode(CENTER);
-    image(wasp2.image, wasp2.x, wasp2.y, unit(100), unit(86));
+    image(wasp2.image, wasp2.x, wasp2.y, unit(80), unit(100));
     pop();
 
     push();
     imageMode(CENTER);
-    image(wasp3.image, wasp3.x, wasp3.y, unit(100), unit(86));
+    image(wasp3.image, wasp3.x, wasp3.y, unit(80), unit(100));
     pop();
 
     push();
     imageMode(CENTER);
-    image(wasp4.image, wasp4.x, wasp4.y, unit(100), unit(86));
+    image(wasp4.image, wasp4.x, wasp4.y, unit(80), unit(100));
     pop();
 
     push();
     imageMode(CENTER);
-    image(wasp5.image, wasp5.x, wasp5.y, unit(100), unit(86));
+    image(wasp5.image, wasp5.x, wasp5.y, unit(80), unit(100));
     pop();
 
     push();
     imageMode(CENTER);
-    image(wasp6.image, wasp6.x, wasp6.y, unit(100), unit(86));
+    image(wasp6.image, wasp6.x, wasp6.y, unit(80), unit(100));
     pop();
 
     push();
     imageMode(CENTER);
-    image(wasp7.image, wasp7.x, wasp7.y, unit(100), unit(86));
+    image(wasp7.image, wasp7.x, wasp7.y, unit(80), unit(100));
     pop();
 
     push();
     imageMode(CENTER);
-    image(wasp8.image, wasp8.x, wasp8.y, unit(100), unit(86));
+    image(wasp8.image, wasp8.x, wasp8.y, unit(80), unit(100));
+    pop();
+
+    push();
+    if (acornBullet1.fired) {
+      imageMode(CENTER);
+      image(acornBullet1.image, acornBullet1.x, acornBullet1.y, unit(10), unit(12));
+
+    }
+    if (acornBullet2.fired) {
+      imageMode(CENTER);
+      image(acornBullet2.image, acornBullet2.x, acornBullet2.y, unit(6), unit(10));
+    }
     pop();
 }
 
@@ -2030,7 +2052,7 @@ function mousePressed() {
     loop();
     state = `simulation3`;
   } else if (state === `lose`) {
-    state = `title`; // restart game after losing
+    location.reload(); // restart game after losing
     loop();
   }
 }
