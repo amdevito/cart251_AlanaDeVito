@@ -44,7 +44,7 @@ let instruction1 = {
 };
 
 let instruction2 = {
-  string: `Level TWO: \n Let the Madness Begin... \n\n HOW TO PLAY: Use the arrow keys to control the white squirrel. \n Collect 6 loaves of homemade sourdough bread to win. \n Be careful! \n The Anti-Mask Protestors have taken over the park and are spreading the Virus! \n Studies haven't shown that white squirrels are immune yet...\n When you're ready... \n CLICK TO START!`,
+  string: `Level TWO: \n Let the Madness Begin... \n\n HOW TO PLAY: Use the arrow keys to control the white squirrel, \n and press SHIFT to shoot acorns! \n Collect 6 loaves of homemade sourdough bread to win. \n Be careful! \n The Anti-Mask Protestors have taken over the park and are spreading the Virus! \n Studies haven't shown that white squirrels are immune yet...\n When you're ready... \n CLICK TO START!`,
   x: 0,
   y: 0,
   vx: 0,
@@ -53,7 +53,7 @@ let instruction2 = {
 };
 
 let instruction3 = {
-  string: `Level THREE: \n Take Back the Park! \n\n HOW TO PLAY: \n Team Up with black squirrel and fight off the growing swarms of WASPS! \n Use the arrow keys to control the white squirrel and hit SHIFT to shoot acorns. \n Use AWSD keys to control the black squirrel and 'Q' to shoot. \n Careful, you only have 3 acorns to shoot each! \n Fight off the WASPS for 90 seconds and they just might retreat!`,
+  string: `Level THREE: \n Take Back the Park! \n\n HOW TO PLAY: \n Team Up with black squirrel and fight off the growing swarms of WASPS! \n Use the arrow keys to control the white squirrel and hit SHIFT to shoot acorns. \n Use AWSD keys to control the black squirrel and 'Q' to shoot. \n Hit 6 wasps and they just might retreat! \n When you're ready... \n CLICK TO START!`,
   x: 0,
   y: 0,
   vx: 0,
@@ -162,7 +162,7 @@ let acorn1 = {
   y: 775,
   vx: 0,
   vy: 0,
-  speed: 3,
+  speed: 5,
   image: 0,
   ax: 0,
   ay: 0
@@ -182,7 +182,7 @@ let acorn3 = {
   y: 775,
   vx: 0,
   vy: 0,
-  speed: 3,
+  speed: 5,
   image: 0,
   ax: 0,
   ay: 0
@@ -202,7 +202,7 @@ let acorn5 = {
   y: 775,
   vx: 0,
   vy: 0,
-  speed: 3,
+  speed: 5,
   image: 0,
   ax: 0,
   ay: 0
@@ -297,7 +297,7 @@ let bread1 = {
   ay: 0
 }
 let bread2 = {
-  x: -650,
+  x: -750,
   y: 775,
   vx: 0,
   vy: 0,
@@ -307,7 +307,7 @@ let bread2 = {
   ay: 0
 }
 let bread3 = {
-  x: -750,
+  x: -1050,
   y: 775,
   vx: 0,
   vy: 0,
@@ -317,7 +317,7 @@ let bread3 = {
   ay: 0
 }
 let bread4 = {
-  x: -850,
+  x: -1350,
   y: 775,
   vx: 0,
   vy: 0,
@@ -327,7 +327,7 @@ let bread4 = {
   ay: 0
 }
 let bread5 = {
-  x: -950,
+  x: -1650,
   y: 775,
   vx: 0,
   vy: 0,
@@ -337,7 +337,7 @@ let bread5 = {
   ay: 0
 }
 let bread6 = {
-  x: -1050,
+  x: -1950,
   y: 775,
   vx: 0,
   vy: 0,
@@ -466,7 +466,7 @@ let covid3 = {
 ///setting wasp character objects
 let wasp1 = {
   x: 1400,
-  y: 500,
+  y: 0,
   vx: 0,
   vy: 0,
   speed: -5,
@@ -649,19 +649,19 @@ function setUpSpawn() {
 randomDogSpawn.min = unit(380);
 randomDogSpawn.max = unit(600);
 
-randomAcornSpawn.min = unit(58);
-randomAcornSpawn.max = unit(77);
+randomAcornSpawn.min = unit(480);
+randomAcornSpawn.max = unit(600);
 
   //L2
 randomAntiMaskerSpawn.min = unit(380);
 randomAntiMaskerSpawn.max = unit(600);
 
-randomBreadSpawn.min = unit(58);
-randomBreadSpawn.max = unit(77);
+randomBreadSpawn.min = unit(480);
+randomBreadSpawn.max = unit(600);
 
   //L3
 randomWaspSpawn.min = 0;
-randomWaspSpawn.max = unit(100);
+randomWaspSpawn.max = unit(50);
 
 }
 
@@ -694,23 +694,23 @@ function setUpAcorns() {
   acorn1.y = random(randomAcornSpawn.min, randomAcornSpawn.max);
   acorn1.vx = acorn1.speed;
 
-  acorn2.x = -550;
+  acorn2.x = -600;
   acorn2.y = random(randomAcornSpawn.min, randomAcornSpawn.max);
   acorn2.vx = acorn2.speed;
 
-  acorn3.x = -650;
+  acorn3.x = -750;
   acorn3.y = random(randomAcornSpawn.min, randomAcornSpawn.max);
   acorn3.vx = acorn3.speed;
 
-  acorn4.x = -750;
+  acorn4.x = -900;
   acorn4.y = random(randomAcornSpawn.min, randomAcornSpawn.max);
   acorn4.vx = acorn4.speed;
 
-  acorn5.x = -850;
+  acorn5.x = -1050;
   acorn5.y = random(randomAcornSpawn.min, randomAcornSpawn.max);
   acorn5.vx = acorn5.speed;
 
-  acorn6.x = -950;
+  acorn6.x = -1200;
   acorn6.y = random(randomAcornSpawn.min, randomAcornSpawn.max);
   acorn6.vx = acorn6.speed;
 
@@ -865,7 +865,7 @@ function enterStart() { // set up click to enter screen
 }
 
 function titleStart() { // set up title scrolling screen
-
+push();
   checkTitleOffScreen();
   isTitleOffScreen();
   textSize(title.size);
@@ -880,7 +880,7 @@ function titleStart() { // set up title scrolling screen
   title.size = title.size - unit(0.17);
 
   text(title.string, title.x, title.y);
-
+pop();
 
 }
 
@@ -1322,14 +1322,13 @@ function move3() { /// ALL LEVEL THREE automated movement - wacky wasps
     wasp8.y = random(randomWaspSpawn.min, randomWaspSpawn.max);
   }
 
-  // LEVEL three: acornBullet shoot
+// LEVEL three: acornBullet shoot
   acornBullet1.x += acornBullet1.vx;
   acornBullet1.y += acornBullet1.vy;
 
   acornBullet2.x += acornBullet2.vx;
   acornBullet2.y += acornBullet2.vy;
-
-}
+  }
 
 
 ///
@@ -1698,8 +1697,6 @@ if (d264 < unit(75)) {
 
 
 }
-
-
 function keepScore1() {
   if (score >= 1){
     fill(94, 69, 35);
@@ -1727,7 +1724,6 @@ function keepScore1() {
 
   }
 }
-
 function keepScore2() {
   if (score >= 1){
     fill(94, 69, 35);
@@ -1749,7 +1745,6 @@ function keepScore2() {
     state = 'win2';
   }
 }
-
 function keepScore3() {
   if (score >= 1){
     fill(94, 69, 35);
@@ -2007,23 +2002,23 @@ function win1() {//white squirrel with acorns
   background(0);
   noLoop();
   imageMode(CENTER);
-  image(squirrelWin.image, squirrelWin.x, squirrelWin.y, width/ 3, height/2);
+  image(squirrelWin.image, squirrelWin.x, squirrelWin.y, width/2, height/2);
 }
 
 function win2() { ///white squirrel with bread
   background(0);
   noLoop();
   imageMode(CENTER);
-  image(squirrelWin2.image, squirrelWin2.x, squirrelWin2.y, width/ 3, height/2);
+  image(squirrelWin2.image, squirrelWin2.x, squirrelWin2.y, width/2, height/2);
 }
 function win3() { //white and black squirrel win
   background(0);
   noLoop();
   imageMode(CENTER);
-  image(squirrelBothWin.image, squirrelBothWin.x, squirrelBothWin.y, width/ 3, height/2);
+  image(squirrelBothWin.image, squirrelBothWin.x, squirrelBothWin.y, width/2, height/2);
 }
 
-function lose() { ///
+function lose() { /// dead squirrel background
   push();
   imageMode(CORNERS);
   background(bgGameOver);
@@ -2201,7 +2196,6 @@ function draw() {
   } else if (state === `win3`) {
       win3();
   } else if (state === `lose`) {
-    console.log('LOSE')
     lose();
   }
 
