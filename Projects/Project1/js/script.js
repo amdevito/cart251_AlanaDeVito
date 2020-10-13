@@ -8,6 +8,9 @@ Tumbling through Madness: The Great White Squirrel Caper of 2020
 
 //OPENING:
 //enter Screen//After clicking to continue music should start with the title screen.//make this screen early internet style? photo?// or just in american typewriter?
+
+'use strict';
+
 let enterScreen = {
   string: `Error 404: Gender Not Found. \n Please click to Continue.`,
   x: 0,
@@ -29,7 +32,7 @@ let title = {
 
 //instructions//
 let instruction1 = {
-  string: `Level ONE: \n It all Started like any Other Day... \n HOW TO PLAY: Use the arrow keys to control the white squirrel. \n Collect 6 acorns and save them in your home tree. \n Be careful! The dogs are out to play today! \n When you're ready... \n CLICK TO START THE GAME!`,
+  string: `Level ONE: \n It all Started like any Other Day... \n\n HOW TO PLAY: Use the arrow keys to control the white squirrel. \n Collect 6 acorns to win. \n Be careful! The dogs are out to play today! \n When you're ready... \n CLICK TO START THE GAME!`,
   x: 0,
   y: 0,
   vx: 0,
@@ -38,7 +41,7 @@ let instruction1 = {
 };
 
 let instruction2 = {
-  string: `Level TWO: \n Let the Madness Begin... \n HOW TO PLAY: Use the arrow keys to control the white squirrel. \n Collect 6 loaves of homemade sourdough bread and save them in your home tree. \n Be careful! \n The Anti-Mask Protestors have taken over the park and are spreading the Virus! \n Studies haven't shown that white squirrels are immune yet...\n When you're ready... \n CLICK TO START!`,
+  string: `Level TWO: \n Let the Madness Begin... \n\n HOW TO PLAY: Use the arrow keys to control the white squirrel. \n Collect 6 loaves of homemade sourdough bread to win. \n Be careful! \n The Anti-Mask Protestors have taken over the park and are spreading the Virus! \n Studies haven't shown that white squirrels are immune yet...\n When you're ready... \n CLICK TO START!`,
   x: 0,
   y: 0,
   vx: 0,
@@ -47,7 +50,7 @@ let instruction2 = {
 };
 
 let instruction3 = {
-  string: `Level THREE: \n Take Back the Park! \n HOW TO PLAY: \n Team Up with black squirrel and fight off the growing swarms of WASPS! \n Use the arrow keys to control the white squirrel and hit SHIFT to shoot acorns. \n Use AWSD keys to control the black squirrel and 'Q' to shoot. \n Careful, you only have 3 acorns to shoot each! \n Fight off the WASPS for 90 seconds and they just might retreat!`,
+  string: `Level THREE: \n Take Back the Park! \n\n HOW TO PLAY: \n Team Up with black squirrel and fight off the growing swarms of WASPS! \n Use the arrow keys to control the white squirrel and hit SHIFT to shoot acorns. \n Use AWSD keys to control the black squirrel and 'Q' to shoot. \n Careful, you only have 3 acorns to shoot each! \n Fight off the WASPS for 90 seconds and they just might retreat!`,
   x: 0,
   y: 0,
   vx: 0,
@@ -351,7 +354,7 @@ let randomBreadSpawn = {
 ///setting anti-masker character objects
 let antiMasker1 = {
   x: 1400,
-  y: 500,
+  y: 0,
   vx: 0,
   vy: 0,
   speed: -5,
@@ -404,7 +407,7 @@ let antiMasker6 = {
   y: 0,
   vx: 0,
   vy: 0,
-  speed: -3,
+  speed: -4,
   image: 0,
   ax: 0,
   ay: 0
@@ -620,7 +623,7 @@ function setUpInstruction3() {
 
 function setUpScoreDots() {
   scoreDots.x = unit(30);
-  scoreDots.y = unit(200);
+  scoreDots.y = unit(250);
   scoreDots.radius = unit(10);
   scoreDots.offset1 = unit(10.75);
   scoreDots.offset2 = unit(21);
@@ -648,7 +651,7 @@ randomAcornSpawn.max = unit(77);
 
   //L2
 randomAntiMaskerSpawn.min = unit(380);
-randomAntiMaskerSpawn.max = unit(370);
+randomAntiMaskerSpawn.max = unit(670);
 
 randomBreadSpawn.min = unit(58);
 randomBreadSpawn.max = unit(77);
@@ -741,22 +744,22 @@ function setUpAntiMaskers() {
 function setUpCovid() {
     covid1.x = 0;
     covid1.y = 0;
-    covid1.size = unit(5);
-    covid1.speed = unit(2);
+    covid1.size = unit(7);
+    covid1.speed = unit(7);
     covid1.vx = unit(3);
     covid1.vy = unit(10);
 
     covid2.x = 0,
     covid2.y = 0,
-    covid2.size = unit(5);
-    covid2.speed = unit(2);
+    covid2.size = unit(7);
+    covid2.speed = unit(7);
     covid2.vx = unit(3);
     covid2.vy = unit(10);
 
     covid3.x = 0;
     covid3.y = 0;
-    covid3.size = unit(5);
-    covid3.speed = unit(2);
+    covid3.size = unit(7);
+    covid3.speed = unit(7);
     covid3.vx = unit(3);
     covid3.vy = unit(10);
 
@@ -964,10 +967,10 @@ function simulation1() {
   keepScore1();
 }
 function simulation2() {
-  move2();
   checkOverlap2();
   display2();
   keepScore2();
+  move2();
 
 }
 function simulation3() {
@@ -1075,7 +1078,7 @@ function move2() { ///ALL LEVEL TWO automated movement - antimaskers, covid firi
   antiMasker1.y += antiMasker1.vy;
 
   if (antiMasker1.x < 0) {
-    antiMasker1.x = 1400;
+    antiMasker1.x = width;
     antiMasker1.y = random(randomAntiMaskerSpawn.min, randomAntiMaskerSpawn.max);
   }
 
@@ -1084,7 +1087,7 @@ function move2() { ///ALL LEVEL TWO automated movement - antimaskers, covid firi
   antiMasker2.y += antiMasker2.vy;
 
   if (antiMasker2.x < 0) {
-    antiMasker2.x = 1400;
+    antiMasker2.x = width;
     antiMasker2.y = random(randomAntiMaskerSpawn.min, randomAntiMaskerSpawn.max);
   }
 
@@ -1093,7 +1096,7 @@ function move2() { ///ALL LEVEL TWO automated movement - antimaskers, covid firi
   antiMasker3.y += antiMasker3.vy;
 
   if (antiMasker3.x < 0) {
-    antiMasker3.x = 1400;
+    antiMasker3.x = width;
     antiMasker3.y = random(randomAntiMaskerSpawn.min, randomAntiMaskerSpawn.max);
   }
 
@@ -1102,7 +1105,7 @@ function move2() { ///ALL LEVEL TWO automated movement - antimaskers, covid firi
   antiMasker4.y += antiMasker4.vy;
 
   if (antiMasker4.x < 0) {
-    antiMasker4.x = 1400;
+    antiMasker4.x = width;
     antiMasker4.y = random(randomAntiMaskerSpawn.min, randomAntiMaskerSpawn.max);
   }
 
@@ -1111,7 +1114,7 @@ function move2() { ///ALL LEVEL TWO automated movement - antimaskers, covid firi
   antiMasker5.y += antiMasker5.vy;
 
   if (antiMasker5.x < 0) {
-    antiMasker5.x = 1400;
+    antiMasker5.x = width;
     antiMasker5.y = random(randomAntiMaskerSpawn.min, randomAntiMaskerSpawn.max);
   }
 
@@ -1120,7 +1123,7 @@ function move2() { ///ALL LEVEL TWO automated movement - antimaskers, covid firi
   antiMasker6.y += antiMasker6.vy;
 
   if (antiMasker6.x < 0) {
-    antiMasker6.x = 1400;
+    antiMasker6.x = width;
     antiMasker6.y = random(randomAntiMaskerSpawn.min, randomAntiMaskerSpawn.max);
   }
 
@@ -1161,25 +1164,28 @@ function move2() { ///ALL LEVEL TWO automated movement - antimaskers, covid firi
     bread6.y = random(randomBreadSpawn.min, randomBreadSpawn.max);
 }
 
-/// LEVEL TWO: COVID MOVEMENT - experimental
-if (antiMasker1.x = width - 50) {
+if (antiMasker1.x <= width - 50 && !covid1.fired) {
   covid1.fired = true;
   covid1.x = antiMasker1.x;
   covid1.y = antiMasker1.y;
   covid1.vx = covid1.speed;
 }
-if (antiMasker2.x = width - 50) {
+
+if (antiMasker2.x <= width - 50 && !covid2.fired) {
   covid2.fired = true;
   covid2.x = antiMasker2.x;
   covid2.y = antiMasker2.y;
   covid2.vx = covid2.speed;
 }
-if (antiMasker3.x = width - 50) {
+
+if (antiMasker3.x <= width - 50 && !covid3.fired) {
   covid3.fired = true;
   covid3.x = antiMasker3.x;
   covid3.y = antiMasker3.y;
   covid3.vx = covid3.speed;
 }
+
+
 
 ///if covid fires, draw covid
 if (covid1.fired) {
@@ -1401,7 +1407,7 @@ function checkOverlap2() { //check if squirrel collects bread, check if covid hi
   let d26 = dist(squirrel.x, squirrel.y, bread6.x, bread6.y);
   if (d26 < 50) {
     score ++;
-    bread6.x = -60000;
+    bread6.x = 0;
   }
 }
 
@@ -1775,7 +1781,10 @@ function display1() { // dogs, squirrel, acorns
 }
 
 function display2() { // squirrel, bread, antimaskers
+  push();
+  imageMode(CORNERS);
   background(bg2);
+  pop();
 
 //display squirrel
   push();
