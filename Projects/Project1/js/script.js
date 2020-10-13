@@ -619,13 +619,13 @@ function setUpInstruction3() {
 }
 
 function setUpScoreDots() {
-  scoreDots.x = unit(45);
-  scoreDots.y = unit(34);
-  scoreDots.radius = unit(5);
-  scoreDots.offset1 = unit(6);
-  scoreDots.offset2 = unit(11);
-  scoreDots.offset3 = unit(17);
-  scoreDots.offset4 = unit(22);
+  scoreDots.x = unit(30);
+  scoreDots.y = unit(200);
+  scoreDots.radius = unit(10);
+  scoreDots.offset1 = unit(10.75);
+  scoreDots.offset2 = unit(21);
+  scoreDots.offset3 = unit(31);
+  scoreDots.offset4 = unit(41);
 }
 
 function setUpSquirrelWin() {
@@ -959,8 +959,8 @@ function unit(u) {
 function simulation1() {
   move1();
   checkOverlap1();
-  keepScore1();
   display1();
+  keepScore1();
 }
 function simulation2() {
   move2();
@@ -1634,21 +1634,27 @@ function keepScore1() {
   if (score >= 1){
     fill(94, 69, 35);
     circle(scoreDots.x,scoreDots.y,scoreDots.radius);
+
   }
   if (score >= 2){
     circle(scoreDots.x + scoreDots.offset1,scoreDots.y,scoreDots.radius);
+
   }
   if (score >= 3){
     circle(scoreDots.x + scoreDots.offset2,scoreDots.y,scoreDots.radius);
+
   }
   if (score >= 4){
     circle(scoreDots.x + scoreDots.offset3,scoreDots.y,scoreDots.radius);
+
   }
   if (score >= 5){
     circle(scoreDots.x + scoreDots.offset4,scoreDots.y,scoreDots.radius);
+
   }
   if (score >= 6){
     win1();
+
   }
 }
 
@@ -1912,12 +1918,11 @@ function display3() { //display white squirrel, black squirrel, wasps, acorn bul
 
 
 function win1() {
-  push();
-  background(bg);
+
+  background(0);
   noLoop();
   imageMode(CENTER);
-  image(squirrelWin.image, squirrelWin.x, squirrelWin.y, unit(30), unit(20));
-  pop();
+  image(squirrelWin.image, squirrelWin.x, squirrelWin.y, width/ 3, height/2);
 }
 
 function win2() { ///**change to win2 - white squirrel with bread
