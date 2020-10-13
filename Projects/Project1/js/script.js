@@ -15,7 +15,6 @@ let enterScreen = {
   vx: 0,
   vy: 0,
   size: 0,
-  active: true
 };
 
 //title//
@@ -30,7 +29,7 @@ let title = {
 
 //instructions//
 let instruction1 = {
-  string: `Level ONE: \n It all Started like any Other Day... \n HOW TO PLAY: Use the arrow keys to control the white squirrel. \n Collect 6 acorns and save them in your home tree. \n Be careful! The dogs are out to play today!`,
+  string: `Level ONE: \n It all Started like any Other Day... \n HOW TO PLAY: Use the arrow keys to control the white squirrel. \n Collect 6 acorns and save them in your home tree. \n Be careful! The dogs are out to play today! \n When you're ready... \n CLICK TO START THE GAME!`,
   x: 0,
   y: 0,
   vx: 0,
@@ -629,24 +628,34 @@ function setUpScoreDots() {
   scoreDots.offset4 = unit(22);
 }
 
+function setUpSquirrelWin() {
+  squirrelWin.x = width / 2;
+  squirrelWin.y = height / 2;
+  squirrelWin2.x = width/ 2;
+  squirrelWin2.y = height / 2;
+  squirrelBothWin.x = width / 2;
+  squirrelBothWin.y = height / 2;
+}
+
+
 function setUpSpawn() {
   //L1
-randomDogSpawn.min = unit(58);
-randomDogSpawn.max = unit(77);
+randomDogSpawn.min = unit(380);
+randomDogSpawn.max = unit(470);
 
 randomAcornSpawn.min = unit(58);
 randomAcornSpawn.max = unit(77);
 
   //L2
-randomAntiMaskerSpawn.min = unit(58);
-randomAntiMaskerSpawn.max = unit(77);
+randomAntiMaskerSpawn.min = unit(380);
+randomAntiMaskerSpawn.max = unit(370);
 
 randomBreadSpawn.min = unit(58);
 randomBreadSpawn.max = unit(77);
 
   //L3
-randomWaspSpawn.min = unit(58);
-randomWaspSpawn.max = unit(77);
+randomWaspSpawn.min = unit(380);
+randomWaspSpawn.max = unit(370);
 
 }
 
@@ -850,8 +859,6 @@ function enterStart() { //****need to update this to current game play
 
 function titleStart() { //****need to update this to current game play
 
-console.log(title);
-
   checkTitleOffScreen();
   isTitleOffScreen();
   textSize(title.size);
@@ -954,24 +961,18 @@ function simulation1() {
   checkOverlap1();
   keepScore1();
   display1();
-  win1();
-  lose();
 }
 function simulation2() {
   move2();
   checkOverlap2();
   keepScore2();
   display2();
-  win2();
-  lose();
 }
 function simulation3() {
   move3();
   checkOverlap3();
   keepScore3();
   display3();
-  win3();
-  lose();
 }
 
 ///
@@ -1702,7 +1703,7 @@ function display1() { // dogs, squirrel, acorns
 //display squirrel
   push();
   imageMode(CENTER);
-  image(squirrel.image, squirrel.x, squirrel.y, unit(15),unit(50));
+  image(squirrel.image, squirrel.x, squirrel.y, unit(80),unit(30));
   pop();
 
 //display acorns
@@ -1740,12 +1741,12 @@ function display1() { // dogs, squirrel, acorns
 
   push();
   imageMode(CENTER);
-  image(dog1.image, dog1.x, dog1.y, unit(175), unit(143));
+  image(dog1.image, dog1.x, dog1.y, unit(100), unit(86));
   pop();
 
   push();
   imageMode(CENTER);
-  image(dog2.image, dog2.x, dog2.y, unit(200), unit(174));
+  image(dog2.image, dog2.x, dog2.y, unit(100), unit(86));
   pop();
 
   push();
@@ -1755,7 +1756,7 @@ function display1() { // dogs, squirrel, acorns
 
   push();
   imageMode(CENTER);
-  image(dog4.image, dog4.x, dog4.y, unit(135), unit(138));
+  image(dog4.image, dog4.x, dog4.y, unit(100), unit(86));
   pop();
 
   push();
@@ -1915,7 +1916,7 @@ function win1() {
   background(bg);
   noLoop();
   imageMode(CENTER);
-  image(squirrelWin.image, squirrelWin.x, squirrelWin.y, unit(300), unit(254));
+  image(squirrelWin.image, squirrelWin.x, squirrelWin.y, unit(30), unit(20));
   pop();
 }
 
@@ -1966,6 +1967,8 @@ function mousePressed() {
     state = `instruction1Start`; // restart game after losing
   }
 }
+
+
 
 //function to automatically run instruction 1
 function checkTitleOffScreen() {
@@ -2060,6 +2063,7 @@ function setup() {
   setUpInstruction2();
   setUpInstruction3();
   setUpAcornBullets();
+  setUpSquirrelWin();
   setUpScoreDots();
   setUpSpawn();
   setUpDogs();
@@ -2076,6 +2080,7 @@ function setup() {
 
 function draw() {
   enterStart();
+  setUpSpawn();
   // mousePressed();
   // titleStart();
   // unit();
