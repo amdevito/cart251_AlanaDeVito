@@ -1,10 +1,19 @@
 /**************************************************
 Alana DeVito
+CART 253 -
 Project 1:
 Tumbling through Madness: The Great White Squirrel Caper of 2020
 
-3 level / simulation game.
+3 level Simulation GAME.
 
+You are the white squirrel, just enjoying a regular day in the park, running away from dogs and collecting acorns. Control the squirrel with the arrow keys and avoid touching dogs. Your acorn counter will be on the left hand of the screen in brown with a neon green stroke border (for the entire game). Collect 6 acorns and win the level.
+
+Level 2, things get crazy! Collect loaves of homemade sourdough bread while avoiding the
+Anti-Mask protestors who have taken over your beloved park! Careful! They are spreading covid around the park (don't touch the red Covid dots!). You can throw acorns at the Anti-Maskers to fend them off (using either SHIFT key), but the acorns will not deter the COVID! Collect 6 loaves of bread to move on to level 3.
+
+Level 3, take back the park! Team up with the Black Squirrel and fight off the warms of WASPS  invading the park. You can play with two hands, controlling each squirrel or play in 2 player game mode (just ask a friend to play with you!). Black squirrel is controlled using AWSD keys and Q to shoot acorns. Shoot 6 WASPS and WIN THE GAME!
+
+HAVE FUN AND TAKE BACK THE PARK!
 
 **************************************************/
 //Set up objects for game play
@@ -802,15 +811,15 @@ function setUpBread() {
 function setUpWasps(){
   wasp1.x = width;
   wasp1.y = random(randomWaspSpawn.min, randomWaspSpawn.max);
-  wasp1.vx = wasp1.speed*3;
+  wasp1.vx = wasp1.speed;
 
   wasp2.x = width;
   wasp2.y = random(randomWaspSpawn.min, randomWaspSpawn.max);
-  wasp2.vx = wasp2.speed*3;
+  wasp2.vx = wasp2.speed;
 
   wasp3.x = width;
   wasp3.y = random(randomWaspSpawn.min, randomWaspSpawn.max);
-  wasp3.vx = wasp3.speed*3;
+  wasp3.vx = wasp3.speed*2;
 
   wasp4.x = width;
   wasp4.y = random(randomWaspSpawn.min, randomWaspSpawn.max);
@@ -1337,23 +1346,23 @@ function checkOverlap1() { //check if dogs hit squirrel or squirrel collects aco
 //check if dog catches squirrel - game over -
 
   let d1 = dist(squirrel.x, squirrel.y, dog1.x, dog1.y);
-  if (d1 < unit(75)) {
+  if (d1 < unit(65)) {
     state = `lose`;
   }
   let d2 = dist(squirrel.x, squirrel.y, dog2.x, dog2.y);
-  if (d2 < unit(75)) {
+  if (d2 < unit(65)) {
     state = `lose`;
   }
   let d3 = dist(squirrel.x, squirrel.y, dog3.x, dog3.y);
-  if (d3 < unit(75)) {
+  if (d3 < unit(65)) {
     state = `lose`;
   }
   let d4 = dist(squirrel.x, squirrel.y, dog4.x, dog4.y);
-  if (d4 < unit(75)) {
+  if (d4 < unit(65)) {
     state = `lose`;
   }
   let d5 = dist(squirrel.x, squirrel.y, dog5.x, dog5.y);
-  if (d5 < unit(75)) {
+  if (d5 < unit(65)) {
     state = `lose`;
   }
 
@@ -2169,6 +2178,16 @@ function setup() {
 function draw() {
   enterStart();
   setUpSpawn();
+
+
+  //constrain squirrel 1 and 2 movement inside canvas
+
+  squirrel.x = constrain(squirrel.x, 0, width);
+  squirrel.y = constrain(squirrel.y, 0, height);
+
+
+  squirrel2.x = constrain(squirrel2.x, 0, width);
+  squirrel2.y = constrain(squirrel2.y, 0, height);
 
   //STATES
 
