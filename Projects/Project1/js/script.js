@@ -23,6 +23,8 @@ HAVE FUN AND TAKE BACK THE PARK!
 
 'use strict';
 
+let mainTheme;
+
 let enterScreen = {
   string: `Error 404: Gender Not Found. \n Please click to Continue.`,
   x: 0,
@@ -815,7 +817,7 @@ function setUpWasps(){
 
   wasp2.x = width;
   wasp2.y = random(randomWaspSpawn.min, randomWaspSpawn.max);
-  wasp2.vx = wasp2.speed;
+  wasp2.vx = wasp2.speed*2;
 
   wasp3.x = width;
   wasp3.y = random(randomWaspSpawn.min, randomWaspSpawn.max);
@@ -827,7 +829,7 @@ function setUpWasps(){
 
   wasp5.x = width;
   wasp5.y = random(randomWaspSpawn.min, randomWaspSpawn.max);
-  wasp5.vx = wasp5.speed*2;
+  wasp5.vx = wasp5.speed*3;
 
   wasp6.x = width;
   wasp6.y = random(randomWaspSpawn.min, randomWaspSpawn.max);
@@ -2040,6 +2042,8 @@ function mousePressed() {
   if (state === `enter`) {
     state = `title`;
     enterScreen.x = 10000;
+    mainTheme.play();
+    mainTheme.loop();
   } else if (state === `title`) {
     state = `instruction1Start`;
   } else if (state === `instruction1Start`) {
@@ -2088,6 +2092,8 @@ if (title.y < 0) {
 
 //preload images for background and characters
 function preload() {
+  //music preload
+  mainTheme = loadSound('assets/sounds/whiteSquirrel_mainTheme.wav');
   //backgrounds
   bg = loadImage('assets/images/park.jpg');//morning_gorlitzer
   bg2 = loadImage('assets/images/park1.jpg');//afternoon_mont royal
