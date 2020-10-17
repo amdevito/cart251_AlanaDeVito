@@ -11,7 +11,7 @@ Debugging
 let user = {
   x: 0,
   y: 0,
-  userSize: 100,
+  size: 100,
 };
 
 // Food objects
@@ -26,10 +26,10 @@ function setup() {
   createCanvas(600, 600);
 
   food1 = createFood(50, 300);
-  food2 = createFood(100, -300);
+  food2 = createFood(150, 300);
   food3 = createFood(250, 300);
   food4 = createFood(350, 300);
-  food5 = createFood(450);
+  food5 = createFood(450, 300);
   food6 = createFood(550, 300);
 }
 
@@ -55,6 +55,7 @@ function draw() {
   checkFood(food3);
   checkFood(food4);
   checkFood(food5);
+  checkFood(food6);
 
   // Display the user and foods
   displayUser();
@@ -75,7 +76,7 @@ function moveUser() {
 // Checks if the user overlaps the food object and eats it if so
 function checkFood(food) {
   if (!food.eaten) {
-    let d = dist(user.x, user.x, food.x, food.y);
+    let d = dist(user.x, user.y, food.x, food.y);
     if (d < user.size / 2 + food.size / 2) {
       food.eaten = true;
     }
@@ -84,6 +85,7 @@ function checkFood(food) {
 
 // Draw the user as a circle
 function displayUser() {
+  //console.log(user.x, user.y, user.size); //do this to find out which value isn't being pulled corretly.
   push();
   fill(255);
   ellipse(user.x, user.y, user.size);
@@ -93,11 +95,12 @@ function displayUser() {
 // Draw the food as a circle
 function displayFood(food) {
   // Check if the food is still available to be eaten
-  if (food.ate) {
+  if (!food.eaten) {
+    //console.log(food.x, food.y, food.size);
     // Display the food as its position and with its size
     push();
     fill(255, 100, 100);
-    ellipse(food.x, food.y);
+    ellipse(food.x, food.y, food.size);
     pop();
   }
 }
