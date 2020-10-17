@@ -59,14 +59,12 @@ function draw() {
   checkFood(food1);
   checkFood(food2);
   checkFood(food3);
-  checkFood(food4);
 
   // Display the user and foods
   displayUser();
   displayFood(food1);
   displayFood(food2);
   displayFood(food3);
-  displayFood(food4);
 
 }
 
@@ -79,7 +77,7 @@ function moveUser() {
 function checkFood(food)  {
   if (!food.eaten) {
     let d = dist(user.x, user.y, food.x, food.y);
-    if (d < user.size / 2 + food.size / 2) {
+    if (d < user.size / 2 + food1.size / 2) {
       food.eaten = true;
     }
   }
