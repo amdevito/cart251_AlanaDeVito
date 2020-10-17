@@ -1,24 +1,29 @@
 /**************************************************
 Template p5 project
 Alana DeVito
-intermediate functions2
+Intro to arrays
 **************************************************/
 "use strict";
 
+let school = []; ///empty array []
+let schoolSize = 100;
+
 // Our fish
-let fish1;
-let fish2;
-let fish3;
-let fish4;
+// let fish1;
+// let fish2;
+// let fish3;
+// let fish4;
 
 function setup() {
   createCanvas(600, 600);
 
   // Create four fish, positioned randomly
-  fish1 = createFish(random(0, width), random(0, height));
-  fish2 = createFish(random(0, width), random(0, height));
-  fish3 = createFish(random(0, width), random(0, height));
-  fish4 = createFish(random(0, width), random(0, height));
+  //name of the array, school [number that array index takes the info]
+
+  for (let i = 0; i < schoolSize; i++) {
+    let fish = createFish(random(0,width), random(0,height));
+    school[i] = createFish(random(0, width), random(0, height));
+  }
 }
 
 // createFish(x,y)
@@ -30,7 +35,7 @@ function createFish(x, y) {
     size: 50,
     vx: 0,
     vy: 0,
-    speed: 2
+    speed: 2,
   };
   return fish;
 }
@@ -40,15 +45,11 @@ function createFish(x, y) {
 function draw() {
   background(0);
 
-  moveFish(fish1);
-  moveFish(fish2);
-  moveFish(fish3);
-  moveFish(fish4);
-
-  displayFish(fish1);
-  displayFish(fish2);
-  displayFish(fish3);
-  displayFish(fish4);
+  for (let i = 0; i < school.length; i++) {
+    /// school.length is the specific array variable that returns how many items are currently in the array
+    moveFish(school[i]);
+    displayFish(school[i]);
+  }
 }
 
 // moveFish(fish)
@@ -78,4 +79,9 @@ function displayFish(fish) {
   noStroke();
   ellipse(fish.x, fish.y, fish.size);
   pop();
+}
+
+function mousePressed() {
+  let fish = createFish(mouseX, mouseY);
+  school.push(fish); //push will put this item at the end of the array
 }
