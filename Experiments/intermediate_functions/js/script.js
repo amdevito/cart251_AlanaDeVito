@@ -12,6 +12,7 @@ let user = {
   size: 100
 };
 
+//foods
 // First food object
 let food1;
 
@@ -23,10 +24,20 @@ let food3;
 
 // forth food object
 let food4;
+let food5;
+let food6;
 
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+
+  food1 = createFood(250,windowHeight/2);
+  food2 = createFood(350,windowHeight/2);
+  food3 = createFood(450,windowHeight/2);
+  food4 = createFood(450,windowHeight/2);
+  food5 = createFood(550,windowHeight/2);
+  food6 = createFood(650,windowHeight/2);
+
 }
 
 function createFood(x,y) {
@@ -50,6 +61,8 @@ function draw() {
   checkFood(food2);
   checkFood(food3);
   checkFood(food4);
+  checkFood(food5);
+  checkFood(food6);
 
   // Display the user and foods
   displayUser();
@@ -57,6 +70,8 @@ function draw() {
   displayFood(food2);
   displayFood(food3);
   displayFood(food4);
+  displayFood(food5);
+  displayFood(food6);
 
 }
 
