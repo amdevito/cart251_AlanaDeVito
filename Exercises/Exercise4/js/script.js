@@ -3,9 +3,13 @@ Template p5 project
 Alana DeVito
 Exercise 4: Age of Aquariums aka. Enby MicroAgression Simulation
 
+How to use simulation:
+You are the non-binary flag pixel heart.
+
 Click your mouse to clear away the microaggressions and recieve a validating message.
 
-If you wait for the heart to shrink, another message will appear.
+If you wait for your heart to shrink (from being overwhelmed by the microagressions),
+another message will appear and the agressions will remain on the screen.
 
 **************************************************/
 "use strict";
@@ -69,7 +73,7 @@ function setup() {
   // Create four agros, positioned randomly
   //name of the array, microAgros [number that array index takes the info]
 
-  // this is done in preload?
+  // distribute microAgression images
   for (let i = 0; i < microAgrosSize; i++) {
     let agros = createAgros(
       random(0, width),
@@ -78,12 +82,11 @@ function setup() {
     );
     microAgros[i] = agros;
   }
-
   noCursor();
 }
 
 //
-// Creates a new JavaScript Object describing a microAgro tag and returns it
+// Creates a new js Object describing a microAgro tag and returns it
 function createAgros(x, y, agroImage) {
   let agros = {
     x: x,
@@ -99,7 +102,7 @@ function createAgros(x, y, agroImage) {
 }
 
 // draw()
-// Moves and displays our fish
+// Moves and displays the microagressios, the enby heart cursor ans support tokens
 function draw() {
   background(0);
 
@@ -110,9 +113,11 @@ function draw() {
       displayAgros(microAgros[i]);
     }
 
+    /// heart shrinks
     nbHeart.sizeW = nbHeart.sizeW - 0.1;
     nbHeart.sizeH = nbHeart.sizeH - 0.1;
 
+    //when heart size is small enough, freeze screen and display second support token (END RESULT 2)
     if (nbHeart.sizeW <= 0) {
       supportToken2.active = true;
       noLoop();
@@ -124,8 +129,6 @@ function draw() {
   }
 
   displayNbHeart();
-  // displaySupportToken();
-  // moveSupportToken(supportToken);
 
   if (supportToken.active === true) {
     displaySupportToken();
@@ -152,19 +155,6 @@ function moveAgros(agros) {
   agros.y = constrain(agros.y, 0, height);
 }
 
-// function moveSupportToken() {
-//   // Choose whether to change direction
-//   let change = random(0, 1);
-//   if (change < 0.05) {
-//     supportToken.vx = random(-supportToken.speed, supportToken.speed);
-//     supportToken.vy = random(-supportToken.speed, supportToken.speed);
-//   }
-//
-//   // Move the supportToken
-//   supportToken.x = supportToken.x + supportToken.vx;
-//   supportToken.y = supportToken.y + supportToken.vy;
-// }
-
 //
 // Displays the provided agross on the canvas
 function displayAgros(agros) {
@@ -177,14 +167,14 @@ function displayAgros(agros) {
 function displaySupportToken() {
   push();
   imageMode(CENTER);
-  image(supportToken.image, mouseX - 15, mouseY, 300, 300);
+  image(supportToken.image, mouseX - 15, mouseY, 500, 500);
   pop();
 }
 
 function displaySupportToken2() {
   push();
   imageMode(CENTER);
-  image(supportToken2.image, mouseX - 15, mouseY, 300, 300);
+  image(supportToken2.image, mouseX - 15, mouseY, 500, 500);
   pop();
 }
 
