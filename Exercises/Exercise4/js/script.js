@@ -8,6 +8,7 @@ Exercise 4: Age of Aquariums
 let microAgros = []; ///empty array []
 let microAgrosSize = 11;
 
+let agroImages = [];
 //let agros;
 
 //your cursor
@@ -38,7 +39,7 @@ function preload() {
   supportToken.image = loadImage("assets/images/supportToken.png");
 
   for (let i = 0; i < 11; i++) {
-    microAgros[i] = loadImage(`assets/images/agro-${i}.png`);
+    agroImages[i] = loadImage(`assets/images/agro-${i}.png`);
   }
 }
 
@@ -49,14 +50,19 @@ function setup() {
   //name of the array, microAgros [number that array index takes the info]
 
   // this is done in preload?
-  //for (let i = 0; i < microAgrosSize; i++) {
-  //   let agros = createAgros(random(0, width), random(0, height));
-  //   microAgros[i] = createAgros(random(0, width), random(0, height));
+  for (let i = 0; i < microAgrosSize; i++) {
+    let agros = createAgros(
+      random(0, width),
+      random(0, height),
+      random(agroImages)
+    );
+    microAgros[i] = agros;
+  }
 }
 
 //
 // Creates a new JavaScript Object describing a microAgro tag and returns it
-function createAgros(x, y) {
+function createAgros(x, y, agroImage) {
   let agros = {
     x: x,
     y: y,
@@ -64,7 +70,7 @@ function createAgros(x, y) {
     vx: 0,
     vy: 0,
     speed: 2,
-    image: 0,
+    image: agroImage,
   };
   return agros;
 }
@@ -92,6 +98,8 @@ function draw() {
     moveAgros(microAgros[i]);
     displayAgros(microAgros[i]);
   }
+  displayNbHeart();
+  displaySupportToken();
 }
 
 //
@@ -133,7 +141,8 @@ function moveSuppotToken(supportToken) {
 function displayAgros(agros) {
   push();
   imageMode(CENTER);
-  image(agros.image, agros.x, agros.y, 100, 50);
+  console.log(agros.image, agros.x, agros.y);
+  image(agros.image, agros.x, agros.y, 200, 200);
   pop();
 }
 
@@ -147,8 +156,7 @@ function displaySupportToken() {
 function displayNbHeart() {
   push();
   imageMode(CENTER);
-  image(nbHeart.image, nbHeart.x, nbHeart.y, 100, 50);
-
+  image(nbHeart.image, mouseX, mouseY, 100, 50);
   pop();
 }
 
