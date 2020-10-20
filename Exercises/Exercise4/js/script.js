@@ -1,7 +1,12 @@
 /**************************************************
 Template p5 project
 Alana DeVito
-Exercise 4: Age of Aquariums
+Exercise 4: Age of Aquariums aka. Enby MicroAgression Simulation
+
+Click your mouse to clear away the microaggressions and recieve a validating message.
+
+If you wait for the heart to shrink, another message will appear.
+
 **************************************************/
 "use strict";
 
