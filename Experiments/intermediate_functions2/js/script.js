@@ -21,9 +21,10 @@ function setup() {
   //name of the array, school [number that array index takes the info]
 
   for (let i = 0; i < schoolSize; i++) {
-    let fish = createFish(random(0,width), random(0,height));
+    let fish = createFish(random(0, width), random(0, height));
     school[i] = createFish(random(0, width), random(0, height));
   }
+  noCursor();
 }
 
 // createFish(x,y)

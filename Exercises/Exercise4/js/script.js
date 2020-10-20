@@ -30,6 +30,7 @@ let supportToken = {
   vy: 0,
   speed: 2,
   image: 0,
+  active: false,
 };
 
 //load all images for the characters
@@ -58,6 +59,8 @@ function setup() {
     );
     microAgros[i] = agros;
   }
+
+  noCursor();
 }
 
 //
@@ -71,21 +74,9 @@ function createAgros(x, y, agroImage) {
     vy: 0,
     speed: 2,
     image: agroImage,
+    active: true,
   };
   return agros;
-}
-
-function createSupportToken(x, y) {
-  let supportToken = {
-    x: x,
-    y: y,
-    size: 50,
-    vx: 0,
-    vy: 0,
-    speed: 2,
-    image: 0,
-  };
-  return supportToken;
 }
 
 // draw()
@@ -95,12 +86,20 @@ function draw() {
 
   for (let i = 0; i < microAgros.length; i++) {
     /// microAgros.length is the specific array variable that returns how many items are currently in the array
-    moveAgros(microAgros[i]);
-    displayAgros(microAgros[i]);
+    if (microAgros[i].active) {
+      moveAgros(microAgros[i]);
+      displayAgros(microAgros[i]);
+    }
   }
+
   displayNbHeart();
   // displaySupportToken();
-  moveSuppotToken(supportToken);
+  moveSupportToken(supportToken);
+
+  if (supportToken.active === true) {
+    displaySupportToken();
+    moveSupportToken();
+  }
 }
 
 //
@@ -122,7 +121,7 @@ function moveAgros(agros) {
   agros.y = constrain(agros.y, 0, height);
 }
 
-function moveSuppotToken(supportToken) {
+function moveSupportToken() {
   // Choose whether to change direction
   let change = random(0, 1);
   if (change < 0.05) {
@@ -149,18 +148,22 @@ function displayAgros(agros) {
 function displaySupportToken() {
   push();
   imageMode(CENTER);
-  image(supportToken.image, mouseX, mouseY, 100, 100);
+  image(supportToken.image, mouseX - 15, mouseY, 300, 300);
   pop();
 }
 
 function displayNbHeart() {
   push();
   imageMode(CENTER);
-  image(nbHeart.image, mouseX, mouseY, 200, 100);
+  image(nbHeart.image, mouseX, mouseY, 400, 200);
   pop();
 }
 
 ///make below clear micro agressions, and support token floats away (like the og fish movement)
 function mousePressed() {
-  let supportToken = createSupportToken(mouseX, mouseY);
+  supportToken.active = true;
+
+  for (let i = 0; i < microAgros.length; i++) {
+    microAgros[i].active = false;
+  }
 }
