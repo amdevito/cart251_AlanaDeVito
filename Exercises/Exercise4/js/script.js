@@ -5,39 +5,81 @@ Exercise 4: Age of Aquariums
 **************************************************/
 "use strict";
 
-let school = []; ///empty array []
-let schoolSize = 100;
+let microAgros = []; ///empty array []
+let microAgrosSize = 11;
 
-// Our fish
-// let fish1;
-// let fish2;
-// let fish3;
-// let fish4;
+//let agros;
 
-function setup() {
-  createCanvas(600, 600);
+//your cursor
+let nbHeart = {
+  x: 0,
+  y: 0,
+  size: 50,
+  vx: 0,
+  vy: 0,
+  speed: 2,
+  image: 0,
+}; // maybe have another game to choose options of trans and other flags?
 
-  // Create four fish, positioned randomly
-  //name of the array, school [number that array index takes the info]
+let supportToken = {
+  x: 0,
+  y: 0,
+  size: 50,
+  vx: 0,
+  vy: 0,
+  speed: 2,
+  image: 0,
+};
 
-  for (let i = 0; i < schoolSize; i++) {
-    let fish = createFish(random(0, width), random(0, height));
-    school[i] = createFish(random(0, width), random(0, height));
+//load all images for the characters
+function preload() {
+  //level one, acorns to collet
+  nbHeart.image = loadImage("assets/images/NB_heart.png");
+  supportToken.image = loadImage("assets/images/supportToken.png");
+
+  for (let i = 0; i < 11; i++) {
+    microAgros[i] = loadImage(`assets/images/agro-${i}.png`);
   }
 }
 
-// createFish(x,y)
-// Creates a new JavaScript Object describing a fish and returns it
-function createFish(x, y) {
-  let fish = {
+function setup() {
+  createCanvas(1000, 1000);
+
+  // Create four agros, positioned randomly
+  //name of the array, microAgros [number that array index takes the info]
+
+  // this is done in preload?
+  //for (let i = 0; i < microAgrosSize; i++) {
+  //   let agros = createAgros(random(0, width), random(0, height));
+  //   microAgros[i] = createAgros(random(0, width), random(0, height));
+}
+
+//
+// Creates a new JavaScript Object describing a microAgro tag and returns it
+function createAgros(x, y) {
+  let agros = {
     x: x,
     y: y,
     size: 50,
     vx: 0,
     vy: 0,
     speed: 2,
+    image: 0,
   };
-  return fish;
+  return agros;
+}
+
+function createSupportToken(x, y) {
+  let supportToken = {
+    x: x,
+    y: y,
+    size: 50,
+    vx: 0,
+    vy: 0,
+    speed: 2,
+    image: 0,
+  };
+  return supportToken;
 }
 
 // draw()
@@ -45,43 +87,72 @@ function createFish(x, y) {
 function draw() {
   background(0);
 
-  for (let i = 0; i < school.length; i++) {
-    /// school.length is the specific array variable that returns how many items are currently in the array
-    moveFish(school[i]);
-    displayFish(school[i]);
+  for (let i = 0; i < microAgros.length; i++) {
+    /// microAgros.length is the specific array variable that returns how many items are currently in the array
+    moveAgros(microAgros[i]);
+    displayAgros(microAgros[i]);
   }
 }
 
-// moveFish(fish)
-// Chooses whether the provided fish changes direction and moves it
-function moveFish(fish) {
+//
+// Chooses whether the provided agros changes direction and moves it
+function moveAgros(agros) {
   // Choose whether to change direction
   let change = random(0, 1);
   if (change < 0.05) {
-    fish.vx = random(-fish.speed, fish.speed);
-    fish.vy = random(-fish.speed, fish.speed);
+    agros.vx = random(-agros.speed, agros.speed);
+    agros.vy = random(-agros.speed, agros.speed);
   }
 
-  // Move the fish
-  fish.x = fish.x + fish.vx;
-  fish.y = fish.y + fish.vy;
+  // Move the agros
+  agros.x = agros.x + agros.vx;
+  agros.y = agros.y + agros.vy;
 
-  // Constrain the fish to the canvas
-  fish.x = constrain(fish.x, 0, width);
-  fish.y = constrain(fish.y, 0, height);
+  // Constrain the agros to the canvas
+  agros.x = constrain(agros.x, 0, width);
+  agros.y = constrain(agros.y, 0, height);
 }
 
-// displayFish(fish)
-// Displays the provided fish on the canvas
-function displayFish(fish) {
+function moveSuppotToken(supportToken) {
+  // Choose whether to change direction
+  let change = random(0, 1);
+  if (change < 0.05) {
+    supportToken.vx = random(-supportToken.speed, supportToken.speed);
+    supportToken.vy = random(-supportToken.speed, supportToken.speed);
+  }
+
+  // Move the supportToken
+  supportToken.x = supportToken.x + supportToken.vx;
+  supportToken.y = supportToken.y + supportToken.vy;
+
+  //no constrain, float away off screen
+}
+
+//
+// Displays the provided agross on the canvas
+function displayAgros(agros) {
   push();
-  fill(200, 100, 100);
-  noStroke();
-  ellipse(fish.x, fish.y, fish.size);
+  imageMode(CENTER);
+  image(agros.image, agros.x, agros.y, 100, 50);
   pop();
 }
 
+function displaySupportToken() {
+  push();
+  imageMode(CENTER);
+  image(supportToken.image, supportToken.x, supportToken.y, 10, 50);
+  pop();
+}
+
+function displayNbHeart() {
+  push();
+  imageMode(CENTER);
+  image(nbHeart.image, nbHeart.x, nbHeart.y, 100, 50);
+
+  pop();
+}
+
+///make below clear micro agressions, and support token floats away (like the og fish movement)
 function mousePressed() {
-  let fish = createFish(mouseX, mouseY);
-  school.push(fish); //push will put this item at the end of the array
+  let supportToken = createSupportToken(mouseX, mouseY);
 }
