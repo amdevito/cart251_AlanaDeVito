@@ -20,14 +20,27 @@ let agroImages = [];
 let nbHeart = {
   x: 0,
   y: 0,
-  size: 50,
+  sizeW: 400,
+  sizeH: 200,
   vx: 0,
   vy: 0,
   speed: 2,
   image: 0,
+  active: true,
 }; // maybe have another game to choose options of trans and other flags?
 
 let supportToken = {
+  x: 0,
+  y: 0,
+  size: 50,
+  vx: 1,
+  vy: 1,
+  speed: 2,
+  image: 0,
+  active: false,
+};
+
+let supportToken2 = {
   x: 0,
   y: 0,
   size: 50,
@@ -43,6 +56,7 @@ function preload() {
   //level one, acorns to collet
   nbHeart.image = loadImage("assets/images/NB_heart.png");
   supportToken.image = loadImage("assets/images/supportToken.png");
+  supportToken2.image = loadImage("assets/images/supportToken2.png");
 
   for (let i = 0; i < 11; i++) {
     agroImages[i] = loadImage(`assets/images/agro-${i}.png`);
@@ -95,11 +109,23 @@ function draw() {
       moveAgros(microAgros[i]);
       displayAgros(microAgros[i]);
     }
+
+    nbHeart.sizeW = nbHeart.sizeW - 0.1;
+    nbHeart.sizeH = nbHeart.sizeH - 0.1;
+
+    if (nbHeart.sizeW <= 0) {
+      supportToken2.active = true;
+      noLoop();
+    }
+  }
+
+  if (supportToken2.active === true) {
+    displaySupportToken2();
   }
 
   displayNbHeart();
   // displaySupportToken();
-  moveSupportToken(supportToken);
+  // moveSupportToken(supportToken);
 
   if (supportToken.active === true) {
     displaySupportToken();
@@ -126,20 +152,18 @@ function moveAgros(agros) {
   agros.y = constrain(agros.y, 0, height);
 }
 
-function moveSupportToken() {
-  // Choose whether to change direction
-  let change = random(0, 1);
-  if (change < 0.05) {
-    supportToken.vx = random(-supportToken.speed, supportToken.speed);
-    supportToken.vy = random(-supportToken.speed, supportToken.speed);
-  }
-
-  // Move the supportToken
-  supportToken.x = supportToken.x + supportToken.vx;
-  supportToken.y = supportToken.y + supportToken.vy;
-
-  //no constrain, float away off screen
-}
+// function moveSupportToken() {
+//   // Choose whether to change direction
+//   let change = random(0, 1);
+//   if (change < 0.05) {
+//     supportToken.vx = random(-supportToken.speed, supportToken.speed);
+//     supportToken.vy = random(-supportToken.speed, supportToken.speed);
+//   }
+//
+//   // Move the supportToken
+//   supportToken.x = supportToken.x + supportToken.vx;
+//   supportToken.y = supportToken.y + supportToken.vy;
+// }
 
 //
 // Displays the provided agross on the canvas
@@ -157,10 +181,25 @@ function displaySupportToken() {
   pop();
 }
 
+function displaySupportToken2() {
+  push();
+  imageMode(CENTER);
+  image(supportToken2.image, mouseX - 15, mouseY, 300, 300);
+  pop();
+}
+
 function displayNbHeart() {
   push();
   imageMode(CENTER);
-  image(nbHeart.image, mouseX, mouseY, 400, 200);
+  image(nbHeart.image, mouseX, mouseY, nbHeart.sizeW, nbHeart.sizeH);
+  pop();
+}
+
+function removeNbHeart() {
+  push();
+  imageMode(CENTER);
+  image(nbHeart.image, 10000, 10000, 0, 0);
+  noLoop();
   pop();
 }
 
