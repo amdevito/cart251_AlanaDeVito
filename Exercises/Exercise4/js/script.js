@@ -99,7 +99,8 @@ function draw() {
     displayAgros(microAgros[i]);
   }
   displayNbHeart();
-  displaySupportToken();
+  // displaySupportToken();
+  moveSuppotToken(supportToken);
 }
 
 //
@@ -141,7 +142,6 @@ function moveSuppotToken(supportToken) {
 function displayAgros(agros) {
   push();
   imageMode(CENTER);
-  console.log(agros.image, agros.x, agros.y);
   image(agros.image, agros.x, agros.y, 200, 200);
   pop();
 }
@@ -149,14 +149,14 @@ function displayAgros(agros) {
 function displaySupportToken() {
   push();
   imageMode(CENTER);
-  image(supportToken.image, supportToken.x, supportToken.y, 10, 50);
+  image(supportToken.image, mouseX, mouseY, 100, 100);
   pop();
 }
 
 function displayNbHeart() {
   push();
   imageMode(CENTER);
-  image(nbHeart.image, mouseX, mouseY, 100, 50);
+  image(nbHeart.image, mouseX, mouseY, 200, 100);
   pop();
 }
 
