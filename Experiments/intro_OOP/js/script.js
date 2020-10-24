@@ -23,9 +23,19 @@ function setup() {
 
   //Create our flower by counting up the number of the numFlowers
   for (let i = 0; i < garden.numFlowers; i++) {
-    // create a new flower
-    let flower = new Flower();
-    // add the flower  to the array of numFlowers
+    //create variables for our arguements for clarity
+    let x = random(0, width);
+    let y = random(0, height);
+    let size = random(50, 80);
+    let stemLength = random(50, 100);
+    let petalColor = {
+      r: random(100, 255),
+      g: random(100, 255),
+      b: random(100, 255),
+    };
+    // create a new flower using the arguments
+    let flower = new Flower(x, y, stemLength, petalColor);
+    // add the flower  to the array of Flowers
     garden.flowers.push(flower);
   }
 

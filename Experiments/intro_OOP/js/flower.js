@@ -3,13 +3,14 @@
 class Flower {
   //we will define what a Flower is like in here!
   // the constructor() sets up a flower's properties
-  constructor() {
+  constructor(x, y, size, stemLength, petalColor) {
+    //position and size info as parameters
     // position and size information
     // this refers to the object that will be created with the class.
-    this.x = random(0, width);
-    this.y = random(0, height);
-    this.size = 50;
-    this.stemLength = 75;
+    this.x = x;
+    this.y = y;
+    this.size = size;
+    this.stemLength = stemLength;
     this.stemThickness = 10;
     this.petalThickness = 10;
     //color information
@@ -18,11 +19,7 @@ class Flower {
       g: 0,
       b: 0,
     };
-    this.petalColor = {
-      r: 93,
-      g: 0,
-      b: 250,
-    };
+    this.petalColor = petalColor;
     this.centreColor = {
       r: 246,
       g: 255,
