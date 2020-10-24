@@ -10,6 +10,10 @@ let garden = {
   flowers: [],
   // how many flowers in the garedn
   numFlowers: 20,
+  //an array to our bees
+  bee: [],
+  //how many bees in the garden
+  numBee: 5,
   //The color of the grass(background)
   grassColor: {
     r: 120,
@@ -41,6 +45,17 @@ function setup() {
 
   //SORT the array using the sortByY() function
   garden.flowers.sort(sortByY);
+}
+
+//create our bees by counting up to the number of bees
+for (let i = 0; i < garden.numBee; i++) {
+  //create variables for our arguements for clarity
+  let x = random(0, width);
+  let y = random(0, width);
+  // create a new bee using the arguements
+  let bee = new Bee(x, y);
+  //add the bee to the array of bees
+  garden.bees.push(bee);
 }
 
 //sortByY takes two flowers as parameters to compare
@@ -93,9 +108,35 @@ function draw() {
   //Loop through all the flowers in the array and display them
   for (let i = 0; i < garden.flowers.length; i++) {
     let flower = garden.flowers[i];
-    flower.display();
+    // NEW! Check if this flower is alive before updating it
+    if (flower.alive) {
+      //update the flower by shrinking it and displaying it
+      flower.shrink(); //NEW! Shrink living flowers every frame
+      flower.display();
+    }
+  }
+
+  //loop through all the bees in the array and display them
+  for (let i = 0; i < garden.bee.length; i++) {
+    let bee = garden.bee[i];
+    //check if this bee is alive
+    if (bee.alive) {
+      // update the bee by shrinking, moving and displaying it
+      bee.shrink();
+      bee.move();
+    }
   }
 }
+
+//new go thorugh the entire flower array and try to pollinate the flowers!
+//note that we use j in our for-loop here because we're alread inside
+// a for-loop using it!
+for (let j = 0; j < garden.flowers.length; j++) {
+  let flower = garden.flowers[j];
+  bee.tryToPollinate(flower);
+}
+//display the bee
+bee.display();
 
 //nEW! mousePressed() calls the equivalent mousePressed() method on every flower
 function mousePressed() {
