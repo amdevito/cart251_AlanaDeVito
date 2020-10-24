@@ -34,7 +34,7 @@ function setup() {
       b: random(100, 255),
     };
     // create a new flower using the arguments
-    let flower = new Flower(x, y, stemLength, petalColor);
+    let flower = new Flower(x, y, size, stemLength, petalColor);
     // add the flower  to the array of Flowers
     garden.flowers.push(flower);
   }
@@ -94,6 +94,16 @@ function draw() {
   for (let i = 0; i < garden.flowers.length; i++) {
     let flower = garden.flowers[i];
     flower.display();
+  }
+}
+
+//nEW! mousePressed() calls the equivalent mousePressed() method on every flower
+function mousePressed() {
+  for (let i = 0; i < garden.flowers.length; i++) {
+    //get the current flower in the Loop
+    let flower = garden.flowers[i];
+    //call the flower's mousePressed() method
+    flower.mousePressed();
   }
 }
 

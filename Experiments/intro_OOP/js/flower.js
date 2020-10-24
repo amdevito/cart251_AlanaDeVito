@@ -15,9 +15,9 @@ class Flower {
     this.petalThickness = 10;
     //color information
     this.stemColor = {
-      r: 0,
-      g: 0,
-      b: 0,
+      r: 50,
+      g: 150,
+      b: 50,
     };
     this.petalColor = petalColor;
     this.centreColor = {
@@ -41,5 +41,16 @@ class Flower {
     stroke(this.petalColor.r, this.petalColor.g, this.petalColor.b);
     ellipse(this.x, this.y, this.size);
     pop();
+  }
+  mousePressed() {
+    // calculate the distance between this flower and the mouse
+    let d = dist(this.x, this.y, mouseX, mouseY);
+    // check if the distance is less than the head of the flower
+    if (d < this.size / 2 + this.petalThickness) {
+      //If it is, this flower was clicked, so increase its stem length
+      this.stemLength += 5;
+      //and so change its y position so it grows upward! (if we didnt do this then the stem would grow downward, which would look weird)
+      this.y -= 5;
+    }
   }
 }
