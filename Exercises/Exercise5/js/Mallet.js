@@ -12,9 +12,9 @@ class Mallet {
       b: 0,
     };
     this.malletColor = {
-      r: 180,
-      g: 0,
-      b: 230,
+      r: 0,
+      g: 280,
+      b: 0,
     };
   }
 
