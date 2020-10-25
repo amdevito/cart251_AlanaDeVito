@@ -30,7 +30,7 @@ class SinButton {
     this.vy = constrain(this.vy, -this.maxSpeed, this.maxSpeed);
 
     this.x += this.vx;
-    this.y += this.y + this.yx;
+    this.y += this.vy;
   }
 
   bounce() {
