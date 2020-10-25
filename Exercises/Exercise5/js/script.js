@@ -2,8 +2,9 @@
 Ex. 5
 Am DeVito
 
-interactive soundscape
+interactive soundscape 'game'
 **************************************************/
+"use strict";
 
 // setup()
 //
