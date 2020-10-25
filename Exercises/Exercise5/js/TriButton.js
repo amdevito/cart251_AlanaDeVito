@@ -19,9 +19,9 @@ class TriButton {
     this.active = true;
     this.soundActive = false;
     this.triButtonColor = {
-      r: 200,
-      g: 0,
-      b: 200,
+      r: 0,
+      g: 210,
+      b: 250,
     };
   }
 
@@ -41,9 +41,12 @@ class TriButton {
   }
 
   bounce() {
-    if (this.y + this.size / 2 > height) {
+    if (this.y + this.size / 2 >= height) {
+      this.vy = -this.vy;
+      this.ay = 0;
     }
   }
+
   display() {
     push();
     fill(this.triButtonColor.r, this.triButtonColor.g, this.triButtonColor.b);

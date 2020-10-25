@@ -12,14 +12,14 @@ class SinButton {
     this.active = true;
     this.soundActive = false;
     this.sinButtonColor = {
-      r: 200,
-      g: 0,
+      r: 0,
+      g: 210,
       b: 200,
     };
   }
 
   gravity(force) {
-    this.ay += force;
+    this.ay = this.ay + force;
   }
 
   move() {
@@ -30,11 +30,11 @@ class SinButton {
     this.vy = constrain(this.vy, -this.maxSpeed, this.maxSpeed);
 
     this.x += this.vx;
-    this.y += this.yx;
+    this.y += this.y + this.yx;
   }
 
   bounce() {
-    if (this.y + this.size / 2 > height) {
+    if (this.y + this.size / 2 >= height) {
       this.vy = -this.vy;
       this.ay = 0;
     }
