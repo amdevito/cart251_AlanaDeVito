@@ -1,14 +1,14 @@
 class TriButton {
-  constructor(x, y) {
-    this.x = x;
-    this.y = y;
+  constructor(x1, y1, x2, y2, x3, y3) {
+    // this.x = x;
+    // this.y = y;
     //tri created with 3 points
-    this.triX1 = 30;
-    this.triY1 = 75;
-    this.triX2 = 58;
-    this.triY2 = 20;
-    this.triX3 = 86;
-    this.triY3 = 75;
+    this.triX1 = x1;
+    this.triY1 = y1;
+    this.triX2 = x2;
+    this.triY2 = y2;
+    this.triX3 = x3;
+    this.triY3 = y3;
     //^ creating the triangle
     this.vx = 0;
     this.vy = 0;
@@ -36,12 +36,26 @@ class TriButton {
     this.vx = constrain(this.vx, -this.maxSpeed, this.maxSpeed);
     this.vy = constrain(this.vy, -this.maxSpeed, this.maxSpeed);
 
-    this.x += this.vx;
-    this.y += this.vy;
+    this.triX1 += this.vx;
+    this.triY1 += this.vy;
+
+    this.triX2 += this.vx;
+    this.triY2 += this.vy;
+
+    this.triX3 += this.vx;
+    this.triY3 += this.vy;
   }
 
   bounce() {
-    if (this.y + this.size / 2 >= height) {
+    if (this.triY1 + this.size / 2 >= height) {
+      this.vy = -this.vy;
+      this.ay = 0;
+    }
+    if (this.triY2 + this.size / 2 >= height) {
+      this.vy = -this.vy;
+      this.ay = 0;
+    }
+    if (this.triY3 + this.size / 2 >= height) {
       this.vy = -this.vy;
       this.ay = 0;
     }

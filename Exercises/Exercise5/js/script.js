@@ -32,16 +32,20 @@ function setup() {
 
   for (let i = 0; i < numSinButtons; i++) {
     let x = random(0, width);
-    let y = random(-400, -100);
+    let y = random(-500, -100);
     let size = random(20, 80);
     let sinButton = new SinButton(x, y, size);
     sinButtons.push(sinButton);
   }
 
   for (let i = 0; i < numTriButtons; i++) {
-    let x = random(0, width);
-    let y = random(-400, -100);
-    let triButton = new TriButton(x, y);
+    let x1 = random(0, width);
+    let y1 = random(-500, -100);
+    let x2 = random(0, width);
+    let y2 = random(-500, -100);
+    let x3 = random(0, width);
+    let y3 = random(-500, -100);
+    let triButton = new TriButton(x1, y1, x2, y2, x3, y3);
     triButtons.push(triButton);
   }
 }
