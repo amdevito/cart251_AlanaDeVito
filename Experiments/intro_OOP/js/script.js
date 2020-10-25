@@ -42,20 +42,19 @@ function setup() {
     // add the flower  to the array of Flowers
     garden.flowers.push(flower);
   }
-
+  //create our bees by counting up to the number of bees
+  for (let i = 0; i < garden.numBee; i++) {
+    //create variables for our arguements for clarity
+    let x = random(0, width);
+    let y = random(0, width);
+    // create a new bee using the arguements
+    let bee = new Bee(x, y);
+    //add the bee to the array of bees
+    garden.bee.push(bee);
+  }
+  //
   //SORT the array using the sortByY() function
   garden.flowers.sort(sortByY);
-}
-
-//create our bees by counting up to the number of bees
-for (let i = 0; i < garden.numBee; i++) {
-  //create variables for our arguements for clarity
-  let x = random(0, width);
-  let y = random(0, width);
-  // create a new bee using the arguements
-  let bee = new Bee(x, y);
-  //add the bee to the array of bees
-  garden.bees.push(bee);
 }
 
 //sortByY takes two flowers as parameters to compare
@@ -70,6 +69,58 @@ function sortByY(flower1, flower2) {
 
 // createFlower()
 // Creates a new JavaScript Object describing a flower and returns it
+
+function draw() {
+  // Display grass
+  background(garden.grassColor.r, garden.grassColor.g, garden.grassColor.b);
+
+  //Loop through all the flowers in the array and display them
+  for (let i = 0; i < garden.flowers.length; i++) {
+    let flower = garden.flowers[i];
+    // NEW! Check if this flower is alive before updating it
+    if (flower.alive) {
+      //update the flower by shrinking it and displaying it
+      flower.shrink(); //NEW! Shrink living flowers every frame
+      flower.display();
+    }
+  }
+
+  //loop through all the bees in the array and display them
+  for (let i = 0; i < garden.bee.length; i++) {
+    let bee = garden.bee[i];
+    //check if this bee is alive
+    if (bee.alive) {
+      // update the bee by shrinking, moving and displaying it
+      bee.shrink();
+      bee.move();
+      bee.display();
+
+      for (let j = 0; j < garden.flowers.length; j++) {
+        let flower = garden.flowers[j];
+        if (flower.alive) {
+          bee.tryToPollinate(flower);
+        }
+      }
+    }
+  }
+}
+
+//new go thorugh the entire flower array and try to pollinate the flowers!
+//note that we use j in our for-loop here because we're alread inside
+// a for-loop using it!
+
+//display the bee
+// bee.display();
+
+//nEW! mousePressed() calls the equivalent mousePressed() method on every flower
+function mousePressed() {
+  for (let i = 0; i < garden.flowers.length; i++) {
+    //get the current flower in the Loop
+    let flower = garden.flowers[i];
+    //call the flower's mousePressed() method
+    flower.mousePressed();
+  }
+}
 
 function createFlower() {
   // Create our Object
@@ -100,54 +151,6 @@ function createFlower() {
   };
   return flower;
 }
-
-function draw() {
-  // Display grass
-  background(garden.grassColor.r, garden.grassColor.g, garden.grassColor.b);
-
-  //Loop through all the flowers in the array and display them
-  for (let i = 0; i < garden.flowers.length; i++) {
-    let flower = garden.flowers[i];
-    // NEW! Check if this flower is alive before updating it
-    if (flower.alive) {
-      //update the flower by shrinking it and displaying it
-      flower.shrink(); //NEW! Shrink living flowers every frame
-      flower.display();
-    }
-  }
-
-  //loop through all the bees in the array and display them
-  for (let i = 0; i < garden.bee.length; i++) {
-    let bee = garden.bee[i];
-    //check if this bee is alive
-    if (bee.alive) {
-      // update the bee by shrinking, moving and displaying it
-      bee.shrink();
-      bee.move();
-    }
-  }
-}
-
-//new go thorugh the entire flower array and try to pollinate the flowers!
-//note that we use j in our for-loop here because we're alread inside
-// a for-loop using it!
-for (let j = 0; j < garden.flowers.length; j++) {
-  let flower = garden.flowers[j];
-  bee.tryToPollinate(flower);
-}
-//display the bee
-bee.display();
-
-//nEW! mousePressed() calls the equivalent mousePressed() method on every flower
-function mousePressed() {
-  for (let i = 0; i < garden.flowers.length; i++) {
-    //get the current flower in the Loop
-    let flower = garden.flowers[i];
-    //call the flower's mousePressed() method
-    flower.mousePressed();
-  }
-}
-
 //displayFlower(flower)
 //Displays the provided flower on the canvas
 

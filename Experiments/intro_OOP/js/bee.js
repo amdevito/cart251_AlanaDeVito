@@ -5,10 +5,12 @@ class Bee {
     this.y = y;
     this.size = 40;
     this.minSize = 10; // if we get smaller than this min we're dead
+    this.maxSize = 40;
     this.vx = 0;
     this.vy = 0;
     this.speed = 5;
     this.shrinkRate = 0.05; // how much smaller we get each frame
+    this.growRate = 0.05;
     this.jitteriness = 0.1; //how likely the bee is to change direction
     this.alive = true; // the bee starts out alive
   }
@@ -31,7 +33,7 @@ class Bee {
     //calculate the distance between the bee and the Flower
     let d = dist(this.x, this.y, flower.x, flower.y);
     //if they overlap...
-    if (d < this.size / 2 + flower.size / 2) {
+    if (d < this.size / 2 + flower.size / 2 + flower.petalThickness) {
       //the bee should grow
       // notice how we can call OTHER METHODS of the Bee by using 'this'
       //so this.grow() calls the grow() method for THIS bee
@@ -40,14 +42,12 @@ class Bee {
     }
   }
 
-  //grow() causes the bee to get biger up to a max (called by tryToPollinate())
-
   grow() {
-    //grow by inceraing the size by a set amount
     this.size += this.growRate;
-    //constrain the growth to a max
-    this.size = constrain(this.size, 0, this.maxSize);
+    this.size = constrain(this.size, this.minSize, this.maxSize);
   }
+
+  //grow() causes the bee to get bigger up to a max (called by tryToPollinate())
 
   // move() moves the bee by potentially changing direction
   //and then changing position based on velocity

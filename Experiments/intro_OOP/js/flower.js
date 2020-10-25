@@ -10,9 +10,11 @@ class Flower {
     this.x = x;
     this.y = y;
     this.size = size;
+    this.maxSize = size;
     this.stemLength = stemLength;
     this.stemThickness = 10;
     this.petalThickness = 10;
+    this.maxPetalThickness = 10;
     //color information
     this.stemColor = {
       r: 50,
@@ -34,12 +36,25 @@ class Flower {
     //reduce the petal thickness (divide by 10 to make it less rapid)
     this.petalThickness -= shrinkage / 10;
     //Reduce the center of the flower
-    this.size -= -shrinkage;
+    this.size -= shrinkage;
 
     //If any of the key properties reach 0 or less, the flower is dead
     if (this.petalThickness <= 0 || this.size <= 0) {
       this.alive = false;
     }
+  }
+
+  pollinate() {
+    let growth = random(0, 0.5);
+    this.size += growth;
+    this.petalThickness += growth / 10;
+
+    this.size = constrain(this.size, 0, this.maxSize);
+    this.petalthickness = constrain(
+      this.petalThickness,
+      0,
+      this.maxPetalThickness
+    );
   }
 
   //display()
