@@ -5,13 +5,15 @@ Am DeVito
 interactive soundscape 'game'
 **************************************************/
 "use strict";
+
+//setting gravity so that bouncing looks 'real'
 let gravityForce = 0.0025;
 
+//setting variable for video background
 let mitocybria;
 
+//setting variable for user controlled mallet that activates oscillators
 let mallet;
-
-let freq;
 
 let sinButtons = [];
 
@@ -86,6 +88,8 @@ function mousePressed() {
     let sinButton = sinButtons[i];
     sinButton.mousePressed();
   }
-
-  ///add change freq of last osc.
+  for (let i = 0; i < triButtons.length; i++) {
+    let triButton = triButtons[i];
+    triButton.mousePressed();
+  }
 }
