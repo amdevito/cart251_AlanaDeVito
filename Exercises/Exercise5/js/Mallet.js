@@ -1,4 +1,6 @@
+//set mallet class
 class Mallet {
+  //set mallet constructor and vars.
   constructor(w, h, malletThickness, malletHeight) {
     this.x = 0;
     this.y = 0;
@@ -24,6 +26,7 @@ class Mallet {
     this.y = mouseY;
   }
 
+  //build mallet image
   display() {
     push();
     fill(this.handleColor.r, this.handleColor.g, this.handleColor.b);

@@ -1,4 +1,5 @@
 class SinButton {
+  //circle that activates the sine wave oscillator
   constructor(x, y, size) {
     this.x = x;
     this.y = y;
@@ -11,7 +12,7 @@ class SinButton {
     this.size = size;
     this.active = true;
     this.soundActive = false;
-    this.sinOsc = new p5.SinOsc(random(60, 600));
+    this.sinOsc = new p5.SinOsc(random(360, 660));
     this.sinRev = new p5.Reverb();
     this.sinButtonColor = {
       r: 255,
@@ -19,7 +20,7 @@ class SinButton {
       b: 255,
     };
   }
-
+  //physics of gravity applied
   gravity(force) {
     this.ay = this.ay + force;
   }
@@ -35,6 +36,7 @@ class SinButton {
     this.y += this.vy;
   }
 
+  //collision detection for mallet and sinButton, thus activating sinWave oscillator.
   bounce(mallet) {
     if (
       this.x >= mallet.x - mallet.malletThickness * 1.25 &&
@@ -51,7 +53,7 @@ class SinButton {
         -0.05,
         0.05
       );
-
+      //reverse direction after button hits mallet
       this.vy = -this.vy - 70;
       this.ay = 0;
 
@@ -66,17 +68,19 @@ class SinButton {
     if (this.y + this.size / 2 >= height) {
       this.vy = -this.vy;
       this.ay = 0;
-
+      //if it happens, activate oscillator wave
       if (this.soundActive) {
-        this.sinOsc.amp(0, 0.8); // if sinButton is playing but hits the button of screen, turn off
+        this.sinOsc.amp(0, 0.8); // if sinButton is playing but hits the bottom of screen, turn off
       }
     }
   }
 
   mousePressed() {
+    //mouse press activates reverb effect on the sinOsc.
     this.sinRev.process(this.sinOsc, 4, 4);
   }
 
+  //show the sinButton on screen
   display() {
     push();
     fill(this.sinButtonColor.r, this.sinButtonColor.g, this.sinButtonColor.b);
