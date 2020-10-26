@@ -79,6 +79,7 @@ function draw() {
     triButton.move();
     triButton.bounce(mallet);
     triButton.display();
+    triButton.updateFilter();
   }
 }
 

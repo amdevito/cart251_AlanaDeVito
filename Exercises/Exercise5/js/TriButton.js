@@ -20,7 +20,8 @@ class TriButton {
     this.soundActive = false;
     this.triOsc = new p5.TriOsc(random(60, 600));
     this.triDel = new p5.Delay();
-    this.triCutoff = 0;
+    this.filterActive = false;
+    // this.triCutoff = 0;
     this.triButtonColor = {
       r: 0,
       g: 0,
@@ -103,9 +104,14 @@ class TriButton {
   }
 
   mousePressed() {
-    this.triDel.process(this.triOsc, 0.5, 0.7, this.triCutoff);
-    this.triCutoff = mouseX;
-    this.triCutoff = map(this.triCutoff, 0, width, 60, 600);
+    this.filterActive = true;
+  }
+
+  updateFilter() {
+    if (this.filterActive) {
+      let cutoff = map(mouseX, 0, width, 60, 600);
+      this.triDel.process(this.triOsc, 0.5, 0.7, this.triCutoff);
+    }
   }
 
   display() {
