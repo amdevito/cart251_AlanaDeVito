@@ -33,7 +33,17 @@ class SinButton {
     this.y += this.vy;
   }
 
-  bounce() {
+  bounce(mallet) {
+    if (
+      this.x >= mallet.x - mallet.malletThickness * 2 &&
+      this.x <= mallet.x + mallet.malletThickness / 2 &&
+      this.y + this.size / 2 >= mallet.y - mallet.malletHeight / 2 &&
+      this.y - this.size / 2 <= mallet.y - mallet.malletHeight / 2
+    ) {
+      //bounce
+      this.vy = -this.vy - 70;
+      this.ay = 0;
+    }
     if (this.y + this.size / 2 >= height) {
       this.vy = -this.vy;
       this.ay = 0;

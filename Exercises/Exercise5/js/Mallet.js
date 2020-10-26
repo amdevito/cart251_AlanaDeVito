@@ -1,10 +1,11 @@
 class Mallet {
-  constructor(w, h, malletThickness) {
+  constructor(w, h, malletThickness, malletHeight) {
     this.x = 0;
     this.y = 0;
     this.handleLength = w;
     this.handleThickness = h;
     this.malletThickness = malletThickness;
+    this.malletHeight = malletHeight;
     //color information
     this.handleColor = {
       r: 0,
@@ -32,7 +33,12 @@ class Mallet {
     stroke(this.handleColor.r, this.handleColor.g, this.handleColor.b);
     strokeWeight(3);
     fill(this.malletColor.r, this.malletColor.g, this.malletColor.b);
-    ellipse(this.x - this.handleLength / 2, this.y, this.malletThickness, 50);
+    ellipse(
+      this.x - this.handleLength / 2,
+      this.y,
+      this.malletThickness,
+      this.malletHeight
+    );
     pop();
   }
 }

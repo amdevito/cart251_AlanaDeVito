@@ -28,7 +28,7 @@ function setup() {
   mitocybria = createVideo(["assets/images/mitocybria.mov"]);
   mitocybria.hide();
 
-  mallet = new Mallet(170, 20, 80);
+  mallet = new Mallet(190, 20, 150, 50); //(w, h, malletThickness, malletHeight)
 
   for (let i = 0; i < numSinButtons; i++) {
     let x = random(50, width - 100);
@@ -65,7 +65,7 @@ function draw() {
     let sinButton = sinButtons[i];
     sinButton.gravity(gravityForce);
     sinButton.move();
-    sinButton.bounce();
+    sinButton.bounce(mallet);
     sinButton.display();
   }
 
