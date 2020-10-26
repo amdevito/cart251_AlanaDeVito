@@ -82,6 +82,5 @@ function draw() {
 
 function mousePressed() {
   mitocybria.loop();
-  osc.start();
   ///add change freq of last osc.
 }

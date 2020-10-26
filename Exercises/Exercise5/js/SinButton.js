@@ -63,9 +63,9 @@ class SinButton {
       this.vy = -this.vy;
       this.ay = 0;
 
-      // if (this.soundActive) {
-      //   this.soundActive = false; // if sinButton is playing but hits the button of screen, turn off
-      // }
+      if (this.soundActive) {
+        this.soundActive = false; // if sinButton is playing but hits the button of screen, turn off
+      }
     }
   }
 
