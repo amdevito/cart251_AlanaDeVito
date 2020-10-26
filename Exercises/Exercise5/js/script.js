@@ -82,5 +82,10 @@ function draw() {
 
 function mousePressed() {
   mitocybria.loop();
+  for (let i = 0; i < sinButtons.length; i++) {
+    let sinButton = sinButtons[i];
+    sinButton.mousePressed();
+  }
+
   ///add change freq of last osc.
 }

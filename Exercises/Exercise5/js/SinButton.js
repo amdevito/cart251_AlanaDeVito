@@ -12,6 +12,7 @@ class SinButton {
     this.active = true;
     this.soundActive = false;
     this.sinOsc = new p5.SinOsc(random(60, 600));
+    this.sinRev = new p5.Reverb();
     this.sinButtonColor = {
       r: 255,
       g: 255,
@@ -70,6 +71,10 @@ class SinButton {
         this.sinOsc.amp(0, 0.8); // if sinButton is playing but hits the button of screen, turn off
       }
     }
+  }
+
+  mousePressed() {
+    this.sinRev.process(this.sinOsc, 4, 4);
   }
 
   display() {
