@@ -11,6 +11,8 @@ let mitocybria;
 
 let mallet;
 
+let freq;
+
 let sinButtons = [];
 
 let triButtons = [];
@@ -80,4 +82,6 @@ function draw() {
 
 function mousePressed() {
   mitocybria.loop();
+  osc.start();
+  ///add change freq of last osc.
 }

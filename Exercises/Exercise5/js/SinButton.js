@@ -52,10 +52,20 @@ class SinButton {
 
       this.vy = -this.vy - 70;
       this.ay = 0;
+
+      this.soundActive = true;
+
+      if (this.soundActive) {
+        new p5.SinOsc(random(300, 2000)); // if sinbutton bounces off of mallet, set soundActive to TRUE
+      }
     }
     if (this.y + this.size / 2 >= height) {
       this.vy = -this.vy;
       this.ay = 0;
+
+      // if (this.soundActive) {
+      //   this.soundActive = false; // if sinButton is playing but hits the button of screen, turn off
+      // }
     }
   }
 
