@@ -110,7 +110,7 @@ class TriButton {
   updateFilter() {
     if (this.filterActive) {
       let cutoff = map(mouseX, 0, width, 60, 600);
-      this.triDel.process(this.triOsc, 0.5, 0.7, this.triCutoff);
+      this.triDel.process(this.triOsc, 0.5, 0.7, cutoff);
     }
   }
 
