@@ -12,9 +12,9 @@ class SinButton {
     this.active = true;
     this.soundActive = false;
     this.sinButtonColor = {
-      r: 0,
-      g: 210,
-      b: 200,
+      r: 255,
+      g: 255,
+      b: 255,
     };
   }
 
@@ -44,6 +44,7 @@ class SinButton {
     push();
     fill(this.sinButtonColor.r, this.sinButtonColor.g, this.sinButtonColor.b);
     stroke(0);
+    strokeWeight(4);
     ellipse(this.x, this.y, this.size);
     pop();
   }

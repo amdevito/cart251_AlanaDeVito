@@ -20,8 +20,8 @@ class TriButton {
     this.soundActive = false;
     this.triButtonColor = {
       r: 0,
-      g: 210,
-      b: 250,
+      g: 0,
+      b: 0,
     };
   }
 
@@ -64,7 +64,9 @@ class TriButton {
   display() {
     push();
     fill(this.triButtonColor.r, this.triButtonColor.g, this.triButtonColor.b);
-    stroke(0);
+
+    stroke(255);
+    strokeWeight(4);
     triangle(
       this.triX1,
       this.triY1,

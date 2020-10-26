@@ -32,7 +32,7 @@ class Mallet {
     stroke(this.handleColor.r, this.handleColor.g, this.handleColor.b);
     strokeWeight(3);
     fill(this.malletColor.r, this.malletColor.g, this.malletColor.b);
-    ellipse(this.x - this.handleLength / 2, this.y, this.malletThickness);
+    ellipse(this.x - this.handleLength / 2, this.y, this.malletThickness, 50);
     pop();
   }
 }

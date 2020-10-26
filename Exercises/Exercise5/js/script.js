@@ -28,23 +28,23 @@ function setup() {
   mitocybria = createVideo(["assets/images/mitocybria.mov"]);
   mitocybria.hide();
 
-  mallet = new Mallet(100, 30, 60);
+  mallet = new Mallet(170, 20, 80);
 
   for (let i = 0; i < numSinButtons; i++) {
-    let x = random(0, width);
-    let y = random(-500, -100);
-    let size = random(20, 80);
+    let x = random(50, width - 100);
+    let y = random(-1000, -150);
+    let size = random(30, 180);
     let sinButton = new SinButton(x, y, size);
     sinButtons.push(sinButton);
   }
 
   for (let i = 0; i < numTriButtons; i++) {
-    let x1 = random(0, width);
-    let y1 = random(-500, -100);
-    let x2 = random(0, width);
-    let y2 = random(-500, -100);
-    let x3 = random(0, width);
-    let y3 = random(-500, -100);
+    let x1 = random(50, width - 100);
+    let y1 = random(-1000, -150);
+    let x2 = random(x1, x1 + 100);
+    let y2 = random(y1, y1 + 100);
+    let x3 = random(x2, x2 - 100);
+    let y3 = random(y2, y2 - 100);
     let triButton = new TriButton(x1, y1, x2, y2, x3, y3);
     triButtons.push(triButton);
   }
