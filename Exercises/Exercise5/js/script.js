@@ -73,7 +73,7 @@ function draw() {
     let triButton = triButtons[i];
     triButton.gravity(gravityForce);
     triButton.move();
-    triButton.bounce();
+    triButton.bounce(mallet);
     triButton.display();
   }
 }

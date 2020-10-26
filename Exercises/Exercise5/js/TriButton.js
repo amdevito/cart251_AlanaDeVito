@@ -45,8 +45,26 @@ class TriButton {
     this.triX3 += this.vx;
     this.triY3 += this.vy;
   }
-
-  bounce() {
+  bounce(mallet) {
+    if (
+      this.triX1 > mallet.x - mallet.malletThickness * 2 &&
+      this.triX1 < mallet.x + mallet.malletThickness * 2 &&
+      this.triY1 + this.size * 2 >= mallet.y - mallet.malletHeight / 2 &&
+      this.triY1 - this.size * 2 <= mallet.y - mallet.malletHeight / 2 &&
+      this.triX2 > mallet.x - mallet.malletThickness * 2 &&
+      this.triX2 < mallet.x + mallet.malletThickness * 2 &&
+      this.triY2 + this.size * 2 >= mallet.y - mallet.malletHeight / 2 &&
+      this.triY2 - this.size * 2 <= mallet.y - mallet.malletHeight / 2 &&
+      this.triX3 > mallet.x - mallet.malletThickness * 2 &&
+      this.triX3 < mallet.x + mallet.malletThickness * 2 &&
+      this.triY3 + this.size * 2 >= mallet.y - mallet.malletHeight / 2 &&
+      this.triY3 - this.size * 2 <= mallet.y - mallet.malletHeight / 2
+    ) {
+      //bounce when hitting mallet
+      this.vy = -this.vy - 70;
+      this.ay = 0;
+    }
+    //bounce when hitting 'ground'
     if (this.triY1 + this.size / 2 >= height) {
       this.vy = -this.vy;
       this.ay = 0;
@@ -60,6 +78,21 @@ class TriButton {
       this.ay = 0;
     }
   }
+
+  // bounce() {
+  //   if (this.triY1 + this.size / 2 >= height) {
+  //     this.vy = -this.vy;
+  //     this.ay = 0;
+  //   }
+  //   if (this.triY2 + this.size / 2 >= height) {
+  //     this.vy = -this.vy;
+  //     this.ay = 0;
+  //   }
+  //   if (this.triY3 + this.size / 2 >= height) {
+  //     this.vy = -this.vy;
+  //     this.ay = 0;
+  //   }
+  // }
 
   display() {
     push();
