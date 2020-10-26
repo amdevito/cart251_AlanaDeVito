@@ -35,12 +35,21 @@ class SinButton {
 
   bounce(mallet) {
     if (
-      this.x >= mallet.x - mallet.malletThickness * 2 &&
+      this.x >= mallet.x - mallet.malletThickness * 1.25 &&
       this.x <= mallet.x + mallet.malletThickness / 2 &&
       this.y + this.size / 2 >= mallet.y - mallet.malletHeight / 2 &&
       this.y - this.size / 2 <= mallet.y - mallet.malletHeight / 2
     ) {
-      //bounce
+      //spin bounce off side. careful not to lose your sinButtons!
+      let dx = this.x - mallet.x;
+      this.vx += map(
+        dx,
+        -mallet.malletThickness / 2,
+        mallet.malletThickness / 2,
+        -0.05,
+        0.05
+      );
+
       this.vy = -this.vy - 70;
       this.ay = 0;
     }

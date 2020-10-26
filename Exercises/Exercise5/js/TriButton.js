@@ -47,18 +47,18 @@ class TriButton {
   }
   bounce(mallet) {
     if (
-      this.triX1 > mallet.x - mallet.malletThickness * 2 &&
-      this.triX1 < mallet.x + mallet.malletThickness * 2 &&
-      this.triY1 + this.size * 2 >= mallet.y - mallet.malletHeight / 2 &&
-      this.triY1 - this.size * 2 <= mallet.y - mallet.malletHeight / 2 &&
-      this.triX2 > mallet.x - mallet.malletThickness * 2 &&
-      this.triX2 < mallet.x + mallet.malletThickness * 2 &&
-      this.triY2 + this.size * 2 >= mallet.y - mallet.malletHeight / 2 &&
-      this.triY2 - this.size * 2 <= mallet.y - mallet.malletHeight / 2 &&
-      this.triX3 > mallet.x - mallet.malletThickness * 2 &&
-      this.triX3 < mallet.x + mallet.malletThickness * 2 &&
-      this.triY3 + this.size * 2 >= mallet.y - mallet.malletHeight / 2 &&
-      this.triY3 - this.size * 2 <= mallet.y - mallet.malletHeight / 2
+      this.triX1 > mallet.x - mallet.malletThickness * 1.25 &&
+      this.triX1 < mallet.x + mallet.malletThickness * 1.25 &&
+      this.triY1 + this.size * 1.25 >= mallet.y - mallet.malletHeight / 2 &&
+      this.triY1 - this.size * 1.25 <= mallet.y - mallet.malletHeight / 2 &&
+      this.triX2 > mallet.x - mallet.malletThickness * 1.25 &&
+      this.triX2 < mallet.x + mallet.malletThickness * 1.25 &&
+      this.triY2 + this.size * 1.25 >= mallet.y - mallet.malletHeight / 2 &&
+      this.triY2 - this.size * 1.25 <= mallet.y - mallet.malletHeight / 2 &&
+      this.triX3 > mallet.x - mallet.malletThickness * 1.25 &&
+      this.triX3 < mallet.x + mallet.malletThickness * 1.25 &&
+      this.triY3 + this.size * 1.25 >= mallet.y - mallet.malletHeight / 2 &&
+      this.triY3 - this.size * 1.25 <= mallet.y - mallet.malletHeight / 2
     ) {
       //bounce when hitting mallet
       this.vy = -this.vy - 70;
