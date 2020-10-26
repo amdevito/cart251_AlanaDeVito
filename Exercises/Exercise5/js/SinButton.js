@@ -11,6 +11,7 @@ class SinButton {
     this.size = size;
     this.active = true;
     this.soundActive = false;
+    this.sinOsc = new p5.SinOsc(random(60, 600));
     this.sinButtonColor = {
       r: 255,
       g: 255,
@@ -56,7 +57,9 @@ class SinButton {
       this.soundActive = true;
 
       if (this.soundActive) {
-        new p5.SinOsc(random(300, 2000)); // if sinbutton bounces off of mallet, set soundActive to TRUE
+        this.sinOsc.start();
+        this.sinOsc.amp(1, 0.8);
+        // if sinbutton bounces off of mallet, set soundActive to TRUE
       }
     }
     if (this.y + this.size / 2 >= height) {
@@ -64,7 +67,7 @@ class SinButton {
       this.ay = 0;
 
       if (this.soundActive) {
-        this.soundActive = false; // if sinButton is playing but hits the button of screen, turn off
+        this.sinOsc.amp(0, 0.8); // if sinButton is playing but hits the button of screen, turn off
       }
     }
   }

@@ -18,6 +18,7 @@ class TriButton {
     this.size = 42; /// equation to find size of triangle (this.x2 + this.x3)/2)- this.x1), however, you cant change this value to change the size, yet, you must change manually if you change the tri point draw values, do this equation and then enter it.
     this.active = true;
     this.soundActive = false;
+    this.triOsc = new p5.TriOsc(random(60, 600));
     this.triButtonColor = {
       r: 0,
       g: 0,
@@ -63,36 +64,41 @@ class TriButton {
       //bounce when hitting mallet
       this.vy = -this.vy - 70;
       this.ay = 0;
+
+      this.soundActive = true;
+
+      if (this.soundActive) {
+        this.triOsc.start();
+        this.triOsc.amp(1, 0.8);
+      }
+      // if sinbutton bounces off of mallet, set soundActive to TRUE
     }
     //bounce when hitting 'ground'
     if (this.triY1 + this.size / 2 >= height) {
       this.vy = -this.vy;
       this.ay = 0;
+
+      if (this.soundActive) {
+        this.triOsc.amp(0, 0.8); // if sinButton is playing but hits the button of screen, turn off
+      }
     }
     if (this.triY2 + this.size / 2 >= height) {
       this.vy = -this.vy;
       this.ay = 0;
+
+      if (this.soundActive) {
+        this.triOsc.amp(0, 0.8); // if sinButton is playing but hits the button of screen, turn off
+      }
     }
     if (this.triY3 + this.size / 2 >= height) {
       this.vy = -this.vy;
       this.ay = 0;
+
+      if (this.soundActive) {
+        this.triOsc.amp(0, 0.8); // if sinButton is playing but hits the button of screen, turn off
+      }
     }
   }
-
-  // bounce() {
-  //   if (this.triY1 + this.size / 2 >= height) {
-  //     this.vy = -this.vy;
-  //     this.ay = 0;
-  //   }
-  //   if (this.triY2 + this.size / 2 >= height) {
-  //     this.vy = -this.vy;
-  //     this.ay = 0;
-  //   }
-  //   if (this.triY3 + this.size / 2 >= height) {
-  //     this.vy = -this.vy;
-  //     this.ay = 0;
-  //   }
-  // }
 
   display() {
     push();
