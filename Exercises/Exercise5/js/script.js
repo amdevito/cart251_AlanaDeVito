@@ -74,7 +74,8 @@ function draw() {
   imageMode(CENTER);
   image(mitocybria, width / 2, height / 2);
 
-  //set up title ans instructions
+  //draw up title and instructions
+  push();
   textSize(30);
   fill(0);
   textFont("American Typewriter");
@@ -83,10 +84,44 @@ function draw() {
   fill(0);
   textFont("American Typewriter");
   text(
-    "Hit circles with your mallet to activate sine wave oscillators.\nHit triangles to activate triangle wave oscillators.\nClick to activate effects and visuals. \nLetting the shapes hit the \nbottom of the screen\nwill stop the \noscillators. \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHitting them \nagain will\nre-activate \nthe same oscillator. \nMallet movement changes delay effect\ncutoff frequency (after you have activated it).\nHave fun!",
+    "Hit circles with your mallet to activate sine wave oscillators.\nHit triangles to activate triangle wave oscillators.\nClick to activate effects and visuals. \nLetting the shapes hit the \nbottom of the screen\nwill stop the \noscillators.",
     28,
     70
   );
+  pop();
+  push();
+  textSize(30);
+  fill(0);
+  textFont("American Typewriter");
+  textAlign(RIGHT);
+  text("Works with Chrome or Firefox.", width - 25, 45);
+  pop();
+
+  pop();
+  push();
+  textSize(20);
+  fill(0);
+  textFont("American Typewriter");
+  textAlign(RIGHT);
+  text(
+    "Refresh to randomize frequencies and play again.",
+    width - 25,
+    height - 55
+  );
+  pop();
+
+  pop();
+  push();
+  textSize(20);
+  fill(0);
+  textFont("American Typewriter");
+  textAlign(LEFT);
+  text(
+    "Hitting them \nagain will\nre-activate \nthe same oscillator. \nMallet movement changes delay effect\ncutoff frequency (after you have activated it).\nHave fun!",
+    25,
+    height - 185
+  );
+  pop();
 
   //call mallet classes
   mallet.move();
