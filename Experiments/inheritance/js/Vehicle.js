@@ -30,8 +30,15 @@ class Vehicle {
     }
   }
 
-  //Display the Vehicle
+  // new! display() draws a rectangle at the vehicles position
   display() {
+    push();
+    rectMode(CENTER);
+    noStroke();
+    //NOTE: we don't set a fill)( because this will be handled in the subclass
+    rect(this.x, this.y, this.width, this.height);
+    pop();
+
     //We will leave this empty because we dont display a generic
     // vehicle! Instead, we leave this up to the subclasses.
   }

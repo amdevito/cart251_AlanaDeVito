@@ -12,14 +12,22 @@ class Motorcycle extends Vehicle {
 
   // Display the motorcycle as a skinny rectangle
   display() {
-    // Remember to call the superclass' version of this method!
-    super.display();
-
+    //NEW!
     push();
-    rectMode(CENTER);
-    noStroke();
+    // NEW! First we set the fill to yellow
     fill(255, 255, 0);
-    rect(this.x, this.y, this.width, this.height);
+    // NEW! Then we call the superclass's version of display(), which will display
+    // a rectangle with the Motorcycle's dimensions at the Motorcycle's position
+    super.display();
     pop();
+    // // Remember to call the superclass' version of this method!
+    // super.display();
+    //
+    // push();
+    // rectMode(CENTER);
+    // noStroke();
+    // fill(255, 255, 0);
+    // rect(this.x, this.y, this.width, this.height);
+    // pop();
   }
 }
