@@ -11,6 +11,7 @@ let numCars = 5;
 // // Our motorcycles
 // let motorcycles = [];
 let numMotorcycles = 10;
+let numSportsCars = 5;
 
 //Set up the canvas and our cars
 function setup() {
@@ -21,6 +22,14 @@ function setup() {
     let y = random(0, height);
     let car = new Car(x, y);
     vehicles.push(car);
+  }
+
+  //create the correct number of sports cars and put them in our vehicles array
+  for (let i = 0; i < numSportsCars; i++) {
+    let x = random(0, width);
+    let y = random(0, height);
+    let sportscar = new SportsCar(x, y);
+    vehicles.push(sportscar);
   }
 
   //Create correct number of motorcycles and put them in our array
