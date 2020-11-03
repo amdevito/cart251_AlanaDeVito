@@ -7,7 +7,7 @@ Alana DeVito
 let sonicSign = {
   x: 0,
   y: 0,
-  video: undefined,
+  image: undefined,
 };
 
 let boxOffice;
@@ -65,32 +65,29 @@ function preload() {
 
   //Gallery
   gallery = loadImage("assets/images/gallery_render.png"); //gallery
-  sonicSign.video = createVideo(
-    ["assets/video/gallery_sign.mov"],
-    sonicSignLoad
-  );
+
+  //Gallery sign
+  sonicSign.image = loadImage("assets/images/theSonicShop.gif");
 }
 // Description of setup() goes here.
 function setup() {
   createCanvas(700, 900);
 
-  sonicSign.video.size(409, 78);
-  sonicSign.video.hide();
   sonicSign.x = width / 2;
   sonicSign.y = height / 2 - 380;
 }
-
-function sonicSignLoad() {
-  sonicSign.video.loop();
-  sonicSign.video.volume(0);
-  //  sonicSign.play();
-}
+//
+// function sonicSignLoad() {
+//   sonicSign.video.loop();
+//   sonicSign.video.volume(0);
+//   //  sonicSign.play();
+// }
 
 function welcomeDisplay() {
   push();
   background(boxOffice);
   imageMode(CENTER);
-  image(sonicSign.video, sonicSign.x, sonicSign.y, 600, 180);
+  image(sonicSign.image, sonicSign.x, sonicSign.y, 600, 180);
   pop();
 }
 
@@ -98,7 +95,7 @@ function welcomeDisplay1() {
   push();
   background(boxOffice1.image);
   imageMode(CENTER);
-  image(sonicSign.video, sonicSign.x, sonicSign.y, 600, 180);
+  image(sonicSign.image, sonicSign.x, sonicSign.y, 600, 180);
   pop();
 }
 
@@ -106,7 +103,7 @@ function welcomeDisplay2() {
   push();
   background(boxOffice2.image);
   imageMode(CENTER);
-  image(sonicSign.video, sonicSign.x, sonicSign.y, 600, 180);
+  image(sonicSign.image, sonicSign.x, sonicSign.y, 600, 180);
   pop();
 }
 
@@ -114,7 +111,7 @@ function welcomeDisplay3() {
   push();
   background(boxOffice3.image);
   imageMode(CENTER);
-  image(sonicSign.video, sonicSign.x, sonicSign.y, 600, 180);
+  image(sonicSign.image, sonicSign.x, sonicSign.y, 600, 180);
   pop();
 }
 
@@ -122,7 +119,7 @@ function welcomeDisplay4() {
   push();
   background(boxOffice4.image);
   imageMode(CENTER);
-  image(sonicSign.video, sonicSign.x, sonicSign.y, 600, 180);
+  image(sonicSign.image, sonicSign.x, sonicSign.y, 600, 180);
   pop();
 }
 
@@ -130,7 +127,7 @@ function welcomeDisplay5() {
   push();
   background(boxOffice5.image);
   imageMode(CENTER);
-  image(sonicSign.video, sonicSign.x, sonicSign.y, 600, 180);
+  image(sonicSign.image, sonicSign.x, sonicSign.y, 600, 180);
   pop();
 }
 
@@ -138,11 +135,12 @@ function welcomeDisplay6() {
   push();
   background(boxOffice6.image);
   imageMode(CENTER);
-  image(sonicSign.video, sonicSign.x, sonicSign.y, 600, 180);
+  image(sonicSign.image, sonicSign.x, sonicSign.y, 600, 180);
   pop();
 }
 
 function galleryDisplay() {
+  createCanvas(1150, 700);
   background(gallery);
 }
 
