@@ -100,14 +100,6 @@ function welcomeDisplay1() {
   imageMode(CENTER);
   image(sonicSign.video, sonicSign.x, sonicSign.y, 600, 180);
   pop();
-  //controls for this screen
-  if (keyIsPressed) {
-    if (key == 1) {
-      state = `display2`;
-    } else if (key == 2) {
-      state = `display3`;
-    }
-  }
 }
 
 function welcomeDisplay2() {
@@ -116,12 +108,6 @@ function welcomeDisplay2() {
   imageMode(CENTER);
   image(sonicSign.video, sonicSign.x, sonicSign.y, 600, 180);
   pop();
-  //controls for this screen
-  if (keyIsPressed) {
-    if (key == 1 || key == 2 || key == 3 || key == 4) {
-      state = `display4`;
-    }
-  }
 }
 
 function welcomeDisplay3() {
@@ -130,12 +116,6 @@ function welcomeDisplay3() {
   imageMode(CENTER);
   image(sonicSign.video, sonicSign.x, sonicSign.y, 600, 180);
   pop();
-  //controls for this screen
-  if (keyIsPressed) {
-    if (key == 1 || key == 2 || key == 3 || key == 4) {
-      state = `display4`;
-    }
-  }
 }
 
 function welcomeDisplay4() {
@@ -144,14 +124,6 @@ function welcomeDisplay4() {
   imageMode(CENTER);
   image(sonicSign.video, sonicSign.x, sonicSign.y, 600, 180);
   pop();
-  //controls for this screen
-  if (keyIsPressed) {
-    if (key == 1) {
-      state = `home`;
-    } else if (key == 2) {
-      state = `display5`;
-    }
-  }
 }
 
 function welcomeDisplay5() {
@@ -160,14 +132,6 @@ function welcomeDisplay5() {
   imageMode(CENTER);
   image(sonicSign.video, sonicSign.x, sonicSign.y, 600, 180);
   pop();
-  //controls for this screen
-  if (keyIsPressed) {
-    if (key == 1) {
-      state = `home`;
-    } else if (key == 2) {
-      state = `display6`;
-    }
-  }
 }
 
 function welcomeDisplay6() {
@@ -176,14 +140,6 @@ function welcomeDisplay6() {
   imageMode(CENTER);
   image(sonicSign.video, sonicSign.x, sonicSign.y, 600, 180);
   pop();
-  //controls for this screen
-  if (keyIsPressed) {
-    if (key == 1) {
-      state = `home`;
-    } else if (key == 2) {
-      state = `gallery`;
-    }
-  }
 }
 
 function galleryDisplay() {
@@ -226,5 +182,44 @@ function draw() {
     galleryDisplay();
   } else if (state === `home`) {
     backHome();
+  }
+}
+
+function keyPressed() {
+  if (state === `enter`) {
+  } else if (state === `display1`) {
+    if (key == 1) {
+      state = `display2`;
+    } else if (key == 2) {
+      state = `display3`;
+    }
+  } else if (state === `display2`) {
+    if (key == 1 || key == 2 || key == 3 || key == 4) {
+      state = `display4`;
+    }
+  } else if (state === `display3`) {
+    if (key == 1 || key == 2 || key == 3 || key == 4) {
+      state = `display4`;
+    }
+  } else if (state === `display4`) {
+    if (key == 1) {
+      state = `home`;
+    } else if (key == 2) {
+      state = `display5`;
+    }
+  } else if (state === `display5`) {
+    if (key == 1) {
+      state = `home`;
+    } else if (key == 2) {
+      state = `display6`;
+    }
+  } else if (state === `display6`) {
+    if (key == 1) {
+      state = `home`;
+    } else if (key == 2) {
+      state = `gallery`;
+    }
+  } else if (state === `gallery`) {
+  } else if (state === `home`) {
   }
 }
