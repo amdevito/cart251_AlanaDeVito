@@ -181,7 +181,6 @@ function draw() {
   } else if (state === `gallery`) {
     galleryDisplay();
   } else if (state === `home`) {
-    backHome();
   }
 }
 
@@ -204,22 +203,26 @@ function keyPressed() {
   } else if (state === `display4`) {
     if (key == 1) {
       state = `home`;
+      backHome();
     } else if (key == 2) {
       state = `display5`;
     }
   } else if (state === `display5`) {
     if (key == 1) {
       state = `home`;
+      backHome();
     } else if (key == 2) {
       state = `display6`;
     }
   } else if (state === `display6`) {
     if (key == 1) {
       state = `home`;
+      backHome();
     } else if (key == 2) {
       state = `gallery`;
     }
   } else if (state === `gallery`) {
   } else if (state === `home`) {
+    backHome();
   }
 }
