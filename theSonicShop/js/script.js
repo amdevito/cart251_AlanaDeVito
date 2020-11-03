@@ -72,7 +72,7 @@ function preload() {
 }
 // Description of setup() goes here.
 function setup() {
-  createCanvas(800, 1000);
+  createCanvas(700, 900);
 
   sonicSign.video.size(409, 78);
   sonicSign.video.hide();
@@ -102,10 +102,10 @@ function welcomeDisplay1() {
   pop();
   //controls for this screen
   if (keyIsPressed) {
-    if (key == "1" && state === `display`) {
-      state === `display2`;
-    } else if (key == "2" && state === `start`) {
-      state === `display3`;
+    if (key == 1) {
+      state = `display2`;
+    } else if (key == 2) {
+      state = `display3`;
     }
   }
 }
@@ -118,13 +118,8 @@ function welcomeDisplay2() {
   pop();
   //controls for this screen
   if (keyIsPressed) {
-    if (
-      (key == "1" && state === `display2`) ||
-      (key == "2" && state === `display2`) ||
-      (key == "3" && state === `display2`) ||
-      (key == "4" && state === `display2`)
-    ) {
-      state === `display4`;
+    if (key == 1 || key == 2 || key == 3 || key == 4) {
+      state = `display4`;
     }
   }
 }
@@ -137,13 +132,8 @@ function welcomeDisplay3() {
   pop();
   //controls for this screen
   if (keyIsPressed) {
-    if (
-      (key == "1" && state === `display3`) ||
-      (key == "2" && state === `display3`) ||
-      (key == "3" && state === `display3`) ||
-      (key == "4" && state === `display3`)
-    ) {
-      state === `display4`;
+    if (key == 1 || key == 2 || key == 3 || key == 4) {
+      state = `display4`;
     }
   }
 }
@@ -156,10 +146,10 @@ function welcomeDisplay4() {
   pop();
   //controls for this screen
   if (keyIsPressed) {
-    if (key == "1" && state === `display4`) {
-      state === `home`;
-    } else if (key == "2" && state === `display4`) {
-      state === `display5`;
+    if (key == 1) {
+      state = `home`;
+    } else if (key == 2) {
+      state = `display5`;
     }
   }
 }
@@ -172,10 +162,10 @@ function welcomeDisplay5() {
   pop();
   //controls for this screen
   if (keyIsPressed) {
-    if (key == "1" && state === `display5`) {
-      state === `home`;
-    } else if (key == "2" && state === `display5`) {
-      state === `display6`;
+    if (key == 1) {
+      state = `home`;
+    } else if (key == 2) {
+      state = `display6`;
     }
   }
 }
@@ -188,10 +178,10 @@ function welcomeDisplay6() {
   pop();
   //controls for this screen
   if (keyIsPressed) {
-    if (key == "1" && state === `display6`) {
-      state === `home`;
-    } else if (key == "2" && state === `display6`) {
-      state === `gallery`;
+    if (key == 1) {
+      state = `home`;
+    } else if (key == 2) {
+      state = `gallery`;
     }
   }
 }
@@ -202,7 +192,7 @@ function galleryDisplay() {
 
 function mousePressed() {
   if (state === `enter`) {
-    state = `start`;
+    state = `display1`;
     sonicSignLoad();
   } else if (state === `display6`) {
     state = `gallery`;
@@ -220,7 +210,7 @@ function draw() {
   //set up the different states
   if (state === `enter`) {
     welcomeDisplay();
-  } else if (state === `start`) {
+  } else if (state === `display1`) {
     welcomeDisplay1();
   } else if (state === `display2`) {
     welcomeDisplay2();
