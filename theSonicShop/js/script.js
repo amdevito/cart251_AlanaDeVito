@@ -2,6 +2,8 @@
 The Sonic Shop Virtual Gallery
 Alana DeVito
 
+Prototype UI for my final project.
+
 **************************************************/
 "use strict";
 let sonicSign = {
@@ -76,12 +78,6 @@ function setup() {
   sonicSign.x = width / 2;
   sonicSign.y = height / 2 - 380;
 }
-//
-// function sonicSignLoad() {
-//   sonicSign.video.loop();
-//   sonicSign.video.volume(0);
-//   //  sonicSign.play();
-// }
 
 function welcomeDisplay() {
   push();
@@ -147,14 +143,19 @@ function galleryDisplay() {
 function mousePressed() {
   if (state === `enter`) {
     state = `display1`;
-    sonicSignLoad();
   } else if (state === `display6`) {
     state = `gallery`;
+  } else if (state === `gallery`) {
+    interaction1();
   }
 }
 
 function backHome() {
   window.location.href = `https://amdevito.github.io/211/trajectory/index.html`;
+}
+
+function interaction1() {
+  window.location.href = `https://amdevito.github.io/211/interact/index.html`;
 }
 
 // draw()
@@ -216,8 +217,6 @@ function keyPressed() {
     if (key == 1) {
       state = `home`;
       backHome();
-    } else if (key == 2) {
-      state = `gallery`;
     }
   } else if (state === `gallery`) {
   } else if (state === `home`) {
