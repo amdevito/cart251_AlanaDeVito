@@ -1,0 +1,499 @@
+/* === CSS TRANSITIONS AND ANIATION === */
+* {
+  margin: 0;
+  padding-left: 5px;
+  padding-top: 2px;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+body {
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  min-height: 100vh;
+  background-color: black;
+  font-family: "Syne Mono", monospace;
+}
+
+h4 {
+  padding-top: 10em;
+  padding-right: 3em;
+  padding-left: 37em;
+
+  justify-content: right;
+  font-family: "The Girl Next Door", cursive;
+}
+
+h3 {
+  color: aliceblue;
+  font-decoration: none;
+  padding-top: 6.8em;
+  padding-right: 2em;
+  padding-left: 1em;
+
+  justify-content: right;
+}
+h2 {
+  color: aliceblue;
+  font-size: 30px;
+  font-decoration: none;
+  padding-left: 1em;
+  padding-right: 1em;
+  justify-content: right;
+}
+
+.broken_main {
+  flex: 1;
+  position: relative;
+  margin: auto;
+  height: 1.3em;
+  color: transparent;
+  font-family: "Syne Mono", monospace;
+  font-size: 5vw;
+  letter-spacing: -0.015em;
+  line-height: 0.8em;
+  padding-bottom: 1em;
+}
+
+section {
+  text-align: center;
+  background: black;
+  width: 300px;
+  height: 400px;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.broken_main > div {
+  position: absolute;
+  height: 3em;
+  top: 5;
+  left: 0;
+  right: 0;
+  bottom: 5;
+  color: chartreuse;
+  pointer-events: none;
+}
+
+.broken_main > div:nth-child(1) {
+  mask-image: linear-gradient(black 25%, transparent 50%);
+  -web-kit-mask-image: linear-gradient(black 25%, transparent 50%);
+  animation: broken_main1 10s infinite;
+}
+
+.broken_main > div:nth-child(2) {
+  mask-image: linear-gradient(
+    transparent 50%,
+    black 25%,
+    black 50%,
+    transparent 50%
+  );
+  mask-image: linear-gradient(
+    transparent 25%,
+    black 25%,
+    black 50%,
+    transparent 50%
+  );
+  animation: broken_main2 10s infinite;
+}
+
+.broken_main > div:nth-child(3) {
+  mask-image: linear-gradient(
+    transparent 50%,
+    black 50%,
+    black 75%,
+    transparent 50%
+  );
+  mask-image: linear-gradient(
+    transparent 50%,
+    black 50%,
+    black 75%,
+    transparent 75%
+  );
+  animation: broken_main3 5s infinite;
+}
+
+.broken_main > div:nth-child(4) {
+  -web-kit-mask-image: linear-gradient(transparent 50%, black 50%);
+  animation: broken_main4 5s infinite;
+}
+
+@keyframes broken_main1 {
+  0% {
+    transform: translateX(-2%);
+  }
+  26% {
+    transform: translateX(1%);
+  }
+  83% {
+    transform: translateX(-0.1%);
+  }
+  100% {
+    transform: translateX(-2%);
+  }
+}
+
+@keyframes broken_main2 {
+  0% {
+    transform: translateX(0.2%);
+  }
+  24% {
+    transform: translateX(0.5%);
+  }
+  82% {
+    transform: translateX(-0.2%);
+  }
+  100% {
+    transform: translateX(0.1%);
+  }
+}
+
+@keyframes broken_main3 {
+  /*i don't think this is working?*/
+  0% {
+    transform: translateX(3%);
+  }
+  22% {
+    transform: translateX(0%);
+  }
+  81% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-2%);
+  }
+}
+
+@keyframes broken_main4 {
+  /*i don't think this is working?*/
+  0% {
+    transform: translateX(4%);
+  }
+  20% {
+    transform: translateX(0%);
+  }
+  80% {
+    transform: translateX(-0.5%);
+  }
+  100% {
+    transform: translateX(4%);
+  }
+}
+
+.main_container {
+  padding: 3em 2em;
+  display: flex;
+  justify-content: space-between;
+}
+
+header {
+  padding-top: 3em;
+  padding-left: 1em;
+  padding-right: 10em;
+  flex: 1;
+  flex-direction: column;
+}
+
+/* main section with links and info */
+.broken_main {
+  font-family: "Syne Mono", monospace;
+  padding-top: 1em;
+  padding-right: 1em;
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+
+.glow_in_container {
+  font-family: "Syne Mono", monospace;
+  padding-top: 1em;
+  padding-right: 2em;
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+
+.container {
+  position: relative;
+  padding: 2em;
+}
+
+.image1 {
+  display: justify-right;
+  width: 75%;
+  height: auto;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: 0.5s ease;
+  background-color: black;
+  border-radius: 0.8em;
+}
+.overlay2 {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: 0.5s ease;
+}
+
+.container:hover .overlay {
+  opacity: 1;
+}
+.container:hover .overlay2 {
+  opacity: 1;
+}
+
+.text {
+  color: white;
+  font-size: 25px;
+  padding-right: 5em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: right;
+}
+
+/* change to plain glowing boxes with image inside that glow and change to info  */
+.glow_in {
+  border: 2px solid chartreuse;
+  border-radius: 0.6em;
+  text-decoration: none;
+  padding: 2em 2em;
+  border-color: transparent;
+  margin: 0.3em; /* space around/between buttons */
+  color: deepskyblue;
+  transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+}
+.glow_in:hover {
+  box-shadow: 0 0 30px 0 mediumpurple inset, 0 0 20px 4px chartreuse;
+  color: ghostwhite;
+}
+@font-face {
+  font-family: "The Girl Next Door", cursive;
+}
+
+body {
+  background-color: #141114;
+  background-image: linear-gradient(335deg, black 23px, transparent 23px),
+    linear-gradient(155deg, black 43px, transparent 13px),
+    linear-gradient(335deg, black 13px, transparent 23px),
+    linear-gradient(155deg, black 3px, transparent 13px);
+  background-size: 58px 58px;
+  background-position: 0px 2px, 4px 35px, 29px 31px, 34px 6px;
+}
+
+.sign {
+  padding-right: 2em;
+  position: absolute;
+  display: flex;
+  justify-content: left;
+  align-items: right;
+  width: 50%;
+  height: 50%;
+  background-image: radial-gradient(
+    ellipse 50% 35% at 50% 50%,
+    #6b1839,
+    transparent
+  );
+  transform: translate(-50%, -50%);
+  letter-spacing: 2;
+  left: 50%;
+  top: 50%;
+  font-family: "The Girl Next Door";
+  text-transform: uppercase;
+  font-size: 6em;
+  color: springgreen;
+  text-shadow: 0 0 0.6rem springgreen, 0 0 1.5rem #ff65bd,
+    -0.2rem 0.1rem 1rem #ff65bd, 0.2rem 0.1rem 1rem #ff65bd,
+    0 -0.5rem 2rem #ff2483, 0 0.5rem 3rem #ff2483;
+  animation: shine 2s forwards, flicker 3s infinite;
+}
+
+@keyframes blink {
+  0%,
+  22%,
+  36%,
+  75% {
+    color: cornflowerblue;
+    text-shadow: 0 0 0.6rem cornflowerblue, 0 0 1.5rem cornflowerblue,
+      -0.2rem 0.1rem 1rem #ff65bd, 0.2rem 0.1rem 1rem #ff65bd,
+      0 -0.5rem 2rem #ff2483, 0 0.5rem 3rem #ff2483;
+  }
+  28%,
+  33% {
+    color: lawngreen;
+    text-shadow: none;
+  }
+  82%,
+  97% {
+    color: #ff2483;
+    text-shadow: none;
+  }
+}
+
+.flicker {
+  animation: shine 2s forwards, blink 3s 2s infinite;
+}
+
+.fast-flicker {
+  animation: shine 2s forwards, blink 10s 1s infinite;
+}
+
+@keyframes shine {
+  0% {
+    color: #6b1839;
+    text-shadow: none;
+  }
+  100% {
+    color: #ffe6ff;
+    text-shadow: 0 0 0.6rem #ffe6ff, 0 0 1.5rem #ff65bd,
+      -0.2rem 0.1rem 1rem #ff65bd, 0.2rem 0.1rem 1rem #ff65bd,
+      0 -0.5rem 2rem #ff2483, 0 0.5rem 3rem #ff2483;
+  }
+}
+
+@keyframes flicker {
+  from {
+    opacity: 1;
+  }
+
+  4% {
+    opacity: 0.9;
+  }
+
+  6% {
+    opacity: 0.85;
+  }
+
+  8% {
+    opacity: 0.95;
+  }
+
+  10% {
+    opacity: 0.9;
+  }
+
+  11% {
+    opacity: 0.922;
+  }
+
+  12% {
+    opacity: 0.9;
+  }
+
+  14% {
+    opacity: 0.95;
+  }
+
+  16% {
+    opacity: 0.98;
+  }
+
+  17% {
+    opacity: 0.9;
+  }
+
+  19% {
+    opacity: 0.93;
+  }
+
+  20% {
+    opacity: 0.99;
+  }
+
+  24% {
+    opacity: 1;
+  }
+
+  26% {
+    opacity: 0.94;
+  }
+
+  28% {
+    opacity: 0.98;
+  }
+
+  37% {
+    opacity: 0.93;
+  }
+
+  38% {
+    opacity: 0.5;
+  }
+
+  39% {
+    opacity: 0.96;
+  }
+
+  42% {
+    opacity: 1;
+  }
+
+  44% {
+    opacity: 0.97;
+  }
+
+  46% {
+    opacity: 0.94;
+  }
+
+  56% {
+    opacity: 0.9;
+  }
+
+  58% {
+    opacity: 0.9;
+  }
+
+  60% {
+    opacity: 0.99;
+  }
+
+  68% {
+    opacity: 1;
+  }
+
+  70% {
+    opacity: 0.9;
+  }
+
+  72% {
+    opacity: 0.95;
+  }
+
+  93% {
+    opacity: 0.93;
+  }
+
+  95% {
+    opacity: 0.95;
+  }
+
+  97% {
+    opacity: 0.93;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
