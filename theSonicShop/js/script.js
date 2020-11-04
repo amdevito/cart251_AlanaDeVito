@@ -1,17 +1,30 @@
 /**************************************************
 The Sonic Shop Virtual Gallery
+
 Alana DeVito
 
 Prototype UI for my final project.
+This is the introductory section of my final project.
+
+In this prototype, the user is greeted at the enterance of a virtual gallery
+called The Sonic Shop Virtual Gallery. After some dialogue between the user and
+my virtual self, the user is allowed access into the 3D modeled space.
+Once inside, clicking on a canvas allows you access 'into' the interactive installation
+piece.
+   There are 3 different canvas's for 3 different AV interactive experiences
+(just doubled up for an 'immersive' experience.)
 
 **************************************************/
 "use strict";
+
+//set up variable for the flashing sign gif
 let sonicSign = {
   x: 0,
   y: 0,
   image: undefined,
 };
 
+//variable for boxOffice images
 let boxOffice;
 
 let boxOffice1 = {
@@ -71,14 +84,81 @@ function preload() {
   //Gallery sign
   sonicSign.image = loadImage("assets/images/theSonicShop.gif");
 }
-// Description of setup() goes here.
+
+// for now draw is just responsible for state changes to link functions
+function draw() {
+  //set up the different states
+  if (state === `enter`) {
+    welcomeDisplay();
+  } else if (state === `display1`) {
+    welcomeDisplay1();
+  } else if (state === `display2`) {
+    welcomeDisplay2();
+  } else if (state === `display3`) {
+    welcomeDisplay3();
+  } else if (state === `display4`) {
+    welcomeDisplay4();
+  } else if (state === `display5`) {
+    welcomeDisplay5();
+  } else if (state === `display6`) {
+    welcomeDisplay6();
+  } else if (state === `gallery`) {
+    galleryDisplay();
+  } else if (state === `home`) {
+  }
+}
+
+//
+function keyPressed() {
+  if (state === `enter`) {
+  } else if (state === `display1`) {
+    if (key == 1) {
+      state = `display2`;
+    } else if (key == 2) {
+      state = `display3`;
+    }
+  } else if (state === `display2`) {
+    if (key == 1 || key == 2 || key == 3 || key == 4) {
+      state = `display4`;
+    }
+  } else if (state === `display3`) {
+    if (key == 1 || key == 2 || key == 3 || key == 4) {
+      state = `display4`;
+    }
+  } else if (state === `display4`) {
+    if (key == 1) {
+      state = `home`;
+      backHome();
+    } else if (key == 2) {
+      state = `display5`;
+    }
+  } else if (state === `display5`) {
+    if (key == 1) {
+      state = `home`;
+      backHome();
+    } else if (key == 2) {
+      state = `display6`;
+    }
+  } else if (state === `display6`) {
+    if (key == 1) {
+      state = `home`;
+      backHome();
+    }
+  } else if (state === `gallery`) {
+  } else if (state === `home`) {
+    backHome();
+  }
+}
+//
 function setup() {
   createCanvas(700, 900);
 
+  //set up sign on canvas
   sonicSign.x = width / 2;
   sonicSign.y = height / 2 - 380;
 }
 
+//first introduction
 function welcomeDisplay() {
   push();
   background(boxOffice);
@@ -87,6 +167,7 @@ function welcomeDisplay() {
   pop();
 }
 
+//functions to switch from different answers from the user.
 function welcomeDisplay1() {
   push();
   background(boxOffice1.image);
@@ -135,11 +216,13 @@ function welcomeDisplay6() {
   pop();
 }
 
+//send user into the gallery
 function galleryDisplay() {
   createCanvas(1150, 700);
   background(gallery);
 }
 
+//when the mouse is pressed, change states
 function mousePressed() {
   if (state === `enter`) {
     state = `display1`;
@@ -150,76 +233,12 @@ function mousePressed() {
   }
 }
 
+//take user back to the front page website for Project Trajectory
 function backHome() {
   window.location.href = `https://amdevito.github.io/211/trajectory/index.html`;
 }
 
+//user selects canvas and then is taken 'into' the interactive installation
 function interaction1() {
   window.location.href = `https://amdevito.github.io/211/interact/index.html`;
-}
-
-// draw()
-//
-// Description of draw() goes here.
-function draw() {
-  //set up the different states
-  if (state === `enter`) {
-    welcomeDisplay();
-  } else if (state === `display1`) {
-    welcomeDisplay1();
-  } else if (state === `display2`) {
-    welcomeDisplay2();
-  } else if (state === `display3`) {
-    welcomeDisplay3();
-  } else if (state === `display4`) {
-    welcomeDisplay4();
-  } else if (state === `display5`) {
-    welcomeDisplay5();
-  } else if (state === `display6`) {
-    welcomeDisplay6();
-  } else if (state === `gallery`) {
-    galleryDisplay();
-  } else if (state === `home`) {
-  }
-}
-
-function keyPressed() {
-  if (state === `enter`) {
-  } else if (state === `display1`) {
-    if (key == 1) {
-      state = `display2`;
-    } else if (key == 2) {
-      state = `display3`;
-    }
-  } else if (state === `display2`) {
-    if (key == 1 || key == 2 || key == 3 || key == 4) {
-      state = `display4`;
-    }
-  } else if (state === `display3`) {
-    if (key == 1 || key == 2 || key == 3 || key == 4) {
-      state = `display4`;
-    }
-  } else if (state === `display4`) {
-    if (key == 1) {
-      state = `home`;
-      backHome();
-    } else if (key == 2) {
-      state = `display5`;
-    }
-  } else if (state === `display5`) {
-    if (key == 1) {
-      state = `home`;
-      backHome();
-    } else if (key == 2) {
-      state = `display6`;
-    }
-  } else if (state === `display6`) {
-    if (key == 1) {
-      state = `home`;
-      backHome();
-    }
-  } else if (state === `gallery`) {
-  } else if (state === `home`) {
-    backHome();
-  }
 }
