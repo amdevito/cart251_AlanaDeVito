@@ -235,7 +235,7 @@ function mousePressed() {
 
 //take user back to the front page website for Project Trajectory
 function backHome() {
-  window.location.href = `https://amdevito.github.io/211/trajectory/index.html`;
+  window.location.href = `https://amdevito.github.io/211/MidTermProposal/`;
 }
 
 //user selects canvas and then is taken 'into' the interactive installation
