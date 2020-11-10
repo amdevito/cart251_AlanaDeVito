@@ -21,6 +21,16 @@ let tracksPlayback;
 
 let videoPlayback;
 
+let files = [];
+
+function preload() {
+  // Load all the tracks into the array
+  for (let i = 0; i < 8; i++) {
+    let file = loadSound(`assets/sounds/track${i}.mp3`);
+    files.push(file);
+  }
+}
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
@@ -28,7 +38,7 @@ function setup() {
   videoPlayback = new VideoPlayback(); //rate and diretion controlled by amplitude? or frequency?
   videoPlayback.video.hide();
 
-  tracksPlayback = new TracksPlayback(); //mapped mouse x and mapped y plositions//
+  tracksPlayback = new TracksPlayback(files); //mapped mouse x and mapped y plositions//
 }
 
 // draw()
@@ -42,7 +52,6 @@ function draw() {
 
   ////recall track classes
 
-  tracksPlayback.keyPressed();
   tracksPlayback.mousePosition();
 
   //draw up title and instructions
@@ -72,4 +81,8 @@ function draw() {
 //recall video classes
 function mousePressed() {
   videoPlayback.mousePressed();
+}
+
+function keyPressed() {
+  tracksPlayback.keyPressed();
 }
