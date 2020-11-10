@@ -17,6 +17,7 @@ class TracksPlayback {
     };
     this.track4 = {
       audio: createAudio("assets/sounds/track3.mp3"),
+      active: false,
     };
     this.track5 = {
       audio: createAudio("assets/sounds/track4.mp3"),
@@ -55,75 +56,75 @@ class TracksPlayback {
       track2.audio.play();
       track2.audio.loop();
       track2.active = true;
-    } else if ((key == 2 && track.active = true)) {
+    } else if ((key == 2 && track2.active = true)) {
       //stop track and make inactive
       track2.audio.stop();
       track2.active = false;
     }
     if (key == 3) {
       //play track2.mp3
-      track.three.play();
-      track.three.loop();
-      track.active = true;
-    } else if ((key == 3 && track.active = true)) {
+      track3.audio.play();
+      track3.audio.loop();
+      track3.active = true;
+    } else if ((key == 3 && track3.active = true)) {
       //stop track and make inactive
-      track.three.stop();
-      track.active = false;
+      track3.audio.stop();
+      track3.active = false;
     }
     if (key == 4) {
       //play track3.mp3
-      track.four.play();
-      track.four.loop();
-      track.active = true;
-    } else if ((key == 4 && track.active = true)) {
+      track4.audio.play();
+      track4.audio.loop();
+      track4.active = true;
+    } else if ((key == 4 && track4.active = true)) {
       //stop track and make inactive
-      track.four.stop();
-      track.active = false;
+      track4.audio.stop();
+      track4.active = false;
     }
     if (key == 5) {
       //play track04.mp3
-      track.five.play();
-      track.five.loop();
-      track.active = true;
-    } else if ((key == 5 && track.active = true)) {
+      track5.audio.play();
+      track5.audio.loop();
+      track5.active = true;
+    } else if ((key == 5 && track5.active = true)) {
       //stop track and make inactive
-      track.five.stop();
-      track.active = false;
+      track5.audio.stop();
+      track5.active = false;
     }
     if (key == 6) {
       //play track05.mp3
-      track.six.play();
-      track.six.loop();
-      track.active = true;
-    } else if ((key == 6 && track.active = true)) {
+      track6.audio.play();
+      track6.audio.loop();
+      track6.active = true;
+    } else if ((key == 6 && track6.active = true)) {
       //stop track and make inactive
-      track.six.stop();
-      track.active = false;
+      track6.audio.stop();
+      track6.active = false;
     }
     if (key == 7) {
       //play track06.mp3
-      track.seven.play();
-      track.seven.loop();
-      track.active = true;
-    } else if ((key == 7 && track.active = true)) {
+      track7.audio.play();
+      track7.audio.loop();
+      track7.active = true;
+    } else if ((key == 7 && track7.active = true)) {
       //stop track and make inactive
-      track.seven.stop();
-      track.active = false;
+      track7.audio.stop();
+      track7.active = false;
     }
     if (key == 8) {
       //play track0.mp3
-      track.eight.play();
-      track.eight.loop();
-      track.active = true;
-    } else if ((key == 8 && track.active = true)) {
+      track8.audio.play();
+      track8.audio.loop();
+      track8.active = true;
+    } else if ((key == 8 && track8.active = true)) {
       //stop track and make inactive
-      track.eight.stop();
-      track.active = false;
+      track8.audio.stop();
+      track8.active = false;
     }
   }
   //when 1-8 is pressed, play that track, if active and pressed again, turn off
   mousePressed() {
-    if (track.eight.active === true) {
+    if (track1.active === true) {
       //add filter to track and control with x and y position of mouse
     }
   }
