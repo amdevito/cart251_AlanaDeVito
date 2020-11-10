@@ -2,49 +2,49 @@ class TracksPlayback {
   //creating class for the TrackPlayback control using the mouse position
   constructor(playRate, playDirection) {
     this.track1 = {
-      audio: createAudio("assets/sounds/track0.mp3"),
+      audio: loadSound("assets/sounds/track0.mp3"),
       active: false,
       playRate: playRate,
       playDirection: playDirection,
     };
     this.track2 = {
-      audio: createAudio("assets/sounds/track1.mp3"),
+      audio: loadSound("assets/sounds/track1.mp3"),
       active: false,
       playRate: playRate,
       playDirection: playDirection,
     };
     this.track3 = {
-      audio: createAudio("assets/sounds/track2.mp3"),
+      audio: loadSound("assets/sounds/track2.mp3"),
       active: false,
       playRate: playRate,
       playDirection: playDirection,
     };
     this.track4 = {
-      audio: createAudio("assets/sounds/track3.mp3"),
+      audio: loadSound("assets/sounds/track3.mp3"),
       active: false,
       playRate: playRate,
       playDirection: playDirection,
     };
     this.track5 = {
-      audio: createAudio("assets/sounds/track4.mp3"),
+      audio: loadSound("assets/sounds/track4.mp3"),
       active: false,
       playRate: playRate,
       playDirection: playDirection,
     };
     this.track6 = {
-      audio: createAudio("assets/sounds/track5.mp3"),
+      audio: loadSound("assets/sounds/track5.mp3"),
       active: false,
       playRate: playRate,
       playDirection: playDirection,
     };
     this.track7 = {
-      audio: createAudio("assets/sounds/track6.mp3"),
+      audio: loadSound("assets/sounds/track6.mp3"),
       active: false,
       playRate: playRate,
       playDirection: playDirection,
     };
     this.track8 = {
-      audio: createAudio("assets/sounds/track7.mp3"),
+      audio: loadSound("assets/sounds/track7.mp3"),
       active: false,
       playRate: playRate,
       playDirection: playDirection,
