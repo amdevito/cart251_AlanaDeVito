@@ -3,10 +3,15 @@ class VideoPlayback {
   constructor(rate, direction) {
     this.rate = rate;
     this.direction = direction;
+    this.videoActive = false;
     this.video = createVideo(["assets/images/kelidoscape1.mov"]);
   }
   mousePressed() {
-    kelidoscape.loop();
+    if (videoActive === false) {
+      videoActive = true;
+      video.play();
+      video.loop();
+    }
   }
   mousePosition() {
     this.rate = mouseX;
