@@ -1,10 +1,13 @@
 /**************************************************
-Exercise 6: Make Noies
+Exercise 6: Make Some Noise
 Alana M DeVito
 
-Click mouse to start video. Click 1-8 number to start a track. use the mouse to modulate the play back of track and video.
+Click mouse to start video. Click 1-8 number to start a track, click same number to turn it off.
+Use the mouse to modulate the play back speed and playback direction of the track.
 
 Brief Items Completed:
+1. This is prototype of one of the interactive canvases in the gallery that visitors may interact with.
+2. Uses 2 new ways to interact with the sound.js library: activating specific tracks with a number keyPress and the mousePosition modulates the speed and direction playback of the tracks.
 **************************************************/
 "use strict";
 
@@ -64,7 +67,7 @@ function draw() {
   fill(0);
   textFont("Arial");
   text(
-    "Click the mouse to start video. \n Press number 1-8 to start a track. \n The position of the mouse changes the playback speed and the video playback direction. \n Turn a track off by hitting the same number.",
+    "Click the mouse to start video.\nPress number 1-8 to start a track.\nThe position of the mouse changes the playback speed and the playback direction.\nTurn a track off by hitting the same number.",
     28,
     70
   );
@@ -78,7 +81,7 @@ function draw() {
   pop();
 }
 
-//recall video classes
+//recall video classes inside of mousePressed and keyPressed functions.
 function mousePressed() {
   videoPlayback.mousePressed();
 }
