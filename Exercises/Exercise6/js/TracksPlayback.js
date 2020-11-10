@@ -55,90 +55,90 @@ class TracksPlayback {
   //press corresponding number to play track, press again to stop
   // it (deactivate)
   keyPressed() {
-    if (key === 1 && this.track1.active === false) {
+    if (key === "1" && this.track1.active === false) {
       //play track0.mp3
       this.track1.audio.play();
       this.track1.audio.loop();
       this.track1.active = true;
       this.track1.audio.amp(1, 0.8);
-    } else if (key === 1 && this.track1.active === true) {
+    } else if (key === "1" && this.track1.active === true) {
       //stop track and make inactive
       this.track1.audio.stop();
       this.track1.active = false;
     }
-    if (key === 2) {
+    if (key === "2") {
       //play track1.mp3
       this.track2.audio.play();
       this.track2.audio.loop();
       this.track2.active = true;
       this.track1.audio.amp(1, 0.8);
-    } else if (key === 2 && this.track2.active === true) {
+    } else if (key === "2" && this.track2.active === true) {
       //stop track and make inactive
       this.track2.audio.stop();
       this.track2.active = false;
     }
-    if (key === 3) {
+    if (key === "3") {
       //play track2.mp3
       this.track3.audio.play();
       this.track3.audio.loop();
       this.track3.active = true;
       this.track1.audio.amp(1, 0.8);
-    } else if (key === 3 && this.track3.active === true) {
+    } else if (key === "3" && this.track3.active === true) {
       //stop track and make inactive
       this.track3.audio.stop();
       this.track3.active = false;
     }
-    if (key === 4) {
+    if (key === "4") {
       //play track3.mp3
       this.track4.audio.play();
       this.track4.audio.loop();
       this.track4.active = true;
       this.track1.audio.amp(1, 0.8);
-    } else if (key === 4 && this.track4.active === true) {
+    } else if (key === "4" && this.track4.active === true) {
       //stop track and make inactive
       this.track4.audio.stop();
       this.track4.active = false;
     }
-    if (key === 5) {
+    if (key === "5") {
       //play track04.mp3
       this.track5.audio.play();
       this.track5.audio.loop();
       this.track5.active = true;
       this.track1.audio.amp(1, 0.8);
-    } else if (key === 5 && this.track5.active === true) {
+    } else if (key === "5" && this.track5.active === true) {
       //stop track and make inactive
       this.track5.audio.stop();
       this.track5.active = false;
     }
-    if (key === 6) {
+    if (key === "6") {
       //play track05.mp3
       this.track6.audio.play();
       this.track6.audio.loop();
       this.track6.active = true;
       this.track1.audio.amp(1, 0.8);
-    } else if (key === 6 && this.track6.active === true) {
+    } else if (key === "6" && this.track6.active === true) {
       //stop track and make inactive
       this.track6.audio.stop();
       this.track6.active = false;
     }
-    if (key === 7) {
+    if (key === "7") {
       //play track06.mp3
       this.track7.audio.play();
       this.track7.audio.loop();
       this.track7.active = true;
       this.track1.audio.amp(1, 0.8);
-    } else if (key === 7 && track7.active === true) {
+    } else if (key === "7" && track7.active === true) {
       //stop track and make inactive
       this.track7.audio.stop();
       this.track7.active = false;
     }
-    if (key === 8) {
+    if (key === "8") {
       //play track0.mp3
       this.track8.audio.play();
       this.track8.audio.loop();
       this.track8.active = true;
       this.track1.audio.amp(1, 0.8);
-    } else if (key === 8 && track8.active === true) {
+    } else if (key === "8" && track8.active === true) {
       //stop track and make inactive
       this.track8.audio.stop();
       this.track8.active = false;

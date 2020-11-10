@@ -45,10 +45,6 @@ function draw() {
   tracksPlayback.keyPressed();
   tracksPlayback.mousePosition();
 
-  //recall video classes
-
-  videoPlayback.mousePressed();
-
   //draw up title and instructions
   push();
   textSize(30);
@@ -71,4 +67,9 @@ function draw() {
   textAlign(RIGHT);
   text("Works with Chrome or Firefox.", width - 25, 45);
   pop();
+}
+
+//recall video classes
+function mousePressed() {
+  videoPlayback.mousePressed();
 }
