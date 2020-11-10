@@ -7,7 +7,7 @@ class VideoPlayback {
     this.video = createVideo(["assets/images/kelidoscape1.mov"]);
   }
   mousePressed() {
-    if (videoActive === false) {
+    if (this.videoActive === false) {
       this.videoActive = true;
       this.video.play();
       this.video.loop();

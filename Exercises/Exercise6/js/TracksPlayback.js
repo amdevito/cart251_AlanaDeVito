@@ -152,71 +152,71 @@ class TracksPlayback {
   mousePosition() {
     //play back rate controlled by the Y position
     if (this.track1.active) {
-      playRate = map(mouseY, 0.1, height, 0, 2);
-      playRate = constrain(playRate, 0.01, 4);
-      this.track1.rate(playRate);
+      this.track1.playRate = map(mouseY, 0.1, height, 0, 2);
+      this.track1.playRate = constrain(this.track1.playRate, 0.01, 4);
+      this.track1.rate(this.track1.playRate);
     } else if (this.track2.active) {
-      playRate = map(mouseY, 0.1, height, 0, 2);
-      playRate = constrain(playRate, 0.01, 4);
-      this.track2.rate(playRate);
+      this.track2.playRate = map(mouseY, 0.1, height, 0, 2);
+      this.track2.playRate = constrain(this.track2.playRate, 0.01, 4);
+      this.track2.rate(this.track2.playRate);
     } else if (this.track3.active) {
-      playRate = map(mouseY, 0.1, height, 0, 2);
-      playRate = constrain(playRate, 0.01, 4);
-      this.track3.rate(playRate);
+      this.track3.playRate = map(mouseY, 0.1, height, 0, 2);
+      this.track3.playRate = constrain(this.track3.playRate, 0.01, 4);
+      this.track3.rate(this.track3.playRate);
     } else if (this.track4.active) {
-      playRate = map(mouseY, 0.1, height, 0, 2);
-      playRate = constrain(playRate, 0.01, 4);
-      this.track4.rate(playRate);
+      this.track4.playRate = map(mouseY, 0.1, height, 0, 2);
+      this.track4.playRate = constrain(this.track4.playRate, 0.01, 4);
+      this.track4.rate(this.track4.playRate);
     } else if (this.track5.active) {
-      playRate = map(mouseY, 0.1, height, 0, 2);
-      playRate = constrain(playRate, 0.01, 4);
-      this.track5.rate(playRate);
+      this.track5.playRate = map(mouseY, 0.1, height, 0, 2);
+      this.track5.playRate = constrain(this.track5.playRate, 0.01, 4);
+      this.track5.rate(this.track5.playRate);
     } else if (this.track6.active) {
-      playRate = map(mouseY, 0.1, height, 0, 2);
-      playRate = constrain(playRate, 0.01, 4);
-      this.track6.rate(playRate);
+      this.track6.playRate = map(mouseY, 0.1, height, 0, 2);
+      this.track6.playRate = constrain(this.track6.playRate, 0.01, 4);
+      this.track6.rate(this.track6.playRate);
     } else if (this.track7.active) {
-      playRate = map(mouseY, 0.1, height, 0, 2);
-      playRate = constrain(playRate, 0.01, 4);
-      this.track7.rate(playRate);
+      this.track7.playRate = map(mouseY, 0.1, height, 0, 2);
+      this.track7.playRate = constrain(this.track7.playRate, 0.01, 4);
+      this.track7.rate(this.track7.playRate);
     } else if (this.track8.active) {
-      playRate = map(mouseY, 0.1, height, 0, 2);
-      playRate = constrain(playRate, 0.01, 4);
-      this.track8.rate(playRate);
+      this.track8.playRate = map(mouseY, 0.1, height, 0, 2);
+      this.track8.playRate = constrain(this.track8.playRate, 0.01, 4);
+      this.track8.rate(this.track8.playRate);
     }
     //playback direction controlled by X position -  negative rate numbers mean play backwards
     if (this.track1.active) {
-      playDirection = map(mouseX, 0.1, height, 0, 2);
-      playDirection = constrain(playDirection, -2, 1.5);
-      this.track1.rate(playDirection);
+      this.track1.playDirection = map(mouseX, 0.1, height, 0, 2);
+      this.track1.playDirection = constrain(this.track1.playDirection, -2, 1.5);
+      this.track1.rate(this.track1.playDirection);
     } else if (this.track2.active) {
-      playDirection = map(mouseX, 0.1, height, 0, 2);
-      playDirection = constrain(playDirection, -2, 1.5);
-      this.track2.rate(playRate);
+      this.track2.playDirection = map(mouseX, 0.1, height, 0, 2);
+      this.track2.playDirection = constrain(this.track1.playDirection, -2, 1.5);
+      this.track2.rate(this.track2.playDirection);
     } else if (this.track3.active) {
-      playDirection = map(mouseX, 0.1, height, 0, 2);
-      playDirection = constrain(playDirection, -2, 1.5);
-      this.track3.rate(playRate);
+      this.track3.playDirection = map(mouseX, 0.1, height, 0, 2);
+      this.track3.playDirection = constrain(this.track3.playDirection, -2, 1.5);
+      this.track3.rate(this.track3.playDirection);
     } else if (this.track4.active) {
-      playDirection = map(mouseX, 0.1, height, 0, 2);
-      playDirection = constrain(playRate, -2, 1.5);
-      this.track4.rate(playDirection);
+      this.track4.playDirection = map(mouseX, 0.1, height, 0, 2);
+      this.track4.playDirection = constrain(this.track4.playDirection, -2, 1.5);
+      this.track4.rate(this.track4.playDirection);
     } else if (this.track5.active) {
-      playDirection = map(mouseX, 0.1, height, 0, 2);
-      playDirection = constrain(playDirection, -2, 1.5);
-      this.track5.rate(playDirection);
+      this.track5.playDirection = map(mouseX, 0.1, height, 0, 2);
+      this.track5.playDirection = constrain(this.track5.playDirection, -2, 1.5);
+      this.track5.rate(this.track5.playDirection);
     } else if (this.track6.active) {
-      playDirection = map(mouseX, 0.1, height, 0, 2);
-      playDirection = constrain(playDirection, -2, 1.5);
-      this.track6.rate(playDirection);
+      this.track6.playDirection = map(mouseX, 0.1, height, 0, 2);
+      this.track6.playDirection = constrain(this.track6.playDirection, -2, 1.5);
+      this.track6.rate(this.track6.playDirection);
     } else if (this.track7.active) {
-      playDirection = map(mouseX, 0.1, height, 0, 2);
-      playDirection = constrain(playDirection, -2, 1.5);
-      this.track7.rate(playDirection);
+      this.track7.playDirection = map(mouseX, 0.1, height, 0, 2);
+      this.track7.playDirection = constrain(this.track7.playDirection, -2, 1.5);
+      this.track7.rate(this.track7.playDirection);
     } else if (this.track8.active) {
-      playDirection = map(mouseX, 0.1, height, 0, 2);
-      playDirection = constrain(playDirection, -2, 1.5);
-      this.track8.rate(playDirection);
+      this.track8.playDirection = map(mouseX, 0.1, height, 0, 2);
+      this.track8.playDirection = constrain(this.track8.playDirection, -2, 1.5);
+      this.track8.rate(this.track8.playDirection);
     }
   }
 }
