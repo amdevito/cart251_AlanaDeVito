@@ -34,7 +34,7 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  //recall video class?
+  //assign video play back with class
   videoPlayback = new VideoPlayback(); //rate and diretion controlled by amplitude? or frequency?
   videoPlayback.video.hide();
 
@@ -83,6 +83,7 @@ function mousePressed() {
   videoPlayback.mousePressed();
 }
 
+//recall tracks playback classes
 function keyPressed() {
   tracksPlayback.keyPressed();
 }
