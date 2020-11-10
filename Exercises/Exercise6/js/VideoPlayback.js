@@ -1,5 +1,5 @@
 class VideoPlayback {
-  //creating class for the videoPlayback control useing the mouse position
+  //creating class for the videoPlayback control
   constructor(vidRate, direction) {
     this.vidRate = vidRate;
     this.vidDirection = direction;
