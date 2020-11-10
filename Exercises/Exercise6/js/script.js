@@ -25,8 +25,8 @@ let files = [];
 
 function preload() {
   // Load all the tracks into the array
-  for (let i = 0; i < 8; i++) {
-    let file = loadSound(`assets/sounds/track${i}.mp3`);
+  for (let i = 0; i < 4; i++) {
+    let file = loadSound(`assets/sounds/track${i}.mp3`); // get track from file and push into array position
     files.push(file);
   }
 }
