@@ -13,8 +13,4 @@ class VideoPlayback {
       this.video.loop();
     }
   }
-  mousePosition() {
-    this.vidRate = mouseX;
-    this.vidDirection = mouseY;
-  }
 }

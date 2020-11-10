@@ -42,6 +42,13 @@ function draw() {
 
   ////recall track classes
 
+  tracksPlayback.keyPressed();
+  tracksPlayback.mousePosition();
+
+  //recall video classes
+
+  videoPlayback.mousePressed();
+
   //draw up title and instructions
   push();
   textSize(30);
