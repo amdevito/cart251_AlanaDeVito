@@ -1,8 +1,8 @@
 class VideoPlayback {
   //creating class for the videoPlayback control useing the mouse position
-  constructor(rate, direction) {
-    this.rate = rate;
-    this.direction = direction;
+  constructor(vidRate, direction) {
+    this.vidRate = vidRate;
+    this.vidDirection = direction;
     this.videoActive = false;
     this.video = createVideo(["assets/images/kelidoscape1.mov"]);
   }
@@ -14,7 +14,7 @@ class VideoPlayback {
     }
   }
   mousePosition() {
-    this.rate = mouseX;
-    this.direction = mouseY;
+    this.vidRate = mouseX;
+    this.vidDirection = mouseY;
   }
 }
