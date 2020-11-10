@@ -8,20 +8,27 @@ Brief Items Completed:
 **************************************************/
 "use strict";
 
-//setting variable for video background
-let kelidoscape;
+// //setting variable for video background
+// let kelidoscape;
+//
+// //set up variable for storing tracks
+// let tracks = [];
+//
+// //number of positions in array
+// let numtracks = 8;
 
-//set up variable for storing tracks
-let tracks = [];
+let tracksPlayback;
 
-//number of positions in array
-let numtracks = 8;
+let videoPlayback;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  //setup video
-  kelidoscape = createVideo(["assets/images/kelidoscape1.mov"]);
+  //recall video class?
+  videoPlayback = new VideoPlayback(); //rate and diretion controlled by amplitude? or frequency?
+  videoPlayback.video.hide();
+
+  tracksPlayback = new TracksPlayback(); //mapped mouse x and mapped y plositions//
 }
 
 // draw()
@@ -29,9 +36,11 @@ function setup() {
 function draw() {
   background(177);
 
-  //place video
+  //place video /recall video class
   imageMode(CENTER);
-  image(kelidoscape, width / 2, height / 2);
+  image(videoPlayback.video, width / 2, height / 2);
+
+  ////recall track classes
 
   //draw up title and instructions
   push();

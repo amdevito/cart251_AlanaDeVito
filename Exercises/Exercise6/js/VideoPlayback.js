@@ -8,9 +8,9 @@ class VideoPlayback {
   }
   mousePressed() {
     if (videoActive === false) {
-      videoActive = true;
-      video.play();
-      video.loop();
+      this.videoActive = true;
+      this.video.play();
+      this.video.loop();
     }
   }
   mousePosition() {
