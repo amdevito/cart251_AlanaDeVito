@@ -10,9 +10,33 @@ Exercise 7 : Progress report
 
 let patrons = [];
 
-let canvases = [];
+let sonicSign = {
+  x: 0,
+  y: 0,
+  image: undefined,
+};
 
-let gifs = [];
+let canvas1 = {
+  x: 0,
+  y: 0,
+  image: undefined,
+};
+
+let canvas2 = {
+  x: 0,
+  y: 0,
+  image: undefined,
+};
+
+let canvas3 = {
+  x: 0,
+  y: 0,
+  image: undefined,
+};
+
+// let canvases = [];
+
+// let gifs = [];
 
 let galleryImage;
 
@@ -20,11 +44,17 @@ function preload() {
   galleryImage = loadImage(`assets/images/gallery_render.png`);
 
   // Load all the gifs (animated canvases) into the array
-  for (let i = 0; i < 3; i++) {
-    let gif = loadImage(`assets/images/gif${i}.gif`); // loadvideo instead get gif from file and push into array position
-    gifs.push(gif); //gif replaced with video
-  }
+  // for (let i = 0; i < 3; i++) {
+  //   let gif = loadImage(`assets/images/gif${i}.gif`); // loadvideo instead get gif from file and push into array position
+  //   gifs.push(gif); //gif replaced with video
+  // }
 
+  //Gallery sign
+  sonicSign.image = loadImage("assets/images/theSonicShop.gif");
+
+  //load animated, clickable  canvases
+  canvas1.image = loadImage("assets/images/canvas1.gif"); //intro2
+  canvas2.image = loadImage("assets/images/canvas2.gif");
   // Load all the gifs (animated canvases) into the array
   for (let i = 0; i < 3; i++) {
     let patron = loadImage(`assets/images/patron${i}.png`); // get gif from file and push into array position
@@ -34,6 +64,14 @@ function preload() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  sonicSign.x = width / 2 - 230;
+  sonicSign.y = height / 2 - 270;
+
+  canvas1.x = width / 2 - 229;
+  canvas1.y = height / 2 + 10;
+
+  canvas2.x = width / 2 - 230;
+  canvas2.y = height / 2 - 270;
 
   // for (let i = 0; i < 3; i++) {
   //   let x = 0;
@@ -43,10 +81,10 @@ function setup() {
   //   let canvas = new Canvas(gifs[i], x, y, sizeX, sizeY);
   //   canvases.push(canvas);
   // }
-
-  canvases.push(new Canvas(gifs[0], width / 3, height / 2, 100, 200));
-
-  canvases.push(new Canvas(gifs[0], width / 3, height / 2, 100, 200));
+  //
+  // canvases.push(new Canvas(gifs[0], width / 3, height / 2, 100, 200));
+  //
+  // canvases.push(new Canvas(gifs[0], width / 3, height / 2, 100, 200));
 
   // //assign video play back with class
   // videoPlayback = new VideoPlayback(); //rate and diretion controlled by amplitude? or frequency?
@@ -62,11 +100,13 @@ function draw() {
 
   //place gallery image on screen
   imageMode(CENTER);
-  image(galleryImage, width / 2, height / 2, width / 3, height / 3);
-
-  for (let i = 0; i < 3; i++) {
-    canvases[i].display();
-  }
-
-  canvases.push(new Canvas(gifs[0], width / 3, height / 2, 100, 200));
+  image(galleryImage, width / 2, height / 2, width / 2 + 400, height / 2 + 200);
+  image(sonicSign.image, sonicSign.x, sonicSign.y, 600, 180);
+  image(canvas1.image, canvas1.x, canvas1.y, 114, 95);
+  image(canvas2.image, canvas2.x, canvas2.y, 400, 180);
+  //
+  // for (let i = 0; i < 3; i++) {
+  //   canvases[i].display();
 }
+//
+// canvases.push(new Canvas(gifs[0], width / 3, height / 2, 100, 200));
