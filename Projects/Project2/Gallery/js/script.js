@@ -13,24 +13,32 @@ let patrons = [];
 let sonicSign = {
   x: 0,
   y: 0,
+  sizeX: 0,
+  sizeY: 0,
   image: undefined,
 };
 
 let canvas1 = {
   x: 0,
   y: 0,
+  sizeX: 0,
+  sizeY: 0,
   image: undefined,
 };
 
 let canvas2 = {
   x: 0,
   y: 0,
+  sizeX: 0,
+  sizeY: 0,
   image: undefined,
 };
 
 let canvas3 = {
   x: 0,
   y: 0,
+  sizeX: 0,
+  sizeY: 0,
   image: undefined,
 };
 
@@ -67,11 +75,15 @@ function setup() {
   sonicSign.x = width / 2 - 230;
   sonicSign.y = height / 2 - 270;
 
-  canvas1.x = width / 2 - 229;
+  canvas1.x = width / 2 - 229; ///eventually change the size of the sides to make it on an angle so that it 'seems' in perspective
   canvas1.y = height / 2 + 10;
+  canvas1.sizeX = 114;
+  canvas1.sizeY = 95;
 
-  canvas2.x = width / 2 - 230;
-  canvas2.y = height / 2 - 270;
+  canvas2.x = width / 2 + 305;
+  canvas2.y = height / 2 + 25;
+  canvas2.sizeX = 188;
+  canvas2.sizeY = 115;
 
   // for (let i = 0; i < 3; i++) {
   //   let x = 0;
@@ -102,8 +114,9 @@ function draw() {
   imageMode(CENTER);
   image(galleryImage, width / 2, height / 2, width / 2 + 400, height / 2 + 200);
   image(sonicSign.image, sonicSign.x, sonicSign.y, 600, 180);
-  image(canvas1.image, canvas1.x, canvas1.y, 114, 95);
-  image(canvas2.image, canvas2.x, canvas2.y, 400, 180);
+  image(canvas1.image, canvas1.x, canvas1.y, canvas1.sizeX, canvas1.sizeY);
+  rotate(0.01, 0); // tilt the gif slightly to place in canvas properly. How do you do this?
+  image(canvas2.image, canvas2.x, canvas2.y, canvas2.sizeX, canvas2.sizeY);
   //
   // for (let i = 0; i < 3; i++) {
   //   canvases[i].display();
