@@ -80,9 +80,9 @@ function setup() {
   canvas1.sizeX = 114;
   canvas1.sizeY = 95;
 
-  canvas2.x = width / 2 + 305;
-  canvas2.y = height / 2 + 25;
-  canvas2.sizeX = 188;
+  canvas2.x = width / 2 + 315;
+  canvas2.y = height / 2 + 8;
+  canvas2.sizeX = 185;
   canvas2.sizeY = 115;
 
   // for (let i = 0; i < 3; i++) {
@@ -115,7 +115,7 @@ function draw() {
   image(galleryImage, width / 2, height / 2, width / 2 + 400, height / 2 + 200);
   image(sonicSign.image, sonicSign.x, sonicSign.y, 600, 180);
   image(canvas1.image, canvas1.x, canvas1.y, canvas1.sizeX, canvas1.sizeY);
-  rotate(0.01, 0); // tilt the gif slightly to place in canvas properly. How do you do this?
+  rotate(0.03, 0); // tilt the gif slightly to place in canvas properly. How do you do this?
   image(canvas2.image, canvas2.x, canvas2.y, canvas2.sizeX, canvas2.sizeY);
   //
   // for (let i = 0; i < 3; i++) {
