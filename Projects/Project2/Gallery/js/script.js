@@ -1,24 +1,24 @@
 /**************************************************
 Exercise 7 : Progress report
 
-1. digiCanvases on gallery walls are animated gifs
-2. Gifs/digiCanvases when clicked take you to that sound installation.
+1. digiCanvases on gallery walls are animated gifs x
+2. Gifs/digiCanvases when clicked take you to that sound installation. x
 3. Gallery Patrons are moving around the gallery
-4. When you click on that Patron, you are taken into the hyperlink narrative
+4. When you hover over that Patron, you are taken into the hyperlink narrative
 
 need to make canvases clickable? check overlap and mouse press?
 **************************************************/
 "use strict";
 
-let patrons = [];
+//let patrons = [];
 
 //Patrons
 
 let personLongHair = {
   x: 100,
   y: 340,
-  vx: 0,
-  vy: 0,
+  vx: 1,
+  vy: 1,
   minX: 0,
   maxX: 0,
   minY: 0,
@@ -76,6 +76,7 @@ let digiCanvas1 = {
   sizeX: 0,
   sizeY: 0,
   image: undefined,
+  active: false,
 };
 
 let digiCanvas2 = {
@@ -84,6 +85,7 @@ let digiCanvas2 = {
   sizeX: 0,
   sizeY: 0,
   image: undefined,
+  active: false,
 };
 
 let digiCanvas3 = {
@@ -92,6 +94,7 @@ let digiCanvas3 = {
   sizeX: 0,
   sizeY: 0,
   image: undefined,
+  active: false,
 };
 
 // let digiCanvases = [];
@@ -102,12 +105,6 @@ let galleryImage;
 
 function preload() {
   galleryImage = loadImage(`assets/images/gallery_render.png`);
-
-  // Load all the gifs (animated digiCanvases) into the array
-  // for (let i = 0; i < 3; i++) {
-  //   let gif = loadImage(`assets/images/gif${i}.gif`); // loadvideo instead get gif from file and push into array position
-  //   gifs.push(gif); //gif replaced with video
-  // }
 
   //Gallery sign
   sonicSign.image = loadImage("assets/images/theSonicShop.gif");
@@ -124,43 +121,22 @@ function preload() {
 
 function setup() {
   createCanvas(1125, 725);
-  sonicSign.x = width / 2 - 230;
-  sonicSign.y = height / 2 - 270;
-
   setUpCanvases();
   setUpPatrons();
-
-  // for (let i = 0; i < 3; i++) {
-  //   let x = 0;
-  //   let y = 0;
-  //   let sizeX = 0;
-  //   let sizeY = 0;
-  //   let digiCanvas = new digiCanvas(gifs[i], x, y, sizeX, sizeY);
-  //   digiCanvases.push(digiCanvas);
-  // }
-  //
-  // digiCanvases.push(new digiCanvas(gifs[0], width / 3, height / 2, 100, 200));
-  //
-  // digiCanvases.push(new digiCanvas(gifs[0], width / 3, height / 2, 100, 200));
-
-  // //assign video play back with class
-  // videoPlayback = new VideoPlayback(); //rate and diretion controlled by amplitude? or frequency?
-  // videoPlayback.video.hide();
-  //
-  // tracksPlayback = new TracksPlayback(files); //mapped mouse x and mapped y plositions//
+  setUpSign();
 }
 
 // draw()
 //
 function draw() {
   background(0);
-  image(
-    personLongHair.image,
-    personLongHair.x,
-    personLongHair.y,
-    personLongHair.sizeX,
-    personLongHair.sizey
-  );
+  // image(
+  //   personLongHair.image,
+  //   personLongHair.x,
+  //   personLongHair.y,
+  //   personLongHair.sizeX,
+  //   personLongHair.sizey
+  // );
 
   //place gallery image on screen
   imageMode(CENTER);
@@ -175,7 +151,7 @@ function draw() {
   );
   rotate(0.03, 0); // tilt the gif slightly to place in digiCanvas properly. How do you do this?
   image(
-    //put into display function
+    //put into displayGallery function
     digiCanvas2.image,
     digiCanvas2.x,
     digiCanvas2.y,
@@ -184,44 +160,57 @@ function draw() {
   );
 
   simulation(); // this may work once the values are iin
-  //
-  // for (let i = 0; i < 3; i++) {
-  //   digiCanvases[i].display();
 }
 //
 
+function setUpSign() {
+  sonicSign.x = width / 2 - 230;
+  sonicSign.y = height / 2 - 270;
+}
+
 //need to assign values here to make things appear
 function setUpPatrons() {
-  personLongHair.x = random(personLongHair.minY, personLongHair.maxY);
-  personLongHair.y = random(personLongHair.minY, personLongHair.maxY);
-  personLongHair.vx = personLongHair.speed;
+  //because values are scaled in display numbers in set up must be larger for location and movement
+  personLongHair.minY = height - 50;
+  personLongHair.maxY = height - 20;
+  personLongHair.minX = width / 2 - 50;
+  personLongHair.maxX = width / 2 + 50;
+  //
+  personLongHair.sizeX = 0; //relation to original size
+  personLongHair.sizeY = 0;
 
-  personShortHair.x = random(personShortHair.minY, personShortHair.maxY);
+  personLongHair.x = (width / 2 - 185) / 0.1;
+  personLongHair.y = (height / 2 + 30) / 0.1; //divided by 0.1 because scale multiplies every element in display by 0.1, making it smaller.
+  personLongHair.vx = personLongHair.speed;
+  console.log(personLongHair.x);
+  console.log(personLongHair.y);
+
+  personShortHair.x = random(personShortHair.minX, personShortHair.maxX);
   personShortHair.y = random(personShortHair.minY, personShortHair.maxY);
   personShortHair.vx = personShortHair.speed;
 
-  childParent.x = random(childParent.minY, childParent.maxY);
+  childParent.x = random(childParent.minX, childParent.maxX);
   childParent.y = random(childParent.minY, childParent.maxY);
   childParent.vx = childParent.speed;
 }
 
 function setUpCanvases() {
-  /// need to do a display object too
+  /// need to do a displayGallery object too
   digiCanvas1.x = width / 2 - 229; ///eventually change the size of the sides to make it on an angle so that it 'seems' in perspective
   digiCanvas1.y = height / 2 + 10;
   digiCanvas1.sizeX = 114;
   digiCanvas1.sizeY = 100;
 
-  digiCanvas2.x = width / 2 + 315;
-  digiCanvas2.y = height / 2 + 8;
+  digiCanvas2.x = width / 2 + 313;
+  digiCanvas2.y = height / 2 + 6;
   digiCanvas2.sizeX = 185;
-  digiCanvas2.sizeY = 115;
+  digiCanvas2.sizeY = 110;
 }
 
 function simulation() {
-  move();
-  checkMouseHoover();
-  display();
+  displayGallery();
+  //move(); // get displayGallery properly and then tackle the move function
+  //checkMouseHover(); open later// put on pause so it doesnt change while coding
 }
 
 ///
@@ -232,7 +221,7 @@ function move() {
   personLongHair.y += personLongHair.vy;
 
   if (personLongHair.x < 0) {
-    personLongHair.x = personLongHair.minX;
+    personLongHair.x = random(personLongHair.minX, personLongHair.maxX);
     personLongHair.y = random(personLongHair.minY, personLongHair.maxY);
   }
 
@@ -249,29 +238,79 @@ function move() {
 
   if (childParent.x < 0) {
     childParent.x = childParent.minX;
-    childParent.y = random(childParent.minY, randomDogSpawn.maxY);
+    childParent.y = random(childParent.minY, childParent.maxY);
   }
 }
-///hoover over a character to engage in a dialogue
-function checkMouseHoover() {
+///hover over a character to engage in a dialogue
+function checkMouseHover() {
   let d1 = dist(mouseX, mouseY, personLongHair.x, personLongHair.y);
-  if (d1 < 75) {
-    state = `narrative1`; //need to link to current beginning for now. will be the hyperlink narrative
+  if (d1 < 0) {
+    narrative1(); //need to link to current beginning for now. will be the hyperlink narrative
   }
   let d2 = dist(mouseX, mouseY, personShortHair.x, personShortHair.y);
-  if (d2 < 75) {
-    state = `narrative2`;
+  if (d2 < 0) {
+    narrative2();
   }
   let d3 = dist(mouseX, mouseY, childParent.x, childParent.y);
-  if (d3 < 75) {
-    state = `narrative3`;
+  if (d3 < 0) {
+    narrative3();
+  }
+  let d4 = dist(mouseX, mouseY, digiCanvas1.x, digiCanvas1.y);
+  if (d4 < 20) {
+    digiCanvas1.active = true;
+  } else {
+    digiCanvas1.active = false;
+  }
+  let d5 = dist(mouseX, mouseY, digiCanvas2.x, digiCanvas2.y);
+  if (d5 < 20) {
+    digiCanvas2.active = true;
+  } else {
+    digiCanvas2.active = false;
   }
 }
 
-function display() {
-  //display patron with long hair
+function mousePressed() {
+  //check if mouse is pressed while hovering over character
+  if (digiCanvas1.active && mousePressed) {
+    soundInstallation1(); //links to sonic Space invader
+  }
+  if (digiCanvas2.active && mousePressed) {
+    soundInstallation2(); //links to kelidoscape
+  }
+}
+
+function soundInstallation1() {
+  window.location.href = `https://amdevito.github.io/211/interact/index.html`; // go to sonic space invader
+}
+
+function soundInstallation2() {
+  window.location.href = `https://amdevito.github.io/cart253_AlanaDeVito/Exercises/Exercise6`; // go to kelidoscape tunnel
+}
+
+function narrative1() {
+  //currently place holders.
+  window.location.href = `https://amdevito.github.io/cart253_AlanaDeVito/Projects/Project2/Prototype/`; // go back to intro?
+}
+
+function narrative2() {
+  //currently place holders.
+  window.location.href = `https://amdevito.github.io/cart253_AlanaDeVito/Projects/Project2/Prototype/`; // go back to intro?
+}
+
+function narrative3() {
+  //currently place holders.
+  window.location.href = `https://amdevito.github.io/cart253_AlanaDeVito/Projects/Project2/Prototype//`; // go back to intro?
+}
+
+function backHome() {
+  window.location.href = `https://amdevito.github.io/211/MidTermProposal/`; // go back to intro?
+}
+
+function displayGallery() {
+  //displayGallery patron with long hair
   push();
   imageMode(CENTER);
+  scale(0.1);
   image(
     personLongHair.image,
     personLongHair.x,
@@ -279,28 +318,29 @@ function display() {
     personLongHair.sizeX,
     personLongHair.sizey
   );
-  pop();
 
-  push();
-  imageMode(CENTER);
-  image(
-    personShortHair.image,
-    personShortHair.x,
-    personShortHair.y,
-    personShortHair.sizeX,
-    personShortHair.sizey
-  );
   pop();
-
-  push();
-  imageMode(CENTER);
-  image(
-    childParent.image,
-    childParent.x,
-    childParent.y,
-    childParent.sizeX,
-    childParent.sizey
-  );
+  //
+  // push();
+  // imageMode(CENTER);
+  // image(
+  //   personShortHair.image,
+  //   personShortHair.x,
+  //   personShortHair.y,
+  //   personShortHair.sizeX,
+  //   personShortHair.sizey
+  // );
+  // pop();
+  //
+  // push();
+  // imageMode(CENTER);
+  // image(
+  //   childParent.image,
+  //   childParent.x,
+  //   childParent.y,
+  //   childParent.sizeX,
+  //   childParent.sizey
+  // );
 }
 
 //how to i make the patrons a link/clickable
