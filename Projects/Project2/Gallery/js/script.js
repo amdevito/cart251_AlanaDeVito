@@ -28,15 +28,15 @@ let personLongHair = {
   image: 0,
   ax: 0,
   ay: 0,
-  speed: 2,
+  speed: 1,
   active: false,
 };
 
 let personShortHair = {
   x: 100,
   y: 340,
-  vx: 0,
-  vy: 0,
+  vx: 1,
+  vy: 1,
   minX: 0,
   maxX: 0,
   minY: 0,
@@ -46,15 +46,15 @@ let personShortHair = {
   image: 0,
   ax: 0,
   ay: 0,
-  speed: 2,
+  speed: 1,
   active: false,
 };
 
 let childParent = {
   x: 100,
   y: 340,
-  vx: 0,
-  vy: 0,
+  vx: 1,
+  vy: 1,
   minX: 0,
   maxX: 0,
   minY: 0,
@@ -64,7 +64,7 @@ let childParent = {
   image: 0,
   ax: 0,
   ay: 0,
-  speed: 2,
+  speed: 1,
   active: false,
 };
 
@@ -178,10 +178,10 @@ function setUpSign() {
 function setUpPatrons() {
   //because values are scaled in display numbers so in set up must be larger for location and movement
   //divided by 0.1 because scale multiplies every element in display by 0.1, making it smaller.
-  personLongHair.minX = (width / 2 - 300) / 0.1;
-  personLongHair.maxX = (width / 2 - 185) / 0.1;
-  personLongHair.minY = (height / 2 + 80) / 0.1;
-  personLongHair.maxY = (height / 2 + 30) / 0.1;
+  personLongHair.minX = width / 2 - 300;
+  personLongHair.maxX = width / 2 - 185;
+  personLongHair.minY = height / 2 + 80;
+  personLongHair.maxY = height / 2 + 30;
 
   personLongHair.sizeX = 0; //relation to original size
   personLongHair.sizeY = 0;
@@ -189,13 +189,13 @@ function setUpPatrons() {
   personLongHair.x = random(personLongHair.minX, personLongHair.maxX);
   personLongHair.y = random(personLongHair.minY, personLongHair.maxY);
   personLongHair.vx = personLongHair.speed;
-  personLongHair.vy = personLongHair.speed * 2;
+  personLongHair.vy = personLongHair.speed;
 
   //place patron personShortHair in gallery
-  personShortHair.minX = (width - 350) / 0.1;
-  personShortHair.maxX = (width - 165) / 0.1;
-  personShortHair.minY = (height / 2 + 80) / 0.1;
-  personShortHair.maxY = (height / 2 + 30) / 0.1;
+  personShortHair.minX = width - 350;
+  personShortHair.maxX = width - 165;
+  personShortHair.minY = height / 2 + 80;
+  personShortHair.maxY = height / 2 + 30;
 
   personShortHair.sizeX = 0; //relation to original size
   personShortHair.sizeY = 0;
@@ -205,10 +205,10 @@ function setUpPatrons() {
   personShortHair.vx = personShortHair.speed;
 
   //place patron childParent in gallery
-  childParent.minX = (width / 2 - 50) / 0.17;
-  childParent.maxX = (width / 2 + 135) / 0.17;
-  childParent.minY = (height / 2 - 20) / 0.17;
-  childParent.maxY = (height / 2 + 30) / 0.17;
+  childParent.minX = width / 2 - 50;
+  childParent.maxX = width / 2 + 135;
+  childParent.minY = height / 2 - 20;
+  childParent.maxY = height / 2 + 30;
 
   childParent.sizeX = 0; //relation to original size
   childParent.sizeY = 0;
@@ -244,12 +244,11 @@ function move() {
   personLongHair.x += personLongHair.vx;
   personLongHair.y += personLongHair.vy;
 
-  console.log(personLongHair.x);
-
-  if (personLongHair.x * 0.1 < 0) {
+  // console.log(personLongHair.x);
+  if (personLongHair.x < 0) {
     personLongHair.vx = -personLongHair.vx;
   }
-  if (personLongHair.x * 0.1 > width / 2) {
+  if (personLongHair.x > width / 2) {
     personLongHair.vx = -personLongHair.vx;
   }
   if (personLongHair.y < 0) {
@@ -262,52 +261,65 @@ function move() {
   personShortHair.x += personShortHair.vx;
   personShortHair.y += personShortHair.vy;
 
+  // console.log(personShortHair.x);
   if (personShortHair.x < 0) {
-    personShortHair.x = personShortHair.minX;
-    personShortHair.y = random(personShortHair.minY, personShortHair.maxY);
+    personShortHair.vx = -personShortHair.vx;
+  }
+  if (personShortHair.x > width / 2) {
+    personShortHair.vx = -personShortHair.vx;
+  }
+  if (personShortHair.y < 0) {
+    personShortHair.vy = -personShortHair.vy;
+  }
+  if (personShortHair.y > height) {
+    personShortHair.vy = -personShortHair.vy;
   }
 
-  childParent.x += childParent.vx;
+  childParent.x += personLongHair.vx;
   childParent.y += childParent.vy;
 
+  // console.log(childParent.x);
   if (childParent.x < 0) {
-    childParent.x = childParent.minX;
-    childParent.y = random(childParent.minY, childParent.maxY);
+    childParent.vx = -childParent.vx;
+  }
+  if (childParent.x > width / 2) {
+    childParent.vx = -childParent.vx;
+  }
+  if (childParent.y < 0) {
+    childParent.vy = -childParent.vy;
+  }
+  if (childParent.y > height) {
+    childParent.vy = -childParent.vy;
   }
 }
 ///hover over a character to engage in a dialogue
 function checkMouseHover() {
-  let d1 = dist(mouseX, mouseY, personLongHair.x * 0.1, personLongHair.y * 0.1);
-  if (d1 < 80) {
+  let d1 = dist(mouseX, mouseY, personLongHair.x, personLongHair.y);
+  if (d1 < 20) {
     personLongHair.active = true;
   } else {
     personLongHair.active = false; //need to link to current beginning for now. will be the hyperlink narrative
   }
-  let d2 = dist(
-    mouseX,
-    mouseY,
-    personShortHair.x * 0.1,
-    personShortHair.y * 0.1
-  );
-  if (d2 < 80) {
+  let d2 = dist(mouseX, mouseY, personShortHair.x, personShortHair.y);
+  if (d2 < 20) {
     personShortHair.active = true;
   } else {
     personShortHair.active = false;
   }
-  let d3 = dist(mouseX, mouseY, childParent.x * 0.17, childParent.y * 0.17);
-  if (d3 < 80 / 0.1) {
+  let d3 = dist(mouseX, mouseY, childParent.x, childParent.y);
+  if (d3 < 20) {
     childParent.active = true;
   } else {
     childParent.active = false;
   }
   let d4 = dist(mouseX, mouseY, digiCanvas1.x, digiCanvas1.y);
-  if (d4 < 20) {
+  if (d4 < 50) {
     digiCanvas1.active = true;
   } else {
     digiCanvas1.active = false;
   }
   let d5 = dist(mouseX, mouseY, digiCanvas2.x, digiCanvas2.y);
-  if (d5 < 20) {
+  if (d5 < 50) {
     digiCanvas2.active = true;
   } else {
     digiCanvas2.active = false;
@@ -369,7 +381,6 @@ function displayGallery() {
   //displayGallery patron with long hair
   push();
   imageMode(CENTER);
-  scale(0.1);
   image(
     personLongHair.image,
     personLongHair.x,
@@ -385,7 +396,6 @@ function displayGallery() {
 
   push();
   imageMode(CENTER);
-  scale(0.1);
   image(
     personShortHair.image,
     personShortHair.x,
@@ -397,7 +407,6 @@ function displayGallery() {
 
   push();
   imageMode(CENTER);
-  scale(0.17);
   image(
     childParent.image,
     childParent.x,
