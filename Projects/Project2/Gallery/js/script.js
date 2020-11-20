@@ -149,7 +149,7 @@ function draw() {
     digiCanvas1.sizeX,
     digiCanvas1.sizeY
   );
-  rotate(0.03, 0); // tilt the gif slightly to place in digiCanvas properly. How do you do this?
+  rotate(0.03, 0); // tilt the gif slightly to place in digiCanvas properly.
   image(
     //put into displayGallery function
     digiCanvas2.image,
@@ -170,24 +170,41 @@ function setUpSign() {
 
 //need to assign values here to make things appear
 function setUpPatrons() {
-  //because values are scaled in display numbers in set up must be larger for location and movement
-  personLongHair.minY = height - 50;
-  personLongHair.maxY = height - 20;
-  personLongHair.minX = width / 2 - 50;
-  personLongHair.maxX = width / 2 + 50;
-  //
+  //because values are scaled in display numbers so in set up must be larger for location and movement
+  //divided by 0.1 because scale multiplies every element in display by 0.1, making it smaller.
+  personLongHair.minX = (width / 2 - 300) / 0.1;
+  personLongHair.maxX = (width / 2 - 185) / 0.1;
+  personLongHair.minY = (height / 2 + 80) / 0.1;
+  personLongHair.maxY = (height / 2 + 30) / 0.1;
+
   personLongHair.sizeX = 0; //relation to original size
   personLongHair.sizeY = 0;
 
-  personLongHair.x = (width / 2 - 185) / 0.1;
-  personLongHair.y = (height / 2 + 30) / 0.1; //divided by 0.1 because scale multiplies every element in display by 0.1, making it smaller.
+  personLongHair.x = random(personLongHair.minX, personLongHair.maxX);
+  personLongHair.y = random(personLongHair.minY, personLongHair.maxY);
   personLongHair.vx = personLongHair.speed;
-  console.log(personLongHair.x);
-  console.log(personLongHair.y);
+
+  //place patron personShortHair in gallery
+  personShortHair.minX = (width - 350) / 0.1;
+  personShortHair.maxX = (width - 165) / 0.1;
+  personShortHair.minY = (height / 2 + 80) / 0.1;
+  personShortHair.maxY = (height / 2 + 30) / 0.1;
+
+  personShortHair.sizeX = 0; //relation to original size
+  personShortHair.sizeY = 0;
 
   personShortHair.x = random(personShortHair.minX, personShortHair.maxX);
   personShortHair.y = random(personShortHair.minY, personShortHair.maxY);
   personShortHair.vx = personShortHair.speed;
+
+  //place patron childParent in gallery
+  childParent.minX = (width / 2 - 50) / 0.17;
+  childParent.maxX = (width / 2 + 135) / 0.17;
+  childParent.minY = (height / 2 - 20) / 0.17;
+  childParent.maxY = (height / 2 + 30) / 0.17;
+
+  childParent.sizeX = 0; //relation to original size
+  childParent.sizeY = 0;
 
   childParent.x = random(childParent.minX, childParent.maxX);
   childParent.y = random(childParent.minY, childParent.maxY);
@@ -210,7 +227,7 @@ function setUpCanvases() {
 function simulation() {
   displayGallery();
   //move(); // get displayGallery properly and then tackle the move function
-  //checkMouseHover(); open later// put on pause so it doesnt change while coding
+  checkMouseHover(); // put on pause so it doesnt change while coding
 }
 
 ///
@@ -243,16 +260,21 @@ function move() {
 }
 ///hover over a character to engage in a dialogue
 function checkMouseHover() {
-  let d1 = dist(mouseX, mouseY, personLongHair.x, personLongHair.y);
-  if (d1 < 0) {
+  let d1 = dist(mouseX, mouseY, personLongHair.x * 0.1, personLongHair.y * 0.1);
+  if (d1 < 80) {
     narrative1(); //need to link to current beginning for now. will be the hyperlink narrative
   }
-  let d2 = dist(mouseX, mouseY, personShortHair.x, personShortHair.y);
-  if (d2 < 0) {
+  let d2 = dist(
+    mouseX,
+    mouseY,
+    personShortHair.x * 0.1,
+    personShortHair.y * 0.1
+  );
+  if (d2 < 80) {
     narrative2();
   }
-  let d3 = dist(mouseX, mouseY, childParent.x, childParent.y);
-  if (d3 < 0) {
+  let d3 = dist(mouseX, mouseY, childParent.x * 0.17, childParent.y * 0.17);
+  if (d3 < 80 / 0.1) {
     narrative3();
   }
   let d4 = dist(mouseX, mouseY, digiCanvas1.x, digiCanvas1.y);
@@ -267,6 +289,11 @@ function checkMouseHover() {
   } else {
     digiCanvas2.active = false;
   }
+  // console.log(personLongHair.x);
+  // console.log(personLongHair.y);
+  // console.log(mouseX);
+  // console.log(mouseY);
+  // console.log(d1);
 }
 
 function mousePressed() {
@@ -318,29 +345,35 @@ function displayGallery() {
     personLongHair.sizeX,
     personLongHair.sizey
   );
-
+  // console.log(personLongHair.x);
+  // console.log(personLongHair.y);
+  // console.log(mouseX);
+  // console.log(mouseY);
   pop();
-  //
-  // push();
-  // imageMode(CENTER);
-  // image(
-  //   personShortHair.image,
-  //   personShortHair.x,
-  //   personShortHair.y,
-  //   personShortHair.sizeX,
-  //   personShortHair.sizey
-  // );
-  // pop();
-  //
-  // push();
-  // imageMode(CENTER);
-  // image(
-  //   childParent.image,
-  //   childParent.x,
-  //   childParent.y,
-  //   childParent.sizeX,
-  //   childParent.sizey
-  // );
+
+  push();
+  imageMode(CENTER);
+  scale(0.1);
+  image(
+    personShortHair.image,
+    personShortHair.x,
+    personShortHair.y,
+    personShortHair.sizeX,
+    personShortHair.sizey
+  );
+  pop();
+
+  push();
+  imageMode(CENTER);
+  scale(0.17);
+  image(
+    childParent.image,
+    childParent.x,
+    childParent.y,
+    childParent.sizeX,
+    childParent.sizey
+  );
+  pop();
 }
 
 //how to i make the patrons a link/clickable
