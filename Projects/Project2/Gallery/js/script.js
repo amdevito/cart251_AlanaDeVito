@@ -2,11 +2,11 @@
 Exercise 7 : Progress report
 
 1. digiCanvases on gallery walls are animated gifs x
-2. Gifs/digiCanvases when clicked take you to that sound installation. x
-3. Gallery Patrons are moving around the gallery
-4. When you hover over that Patron, you are taken into the hyperlink narrative
+2. digiCanvases when clicked take you to that sound installation. x
+3. Gallery Patrons are moving around the gallery (for now just constrained to one section each, will expand a route later) x
+4. When you click over that Patron, you are taken into the hyperlink narrative (for now just goes to the 'hyperlink narrative' introduction screen) x
 
-need to make canvases clickable? check overlap and mouse press?
+
 **************************************************/
 "use strict";
 
