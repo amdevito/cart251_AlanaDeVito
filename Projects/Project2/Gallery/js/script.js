@@ -28,6 +28,7 @@ let personLongHair = {
   image: 0,
   ax: 0,
   ay: 0,
+  speed: 2,
   active: false,
 };
 
@@ -45,6 +46,7 @@ let personShortHair = {
   image: 0,
   ax: 0,
   ay: 0,
+  speed: 2,
   active: false,
 };
 
@@ -62,6 +64,7 @@ let childParent = {
   image: 0,
   ax: 0,
   ay: 0,
+  speed: 2,
   active: false,
 };
 
@@ -186,6 +189,7 @@ function setUpPatrons() {
   personLongHair.x = random(personLongHair.minX, personLongHair.maxX);
   personLongHair.y = random(personLongHair.minY, personLongHair.maxY);
   personLongHair.vx = personLongHair.speed;
+  personLongHair.vy = personLongHair.speed * 2;
 
   //place patron personShortHair in gallery
   personShortHair.minX = (width - 350) / 0.1;
@@ -229,7 +233,7 @@ function setUpCanvases() {
 
 function simulation() {
   displayGallery();
-  //move(); // get displayGallery properly and then tackle the move function
+  move(); // get displayGallery properly and then tackle the move function
   checkMouseHover(); // put on pause so it doesnt change while coding
 }
 
@@ -240,9 +244,19 @@ function move() {
   personLongHair.x += personLongHair.vx;
   personLongHair.y += personLongHair.vy;
 
-  if (personLongHair.x < 0) {
-    personLongHair.x = random(personLongHair.minX, personLongHair.maxX);
-    personLongHair.y = random(personLongHair.minY, personLongHair.maxY);
+  console.log(personLongHair.x);
+
+  if (personLongHair.x * 0.1 < 0) {
+    personLongHair.vx = -personLongHair.vx;
+  }
+  if (personLongHair.x * 0.1 > width / 2) {
+    personLongHair.vx = -personLongHair.vx;
+  }
+  if (personLongHair.y < 0) {
+    personLongHair.vy = -personLongHair.vy;
+  }
+  if (personLongHair.y > height) {
+    personLongHair.vy = -personLongHair.vy;
   }
 
   personShortHair.x += personShortHair.vx;
