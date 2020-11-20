@@ -28,6 +28,7 @@ let personLongHair = {
   image: 0,
   ax: 0,
   ay: 0,
+  active: false,
 };
 
 let personShortHair = {
@@ -44,6 +45,7 @@ let personShortHair = {
   image: 0,
   ax: 0,
   ay: 0,
+  active: false,
 };
 
 let childParent = {
@@ -60,6 +62,7 @@ let childParent = {
   image: 0,
   ax: 0,
   ay: 0,
+  active: false,
 };
 
 let sonicSign = {
@@ -262,7 +265,9 @@ function move() {
 function checkMouseHover() {
   let d1 = dist(mouseX, mouseY, personLongHair.x * 0.1, personLongHair.y * 0.1);
   if (d1 < 80) {
-    narrative1(); //need to link to current beginning for now. will be the hyperlink narrative
+    personLongHair.active = true;
+  } else {
+    personLongHair.active = false; //need to link to current beginning for now. will be the hyperlink narrative
   }
   let d2 = dist(
     mouseX,
@@ -271,11 +276,15 @@ function checkMouseHover() {
     personShortHair.y * 0.1
   );
   if (d2 < 80) {
-    narrative2();
+    personShortHair.active = true;
+  } else {
+    personShortHair.active = false;
   }
   let d3 = dist(mouseX, mouseY, childParent.x * 0.17, childParent.y * 0.17);
   if (d3 < 80 / 0.1) {
-    narrative3();
+    childParent.active = true;
+  } else {
+    childParent.active = false;
   }
   let d4 = dist(mouseX, mouseY, digiCanvas1.x, digiCanvas1.y);
   if (d4 < 20) {
@@ -303,6 +312,15 @@ function mousePressed() {
   }
   if (digiCanvas2.active && mousePressed) {
     soundInstallation2(); //links to kelidoscape
+  }
+  if (personLongHair.active && mousePressed) {
+    narrative1(); //links to sonic Space invader
+  }
+  if (personShortHair.active && mousePressed) {
+    narrative2(); //links to kelidoscape
+  }
+  if (childParent.active && mousePressed) {
+    narrative3(); //links to sonic Space invader
   }
 }
 
