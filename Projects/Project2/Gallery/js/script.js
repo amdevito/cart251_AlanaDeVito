@@ -17,8 +17,8 @@ need to make canvases clickable? check overlap and mouse press?
 let personLongHair = {
   x: 100,
   y: 340,
-  vx: 1,
-  vy: 1,
+  vx: 0.08,
+  vy: 0.08,
   minX: 0,
   maxX: 0,
   minY: 0,
@@ -28,15 +28,15 @@ let personLongHair = {
   image: 0,
   ax: 0,
   ay: 0,
-  speed: 1,
+  speed: 0.08,
   active: false,
 };
 
 let personShortHair = {
   x: 100,
   y: 340,
-  vx: 1,
-  vy: 1,
+  vx: 0.08,
+  vy: 0.08,
   minX: 0,
   maxX: 0,
   minY: 0,
@@ -46,15 +46,15 @@ let personShortHair = {
   image: 0,
   ax: 0,
   ay: 0,
-  speed: 1,
+  speed: 0.08,
   active: false,
 };
 
 let childParent = {
   x: 100,
   y: 340,
-  vx: 1,
-  vy: 1,
+  vx: 0.08,
+  vy: 0.08,
   minX: 0,
   maxX: 0,
   minY: 0,
@@ -64,7 +64,7 @@ let childParent = {
   image: 0,
   ax: 0,
   ay: 0,
-  speed: 1,
+  speed: 0.08,
   active: false,
 };
 
@@ -245,16 +245,16 @@ function move() {
   personLongHair.y += personLongHair.vy;
 
   // console.log(personLongHair.x);
-  if (personLongHair.x < 0) {
+  if (personLongHair.x < width / 2 - 300) {
     personLongHair.vx = -personLongHair.vx;
   }
-  if (personLongHair.x > width / 2) {
+  if (personLongHair.x > width / 2 - 185) {
     personLongHair.vx = -personLongHair.vx;
   }
-  if (personLongHair.y < 0) {
+  if (personLongHair.y < height / 2 + 80) {
     personLongHair.vy = -personLongHair.vy;
   }
-  if (personLongHair.y > height) {
+  if (personLongHair.y > height / 2 + 30) {
     personLongHair.vy = -personLongHair.vy;
   }
 
@@ -262,33 +262,33 @@ function move() {
   personShortHair.y += personShortHair.vy;
 
   // console.log(personShortHair.x);
-  if (personShortHair.x < 0) {
+  if (personShortHair.x < width - 350) {
     personShortHair.vx = -personShortHair.vx;
   }
-  if (personShortHair.x > width / 2) {
+  if (personShortHair.x > width - 165) {
     personShortHair.vx = -personShortHair.vx;
   }
-  if (personShortHair.y < 0) {
+  if (personShortHair.y < height / 2 + 80) {
     personShortHair.vy = -personShortHair.vy;
   }
-  if (personShortHair.y > height) {
+  if (personShortHair.y > height / 2 + 30) {
     personShortHair.vy = -personShortHair.vy;
   }
 
-  childParent.x += personLongHair.vx;
+  childParent.x += childParent.vx;
   childParent.y += childParent.vy;
 
   // console.log(childParent.x);
-  if (childParent.x < 0) {
+  if (childParent.x < width / 2 - 50) {
     childParent.vx = -childParent.vx;
   }
-  if (childParent.x > width / 2) {
+  if (childParent.x > width / 2 + 135) {
     childParent.vx = -childParent.vx;
   }
-  if (childParent.y < 0) {
+  if (childParent.y < height / 2 - 20) {
     childParent.vy = -childParent.vy;
   }
-  if (childParent.y > height) {
+  if (childParent.y > height / 2 + 30) {
     childParent.vy = -childParent.vy;
   }
 }
