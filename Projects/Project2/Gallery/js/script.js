@@ -105,7 +105,6 @@ let digiCanvas3 = {
 
 //below in case I change to classes for the objects
 // let digiCanvases = [];
-
 // let gifs = [];
 
 let galleryImage;
