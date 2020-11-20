@@ -10,8 +10,6 @@ Exercise 7 : Progress report
 **************************************************/
 "use strict";
 
-//let patrons = [];
-
 //Patrons
 
 let personLongHair = {
@@ -68,6 +66,7 @@ let childParent = {
   active: false,
 };
 
+//The Sonic Shop sign at top of gallery
 let sonicSign = {
   x: 0,
   y: 0,
@@ -76,6 +75,7 @@ let sonicSign = {
   image: undefined,
 };
 
+//animated canvases in gallery that click to the virtual AV sound installation piece.
 let digiCanvas1 = {
   x: 0,
   y: 0,
@@ -103,6 +103,7 @@ let digiCanvas3 = {
   active: false,
 };
 
+//below in case I change to classes for the objects
 // let digiCanvases = [];
 
 // let gifs = [];
@@ -157,7 +158,6 @@ function draw() {
   );
   rotate(0.03, 0); // tilt the gif slightly to place in digiCanvas properly.
   image(
-    //put into displayGallery function
     digiCanvas2.image,
     digiCanvas2.x,
     digiCanvas2.y,
@@ -165,7 +165,7 @@ function draw() {
     digiCanvas2.sizeY
   );
 
-  simulation(); // this may work once the values are iin
+  simulation(); //recall function containing all functions to make this scene animated.
 }
 //
 
@@ -174,10 +174,7 @@ function setUpSign() {
   sonicSign.y = height / 2 - 270;
 }
 
-//need to assign values here to make things appear
 function setUpPatrons() {
-  //because values are scaled in display numbers so in set up must be larger for location and movement
-  //divided by 0.1 because scale multiplies every element in display by 0.1, making it smaller.
   personLongHair.minX = width / 2 - 300;
   personLongHair.maxX = width / 2 - 185;
   personLongHair.minY = height / 2 + 80;
@@ -191,7 +188,7 @@ function setUpPatrons() {
   personLongHair.vx = personLongHair.speed;
   personLongHair.vy = personLongHair.speed;
 
-  //place patron personShortHair in gallery
+  //place patron personShortHair in gallery and constrain to sections. Cannot go through the 'walls'.
   personShortHair.minX = width - 350;
   personShortHair.maxX = width - 165;
   personShortHair.minY = height / 2 + 80;
@@ -219,7 +216,7 @@ function setUpPatrons() {
 }
 
 function setUpCanvases() {
-  /// need to do a displayGallery object too
+  /// assign values to the objects parameters
   digiCanvas1.x = width / 2 - 229; ///eventually change the size of the sides to make it on an angle so that it 'seems' in perspective
   digiCanvas1.y = height / 2 + 10;
   digiCanvas1.sizeX = 114;
@@ -233,8 +230,8 @@ function setUpCanvases() {
 
 function simulation() {
   displayGallery();
-  move(); // get displayGallery properly and then tackle the move function
-  checkMouseHover(); // put on pause so it doesnt change while coding
+  move(); // recall move function
+  checkMouseHover(); // recall checkMouseHover
 }
 
 ///
@@ -245,6 +242,7 @@ function move() {
   personLongHair.y += personLongHair.vy;
 
   // console.log(personLongHair.x);
+  /// movement within one section of gallery
   if (personLongHair.x < width / 2 - 300) {
     personLongHair.vx = -personLongHair.vx;
   }
@@ -262,6 +260,7 @@ function move() {
   personShortHair.y += personShortHair.vy;
 
   // console.log(personShortHair.x);
+  /// movement within one section of gallery
   if (personShortHair.x < width - 350) {
     personShortHair.vx = -personShortHair.vx;
   }
@@ -279,6 +278,7 @@ function move() {
   childParent.y += childParent.vy;
 
   // console.log(childParent.x);
+  /// movement within one section of gallery
   if (childParent.x < width / 2 - 50) {
     childParent.vx = -childParent.vx;
   }
@@ -292,13 +292,13 @@ function move() {
     childParent.vy = -childParent.vy;
   }
 }
-///hover over a character to engage in a dialogue
+///click on a character to engage in a dialogue
 function checkMouseHover() {
   let d1 = dist(mouseX, mouseY, personLongHair.x, personLongHair.y);
   if (d1 < 20) {
     personLongHair.active = true;
   } else {
-    personLongHair.active = false; //need to link to current beginning for now. will be the hyperlink narrative
+    personLongHair.active = false;
   }
   let d2 = dist(mouseX, mouseY, personShortHair.x, personShortHair.y);
   if (d2 < 20) {
@@ -346,7 +346,7 @@ function mousePressed() {
     narrative2(); //links to kelidoscape
   }
   if (childParent.active && mousePressed) {
-    narrative3(); //links to sonic Space invader
+    narrative3(); //links to sonic Space invader - for now, will be new generative virtual sound installation piece
   }
 }
 
@@ -360,17 +360,17 @@ function soundInstallation2() {
 
 function narrative1() {
   //currently place holders.
-  window.location.href = `https://amdevito.github.io/cart253_AlanaDeVito/Projects/Project2/Prototype/`; // go back to intro?
+  window.location.href = `https://amdevito.github.io/cart253_AlanaDeVito/Projects/Project2/Prototype/`; // go back to intro to gallery narrative for now
 }
 
 function narrative2() {
   //currently place holders.
-  window.location.href = `https://amdevito.github.io/cart253_AlanaDeVito/Projects/Project2/Prototype/`; // go back to intro?
+  window.location.href = `https://amdevito.github.io/cart253_AlanaDeVito/Projects/Project2/Prototype/`; // go back to intro to gallery narrative for now
 }
 
 function narrative3() {
   //currently place holders.
-  window.location.href = `https://amdevito.github.io/cart253_AlanaDeVito/Projects/Project2/Prototype//`; // go back to intro?
+  window.location.href = `https://amdevito.github.io/cart253_AlanaDeVito/Projects/Project2/Prototype//`; // go back to intro to gallery narrative for now
 }
 
 function backHome() {
@@ -394,6 +394,7 @@ function displayGallery() {
   // console.log(mouseY);
   pop();
 
+  //display gallery patron with short hair
   push();
   imageMode(CENTER);
   image(
@@ -405,6 +406,7 @@ function displayGallery() {
   );
   pop();
 
+  //display child and parent gallery patrons
   push();
   imageMode(CENTER);
   image(
@@ -416,5 +418,3 @@ function displayGallery() {
   );
   pop();
 }
-
-//how to i make the patrons a link/clickable
