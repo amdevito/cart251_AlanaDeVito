@@ -1,16 +1,15 @@
 /**************************************************
 Exercise 7 : Progress report
 
-1. digiCanvases on gallery walls are animated gifs x
-2. Gifs/digiCanvases when clicked take you to that sound installation. x
-3. Gallery Patrons are moving around the gallery
-4. When you hover over that Patron, you are taken into the hyperlink narrative
 
-need to make canvases clickable? check overlap and mouse press?
+1. digiCanvases on gallery walls are animated gifs x
+2. digiCanvases when clicked take you to that sound installation. x
+3. Gallery Patrons are moving around the gallery (for now just constrained to one section each, will expand a route later) x
+4. When you click over that Patron, you are taken into the hyperlink narrative (for now just goes to the 'hyperlink narrative' introduction screen) x
+
+
 **************************************************/
 "use strict";
-
-//let patrons = [];
 
 //Patrons
 
@@ -67,6 +66,7 @@ let childParent = {
   speed: 0.08,
   active: false,
 };
+//The Sonic Shop sign at top of gallery
 
 let sonicSign = {
   x: 0,
@@ -75,6 +75,7 @@ let sonicSign = {
   sizeY: 0,
   image: undefined,
 };
+//animated canvases in gallery that click to the virtual AV sound installation piece.
 
 let digiCanvas1 = {
   x: 0,
@@ -103,8 +104,8 @@ let digiCanvas3 = {
   active: false,
 };
 
+//below in case I change to classes for the objects
 // let digiCanvases = [];
-
 // let gifs = [];
 
 let galleryImage;
@@ -157,7 +158,6 @@ function draw() {
   );
   rotate(0.03, 0); // tilt the gif slightly to place in digiCanvas properly.
   image(
-    //put into displayGallery function
     digiCanvas2.image,
     digiCanvas2.x,
     digiCanvas2.y,
@@ -165,7 +165,7 @@ function draw() {
     digiCanvas2.sizeY
   );
 
-  simulation(); // this may work once the values are iin
+  simulation(); //recall function containing all functions to make this scene animated.
 }
 //
 
@@ -174,10 +174,7 @@ function setUpSign() {
   sonicSign.y = height / 2 - 270;
 }
 
-//need to assign values here to make things appear
 function setUpPatrons() {
-  //because values are scaled in display numbers so in set up must be larger for location and movement
-  //divided by 0.1 because scale multiplies every element in display by 0.1, making it smaller.
   personLongHair.minX = width / 2 - 300;
   personLongHair.maxX = width / 2 - 185;
   personLongHair.minY = height / 2 + 80;
@@ -191,7 +188,7 @@ function setUpPatrons() {
   personLongHair.vx = personLongHair.speed;
   personLongHair.vy = personLongHair.speed;
 
-  //place patron personShortHair in gallery
+  //place patron personShortHair in gallery and constrain to sections. Cannot go through the 'walls'.
   personShortHair.minX = width - 350;
   personShortHair.maxX = width - 165;
   personShortHair.minY = height / 2 + 80;
@@ -219,7 +216,7 @@ function setUpPatrons() {
 }
 
 function setUpCanvases() {
-  /// need to do a displayGallery object too
+  /// assign values to the objects parameters
   digiCanvas1.x = width / 2 - 229; ///eventually change the size of the sides to make it on an angle so that it 'seems' in perspective
   digiCanvas1.y = height / 2 + 10;
   digiCanvas1.sizeX = 114;
@@ -233,8 +230,8 @@ function setUpCanvases() {
 
 function simulation() {
   displayGallery();
-  move(); // get displayGallery properly and then tackle the move function
-  checkMouseHover(); // put on pause so it doesnt change while coding
+  move(); //// recall move function to animate patrons
+  checkMouseHover(); // check if cursor is over object/patron
 }
 
 ///
@@ -360,21 +357,21 @@ function soundInstallation2() {
 
 function narrative1() {
   //currently place holders.
-  window.location.href = `https://amdevito.github.io/cart253_AlanaDeVito/Projects/Project2/Prototype/`; // go back to intro?
+  window.location.href = `https://amdevito.github.io/cart253_AlanaDeVito/Projects/Project2/Prototype/`; // // go back to intro to gallery narrative for now
 }
 
 function narrative2() {
   //currently place holders.
-  window.location.href = `https://amdevito.github.io/cart253_AlanaDeVito/Projects/Project2/Prototype/`; // go back to intro?
+  window.location.href = `https://amdevito.github.io/cart253_AlanaDeVito/Projects/Project2/Prototype/`; // // go back to intro to gallery narrative for now
 }
 
 function narrative3() {
   //currently place holders.
-  window.location.href = `https://amdevito.github.io/cart253_AlanaDeVito/Projects/Project2/Prototype//`; // go back to intro?
+  window.location.href = `https://amdevito.github.io/cart253_AlanaDeVito/Projects/Project2/Prototype//`; /// go back to intro to gallery narrative for now
 }
 
 function backHome() {
-  window.location.href = `https://amdevito.github.io/211/MidTermProposal/`; // go back to intro?
+  window.location.href = `https://amdevito.github.io/211/MidTermProposal/`; // go back to home page. Assign to SONIC SHOP TITLE NEXT**
 }
 
 function displayGallery() {
@@ -394,6 +391,7 @@ function displayGallery() {
   // console.log(mouseY);
   pop();
 
+  //display gallery patron with short hair
   push();
   imageMode(CENTER);
   image(
@@ -405,6 +403,7 @@ function displayGallery() {
   );
   pop();
 
+  //display child and parent gallery patrons
   push();
   imageMode(CENTER);
   image(
@@ -416,5 +415,3 @@ function displayGallery() {
   );
   pop();
 }
-
-//how to i make the patrons a link/clickable
