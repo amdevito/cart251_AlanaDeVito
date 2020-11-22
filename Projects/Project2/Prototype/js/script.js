@@ -218,8 +218,7 @@ function welcomeDisplay6() {
 
 //send user into the gallery
 function galleryDisplay() {
-  createCanvas(1150, 700);
-  background(gallery);
+  window.location.href = `https://amdevito.github.io/cart253_AlanaDeVito/Projects/Project2/Gallery`;
 }
 
 //when the mouse is pressed, change states
