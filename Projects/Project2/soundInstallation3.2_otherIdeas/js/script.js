@@ -1,3 +1,5 @@
+//state for turntable interaction
+
 "use strict";
 // setup()
 //
@@ -18,6 +20,7 @@ function setup() {
 // Description of draw() goes here.
 function draw() {
   background(1);
+
   noCursor();
   noStroke();
   fill(0);
