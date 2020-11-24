@@ -364,12 +364,12 @@ function narrative1() {
 
 function narrative2() {
   //currently place holders.
-  window.location.href = `https://amdevito.github.io/cart253_AlanaDeVito/Projects/Project2/Prototype/`; // go back to intro to gallery narrative for now
+  window.location.href = `https://amdevito.github.io/211/Final_Project/narrative/index.html`; // go back to intro to gallery narrative for now
 }
 
 function narrative3() {
   //currently place holders.
-  window.location.href = `https://amdevito.github.io/cart253_AlanaDeVito/Projects/Project2/Prototype//`; // go back to intro to gallery narrative for now
+  window.location.href = `https://amdevito.github.io/cart253_AlanaDeVito/Projects/Project2/Prototype/`; // go back to intro to gallery narrative for now
 }
 
 function backHome() {
