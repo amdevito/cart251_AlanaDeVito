@@ -21,7 +21,7 @@ function setup() {
 function draw() {
   background(1);
 
-  noCursor();
+  // noCursor();
   noStroke();
   fill(0);
   circle(mouseX, mouseY, 5);
