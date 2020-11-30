@@ -1,3 +1,10 @@
+// Sound installation 3:
+// 2 states spinVinyl and interact.
+// in the spin vinyl state click on the record and the track assigned to that record plays.
+// If you click to the left of centre it plays backwards and if you click to the right it plays forwards.
+// Click it again to stop. Hit space bar to switch between states. Interact state:
+// As you move your mouse the delay time for the entire track is modulated and the middle circles move to the pulse of the sounds.
+
 //state for turntable interaction
 
 "use strict";
@@ -158,7 +165,6 @@ function recordOneDisplay() {
   stroke(255);
   strokeWeight(1);
 
-  //put this into a spin function and then call here;
   for (let i = 0; i < cirNum; i++) {
     arc(0, 0, cirSize + gap * i, cirSize + gap * i, 45, 360 - i - angle);
     //cirSize = 0 makes it wobble
@@ -305,73 +311,79 @@ function recordFiveSpinBackward() {
 ///check if mouse is on top of the record, if on top and to left of centre, recordFive.spin = recordFive.spin - recordFive - recordFive.speed
 function checkMouseHover() {
   let d1 = dist(mouseX, mouseY, recordOne.x, recordOne.y);
-  if (d1 < 20 && mouseX < recordOne.x && !recordOne.activeB) {
+  console.log(d1);
+  if (d1 < 145 && mouseX < recordOne.x && !recordOne.activeB) {
     recordOne.activeB = true;
-  } else if (d1 < 20 && mouseX > recordOne.x && !recordOne.activeF) {
+  } else if (d1 < 145 && mouseX > recordOne.x && !recordOne.activeF) {
     recordOne.activeF = true;
-  } else if (d1 < 20 && mouseX < recordOne.x && recordOne.activeB) {
+  } else if (d1 < 145 && mouseX < recordOne.x && recordOne.activeB) {
     recordOne.activeB = false;
-  } else if (d1 < 20 && mouseX > recordOne.x && recordOne.activeF) {
+  } else if (d1 < 145 && mouseX > recordOne.x && recordOne.activeF) {
     recordOne.activeF = false;
   }
   let d2 = dist(mouseX, mouseY, recordTwo.x, recordTwo.y);
-  if (d2 < 22 && mouseX < recordTwo.x && !recordTwo.activeB) {
+  if (d2 < 145 && mouseX < recordTwo.x && !recordTwo.activeB) {
     recordTwo.activeB = true;
-  } else if (d2 < 22 && mouseX > recordTwo.x && !recordTwo.activeF) {
+  } else if (d2 < 145 && mouseX > recordTwo.x && !recordTwo.activeF) {
     recordTwo.activeF = true;
-  } else if (d2 < 22 && mouseX < recordTwo.x && recordTwo.activeB) {
+  } else if (d2 < 145 && mouseX < recordTwo.x && recordTwo.activeB) {
     recordTwo.activeB = false;
-  } else if (d2 < 22 && mouseX > recordTwo.x && recordTwo.activeF) {
+  } else if (d2 < 145 && mouseX > recordTwo.x && recordTwo.activeF) {
     recordTwo.activeF = false;
   }
   let d3 = dist(mouseX, mouseY, recordThree.x, recordThree.y);
-  if (d3 < 22 && mouseX < recordThree.x) {
+  if (d3 < 145 && mouseX < recordThree.x) {
     recordThree.activeB = true;
-  } else if (d3 < 22 && mouseX > recordThree.x) {
+  } else if (d3 < 145 && mouseX > recordThree.x) {
     recordThree.activeF = true;
-  } else if (d3 < 22 && mouseX < recordThree.x && recordThree.activeB) {
+  } else if (d3 < 145 && mouseX < recordThree.x && recordThree.activeB) {
     recordThree.activeB = false;
-  } else if (d3 < 22 && mouseX > recordThree.x && recordThree.activeF) {
+  } else if (d3 < 145 && mouseX > recordThree.x && recordThree.activeF) {
     recordThree.activeF = false;
   }
   let d4 = dist(mouseX, mouseY, recordFour.x, recordFour.y);
-  if (d4 < 22 && mouseX < recordFour.x) {
+  if (d4 < 145 && mouseX < recordFour.x) {
     recordFour.activeB = true;
-  } else if (d4 < 22 && mouseX > recordFour.x) {
+  } else if (d4 < 145 && mouseX > recordFour.x) {
     recordFour.activeF = true;
-  } else if (d4 < 22 && mouseX < recordFour.x && recordFour.activeB) {
+  } else if (d4 < 145 && mouseX < recordFour.x && recordFour.activeB) {
     recordFive.activeB = false;
-  } else if (d4 < 22 && mouseX > recordFour.x && recordFour.activeF) {
+  } else if (d4 < 145 && mouseX > recordFour.x && recordFour.activeF) {
     recordFour.activeF = false;
   }
   let d5 = dist(mouseX, mouseY, recordFive.x, recordFive.y);
-  if (d5 < 22 && mouseX < recordFive.x && recordFive.activeB === false) {
+  if (d5 < 145 && mouseX < recordFive.x && recordFive.activeB === false) {
     recordFive.activeB = true;
-  } else if (d5 < 22 && mouseX > recordFive.x && recordFive.activeF === false) {
+  } else if (
+    d5 < 145 &&
+    mouseX > recordFive.x &&
+    recordFive.activeF === false
+  ) {
     recordFive.activeF = true;
-  } else if (d5 < 22 && mouseX < recordFive.x && recordFive.activeB) {
+  } else if (d5 < 145 && mouseX < recordFive.x && recordFive.activeB) {
     recordFive.activeB = false;
-  } else if (d5 < 22 && mouseX > recordFive.x && recordFive.activeF) {
+  } else if (d5 < 145 && mouseX > recordFive.x && recordFive.activeF) {
     recordFive.activeF = false;
   }
 }
 
 function mousePressed() {
+  console.log(recordOne.activeF);
+  console.log(recordOne.activeB);
   //record one - press mouse play record forward or backwards or stop playing.
   //check if mouse is pressed while hovering over RECORD - change to play record when pressed. play forward if pressed to the right of center and play back wards if pressed to the left.
   if (recordOne.activeF && mousePressed) {
     recordOneSpinForward(); //play track one forward and spin record forward
   } else if (!recordOne.activeF && mousePressed) {
-    recordOneSpinForward();
     return;
   }
-
-  if (recordOne.activeB && mousePressed) {
-    recordOneSpinBackward();
-  } else if (!recordOne.activeB && mousePressed) {
-    recordOneSpinBackward();
-    return;
-  }
+  //
+  // if (recordOne.activeB && mousePressed) {
+  //   recordOneSpinBackward();
+  // } else if (!recordOne.activeB && mousePressed) {
+  //   // recordOneSpinBackward();
+  //   return;
+  // }
   //record two - press mouse play record forward or backwards or stop playing.
   if (recordTwo.activeF && mousePressed) {
     recordTwoSpinForward(); //play track one forward and spin record forward
@@ -425,6 +437,11 @@ function mousePressed() {
   } else if (!recordFive.activeB && mousePressed) {
     return;
   }
+}
+
+//recall tracks playback classes
+function keyPressed() {
+  tracksPlayback.keyPressed();
 }
 
 //if active and mouse X is increaing to the right of centre and mousedragged then play forward
