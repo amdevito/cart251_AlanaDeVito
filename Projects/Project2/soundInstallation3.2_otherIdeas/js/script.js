@@ -33,6 +33,7 @@ let recordOne = {
   style: undefined,
   activeF: false,
   activeB: false,
+  track: undefined,
 };
 
 let recordTwo = {
@@ -44,6 +45,7 @@ let recordTwo = {
   style: undefined,
   activeF: false,
   activeB: false,
+  track: undefined,
 };
 
 let recordThree = {
@@ -55,6 +57,7 @@ let recordThree = {
   style: undefined,
   activeF: false,
   activeB: false,
+  track: undefined,
 };
 
 let recordFour = {
@@ -66,6 +69,7 @@ let recordFour = {
   style: undefined,
   activeF: false,
   activeB: false,
+  track: undefined,
 };
 
 let recordFive = {
@@ -77,14 +81,22 @@ let recordFive = {
   style: undefined,
   activeF: false,
   activeB: false,
+  track: undefined,
 };
 
 function preload() {
   // Load all the tracks into the array
-  for (let i = 0; i < 4; i++) {
-    let file = loadSound(`assets/sounds/track${i}.mp3`); // get track from file and push into array position
-    files.push(file);
-  }
+  // for (let i = 0; i < 4; i++) {
+  //   let file = loadSound(`assets/sounds/track${i}.mp3`); // get track from file and push into array position
+  //   files.push(file);
+  // }
+  recordOne.track = loadSound(`assets/sounds/track0.mp3`);
+  recordTwo.track = loadSound(`assets/sounds/track4.mp3`);
+  recordThree.track = loadSound(`assets/sounds/track2.mp3`);
+  recordFour.track = loadSound(`assets/sounds/track3.mp3`);
+  recordFive.track = loadSound(`assets/sounds/track1.mp3`);
+
+  //...
 }
 
 function setup() {
@@ -92,7 +104,7 @@ function setup() {
   angleMode(degrees);
   setUpRecords();
 
-  tracksPlayback = new TracksPlayback(files); // call class directing stored track to playback.
+  // tracksPlayback = new TracksPlayback(files); // call class directing stored track to playback.
 }
 
 // draw()
@@ -118,7 +130,9 @@ function draw() {
   // //call function for the five record
   recordFiveDisplay();
 
-  checkMouseHover();
+  // checkMouseHover();
+
+  spinRecords();
 
   // tracksPlayback.mousePosition();
 
@@ -178,6 +192,7 @@ function recordOneDisplay() {
 function recordOneSpinForward() {
   recordOne.spin = recordOne.spin + recordOne.speed;
 }
+
 function recordOneSpinBackward() {
   recordOne.spin = recordOne.spin - recordOne.speed;
 }
@@ -212,6 +227,7 @@ function recordTwoDisplay() {
 function recordTwoSpinForward() {
   recordTwo.spin = recordTwo.spin + recordTwo.speed;
 }
+
 function recordTwoSpinBackward() {
   recordTwo.spin = recordTwo.spin - recordTwo.speed;
 }
@@ -245,6 +261,7 @@ function recordThreeDisplay() {
 function recordThreeSpinForward() {
   recordThree.spin = recordThree.spin + recordThree.speed;
 }
+
 function recordThreeSpinBackward() {
   recordThree.spin = recordThree.spin - recordThree.speed;
 }
@@ -277,6 +294,7 @@ function recordFourDisplay() {
 function recordFourSpinForward() {
   recordFour.spin = recordFour.spin + recordFour.speed;
 }
+
 function recordFourSpinBackward() {
   recordFour.spin = recordFour.spin - recordFour.speed;
 }
@@ -304,6 +322,7 @@ function recordFiveDisplay() {
 function recordFiveSpinForward() {
   recordFive.spin = recordFive.spin + recordFive.speed;
 }
+
 function recordFiveSpinBackward() {
   recordFive.spin = recordFive.spin - recordFive.speed;
 }
@@ -311,132 +330,145 @@ function recordFiveSpinBackward() {
 ///check if mouse is on top of the record, if on top and to left of centre, recordFive.spin = recordFive.spin - recordFive - recordFive.speed
 function checkMouseHover() {
   let d1 = dist(mouseX, mouseY, recordOne.x, recordOne.y);
-  console.log(d1);
+  // console.log(d1);
   if (d1 < 145 && mouseX < recordOne.x && !recordOne.activeB) {
     recordOne.activeB = true;
+    recordOne.track.rate(-1);
+    recordOne.track.play();
+    recordOne.activeF = false;
   } else if (d1 < 145 && mouseX > recordOne.x && !recordOne.activeF) {
     recordOne.activeF = true;
+    recordOne.track.rate(1);
+    recordOne.track.play();
+    recordOne.activeB = false;
   } else if (d1 < 145 && mouseX < recordOne.x && recordOne.activeB) {
     recordOne.activeB = false;
+    recordOne.track.stop();
   } else if (d1 < 145 && mouseX > recordOne.x && recordOne.activeF) {
     recordOne.activeF = false;
+    recordOne.track.stop();
   }
+
   let d2 = dist(mouseX, mouseY, recordTwo.x, recordTwo.y);
   if (d2 < 145 && mouseX < recordTwo.x && !recordTwo.activeB) {
     recordTwo.activeB = true;
+    recordTwo.track.rate(-1);
+    recordTwo.track.play();
+    recordTwo.activeF = false;
   } else if (d2 < 145 && mouseX > recordTwo.x && !recordTwo.activeF) {
     recordTwo.activeF = true;
+    recordTwo.track.rate(1);
+    recordTwo.track.play();
+    recordTwo.activeB = false;
   } else if (d2 < 145 && mouseX < recordTwo.x && recordTwo.activeB) {
     recordTwo.activeB = false;
+    recordTwo.track.stop();
   } else if (d2 < 145 && mouseX > recordTwo.x && recordTwo.activeF) {
     recordTwo.activeF = false;
+    recordTwo.track.stop();
   }
+
   let d3 = dist(mouseX, mouseY, recordThree.x, recordThree.y);
-  if (d3 < 145 && mouseX < recordThree.x) {
+  if (d3 < 145 && mouseX < recordThree.x && !recordThree.activeB) {
     recordThree.activeB = true;
-  } else if (d3 < 145 && mouseX > recordThree.x) {
+    recordThree.track.rate(-1);
+    recordThree.track.play();
+    recordThree.activeF = false;
+  } else if (d3 < 145 && mouseX > recordThree.x && !recordThree.activeF) {
     recordThree.activeF = true;
+    recordThree.track.rate(1);
+    recordThree.track.play();
+    recordThree.activeB = false;
   } else if (d3 < 145 && mouseX < recordThree.x && recordThree.activeB) {
     recordThree.activeB = false;
+    recordThree.track.stop();
   } else if (d3 < 145 && mouseX > recordThree.x && recordThree.activeF) {
     recordThree.activeF = false;
+    recordThree.track.stop();
   }
+
   let d4 = dist(mouseX, mouseY, recordFour.x, recordFour.y);
-  if (d4 < 145 && mouseX < recordFour.x) {
+  if (d4 < 145 && mouseX < recordFour.x && !recordFour.activeB) {
     recordFour.activeB = true;
-  } else if (d4 < 145 && mouseX > recordFour.x) {
+    recordFour.track.rate(-1);
+    recordFour.track.play();
+    recordFour.activeF = false;
+  } else if (d4 < 145 && mouseX > recordFour.x && !recordFour.activeF) {
     recordFour.activeF = true;
+    recordFour.track.rate(1);
+    recordFour.track.play();
+    recordFour.activeB = false;
   } else if (d4 < 145 && mouseX < recordFour.x && recordFour.activeB) {
-    recordFive.activeB = false;
+    recordFour.activeB = false;
+    recordFour.track.stop();
   } else if (d4 < 145 && mouseX > recordFour.x && recordFour.activeF) {
     recordFour.activeF = false;
+    recordFour.track.stop();
   }
+
   let d5 = dist(mouseX, mouseY, recordFive.x, recordFive.y);
-  if (d5 < 145 && mouseX < recordFive.x && recordFive.activeB === false) {
+  if (d5 < 145 && mouseX < recordFive.x && !recordFive.activeB) {
     recordFive.activeB = true;
-  } else if (
-    d5 < 145 &&
-    mouseX > recordFive.x &&
-    recordFive.activeF === false
-  ) {
+    recordFive.track.rate(-1);
+    recordFive.track.play();
+    recordFive.activeF = false;
+  } else if (d5 < 145 && mouseX > recordFive.x && !recordFive.activeF) {
     recordFive.activeF = true;
+    recordFive.track.rate(1);
+    recordFive.track.play();
+    recordFive.activeB = false;
   } else if (d5 < 145 && mouseX < recordFive.x && recordFive.activeB) {
     recordFive.activeB = false;
+    recordFive.track.stop();
   } else if (d5 < 145 && mouseX > recordFive.x && recordFive.activeF) {
     recordFive.activeF = false;
+    recordFive.track.stop();
+  }
+}
+
+function spinRecords() {
+  //record one - press mouse play record forward or backwards or stop playing.
+  //check if mouse is pressed while hovering over RECORD - change to play record when pressed. play forward if pressed to the right of center and play back wards if pressed to the left.
+  if (recordOne.activeF) {
+    recordOneSpinForward(); //play track one forward and spin record forward
+  } else if (recordOne.activeB) {
+    recordOneSpinBackward(); //play track one forward and spin record forward
+  }
+
+  //record two - press mouse play record forward or backwards or stop playing.
+  if (recordTwo.activeF) {
+    recordTwoSpinForward(); //play track one forward and spin record forward
+  } else if (recordTwo.activeB) {
+    recordTwoSpinBackward();
+  }
+
+  //record three - press mouse play record forward or backwards or stop playing.
+  if (recordThree.activeF) {
+    recordThreeSpinForward(); //play track one forward and spin record forward
+  } else if (recordThree.activeB) {
+    recordThreeSpinBackward();
+  }
+
+  //record four - press mouse play record forward or backwards or stop playing.
+  if (recordFour.activeF) {
+    recordFourSpinForward(); //play track one forward and spin record forward
+  } else if (recordFour.activeB) {
+    recordFourSpinBackward();
+  }
+
+  //record five - press mouse play record forward or backwards or stop playing.
+  if (recordFive.activeF) {
+    recordFiveSpinForward(); //play track one forward and spin record forward
+  } else if (recordFive.activeB) {
+    recordFiveSpinBackward();
   }
 }
 
 function mousePressed() {
-  console.log(recordOne.activeF);
-  console.log(recordOne.activeB);
-  //record one - press mouse play record forward or backwards or stop playing.
-  //check if mouse is pressed while hovering over RECORD - change to play record when pressed. play forward if pressed to the right of center and play back wards if pressed to the left.
-  if (recordOne.activeF && mousePressed) {
-    recordOneSpinForward(); //play track one forward and spin record forward
-  } else if (!recordOne.activeF && mousePressed) {
-    return;
-  }
-  //
-  // if (recordOne.activeB && mousePressed) {
-  //   recordOneSpinBackward();
-  // } else if (!recordOne.activeB && mousePressed) {
-  //   // recordOneSpinBackward();
-  //   return;
-  // }
-  //record two - press mouse play record forward or backwards or stop playing.
-  if (recordTwo.activeF && mousePressed) {
-    recordTwoSpinForward(); //play track one forward and spin record forward
-  } else if (!recordTwo.activeF && mousePressed) {
-    recordTwoSpinForward();
-    return;
-  }
+  // console.log(recordOne.activeF);
+  // console.log(recordOne.activeB);
 
-  if (recordTwo.activeB && mousePressed) {
-    recordTwoSpinBackward();
-  } else if (!recordTwo.activeB && mousePressed) {
-    recordTwoSpinBackward();
-    return;
-  }
-
-  //record three - press mouse play record forward or backwards or stop playing.
-  if (recordThree.activeF && mousePressed) {
-    recordThreeSpinForward(); //play track one forward and spin record forward
-  } else if (!recordThree.activeF && mousePressed) {
-    return;
-  }
-
-  if (recordThree.activeB && mousePressed) {
-    recordThreeSpinBackward();
-  } else if (!recordThree.activeB && mousePressed) {
-    return;
-  }
-
-  //record four - press mouse play record forward or backwards or stop playing.
-  if (recordFour.activeF && mousePressed) {
-    recordFourSpinForward(); //play track one forward and spin record forward
-  } else if (!recordFour.activeF && mousePressed) {
-    return;
-  }
-
-  if (recordFour.activeB && mousePressed) {
-    recordFourSpinBackward();
-  } else if (!recordFour.activeB && mousePressed) {
-    return;
-  }
-
-  //record five - press mouse play record forward or backwards or stop playing.
-  if (recordFive.activeF && mousePressed) {
-    recordFiveSpinForward(); //play track one forward and spin record forward
-  } else if (!recordFive.activeF && mousePressed) {
-    return;
-  }
-
-  if (recordFive.activeB && mousePressed) {
-    recordFiveSpinBackward();
-  } else if (!recordFive.activeB && mousePressed) {
-    return;
-  }
+  checkMouseHover();
 }
 
 //recall tracks playback classes
