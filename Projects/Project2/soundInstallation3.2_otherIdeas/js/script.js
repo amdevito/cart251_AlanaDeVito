@@ -305,9 +305,9 @@ function recordFiveSpinBackward() {
 ///check if mouse is on top of the record, if on top and to left of centre, recordFive.spin = recordFive.spin - recordFive - recordFive.speed
 function checkMouseHover() {
   let d1 = dist(mouseX, mouseY, recordOne.x, recordOne.y);
-  if (d1 < 20 && mouseX < recordOne.x) {
+  if (d1 < 20 && mouseX < recordOne.x && !recordOne.activeB) {
     recordOne.activeB = true;
-  } else if (d1 < 20 && mouseX > recordOne.x) {
+  } else if (d1 < 20 && mouseX > recordOne.x && !recordOne.activeF) {
     recordOne.activeF = true;
   } else if (d1 < 20 && mouseX < recordOne.x && recordOne.activeB) {
     recordOne.activeB = false;
@@ -315,9 +315,9 @@ function checkMouseHover() {
     recordOne.activeF = false;
   }
   let d2 = dist(mouseX, mouseY, recordTwo.x, recordTwo.y);
-  if (d2 < 22 && mouseX < recordTwo.x) {
+  if (d2 < 22 && mouseX < recordTwo.x && !recordTwo.activeB) {
     recordTwo.activeB = true;
-  } else if (d2 < 22 && mouseX > recordTwo.x) {
+  } else if (d2 < 22 && mouseX > recordTwo.x && !recordTwo.activeF) {
     recordTwo.activeF = true;
   } else if (d2 < 22 && mouseX < recordTwo.x && recordTwo.activeB) {
     recordTwo.activeB = false;
@@ -362,24 +362,28 @@ function mousePressed() {
   if (recordOne.activeF && mousePressed) {
     recordOneSpinForward(); //play track one forward and spin record forward
   } else if (!recordOne.activeF && mousePressed) {
+    recordOneSpinForward();
     return;
   }
 
   if (recordOne.activeB && mousePressed) {
     recordOneSpinBackward();
   } else if (!recordOne.activeB && mousePressed) {
+    recordOneSpinBackward();
     return;
   }
   //record two - press mouse play record forward or backwards or stop playing.
   if (recordTwo.activeF && mousePressed) {
     recordTwoSpinForward(); //play track one forward and spin record forward
   } else if (!recordTwo.activeF && mousePressed) {
+    recordTwoSpinForward();
     return;
   }
 
   if (recordTwo.activeB && mousePressed) {
     recordTwoSpinBackward();
   } else if (!recordTwo.activeB && mousePressed) {
+    recordTwoSpinBackward();
     return;
   }
 
