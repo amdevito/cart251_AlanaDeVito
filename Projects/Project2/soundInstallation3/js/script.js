@@ -150,14 +150,14 @@ function draw() {
     textSize(20);
     fill(255);
     textFont("Monospace");
-    text("Spinning into Oblivion", 25, 45);
+    text("Spinning into Oblivion", 20, 25);
     textSize(16);
     fill(170);
     textFont("Monospace");
     text(
-      "Click on each record to play a sample of the song.\nClicking the upper right corner of the record plays the track forwards and at regular speed.\nClicking the upper left corner plays the track backwards at regular speed.\nClicking the lower right corner plays the track forward but at quarter speed.\nClicking the lower left corner plays the track backward at quarter speed.\nWhen a record is active the cursor movement changes its color.",
-      28,
-      70
+      "Click on each record to play a sample of the song.\nClicking the upper right corner of the record plays the track forwards and at regular speed.\nClicking the upper left corner plays the track backwards at regular speed.\nClicking the lower right corner plays the track forward but at quarter speed.\nClicking the lower left corner plays the track backward at quarter speed.\nClick on the record in the same place to stop playing. When a record is active the cursor movement changes its color.\nHit your browser's back button to return to the gallery.",
+      20,
+      50
     );
     pop();
   }
