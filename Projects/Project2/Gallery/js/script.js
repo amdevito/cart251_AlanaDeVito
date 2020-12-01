@@ -371,11 +371,11 @@ function mousePressed() {
 }
 
 function soundInstallation1() {
-  window.location.href = `https://amdevito.github.io/211/interact/index.html`; // go to sonic space invader
+  window.location.href = `https://amdevito.github.io/cart253_AlanaDeVito/Projects/Project2/soundInstallation1`; // go to sonic space invader
 }
 
 function soundInstallation2() {
-  window.location.href = `https://amdevito.github.io/cart253_AlanaDeVito/Exercises/Exercise6`; // go to kelidoscape tunnel
+  window.location.href = `https://amdevito.github.io/cart253_AlanaDeVito/Projects/Project2/soundInstallation2`; // go to kelidoscape tunnel
 }
 
 function soundInstallation3() {
