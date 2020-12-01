@@ -33,6 +33,11 @@ let recordOne = {
   activeF: false,
   activeB: false,
   track: undefined,
+  color: {
+    r: 194,
+    g: 169,
+    b: 135,
+  },
 };
 
 let recordTwo = {
@@ -45,6 +50,11 @@ let recordTwo = {
   activeF: false,
   activeB: false,
   track: undefined,
+  color: {
+    r: 0,
+    g: 0,
+    b: 0,
+  },
 };
 
 let recordThree = {
@@ -57,6 +67,11 @@ let recordThree = {
   activeF: false,
   activeB: false,
   track: undefined,
+  color: {
+    r: 194,
+    g: 169,
+    b: 135,
+  },
 };
 
 let recordFour = {
@@ -69,6 +84,11 @@ let recordFour = {
   activeF: false,
   activeB: false,
   track: undefined,
+  color: {
+    r: 94,
+    g: 69,
+    b: 35,
+  },
 };
 
 let recordFive = {
@@ -81,6 +101,11 @@ let recordFive = {
   activeF: false,
   activeB: false,
   track: undefined,
+  color: {
+    r: 94,
+    g: 69,
+    b: 35,
+  },
 };
 
 function preload() {
@@ -95,6 +120,8 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   angleMode(degrees);
   setUpRecords();
+  recordOne.color.r = mouseX;
+  recordOne.color.b = mouseY;
 
   delay = new p5.Delay();
 
@@ -106,6 +133,35 @@ function draw() {
 
   noStroke();
   fill(0);
+  //show directions when all records are inactive, hide when interaction starts.
+  if (
+    !recordOne.activeF &&
+    !recordOne.activeB &&
+    !recordTwo.activeF &&
+    !recordTwo.activeB &&
+    !recordThree.activeF &&
+    !recordThree.activeB &&
+    !recordFour.activeF &&
+    !recordFour.activeB &&
+    !recordFive.activeF &&
+    !recordFive.activeB
+  ) {
+    push();
+    textSize(20);
+    fill(255);
+    textFont("Monospace");
+    text("Spinning into Oblivion", 25, 45);
+    textSize(16);
+    fill(170);
+    textFont("Monospace");
+    text(
+      "Click on each record to play a sample of the song.\nClicking the upper right corner of the record plays the track forwards and at regular speed.\nClicking the upper left corner plays the track backwards at regular speed.\nClicking the lower right corner plays the track forward but at quarter speed.\nClicking the lower left corner plays the track backward at quarter speed.\nWhen a record is active the cursor movement changes its color.",
+      28,
+      70
+    );
+    pop();
+  }
+
   //
 
   //call function for the first record
@@ -152,6 +208,17 @@ function recordOneDisplay() {
 
   noFill();
   stroke(255);
+  stroke(recordOne.color.r, recordOne.color.g, recordOne.color.b);
+  if (recordOne.activeF) {
+    recordOne.color.r = mouseX;
+    recordOne.color.b = mouseY;
+    stroke(recordOne.color.r, recordOne.color.g, recordOne.color.b);
+    map(mouseX, 0, width, 0, 255);
+    map(mouseY, 0, height, 0, 255);
+  } else {
+    stroke(255);
+  }
+
   strokeWeight(1);
 
   for (let i = 0; i < cirNum; i++) {
@@ -179,6 +246,21 @@ function recordTwoDisplay() {
 
   noFill();
   stroke(255);
+  stroke(recordTwo.color.r, recordTwo.color.g, recordTwo.color.b);
+  if (recordTwo.activeF) {
+    recordTwo.color.r = mouseX;
+    recordTwo.color.b = mouseY;
+    map(mouseX, 0, width, 0, 255);
+    map(mouseY, 0, height, 0, 255);
+  } else if (recordTwo.activeB) {
+    recordTwo.color.g = mouseX;
+    recordTwo.color.r = mouseX;
+    recordTwo.color.b = mouseY;
+    map(mouseX, 0, width, 170, 255);
+    map(mouseY, 0, height, 170, 255);
+  } else {
+    stroke(255);
+  }
   strokeWeight(1);
 
   for (let i = 0; i < cirNum; i++) {
@@ -213,6 +295,21 @@ function recordThreeDisplay() {
 
   noFill();
   stroke(255);
+  stroke(recordThree.color.r, recordThree.color.g, recordThree.color.b);
+  if (recordThree.activeF) {
+    recordThree.color.r = mouseX;
+    recordThree.color.b = mouseY;
+    map(mouseX, 0, width, 0, 255);
+    map(mouseY, 0, height, 0, 255);
+  } else if (recordThree.activeB) {
+    recordThree.color.g = mouseX;
+    recordThree.color.r = mouseX;
+    recordThree.color.b = mouseY;
+    map(mouseX, 0, width, 170, 255);
+    map(mouseY, 0, height, 0, 170);
+  } else {
+    stroke(255);
+  }
   strokeWeight(1);
 
   for (let i = 0; i < cirNum; i++) {
@@ -247,6 +344,21 @@ function recordFourDisplay() {
 
   noFill();
   stroke(255);
+  stroke(recordFour.color.r, recordFour.color.g, recordFour.color.b);
+  if (recordFour.activeF) {
+    recordFour.color.r = mouseX;
+    recordFour.color.b = mouseY;
+    map(mouseX, 0, width, 170, 255);
+    map(mouseY, 0, height, 0, 170);
+  } else if (recordFour.activeB) {
+    recordFour.color.g = mouseX;
+    recordFour.color.r = mouseX;
+    recordFour.color.b = mouseY;
+    map(mouseX, 0, width, 55, 170);
+    map(mouseY, 0, height, 170, 255);
+  } else {
+    stroke(255);
+  }
   strokeWeight(1);
 
   for (let i = 0; i < cirNum; i++) {
@@ -281,6 +393,21 @@ function recordFiveDisplay() {
 
   noFill();
   stroke(255);
+  stroke(recordFive.color.r, recordFive.color.g, recordFive.color.b);
+  if (recordFive.activeF) {
+    recordFive.color.r = mouseX;
+    recordFive.color.b = mouseY;
+    map(mouseX, 0, width, 70, 170);
+    map(mouseY, 0, height, 30, 70);
+  } else if (recordFive.activeB) {
+    recordFive.color.g = mouseY;
+    recordFive.color.r = mouseX;
+    recordFive.color.b = mouseY;
+    map(mouseX, 0, width, 55, 170);
+    map(mouseY, 0, height, 170, 255);
+  } else {
+    stroke(255);
+  }
   strokeWeight(1);
 
   for (let i = 0; i < cirNum; i++) {

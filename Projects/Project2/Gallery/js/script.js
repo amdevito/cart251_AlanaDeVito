@@ -118,6 +118,7 @@ function preload() {
   //load animated, clickable  digiCanvases
   digiCanvas1.image = loadImage("assets/images/digiCanvas1.gif");
   digiCanvas2.image = loadImage("assets/images/digiCanvas2.gif");
+  digiCanvas3.image = loadImage("assets/images/digiCanvas3.gif");
 
   //load patron pictures
   personLongHair.image = loadImage("assets/images/patron0.png");
@@ -148,6 +149,7 @@ function draw() {
   imageMode(CENTER);
   image(galleryImage, width / 2, height / 2, width / 2 + 400, height / 2 + 200);
   image(sonicSign.image, sonicSign.x, sonicSign.y, 600, 180);
+
   image(
     digiCanvas1.image,
     digiCanvas1.x,
@@ -164,6 +166,16 @@ function draw() {
     digiCanvas2.sizeY
   );
 
+  push();
+  rotate(-0.01, 0);
+  image(
+    digiCanvas3.image,
+    digiCanvas3.x,
+    digiCanvas3.y,
+    digiCanvas3.sizeX,
+    digiCanvas3.sizeY
+  );
+  pop();
   simulation(); //recall function containing all functions to make this scene animated.
 }
 //
@@ -215,8 +227,8 @@ function setUpPatrons() {
 }
 
 function setUpCanvases() {
-  /// assign values to the objects parameters
-  digiCanvas1.x = width / 2 - 229; ///eventually change the size of the sides to make it on an angle so that it 'seems' in perspective
+  /// place gifs of each sound installation canvas in the gallery
+  digiCanvas1.x = width / 2 - 229;
   digiCanvas1.y = height / 2 + 10;
   digiCanvas1.sizeX = 114;
   digiCanvas1.sizeY = 100;
@@ -225,6 +237,11 @@ function setUpCanvases() {
   digiCanvas2.y = height / 2 + 6;
   digiCanvas2.sizeX = 185;
   digiCanvas2.sizeY = 110;
+
+  digiCanvas3.x = width / 2 + 12;
+  digiCanvas3.y = height / 2 - 47;
+  digiCanvas3.sizeX = 121;
+  digiCanvas3.sizeY = 110;
 }
 
 function simulation() {
@@ -323,11 +340,12 @@ function checkMouseHover() {
   } else {
     digiCanvas2.active = false;
   }
-  // console.log(personLongHair.x);
-  // console.log(personLongHair.y);
-  // console.log(mouseX);
-  // console.log(mouseY);
-  // console.log(d1);
+  let d6 = dist(mouseX, mouseY, digiCanvas3.x, digiCanvas3.y);
+  if (d6 < 50) {
+    digiCanvas3.active = true;
+  } else {
+    digiCanvas3.active = false;
+  }
 }
 
 function mousePressed() {
@@ -337,6 +355,9 @@ function mousePressed() {
   }
   if (digiCanvas2.active && mousePressed) {
     soundInstallation2(); //links to kelidoscape
+  }
+  if (digiCanvas3.active && mousePressed) {
+    soundInstallation3(); //links to spinRecords
   }
   if (personLongHair.active && mousePressed) {
     narrative1(); //links to sonic Space invader
@@ -355,6 +376,10 @@ function soundInstallation1() {
 
 function soundInstallation2() {
   window.location.href = `https://amdevito.github.io/cart253_AlanaDeVito/Exercises/Exercise6`; // go to kelidoscape tunnel
+}
+
+function soundInstallation3() {
+  window.location.href = `https://amdevito.github.io/cart253_AlanaDeVito/Projects/Project2/soundInstallation3`; // go to spinRecords install
 }
 
 function narrative1() {
