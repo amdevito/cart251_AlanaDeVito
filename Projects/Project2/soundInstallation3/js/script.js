@@ -99,11 +99,6 @@ function setup() {
   delay = new p5.Delay();
 
   delay.setType("pingPong");
-
-  //for interact screen :
-  // let delTime = map(mouseY, 0, width, 0.2, 0.01);
-  //   delTime = constrain(delTime, 0.01, 0.2);
-  //   delay.delayTime(delTime);
 }
 
 function draw() {
@@ -461,7 +456,7 @@ function checkMouseHover() {
     mouseY < recordThree.y &&
     !recordThree.activeB
   ) {
-    recordThree.speed = 0.08;
+    recordThree.speed = 0.2;
     recordThree.activeB = true;
     recordThree.track.rate(-1);
     recordThree.track.play();
@@ -476,7 +471,7 @@ function checkMouseHover() {
     mouseY < recordThree.y &&
     !recordThree.activeF
   ) {
-    recordThree.speed = 0.08;
+    recordThree.speed = 0.2;
     recordThree.activeF = true;
     recordThree.track.rate(1);
     recordThree.track.play();
@@ -491,7 +486,7 @@ function checkMouseHover() {
     mouseY > recordThree.y &&
     !recordThree.activeB
   ) {
-    recordThree.speed = 0.008;
+    recordThree.speed = 0.05;
     recordThree.activeB = true;
     recordThree.track.rate(-1);
     recordThree.track.play();
@@ -507,7 +502,7 @@ function checkMouseHover() {
     mouseY > recordThree.y &&
     !recordThree.activeF
   ) {
-    recordThree.speed = 0.008;
+    recordThree.speed = 0.05;
     recordThree.activeF = true;
     recordThree.track.rate(0.25);
     recordThree.track.play();

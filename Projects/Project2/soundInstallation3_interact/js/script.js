@@ -85,12 +85,7 @@ function draw() {
   // random(0, 360, 2);
   rotate(angle);
   angle = map(mouseX, 0, width, -60, 60);
-  // translate(width / 2, height / 2);
-  // rotateX(60);
-  // rotate(-angle);
 
-  // // angle = map(mouseX, 0, width, -90, 90);
-  // angle = angle + map(mouseX * 2, 0, width, -0.1, 0.1);
   noFill();
   stroke(255, 0, 0);
   strokeWeight(1);
