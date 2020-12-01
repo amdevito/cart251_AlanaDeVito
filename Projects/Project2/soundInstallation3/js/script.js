@@ -22,7 +22,8 @@ let angle4;
 let angle5;
 
 let tracksPlayback;
-// let files = [];
+
+let delay;
 
 let recordOne = {
   x: undefined,
@@ -104,17 +105,20 @@ function setup() {
   angleMode(degrees);
   setUpRecords();
 
-  // tracksPlayback = new TracksPlayback(files); // call class directing stored track to playback.
+  delay = new p5.Delay();
+
+  delay.setType("pingPong");
+
+  //for interact screen :
+  // let delTime = map(mouseY, 0, width, 0.2, 0.01);
+  //   delTime = constrain(delTime, 0.01, 0.2);
+  //   delay.delayTime(delTime);
 }
 
-// draw()
-//
-// Description of draw() goes here.
 function draw() {
   background(1);
-
   // spiralType = random(3, 16);
-  // noCursor();
+
   noStroke();
   fill(0);
   //
@@ -353,10 +357,15 @@ function checkMouseHover() {
     recordOne.track.loop();
     recordOne.activeB = false;
     //play track one backward and slower (hidden but will keep in for future use)
-  } else if (d1 < 145 && mouseX < recordOne.x && !recordOne.activeB) {
+  } else if (
+    d1 < 145 &&
+    mouseX < recordOne.x &&
+    mouseY > recordOne.y &&
+    !recordOne.activeB
+  ) {
     recordOne.speed = 0.008;
     recordOne.activeB = true;
-    recordOne.track.rate(0.25);
+    recordOne.track.rate(-0.25);
     recordOne.track.play();
     recordOne.track.loop();
     recordOne.activeF = false;
@@ -390,19 +399,74 @@ function checkMouseHover() {
     recordOne.activeF = false;
     recordOne.track.stop();
   }
-  //TRACK/RECORD TWO
+  //TRACK/RECORD Two
   let d2 = dist(mouseX, mouseY, recordTwo.x, recordTwo.y);
-  if (d2 < 145 && mouseX < recordTwo.x && !recordTwo.activeB) {
+  //play track Two back regular speed
+  if (
+    d2 < 145 &&
+    mouseX < recordTwo.x &&
+    mouseY < recordTwo.y &&
+    !recordTwo.activeB
+  ) {
+    recordTwo.speed = 0.08;
     recordTwo.activeB = true;
     recordTwo.track.rate(-1);
     recordTwo.track.play();
     recordTwo.track.loop();
+    delay.process(recordTwo.track, 0, 0, 4000);
+    recordTwo.track.connect();
     recordTwo.activeF = false;
-  } else if (d2 < 145 && mouseX > recordTwo.x && !recordTwo.activeF) {
+    //play track one forward regular speed
+  } else if (
+    d2 < 145 &&
+    mouseX > recordTwo.x &&
+    mouseY < recordOne.y &&
+    !recordTwo.activeF
+  ) {
+    recordTwo.speed = 0.08;
     recordTwo.activeF = true;
     recordTwo.track.rate(1);
     recordTwo.track.play();
     recordTwo.track.loop();
+    recordTwo.activeB = false;
+    //play track Two backward and with delay?
+  } else if (
+    d2 < 145 &&
+    mouseX < recordTwo.x &&
+    mouseY > recordTwo.y &&
+    !recordTwo.activeB
+  ) {
+    recordTwo.speed = 0.008;
+    recordTwo.activeB = true;
+    recordTwo.track.rate(-1);
+    recordTwo.track.play();
+    recordTwo.track.loop();
+    delay.process(recordTwo.track, 0.5, 0.7, 200);
+    recordTwo.track.disconnect();
+    recordTwo.track.connect(delay);
+    recordTwo.activeF = false;
+    //play track Two forwards and slower
+  } else if (
+    d2 < 145 &&
+    mouseX > recordTwo.x &&
+    mouseY > recordTwo.y &&
+    !recordTwo.activeF
+  ) {
+    recordTwo.speed = 0.008;
+    recordTwo.activeF = true;
+    recordTwo.track.rate(0.25);
+    recordTwo.track.play();
+    recordTwo.track.loop();
+    recordTwo.activeB = false;
+    //stop playing track Two
+  } else if (
+    d2 < 145 &&
+    mouseX > recordTwo.x &&
+    mouseY > recordTwo.y &&
+    recordTwo.activeF
+  ) {
+    recordTwo.activeF = false;
+    recordTwo.track.stop();
     recordTwo.activeB = false;
   } else if (d2 < 145 && mouseX < recordTwo.x && recordTwo.activeB) {
     recordTwo.activeB = false;
