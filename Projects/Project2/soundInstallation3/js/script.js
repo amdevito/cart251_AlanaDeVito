@@ -413,14 +413,14 @@ function checkMouseHover() {
     recordTwo.track.rate(-1);
     recordTwo.track.play();
     recordTwo.track.loop();
-    delay.process(recordTwo.track, 0, 0, 4000);
+    delay.process(recordTwo.track, 0, 0, 8000);
     recordTwo.track.connect();
     recordTwo.activeF = false;
-    //play track one forward regular speed
+    //play track two forward regular speed
   } else if (
     d2 < 145 &&
     mouseX > recordTwo.x &&
-    mouseY < recordOne.y &&
+    mouseY < recordTwo.y &&
     !recordTwo.activeF
   ) {
     recordTwo.speed = 0.08;
@@ -428,8 +428,10 @@ function checkMouseHover() {
     recordTwo.track.rate(1);
     recordTwo.track.play();
     recordTwo.track.loop();
+    delay.process(recordTwo.track, 0, 0, 8000);
+    recordTwo.track.connect();
     recordTwo.activeB = false;
-    //play track Two backward and with delay?
+    //play track Two backward and with delay (to 'fake' back and slow, you just hear the delay signal)
   } else if (
     d2 < 145 &&
     mouseX < recordTwo.x &&
@@ -457,6 +459,8 @@ function checkMouseHover() {
     recordTwo.track.rate(0.25);
     recordTwo.track.play();
     recordTwo.track.loop();
+    delay.process(recordTwo.track, 0, 0, 8000);
+    recordTwo.track.connect();
     recordTwo.activeB = false;
     //stop playing track Two
   } else if (
@@ -475,19 +479,78 @@ function checkMouseHover() {
     recordTwo.activeF = false;
     recordTwo.track.stop();
   }
-  //TRACK/RECORD THREE
+  //TRACK/RECORD Three
   let d3 = dist(mouseX, mouseY, recordThree.x, recordThree.y);
-  if (d3 < 145 && mouseX < recordThree.x && !recordThree.activeB) {
+  //play track Three back regular speed
+  if (
+    d3 < 145 &&
+    mouseX < recordThree.x &&
+    mouseY < recordThree.y &&
+    !recordThree.activeB
+  ) {
+    recordThree.speed = 0.08;
     recordThree.activeB = true;
     recordThree.track.rate(-1);
     recordThree.track.play();
     recordThree.track.loop();
+    delay.process(recordThree.track, 0, 0, 8000);
+    recordThree.track.connect();
     recordThree.activeF = false;
-  } else if (d3 < 145 && mouseX > recordThree.x && !recordThree.activeF) {
+    //play track three forward regular speed
+  } else if (
+    d3 < 145 &&
+    mouseX > recordThree.x &&
+    mouseY < recordThree.y &&
+    !recordThree.activeF
+  ) {
+    recordThree.speed = 0.08;
     recordThree.activeF = true;
     recordThree.track.rate(1);
     recordThree.track.play();
     recordThree.track.loop();
+    delay.process(recordThree.track, 0, 0, 8000);
+    recordThree.track.connect();
+    recordThree.activeB = false;
+    //play track Three backward and with delay (to 'fake' back and slow, you just hear the delay signal)
+  } else if (
+    d3 < 145 &&
+    mouseX < recordThree.x &&
+    mouseY > recordThree.y &&
+    !recordThree.activeB
+  ) {
+    recordThree.speed = 0.008;
+    recordThree.activeB = true;
+    recordThree.track.rate(-1);
+    recordThree.track.play();
+    recordThree.track.loop();
+    delay.process(recordThree.track, 0.5, 0.7, 200);
+    recordThree.track.disconnect();
+    recordThree.track.connect(delay);
+    recordThree.activeF = false;
+    //play track Three forwards and slower
+  } else if (
+    d3 < 145 &&
+    mouseX > recordThree.x &&
+    mouseY > recordThree.y &&
+    !recordThree.activeF
+  ) {
+    recordThree.speed = 0.008;
+    recordThree.activeF = true;
+    recordThree.track.rate(0.25);
+    recordThree.track.play();
+    recordThree.track.loop();
+    delay.process(recordThree.track, 0, 0, 8000);
+    recordThree.track.connect();
+    recordThree.activeB = false;
+    //stop playing track Three
+  } else if (
+    d3 < 145 &&
+    mouseX > recordThree.x &&
+    mouseY > recordThree.y &&
+    recordThree.activeF
+  ) {
+    recordThree.activeF = false;
+    recordThree.track.stop();
     recordThree.activeB = false;
   } else if (d3 < 145 && mouseX < recordThree.x && recordThree.activeB) {
     recordThree.activeB = false;
@@ -496,19 +559,78 @@ function checkMouseHover() {
     recordThree.activeF = false;
     recordThree.track.stop();
   }
-  //TRACK/RECORD FOUR
+  //TRACK/RECORD Four
   let d4 = dist(mouseX, mouseY, recordFour.x, recordFour.y);
-  if (d4 < 145 && mouseX < recordFour.x && !recordFour.activeB) {
+  //play track Four back regular speed
+  if (
+    d4 < 145 &&
+    mouseX < recordFour.x &&
+    mouseY < recordFour.y &&
+    !recordFour.activeB
+  ) {
+    recordFour.speed = 0.08;
     recordFour.activeB = true;
     recordFour.track.rate(-1);
     recordFour.track.play();
     recordFour.track.loop();
+    delay.process(recordFour.track, 0, 0, 8000);
+    recordFour.track.connect();
     recordFour.activeF = false;
-  } else if (d4 < 145 && mouseX > recordFour.x && !recordFour.activeF) {
+    //play track Four forward regular speed
+  } else if (
+    d4 < 145 &&
+    mouseX > recordFour.x &&
+    mouseY < recordFour.y &&
+    !recordFour.activeF
+  ) {
+    recordFour.speed = 0.08;
     recordFour.activeF = true;
     recordFour.track.rate(1);
     recordFour.track.play();
     recordFour.track.loop();
+    delay.process(recordFour.track, 0, 0, 8000);
+    recordFour.track.connect();
+    recordFour.activeB = false;
+    //play track Four backward and with delay (to 'fake' back and slow, you just hear the delay signal)
+  } else if (
+    d4 < 145 &&
+    mouseX < recordFour.x &&
+    mouseY > recordFour.y &&
+    !recordFour.activeB
+  ) {
+    recordFour.speed = 0.008;
+    recordFour.activeB = true;
+    recordFour.track.rate(-1);
+    recordFour.track.play();
+    recordFour.track.loop();
+    delay.process(recordFour.track, 0.5, 0.7, 200);
+    recordFour.track.disconnect();
+    recordFour.track.connect(delay);
+    recordFour.activeF = false;
+    //play track Four forwards and slower
+  } else if (
+    d4 < 145 &&
+    mouseX > recordFour.x &&
+    mouseY > recordFour.y &&
+    !recordFour.activeF
+  ) {
+    recordFour.speed = 0.008;
+    recordFour.activeF = true;
+    recordFour.track.rate(0.25);
+    recordFour.track.play();
+    recordFour.track.loop();
+    delay.process(recordFour.track, 0, 0, 8000);
+    recordFour.track.connect();
+    recordFour.activeB = false;
+    //stop playing track Four
+  } else if (
+    d4 < 145 &&
+    mouseX > recordFour.x &&
+    mouseY > recordFour.y &&
+    recordFour.activeF
+  ) {
+    recordFour.activeF = false;
+    recordFour.track.stop();
     recordFour.activeB = false;
   } else if (d4 < 145 && mouseX < recordFour.x && recordFour.activeB) {
     recordFour.activeB = false;
@@ -517,19 +639,78 @@ function checkMouseHover() {
     recordFour.activeF = false;
     recordFour.track.stop();
   }
-  //TRACK/RECORD FIVE
+  //TRACK/recordFive
   let d5 = dist(mouseX, mouseY, recordFive.x, recordFive.y);
-  if (d5 < 145 && mouseX < recordFive.x && !recordFive.activeB) {
+  //play track Four back regular speed
+  if (
+    d5 < 145 &&
+    mouseX < recordFive.x &&
+    mouseY < recordFive.y &&
+    !recordFive.activeB
+  ) {
+    recordFive.speed = 0.08;
     recordFive.activeB = true;
     recordFive.track.rate(-1);
     recordFive.track.play();
     recordFive.track.loop();
+    delay.process(recordFive.track, 0, 0, 8000);
+    recordFive.track.connect();
     recordFive.activeF = false;
-  } else if (d5 < 145 && mouseX > recordFive.x && !recordFive.activeF) {
+    //play recordFive forward regular speed
+  } else if (
+    d5 < 145 &&
+    mouseX > recordFive.x &&
+    mouseY < recordFive.y &&
+    !recordFive.activeF
+  ) {
+    recordFive.speed = 0.08;
     recordFive.activeF = true;
     recordFive.track.rate(1);
     recordFive.track.play();
     recordFive.track.loop();
+    delay.process(recordFive.track, 0, 0, 8000);
+    recordFive.track.connect();
+    recordFive.activeB = false;
+    //play recordFive backward and with delay (to 'fake' back and slow, you just hear the delay signal)
+  } else if (
+    d5 < 145 &&
+    mouseX < recordFive.x &&
+    mouseY > recordFive.y &&
+    !recordFive.activeB
+  ) {
+    recordFive.speed = 0.008;
+    recordFive.activeB = true;
+    recordFive.track.rate(-1);
+    recordFive.track.play();
+    recordFive.track.loop();
+    delay.process(recordFive.track, 0.5, 0.7, 200);
+    recordFive.track.disconnect();
+    recordFive.track.connect(delay);
+    recordFive.activeF = false;
+    //play recordFive forwards and slower
+  } else if (
+    d5 < 145 &&
+    mouseX > recordFive.x &&
+    mouseY > recordFive.y &&
+    !recordFive.activeF
+  ) {
+    recordFive.speed = 0.008;
+    recordFive.activeF = true;
+    recordFive.track.rate(0.25);
+    recordFive.track.play();
+    recordFive.track.loop();
+    delay.process(recordFive.track, 0, 0, 8000);
+    recordFive.track.connect();
+    recordFive.activeB = false;
+    //stop playing recordFive
+  } else if (
+    d5 < 145 &&
+    mouseX > recordFive.x &&
+    mouseY > recordFive.y &&
+    recordFive.activeF
+  ) {
+    recordFive.activeF = false;
+    recordFive.track.stop();
     recordFive.activeB = false;
   } else if (d5 < 145 && mouseX < recordFive.x && recordFive.activeB) {
     recordFive.activeB = false;
