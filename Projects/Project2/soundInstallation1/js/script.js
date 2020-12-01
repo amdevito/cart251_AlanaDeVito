@@ -76,32 +76,36 @@ function draw() {
 
   //draw up title and instructions
   push();
-  textSize(30);
-  fill(0);
-  textFont("American Typewriter");
-  text("Welcome to The Sonic Shape Invader", 25, 45);
   textSize(20);
+  fill(255);
+  textFont("Monospace");
+  text("Welcome to The Sonic Shape Invader", 25, 35);
+  textSize(18);
   fill(0);
-  textFont("American Typewriter");
+  textFont("Monospace");
   text(
-    "Hit circles with your mallet to activate sine wave oscillators.\nHit triangles to activate triangle wave oscillators.\nClick to activate effects and visuals. \nLetting the shapes hit the \nbottom of the screen\nwill stop the \noscillators.",
-    28,
+    "Hit circles with your mallet to activate sine \nwave oscillators.\nHit triangles to activate triangle \nwave oscillators.\nClick to activate effects \nand visuals. \nLetting the shapes \nhit the bottom of the \nscreen will stop\nthe oscillators.",
+    25,
     70
   );
   pop();
   push();
-  textSize(30);
+  textSize(18);
   fill(0);
-  textFont("American Typewriter");
+  textFont("Monospace");
   textAlign(RIGHT);
-  text("Works with Chrome or Firefox.", width - 25, 45);
+  text(
+    "Hit your browser's back button to return to the gallery.",
+    width - 25,
+    35
+  );
   pop();
 
   pop();
   push();
-  textSize(20);
+  textSize(18);
   fill(0);
-  textFont("American Typewriter");
+  textFont("Monospace");
   textAlign(RIGHT);
   text(
     "Refresh to randomize frequencies and play again.",
@@ -112,9 +116,9 @@ function draw() {
 
   pop();
   push();
-  textSize(20);
+  textSize(18);
   fill(0);
-  textFont("American Typewriter");
+  textFont("Monospace");
   textAlign(LEFT);
   text(
     "Hitting them \nagain will\nre-activate \nthe same oscillator. \nMallet movement changes delay effect\ncutoff frequency (after you have activated it).\nHave fun!",
