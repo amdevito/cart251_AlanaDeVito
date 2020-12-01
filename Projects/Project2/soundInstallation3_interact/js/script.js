@@ -10,9 +10,7 @@ circles in classes
 turn to web GL to have shapes rotate in wards and outwards
 **************************************************/
 "use strict";
-// setup()
-//
-// Description of setup() goes here.
+
 let gap = 10;
 let cirNum = 30;
 let cirSize = 200;
@@ -125,33 +123,3 @@ function draw() {
 
   pop();
 }
-
-// push();
-// translate(0, -height / 2);
-// rotate(-angle);
-// angle = map(mouseX, 0, width, -90, 90);
-// rotateX(60);
-// noFill();
-// stroke(255);
-// strokeWeight(1);
-//
-// for (let i = 0; i < cirNum; i++) {
-//   arc(0, 0, cirSize + gap * i, cirSize + gap * i, 45, 360 - i - angle);
-// }
-//
-// pop();
-
-// push();
-// translate(-width - width / 4, -height / 2, -1000);
-// rotate(angle);
-// angle = angle + map(mouseX, 0, width, -0.1, 0.1);
-// rotateX(60);
-// noFill();
-// stroke(0, 0, 255);
-// strokeWeight(1);
-//
-// for (let i = 0; i < cirNum; i++) {
-//   arc(0, 0, cirSize + gap * i, cirSize + gap * i, angle * i, 360 - angle / 2);
-// }
-//
-// pop();

@@ -8,13 +8,11 @@
 //state for turntable interaction
 
 "use strict";
-// setup()
-//
-// Description of setup() goes here.
+
 let gap = 20;
 let cirNum = 15;
 let cirSize = 10;
-let spiralType = 3; //randomize from  3-16
+let spiralType = 3;
 let angle;
 let angle2;
 let angle3;
@@ -86,18 +84,11 @@ let recordFive = {
 };
 
 function preload() {
-  // Load all the tracks into the array
-  // for (let i = 0; i < 4; i++) {
-  //   let file = loadSound(`assets/sounds/track${i}.mp3`); // get track from file and push into array position
-  //   files.push(file);
-  // }
   recordOne.track = loadSound(`assets/sounds/track3.mp3`);
   recordTwo.track = loadSound(`assets/sounds/track4.mp3`);
   recordThree.track = loadSound(`assets/sounds/track2.mp3`);
   recordFour.track = loadSound(`assets/sounds/track3.mp3`);
   recordFive.track = loadSound(`assets/sounds/track4.mp3`);
-
-  //...
 }
 
 function setup() {
@@ -117,7 +108,6 @@ function setup() {
 
 function draw() {
   background(1);
-  // spiralType = random(3, 16);
 
   noStroke();
   fill(0);
@@ -134,15 +124,7 @@ function draw() {
   // //call function for the five record
   recordFiveDisplay();
 
-  // checkMouseHover();
-
   spinRecords();
-
-  // tracksPlayback.mousePosition();
-
-  // mouseX++;
-  //mouseX++ is moving the circles forward automatically - put onto a function to call when the cursor is hovering over that shape and clicks. after click = click and drag right = play forward, click and drag left = play backward -mouse++?
-  //make angle negative if you want to 'play' backward.
 }
 
 function setUpRecords() {
@@ -173,22 +155,13 @@ function recordOneDisplay() {
 
   angle = recordOne.spin;
 
-  // recordOneSpin();
-  // <<<*** CALL THIS   ///put this in a function and call if active and clicked and to the right of centre
-
-  // angle = map(mouseX, 0, width, -90, 90);
-  // mouseX++;
-
   noFill();
   stroke(255);
   strokeWeight(1);
 
   for (let i = 0; i < cirNum; i++) {
     arc(0, 0, cirSize + gap * i, cirSize + gap * i, 45, 360 - i - angle);
-    //cirSize = 0 makes it wobble
   }
-
-  //cirSize + gap * cirNum = 45?
 
   pop();
 }
@@ -204,7 +177,7 @@ function recordOneSpinBackward() {
 function recordTwoDisplay() {
   //second circle #2
   push();
-  translate(recordTwo.x, recordTwo.y); //change to recordTwo.x, recordTWo.y
+  translate(recordTwo.x, recordTwo.y); //
   rotate(angle2);
 
   angle2 = recordTwo.spin;
@@ -760,28 +733,7 @@ function spinRecords() {
 }
 
 function mousePressed() {
-  // console.log(recordOne.activeF);
-  // console.log(recordOne.activeB);
-
   checkMouseHover();
 }
 
-//recall tracks playback classes
-function keyPressed() {
-  tracksPlayback.keyPressed();
-}
-
-//if active and mouse X is increaing to the right of centre and mousedragged then play forward
-//if active and mouseX is descreasing to the left of centre and mousedragged then play backward
-//if active and mouseY is descreasing (going up the screen) play faster +1 as you get closer to 0
-//if active and mouseY is increasing (going down) play slower -1 as you get closer to height.
-
-//call this code for mouse dragged
-// function mouseDragged() {
-//   value = value + 5;
-//
-//   if (value > 255) {
-//     value = 0;
-//   }
-// }
 //code inspired by https://www.youtube.com/watch?v=QjCtbMNLRuc
