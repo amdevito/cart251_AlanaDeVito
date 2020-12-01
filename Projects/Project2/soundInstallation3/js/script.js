@@ -22,7 +22,7 @@ let angle4;
 let angle5;
 
 let tracksPlayback;
-let files = [];
+// let files = [];
 
 let recordOne = {
   x: undefined,
@@ -90,11 +90,11 @@ function preload() {
   //   let file = loadSound(`assets/sounds/track${i}.mp3`); // get track from file and push into array position
   //   files.push(file);
   // }
-  recordOne.track = loadSound(`assets/sounds/track0.mp3`);
+  recordOne.track = loadSound(`assets/sounds/track3.mp3`);
   recordTwo.track = loadSound(`assets/sounds/track4.mp3`);
   recordThree.track = loadSound(`assets/sounds/track2.mp3`);
   recordFour.track = loadSound(`assets/sounds/track3.mp3`);
-  recordFive.track = loadSound(`assets/sounds/track1.mp3`);
+  recordFive.track = loadSound(`assets/sounds/track4.mp3`);
 
   //...
 }
@@ -329,17 +329,59 @@ function recordFiveSpinBackward() {
 
 ///check if mouse is on top of the record, if on top and to left of centre, recordFive.spin = recordFive.spin - recordFive - recordFive.speed
 function checkMouseHover() {
+  //TRACK/RECORD ONE
   let d1 = dist(mouseX, mouseY, recordOne.x, recordOne.y);
-  // console.log(d1);
+  //play track one back (hidden but will keep in for future use)
   if (d1 < 145 && mouseX < recordOne.x && !recordOne.activeB) {
+    recordOne.speed = 0.08;
     recordOne.activeB = true;
     recordOne.track.rate(-1);
     recordOne.track.play();
+    recordOne.track.loop();
     recordOne.activeF = false;
-  } else if (d1 < 145 && mouseX > recordOne.x && !recordOne.activeF) {
+    //play track one forward regular speed
+  } else if (
+    d1 < 145 &&
+    mouseX > recordOne.x &&
+    mouseY < recordOne.y &&
+    !recordOne.activeF
+  ) {
+    recordOne.speed = 0.08;
     recordOne.activeF = true;
     recordOne.track.rate(1);
     recordOne.track.play();
+    recordOne.track.loop();
+    recordOne.activeB = false;
+    //play track one backward and slower (hidden but will keep in for future use)
+  } else if (d1 < 145 && mouseX < recordOne.x && !recordOne.activeB) {
+    recordOne.speed = 0.008;
+    recordOne.activeB = true;
+    recordOne.track.rate(0.25);
+    recordOne.track.play();
+    recordOne.track.loop();
+    recordOne.activeF = false;
+    //play track one forwards and slower
+  } else if (
+    d1 < 145 &&
+    mouseX > recordOne.x &&
+    mouseY > recordOne.y &&
+    !recordOne.activeF
+  ) {
+    recordOne.speed = 0.008;
+    recordOne.activeF = true;
+    recordOne.track.rate(0.25);
+    recordOne.track.play();
+    recordOne.track.loop();
+    recordOne.activeB = false;
+    //stop playing track one
+  } else if (
+    d1 < 145 &&
+    mouseX > recordOne.x &&
+    mouseY > recordOne.y &&
+    recordOne.activeF
+  ) {
+    recordOne.activeF = false;
+    recordOne.track.stop();
     recordOne.activeB = false;
   } else if (d1 < 145 && mouseX < recordOne.x && recordOne.activeB) {
     recordOne.activeB = false;
@@ -348,17 +390,19 @@ function checkMouseHover() {
     recordOne.activeF = false;
     recordOne.track.stop();
   }
-
+  //TRACK/RECORD TWO
   let d2 = dist(mouseX, mouseY, recordTwo.x, recordTwo.y);
   if (d2 < 145 && mouseX < recordTwo.x && !recordTwo.activeB) {
     recordTwo.activeB = true;
     recordTwo.track.rate(-1);
     recordTwo.track.play();
+    recordTwo.track.loop();
     recordTwo.activeF = false;
   } else if (d2 < 145 && mouseX > recordTwo.x && !recordTwo.activeF) {
     recordTwo.activeF = true;
     recordTwo.track.rate(1);
     recordTwo.track.play();
+    recordTwo.track.loop();
     recordTwo.activeB = false;
   } else if (d2 < 145 && mouseX < recordTwo.x && recordTwo.activeB) {
     recordTwo.activeB = false;
@@ -367,17 +411,19 @@ function checkMouseHover() {
     recordTwo.activeF = false;
     recordTwo.track.stop();
   }
-
+  //TRACK/RECORD THREE
   let d3 = dist(mouseX, mouseY, recordThree.x, recordThree.y);
   if (d3 < 145 && mouseX < recordThree.x && !recordThree.activeB) {
     recordThree.activeB = true;
     recordThree.track.rate(-1);
     recordThree.track.play();
+    recordThree.track.loop();
     recordThree.activeF = false;
   } else if (d3 < 145 && mouseX > recordThree.x && !recordThree.activeF) {
     recordThree.activeF = true;
     recordThree.track.rate(1);
     recordThree.track.play();
+    recordThree.track.loop();
     recordThree.activeB = false;
   } else if (d3 < 145 && mouseX < recordThree.x && recordThree.activeB) {
     recordThree.activeB = false;
@@ -386,17 +432,19 @@ function checkMouseHover() {
     recordThree.activeF = false;
     recordThree.track.stop();
   }
-
+  //TRACK/RECORD FOUR
   let d4 = dist(mouseX, mouseY, recordFour.x, recordFour.y);
   if (d4 < 145 && mouseX < recordFour.x && !recordFour.activeB) {
     recordFour.activeB = true;
     recordFour.track.rate(-1);
     recordFour.track.play();
+    recordFour.track.loop();
     recordFour.activeF = false;
   } else if (d4 < 145 && mouseX > recordFour.x && !recordFour.activeF) {
     recordFour.activeF = true;
     recordFour.track.rate(1);
     recordFour.track.play();
+    recordFour.track.loop();
     recordFour.activeB = false;
   } else if (d4 < 145 && mouseX < recordFour.x && recordFour.activeB) {
     recordFour.activeB = false;
@@ -405,17 +453,19 @@ function checkMouseHover() {
     recordFour.activeF = false;
     recordFour.track.stop();
   }
-
+  //TRACK/RECORD FIVE
   let d5 = dist(mouseX, mouseY, recordFive.x, recordFive.y);
   if (d5 < 145 && mouseX < recordFive.x && !recordFive.activeB) {
     recordFive.activeB = true;
     recordFive.track.rate(-1);
     recordFive.track.play();
+    recordFive.track.loop();
     recordFive.activeF = false;
   } else if (d5 < 145 && mouseX > recordFive.x && !recordFive.activeF) {
     recordFive.activeF = true;
     recordFive.track.rate(1);
     recordFive.track.play();
+    recordFive.track.loop();
     recordFive.activeB = false;
   } else if (d5 < 145 && mouseX < recordFive.x && recordFive.activeB) {
     recordFive.activeB = false;
