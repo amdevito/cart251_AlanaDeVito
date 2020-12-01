@@ -40,7 +40,7 @@ function setup() {
   mitocybria = createVideo(["assets/images/mitocybria.mov"]);
   mitocybria.hide();
 
-  //recall mallet class
+  //recall mallet class here
 
   mallet = new Mallet(190, 20, 150, 50); //(w, h, malletThickness, malletHeight)
 
