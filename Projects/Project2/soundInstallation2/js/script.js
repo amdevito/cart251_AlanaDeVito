@@ -25,6 +25,10 @@ let tracksPlayback;
 
 let videoPlayback;
 
+let instructions = {
+  active: true,
+};
+
 let files = [];
 
 function preload() {
@@ -62,25 +66,33 @@ function draw() {
 
   videoPlayback.mousePosition();
 
-  //draw up title and instructions
-  push();
-  textSize(30);
-  fill(0);
-  textFont("Arial");
-  text("Kelidoscape Tunnel", 25, 45);
-  textSize(20);
-  fill(0);
-  textFont("Arial");
-  text(
-    "Click the mouse to start video.\nPress number 1-8 to start a track.\nThe position of the mouse changes the playback speed and the playback direction of sound.\nUp = faster, Down = slower, left = backwards, right = forwards.\nVideo playback rate is controlled by vertical movement of mouse too.\nTurn a track off by hitting the same number.",
-    28,
-    70
-  );
+  //draw up title and instructions - hide and view with a mouse click
+  if (instructions.active) {
+    push();
+    textSize(30);
+    fill(255);
+    textFont("Monospace");
+    text("Kelidoscape Tunnel", 70, 45);
+    textSize(20);
+    fill(0);
+    textFont("Monospace");
+    text(
+      "Click the mouse to start video.\nPress number 1-8 to start a track.\nThe position of the mouse changes the playback speed and the playback direction of sound.\nUp = faster, Down = slower, left = backwards, right = forwards.\nVideo playback rate is controlled by vertical movement of mouse too.\nTurn a track off by hitting the same number\nClick the mouse to view and hide the instructions.",
+      70,
+      70
+    );
+    pop();
+  }
 }
 
 //recall video classes inside of mousePressed and keyPressed functions.
 function mousePressed() {
   videoPlayback.mousePressed();
+  if (instructions.active) {
+    instructions.active = false;
+  } else if (!instructions.active) {
+    instructions.active = true;
+  }
 }
 
 //recall tracks playback classes
