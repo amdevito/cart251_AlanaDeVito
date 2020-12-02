@@ -30,6 +30,10 @@ let numSinButtons = 5;
 
 let numTriButtons = 5;
 
+let instructions = {
+  active: true,
+};
+
 // setup()
 //
 // Description of setup() goes here.
@@ -74,58 +78,64 @@ function draw() {
   imageMode(CENTER);
   image(mitocybria, width / 2, height / 2);
 
-  //draw up title and instructions
-  push();
-  textSize(20);
-  fill(255);
-  textFont("Monospace");
-  text("Welcome to The Sonic Shape Invader", 25, 35);
-  textSize(18);
-  fill(0);
-  textFont("Monospace");
-  text(
-    "Hit circles with your mallet to activate sine \nwave oscillators.\nHit triangles to activate triangle \nwave oscillators.\nClick to activate effects \nand visuals. \nLetting the shapes \nhit the bottom of the \nscreen will stop\nthe oscillators.",
-    25,
-    70
-  );
-  pop();
-  push();
-  textSize(18);
-  fill(0);
-  textFont("Monospace");
-  textAlign(RIGHT);
-  text(
-    "Hit your browser's back button to return to the gallery.",
-    width - 25,
-    35
-  );
-  pop();
+  if (instructions.active) {
+    //draw up title and instructions
+    push();
+    textSize(20);
+    fill(255);
+    textFont("Monospace");
+    text(
+      "Welcome to The Sonic Shape Invader \n->TURN YOUR VOLUME DOWN<-\nMOUSE CLICK shows & HIDES INSTRUCTIONS",
+      25,
+      35
+    );
+    textSize(18);
+    fill(0);
+    textFont("Monospace");
+    text(
+      "\nClick to activate effects \nand visuals. Hit circles with\nyour mallet to activate\nsine wave oscillators.\nHit triangles to \nactivate triangle \nwave oscillators. \nLetting the\nshapes hit\nthe bottom \nscreen of the \nwill stop the\noscillators.",
+      25,
+      90
+    );
+    pop();
+    push();
+    textSize(18);
+    fill(0);
+    textFont("Monospace");
+    textAlign(RIGHT);
+    text(
+      "Hit your browser's back button to return to the gallery.",
+      width - 25,
+      35
+    );
+    pop();
 
-  pop();
-  push();
-  textSize(18);
-  fill(0);
-  textFont("Monospace");
-  textAlign(RIGHT);
-  text(
-    "Refresh to randomize frequencies and play again.",
-    width - 25,
-    height - 55
-  );
-  pop();
+    pop();
+    push();
+    textSize(18);
+    fill(0);
+    textFont("Monospace");
+    textAlign(RIGHT);
+    text(
+      "Refresh to randomize frequencies and play again.",
+      width - 25,
+      height - 55
+    );
+    pop();
 
-  pop();
-  push();
-  textSize(18);
-  fill(0);
-  textFont("Monospace");
-  textAlign(LEFT);
-  text(
-    "Hitting them \nagain will\nre-activate \nthe same oscillator. \nMallet movement changes delay effect\ncutoff frequency (after you have activated it).\nHave fun!",
-    25,
-    height - 185
-  );
-  pop();
+    pop();
+    push();
+    textSize(18);
+    fill(0);
+    textFont("Monospace");
+    textAlign(LEFT);
+    text(
+      "Hitting them \nagain will\nre-activate \nthe same oscillator. \nMallet movement changes delay effect\ncutoff frequency (after you have activated it).\nHave fun!",
+      25,
+      height - 185
+    );
+    pop();
+  }
 
   //call mallet classes
   mallet.move();
@@ -161,5 +171,11 @@ function mousePressed() {
   for (let i = 0; i < triButtons.length; i++) {
     let triButton = triButtons[i];
     triButton.mousePressed();
+  }
+
+  if (instructions.active) {
+    instructions.active = false;
+  } else if (!instructions.active) {
+    instructions.active = true;
   }
 }
