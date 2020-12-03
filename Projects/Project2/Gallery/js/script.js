@@ -1,10 +1,9 @@
 /**************************************************
-Exercise 7 : Progress report
+Main Gallery Page:
 
-1. digiCanvases on gallery walls are animated gifs x
 2. digiCanvases when clicked take you to that sound installation. x
-3. Gallery Patrons are moving around the gallery (for now just constrained to one section each, will expand a route later) x
-4. When you click over that Patron, you are taken into the hyperlink narrative (for now just goes to the 'hyperlink narrative' introduction screen) x
+3. Gallery Patrons are moving around the gallery
+4. When you click on a Patron, you are taken into the hyperlink narrative
 
 
 **************************************************/
@@ -371,34 +370,58 @@ function mousePressed() {
 }
 
 function soundInstallation1() {
-  window.location.href = `https://amdevito.github.io/cart253_AlanaDeVito/Projects/Project2/soundInstallation1`; // go to sonic space invader
+  window.open(
+    `https://amdevito.github.io/cart253_AlanaDeVito/Projects/Project2/soundInstallation1`,
+    "_blank"
+  );
+  // window.location.href = `https://amdevito.github.io/cart253_AlanaDeVito/Projects/Project2/soundInstallation1`; // go to sonic space invader
 }
 
 function soundInstallation2() {
-  window.location.href = `https://amdevito.github.io/cart253_AlanaDeVito/Projects/Project2/soundInstallation2`; // go to kelidoscape tunnel
+  window.open(
+    `https://amdevito.github.io/cart253_AlanaDeVito/Projects/Project2/soundInstallation2`,
+    "_blank"
+  );
+  // window.location.href = `https://amdevito.github.io/cart253_AlanaDeVito/Projects/Project2/soundInstallation2`; // go to kelidoscape tunnel
 }
 
 function soundInstallation3() {
-  window.location.href = `https://amdevito.github.io/cart253_AlanaDeVito/Projects/Project2/soundInstallation3`; // go to spinRecords install
+  window.open(
+    `https://amdevito.github.io/cart253_AlanaDeVito/Projects/Project2/soundInstallation3`,
+    "_blank"
+  );
+  // window.location.href = `https://amdevito.github.io/cart253_AlanaDeVito/Projects/Project2/soundInstallation3`; // go to spinRecords install
 }
 
 function narrative1() {
   //currently place holders.
-  window.location.href = `https://amdevito.github.io/cart253_AlanaDeVito/Projects/Project2/Prototype/`; // go back to intro to gallery narrative for now
+  window.open(
+    `https://amdevito.github.io/cart253_AlanaDeVito/Projects/Project2/Prototype/`,
+    "_blank"
+  );
+  // window.location.href = `https://amdevito.github.io/cart253_AlanaDeVito/Projects/Project2/Prototype/`; // go back to intro to gallery narrative for now
 }
 
 function narrative2() {
   //currently place holders.
-  window.location.href = `https://amdevito.github.io/211/Final_Project/narrative/index.html`; // go back to intro to gallery narrative for now
+  window.open(
+    `https://amdevito.github.io/cart253_AlanaDeVito/Projects/Project2/Prototype/`,
+    "_blank"
+  );
+  // window.location.href = `https://amdevito.github.io/211/Final_Project/narrative/index.html`; // go back to intro to gallery narrative for now
 }
 
 function narrative3() {
   //currently place holders.
-  window.location.href = `https://amdevito.github.io/cart253_AlanaDeVito/Projects/Project2/Prototype/`; // go back to intro to gallery narrative for now
+  window.open(
+    `https://amdevito.github.io/cart253_AlanaDeVito/Projects/Project2/Prototype/`,
+    "_blank"
+  ); // go back to intro to gallery narrative for now
 }
 
 function backHome() {
-  window.location.href = `https://amdevito.github.io/211/MidTermProposal/`; // go back to intro?
+  window.open(`https://amdevito.github.io/211/MidTermProposal/`, "_blank");
+  // window.location.href = `https://amdevito.github.io/211/MidTermProposal/`; // go back to intro?
 }
 
 function displayGallery() {
