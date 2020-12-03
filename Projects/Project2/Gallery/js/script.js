@@ -1,9 +1,10 @@
 /**************************************************
+Cart 253 -
 Main Gallery Page:
 
-2. digiCanvases when clicked take you to that sound installation. x
-3. Gallery Patrons are moving around the gallery
-4. When you click on a Patron, you are taken into the hyperlink narrative
+2. digiCanvases when clicked take you to that sound installation.
+3. Gallery Patrons are moving around the gallery.
+4. When you click on a Patron, you are taken into the hyperlink narrative.
 
 
 **************************************************/
@@ -27,6 +28,7 @@ let personLongHair = {
   ay: 0,
   speed: 0.08,
   active: false,
+  clicked: false,
 };
 
 let personShortHair = {
@@ -45,6 +47,7 @@ let personShortHair = {
   ay: 0,
   speed: 0.08,
   active: false,
+  clicked: false,
 };
 
 let childParent = {
@@ -63,6 +66,7 @@ let childParent = {
   ay: 0,
   speed: 0.08,
   active: false,
+  clicked: false,
 };
 
 //The Sonic Shop sign at top of gallery
@@ -174,6 +178,20 @@ function draw() {
     digiCanvas3.sizeX,
     digiCanvas3.sizeY
   );
+
+  if (
+    personLongHair.clicked &&
+    personShortHair.clicked &&
+    childParent.clicked
+  ) {
+    push();
+    textSize(20);
+    fill(255);
+    textFont("Monospace");
+    text("Spinning into Oblivion", 20, 25); //change this to an image that says, "you are sick of this shit and decide to leave" - click here to return to the home page.
+    pop();
+  }
+
   pop();
   simulation(); //recall function containing all functions to make this scene animated.
 }
@@ -359,12 +377,15 @@ function mousePressed() {
     soundInstallation3(); //links to spinRecords
   }
   if (personLongHair.active && mousePressed) {
+    personLongHair.clicked = true;
     narrative1(); //links to sonic Space invader
   }
   if (personShortHair.active && mousePressed) {
+    personShortHair.clicked = true;
     narrative2(); //links to kelidoscape
   }
   if (childParent.active && mousePressed) {
+    childParent.clicked = true;
     narrative3(); //links to sonic Space invader - for now, will be new generative virtual sound installation piece
   }
 }
