@@ -555,7 +555,7 @@ function cursorHeart() {
     imageMode(CENTER);
     image(cursorHeart2.image, mouseX, mouseY, 0, 0);
     pop();
-  } else if (cursorHeart3.acive) {
+  } else if (cursorHeart3.active) {
     push();
     imageMode(CENTER);
     image(cursorHeart3.image, mouseX, mouseY, 0, 0);
