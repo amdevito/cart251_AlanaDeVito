@@ -16,11 +16,11 @@ let cursorHeart1 = {
 };
 let cursorHeart2 = {
   image: 0,
-  active: true,
+  active: false,
 };
 let cursorHeart3 = {
   image: 0,
-  active: true,
+  active: false,
 };
 
 //Patrons
@@ -304,6 +304,7 @@ function simulation() {
   displayGallery();
   move(); // recall move function
   checkMouseHover(); // recall checkMouseHover
+  cursorHeart(); //display the different types of heart cursors  - regular = 1(non-binary), hover = 2 (trans), click = 3 (genderfluid)
 }
 
 ///
@@ -369,38 +370,63 @@ function checkMouseHover() {
   let d1 = dist(mouseX, mouseY, personLongHair.x, personLongHair.y);
   if (d1 < 20) {
     personLongHair.active = true;
+    cursorHeart2.active = true;
+    cursorHeart1.active = false;
   } else {
     personLongHair.active = false;
+    cursorHeart2.active = false;
+    cursorHeart1.active = true;
   }
   let d2 = dist(mouseX, mouseY, personShortHair.x, personShortHair.y);
   if (d2 < 20) {
     personShortHair.active = true;
+    cursorHeart2.active = true;
+    cursorHeart1.active = false;
+    console.log("heart");
   } else {
     personShortHair.active = false;
+    cursorHeart2.active = false;
+    cursorHeart1.active = true;
   }
   let d3 = dist(mouseX, mouseY, childParent.x, childParent.y);
   if (d3 < 20) {
     childParent.active = true;
+    cursorHeart2.active = true;
+    cursorHeart1.active = false;
   } else {
     childParent.active = false;
+    cursorHeart2.active = false;
+    cursorHeart1.active = true;
   }
   let d4 = dist(mouseX, mouseY, digiCanvas1.x, digiCanvas1.y);
   if (d4 < 50) {
     digiCanvas1.active = true;
+    cursorHeart2.active = true;
+    cursorHeart1.active = false;
   } else {
     digiCanvas1.active = false;
+    cursorHeart2.active = false;
+    cursorHeart1.active = true;
   }
   let d5 = dist(mouseX, mouseY, digiCanvas2.x, digiCanvas2.y);
   if (d5 < 50) {
     digiCanvas2.active = true;
+    cursorHeart2.active = true;
+    cursorHeart1.active = false;
   } else {
     digiCanvas2.active = false;
+    cursorHeart2.active = false;
+    cursorHeart1.active = true;
   }
   let d6 = dist(mouseX, mouseY, digiCanvas3.x, digiCanvas3.y);
   if (d6 < 50) {
     digiCanvas3.active = true;
+    cursorHeart2.active = true;
+    cursorHeart1.active = false;
   } else {
     digiCanvas3.active = false;
+    cursorHeart2.active = false;
+    cursorHeart1.active = true;
   }
 }
 
@@ -408,26 +434,44 @@ function mousePressed() {
   //check if mouse is pressed while hovering over character
   if (digiCanvas1.active && mousePressed) {
     digiCanvas1.clicked = true;
+    cursorHeart2.active = false;
+    cursorHeart1.active = false;
+    cursorHeart3.active = true;
     soundInstallation1(); //links to sonic Space invader
   }
   if (digiCanvas2.active && mousePressed) {
     digiCanvas2.clicked = true;
+    cursorHeart2.active = false;
+    cursorHeart1.active = false;
+    cursorHeart3.active = true;
     soundInstallation2(); //links to kelidoscape
   }
   if (digiCanvas3.active && mousePressed) {
     digiCanvas3.clicked = true;
+    cursorHeart2.active = false;
+    cursorHeart1.active = false;
+    cursorHeart3.active = true;
     soundInstallation3(); //links to spinRecords
   }
   if (personLongHair.active && mousePressed) {
     personLongHair.clicked = true;
+    cursorHeart2.active = false;
+    cursorHeart1.active = false;
+    cursorHeart3.active = true;
     narrative1(); //links to sonic Space invader
   }
   if (personShortHair.active && mousePressed) {
     personShortHair.clicked = true;
+    cursorHeart2.active = false;
+    cursorHeart1.active = false;
+    cursorHeart3.active = true;
     narrative2(); //links to kelidoscape
   }
   if (childParent.active && mousePressed) {
     childParent.clicked = true;
+    cursorHeart2.active = false;
+    cursorHeart1.active = false;
+    cursorHeart3.active = true;
     narrative3(); //links to sonic Space invader - for now, will be new generative virtual sound installation piece
   }
 }
@@ -494,6 +538,26 @@ function keyPressed() {
     }
   }
 }
+
+function cursorHeart() {
+  if (cursorHeart1.active) {
+    push();
+    imageMode(CENTER);
+    image(cursorHeart1.image, mouseX, mouseY, 0, 0);
+    pop();
+  } else if (cursorHeart2.active) {
+    push();
+    imageMode(CENTER);
+    image(cursorHeart2.image, mouseX, mouseY, 0, 0);
+    pop();
+  } else if (cursorHeart3.acive) {
+    push();
+    imageMode(CENTER);
+    image(cursorHeart3.image, mouseX, mouseY, 0, 0);
+    pop();
+  }
+}
+
 function displayGallery() {
   //displayGallery patron with long hair
   push();
