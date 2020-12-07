@@ -23,6 +23,10 @@ let cursorHeart3 = {
   active: false,
 };
 
+let instructions = {
+  active: true,
+};
+
 //Patrons
 
 let personLongHair = {
@@ -167,6 +171,22 @@ function draw() {
   image(galleryImage, width / 2, height / 2, width / 2 + 400, height / 2 + 200);
   image(sonicSign.image, sonicSign.x, sonicSign.y, 600, 180);
 
+  //gallery instructions
+  if (instructions.active) {
+    push();
+    textSize(18);
+    fill(255);
+    textAlign(RIGHT);
+    textFont("Monospace");
+    text(
+      "Welcome to the gallery!\nPlease click each of the 3 animated canvases to enter\nan AV installation piece.\nClick on one of the 3 other patrons to engage in a conversation.\nPressing 'e' will exit you out of the gallery and back to the homepage.\nPressing 'i' will show and hide these instructions. ENJOY!",
+      1090,
+      580
+    ); //change this to an image that says, "you are sick of this shit and decide to leave" - click here to return to the home page.
+
+    pop();
+  }
+
   image(
     digiCanvas1.image,
     digiCanvas1.x,
@@ -192,6 +212,10 @@ function draw() {
     digiCanvas3.sizeX,
     digiCanvas3.sizeY
   );
+
+  push();
+
+  pop();
 
   //check if all patron dialogue has been done plus only 2 sound installations. Then tell user they want to leave. Stop loop and go back to home page.
   //if all patrons have been interacted with and any 2 soundinstallations, you are 'asked'/ decide to leave the gallery.
@@ -540,6 +564,13 @@ function keyPressed() {
   if (keyIsPressed) {
     if (key == "e") {
       backHome();
+    }
+    if (keyIsPressed) {
+      if (key == "i" && instructions.active) {
+        instructions.active = false;
+      } else if (key == "i" && !instructions.active) {
+        instructions.active = true;
+      }
     }
   }
 }
