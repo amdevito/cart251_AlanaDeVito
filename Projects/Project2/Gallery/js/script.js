@@ -9,6 +9,19 @@ Main Gallery Page:
 
 **************************************************/
 "use strict";
+//cursor // cursor is cursorHeart1 always, when you hover over clickable items it changes to heart 2, when you click it changes to heart3
+let cursorHeart1 = {
+  image: 0,
+  active: true,
+};
+let cursorHeart2 = {
+  image: 0,
+  active: true,
+};
+let cursorHeart3 = {
+  image: 0,
+  active: true,
+};
 
 //Patrons
 
@@ -86,6 +99,7 @@ let digiCanvas1 = {
   sizeY: 0,
   image: undefined,
   active: false,
+  clicked: false,
 };
 
 let digiCanvas2 = {
@@ -95,6 +109,7 @@ let digiCanvas2 = {
   sizeY: 0,
   image: undefined,
   active: false,
+  clicked: false,
 };
 
 let digiCanvas3 = {
@@ -104,6 +119,7 @@ let digiCanvas3 = {
   sizeY: 0,
   image: undefined,
   active: false,
+  clicked: false,
 };
 
 //below in case I change to classes for the objects
@@ -117,6 +133,11 @@ function preload() {
 
   //Gallery sign
   sonicSign.image = loadImage("assets/images/theSonicShop.gif");
+
+  //load cursorHearts
+  cursorHeart1.image = loadImage("assets/images/heart1.png");
+  cursorHeart2.image = loadImage("assets/images/heart2.png");
+  cursorHeart3.image = loadImage("assets/images/heart3.png");
 
   //load animated, clickable  digiCanvases
   digiCanvas1.image = loadImage("assets/images/digiCanvas1.gif");
@@ -140,13 +161,6 @@ function setup() {
 //
 function draw() {
   background(0);
-  // image(
-  //   personLongHair.image,
-  //   personLongHair.x,
-  //   personLongHair.y,
-  //   personLongHair.sizeX,
-  //   personLongHair.sizey
-  // );
 
   //place gallery image on screen
   imageMode(CENTER);
@@ -179,17 +193,42 @@ function draw() {
     digiCanvas3.sizeY
   );
 
+  //check if all patron dialogue has been done plus only 2 sound installations. Then tell user they want to leave. Stop loop and go back to home page.
+  //if all patrons have been interacted with and any 2 soundinstallations, you are 'asked'/ decide to leave the gallery.
   if (
-    personLongHair.clicked &&
-    personShortHair.clicked &&
-    childParent.clicked
+    (personLongHair.clicked &&
+      personShortHair.clicked &&
+      childParent.clicked &&
+      digiCanvas1.clicked &&
+      digiCanvas3.clicked) ||
+    (personLongHair.clicked &&
+      personShortHair.clicked &&
+      childParent.clicked &&
+      digiCanvas2.clicked &&
+      digiCanvas3.clicked) ||
+    (personLongHair.clicked &&
+      personShortHair.clicked &&
+      childParent.clicked &&
+      digiCanvas1.clicked &&
+      digiCanvas2.clicked)
   ) {
     push();
-    textSize(20);
-    fill(255);
+    textSize(30);
+    fill(0);
+    rect(0, 0, 1125, 725);
+    fill(255, 0, 0);
+    rotate(-0.02, 0);
+    textAlign(CENTER);
     textFont("Monospace");
-    text("Spinning into Oblivion", 20, 25); //change this to an image that says, "you are sick of this shit and decide to leave" - click here to return to the home page.
+    text(
+      "You are exhausted by all the unwelcoming \ndialogue at the gallery and want to leave.\nA community full of microagressions \nis not a welcoming one.\nPlease press 'e' to exit the gallery and \nreturn to the homepage.",
+      562,
+      200
+    ); //change this to an image that says, "you are sick of this shit and decide to leave" - click here to return to the home page.
+
     pop();
+    noLoop();
+    simulation.stop();
   }
 
   pop();
@@ -368,12 +407,15 @@ function checkMouseHover() {
 function mousePressed() {
   //check if mouse is pressed while hovering over character
   if (digiCanvas1.active && mousePressed) {
+    digiCanvas1.clicked = true;
     soundInstallation1(); //links to sonic Space invader
   }
   if (digiCanvas2.active && mousePressed) {
+    digiCanvas2.clicked = true;
     soundInstallation2(); //links to kelidoscape
   }
   if (digiCanvas3.active && mousePressed) {
+    digiCanvas3.clicked = true;
     soundInstallation3(); //links to spinRecords
   }
   if (personLongHair.active && mousePressed) {
@@ -441,10 +483,17 @@ function narrative3() {
 }
 
 function backHome() {
-  window.open(`https://amdevito.github.io/211/MidTermProposal/`, "_blank");
-  // window.location.href = `https://amdevito.github.io/211/MidTermProposal/`; // go back to intro?
+  // window.open(`https://amdevito.github.io/211/MidTermProposal/`, "_blank");
+  window.location.href = `https://amdevito.github.io/211/MidTermProposal/`;
 }
 
+function keyPressed() {
+  if (keyIsPressed) {
+    if (key == "e") {
+      backHome();
+    }
+  }
+}
 function displayGallery() {
   //displayGallery patron with long hair
   push();
@@ -456,10 +505,6 @@ function displayGallery() {
     personLongHair.sizeX,
     personLongHair.sizey
   );
-  // console.log(personLongHair.x);
-  // console.log(personLongHair.y);
-  // console.log(mouseX);
-  // console.log(mouseY);
   pop();
 
   //display gallery patron with short hair
