@@ -372,6 +372,7 @@ function checkMouseHover() {
     personLongHair.active = true;
     cursorHeart2.active = true;
     cursorHeart1.active = false;
+    console.log("heart1");
   } else {
     personLongHair.active = false;
     cursorHeart2.active = false;
@@ -382,7 +383,7 @@ function checkMouseHover() {
     personShortHair.active = true;
     cursorHeart2.active = true;
     cursorHeart1.active = false;
-    console.log("heart");
+    console.log("heart2");
   } else {
     personShortHair.active = false;
     cursorHeart2.active = false;
@@ -393,6 +394,7 @@ function checkMouseHover() {
     childParent.active = true;
     cursorHeart2.active = true;
     cursorHeart1.active = false;
+    console.log("heart3");
   } else {
     childParent.active = false;
     cursorHeart2.active = false;
@@ -403,6 +405,7 @@ function checkMouseHover() {
     digiCanvas1.active = true;
     cursorHeart2.active = true;
     cursorHeart1.active = false;
+    console.log("heart4");
   } else {
     digiCanvas1.active = false;
     cursorHeart2.active = false;
@@ -413,6 +416,7 @@ function checkMouseHover() {
     digiCanvas2.active = true;
     cursorHeart2.active = true;
     cursorHeart1.active = false;
+    console.log("heart5");
   } else {
     digiCanvas2.active = false;
     cursorHeart2.active = false;
@@ -423,6 +427,7 @@ function checkMouseHover() {
     digiCanvas3.active = true;
     cursorHeart2.active = true;
     cursorHeart1.active = false;
+    console.log("heart6");
   } else {
     digiCanvas3.active = false;
     cursorHeart2.active = false;
