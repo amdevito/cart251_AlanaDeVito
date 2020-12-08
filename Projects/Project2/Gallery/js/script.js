@@ -175,13 +175,31 @@ function draw() {
   if (instructions.active) {
     push();
     textSize(18);
+    fill(254, 0, 120);
+    textAlign(RIGHT);
+    textFont("Monospace");
+    text("Welcome to the gallery!", 1090, 580);
+    push();
+    textSize(18);
     fill(255);
     textAlign(RIGHT);
     textFont("Monospace");
     text(
-      "Welcome to the gallery!\nPlease click each of the 3 animated canvases to enter\nan AV installation piece.\nClick on one of the 3 other patrons to engage in a conversation.\nPressing 'e' will exit you out of the gallery and back to the homepage.\nPressing 'i' will show and hide these instructions. ENJOY!",
+      "Please click each of the 3 animated canvases to enter\nan AV installation piece.\nClick on one of the 3 other patrons to engage in a conversation.\nPressing 'e' will exit you out of the gallery and back to the homepage.\nPressing 'i' will show and hide these instructions. ENJOY!",
       1090,
-      580
+      610
+    ); //change this to an image that says, "you are sick of this shit and decide to leave" - click here to return to the home page.
+
+    pop();
+    push();
+    textSize(18);
+    fill(67, 125, 220);
+    textAlign(RIGHT);
+    textFont("Monospace");
+    text(
+      "First off please allow\npop-ups from this page for the\ninteractions to work properly.",
+      1090,
+      80
     ); //change this to an image that says, "you are sick of this shit and decide to leave" - click here to return to the home page.
 
     pop();
@@ -397,6 +415,7 @@ function checkMouseHover() {
     cursorHeart2.active = true;
     cursorHeart1.active = false;
     console.log("heart1");
+    return;
   } else {
     personLongHair.active = false;
     cursorHeart2.active = false;
@@ -408,6 +427,7 @@ function checkMouseHover() {
     cursorHeart2.active = true;
     cursorHeart1.active = false;
     console.log("heart2");
+    return;
   } else {
     personShortHair.active = false;
     cursorHeart2.active = false;
@@ -419,6 +439,7 @@ function checkMouseHover() {
     cursorHeart2.active = true;
     cursorHeart1.active = false;
     console.log("heart3");
+    return;
   } else {
     childParent.active = false;
     cursorHeart2.active = false;
@@ -430,6 +451,7 @@ function checkMouseHover() {
     cursorHeart2.active = true;
     cursorHeart1.active = false;
     console.log("heart4");
+    return;
   } else {
     digiCanvas1.active = false;
     cursorHeart2.active = false;
@@ -441,6 +463,7 @@ function checkMouseHover() {
     cursorHeart2.active = true;
     cursorHeart1.active = false;
     console.log("heart5");
+    return;
   } else {
     digiCanvas2.active = false;
     cursorHeart2.active = false;
@@ -452,6 +475,7 @@ function checkMouseHover() {
     cursorHeart2.active = true;
     cursorHeart1.active = false;
     console.log("heart6");
+    return;
   } else {
     digiCanvas3.active = false;
     cursorHeart2.active = false;
@@ -576,7 +600,14 @@ function keyPressed() {
 }
 
 function cursorHeart() {
-  if (cursorHeart1.active) {
+  cursorHeart3.active = mouseIsPressed;
+  console.log(cursorHeart3.active, cursorHeart2.active, cursorHeart1.active);
+  if (cursorHeart3.active) {
+    push();
+    imageMode(CENTER);
+    image(cursorHeart3.image, mouseX, mouseY, 0, 0);
+    pop();
+  } else if (cursorHeart1.active) {
     push();
     imageMode(CENTER);
     image(cursorHeart1.image, mouseX, mouseY, 0, 0);
@@ -585,11 +616,6 @@ function cursorHeart() {
     push();
     imageMode(CENTER);
     image(cursorHeart2.image, mouseX, mouseY, 0, 0);
-    pop();
-  } else if (cursorHeart3.active) {
-    push();
-    imageMode(CENTER);
-    image(cursorHeart3.image, mouseX, mouseY, 0, 0);
     pop();
   }
 }
