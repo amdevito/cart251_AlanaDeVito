@@ -532,7 +532,7 @@ function soundInstallation3() {
 function narrative1() {
   //currently place holders.
   window.open(
-    `https://amdevito.github.io/cart253_AlanaDeVito/Projects/Project2/Prototype/`,
+    `https://amdevito.github.io/211/Final_Project/narrative_longHair/index.html`,
     "_blank"
   );
   // window.location.href = `https://amdevito.github.io/cart253_AlanaDeVito/Projects/Project2/Prototype/`; // go back to intro to gallery narrative for now
