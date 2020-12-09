@@ -602,7 +602,6 @@ function keyPressed() {
 //function that changes the type of pride flag on the pixel heart cursor.
 function cursorHeart() {
   cursorHeart3.active = mouseIsPressed;
-  console.log(cursorHeart3.active, cursorHeart2.active, cursorHeart1.active);
   if (cursorHeart3.active) {
     push();
     imageMode(CENTER);
