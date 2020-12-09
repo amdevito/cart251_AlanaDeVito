@@ -1,25 +1,15 @@
 /**************************************************
-Exercise 6: Make Some Noise
+Installation 2 of 3: KelidoSCAPE Tunnel
 Alana M DeVito
 
 Click mouse to start video. Click 1-8 number to start a track, click same number to turn it off.
-Use the mouse to modulate the play back speed and playback direction of the track. down = slow, up = fast, left of half of screen = backwards, right of half of screen = forwards.
+Use the mouse to modulate the play back speed and playback direction of the track and the video. down = slow, up = fast, left of half of screen = backwards, right of half of screen = forwards.
 Mouse movement up and down controls play back rate of video along with the sound.
-
-Brief Items Completed:
-1. This is prototype of one of the interactive canvases in the gallery that visitors may interact with.
-2. Uses 2 new ways to interact with the sound.js library: activating specific tracks with a number keyPress and the mousePosition modulates the speed and direction playback of the tracks.
+Mouse click shows and hides instructions.
 **************************************************/
 "use strict";
 
-// //setting variable for video background
-// let kelidoscape;
-//
-// //set up variable for storing tracks
-// let tracks = [];
-//
-// //number of positions in array
-// let numtracks = 8;
+// //setting variable for classes
 
 let tracksPlayback;
 
@@ -49,8 +39,6 @@ function setup() {
   tracksPlayback = new TracksPlayback(files); //mapped mouse x and mapped y plositions//
 }
 
-// draw()
-//
 function draw() {
   background(177);
 

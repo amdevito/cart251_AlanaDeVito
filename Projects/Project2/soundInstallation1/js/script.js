@@ -1,14 +1,19 @@
 /**************************************************
-Exercise 5: Juggle Garden, aka The Sonic Shape Invaders
+Installation 1 of 3: The Sonic Shape Invader
 Alana M DeVito
 
-The Sonic Shape Invaders: the Interactive Soundscape 'Game'
-"Hit circles with your mallet to activate sine wave oscillators. Hit triangles to activate triangle wave oscillators. Click to activate effects and visuals.  Letting the shapes hit the bottom of the screen will stop the oscillators. Hitting them again will re-activate the same oscillator. Have fun!"
+The Sonic Shape Invader: the Interactive Oscillator Game
+Hit circles with your mallet to activate sine wave oscillators.
+Hit triangles to activate triangle wave oscillators. Click to activate effects and visuals.
+Letting the shapes hit the bottom of the screen will stop the oscillators.
+Hitting them again will re-activate the same oscillator. Have fun!
 
-Brief Items Completed:
+Background video coded by Am DeVito in Hydra Video Synth: https://hydra.ojack.xyz/
+
+Integrated Components:
 1. User control - mousePressed and mouseX, mouseY movement controlling mallet and sound effects (filter sweep (cutOff frequency) on the delay is connected to the mouseX position.)
 2. Three Classes: sinButton, TriButton and Mallet
-3. More than 2 endings: Multiple results depending on your interaction with the shapes and if you click for the visuals and the effects or not. Also, if you don't interact with the circles they will bounce off screen and disappear!
+3. Multiple results depending on your interaction with the shapes and if you click for the visuals and the effects or not. Also, if you don't interact with the circles they will bounce off screen and disappear!
 **************************************************/
 "use strict";
 
@@ -34,9 +39,6 @@ let instructions = {
   active: true,
 };
 
-// setup()
-//
-// Description of setup() goes here.
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
@@ -69,8 +71,6 @@ function setup() {
   }
 }
 
-// draw()
-//
 function draw() {
   background(149, 37, 186);
 
