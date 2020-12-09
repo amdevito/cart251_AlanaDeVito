@@ -165,7 +165,7 @@ function draw() {
     fill(170);
     textFont("Monospace");
     text(
-      "Click on each record to play a sample of the song.\nClicking the upper right corner of the record plays the track forwards and at regular speed.\nClicking the upper left corner plays the track backwards at regular speed.\nClicking the lower right corner plays the track forward but at quarter speed.\nClicking the lower left corner plays the track backward at quarter speed.\nClick on the record in the same place to stop playing. When a record is active the cursor movement changes its color.\nHit your browser's back button to return to the gallery.\nThese instructions will disappear when you activate a record and reappear when they are all stopped.",
+      "Click on each record to play a sample of the song.\nClicking the upper right corner of the record plays the track forwards and at regular speed.\nClicking the upper left corner plays the track backwards at regular speed.\nClicking the lower right corner plays the track forward but at quarter speed.\nClicking the lower left corner plays the track backward at quarter speed.\nClick on the record in the same place to stop playing. When a record is active the cursor movement changes its color.\nThese instructions will disappear when you activate a record and reappear when they are all stopped.",
       20,
       50
     );
