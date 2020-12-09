@@ -551,7 +551,7 @@ function soundInstallation3() {
   );
 }
 
-//open patron interaction (hyperlink narrative) in new window
+//open patron interaction (hyperlink narrative) in new window - longHair
 
 function narrative1() {
   window.open(
@@ -560,11 +560,11 @@ function narrative1() {
   );
 }
 
-//open patron interaction (hyperlink narrative) in new window
+//open patron interaction (hyperlink narrative) in new window - shortHair
 
 function narrative2() {
   window.open(
-    `https://amdevito.github.io/cart253_AlanaDeVito/Projects/Project2/Prototype/`,
+    `https://amdevito.github.io/211/Final_Project/narrative_shortHair/index.html`,
     "_blank"
   );
 }
@@ -573,7 +573,7 @@ function narrative2() {
 
 function narrative3() {
   window.open(
-    `https://amdevito.github.io/cart253_AlanaDeVito/Projects/Project2/Prototype/`,
+    `https://amdevito.github.io/211/Final_Project/narrative_childParent/index.html`,
     "_blank"
   );
 }
