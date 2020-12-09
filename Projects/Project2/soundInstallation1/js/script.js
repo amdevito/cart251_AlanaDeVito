@@ -14,6 +14,8 @@ Integrated Components:
 1. User control - mousePressed and mouseX, mouseY movement controlling mallet and sound effects (filter sweep (cutOff frequency) on the delay is connected to the mouseX position.)
 2. Three Classes: sinButton, TriButton and Mallet
 3. Multiple results depending on your interaction with the shapes and if you click for the visuals and the effects or not. Also, if you don't interact with the circles they will bounce off screen and disappear!
+
+See all code credits in Gallery README file.
 **************************************************/
 "use strict";
 

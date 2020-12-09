@@ -1,14 +1,23 @@
-// Sound installation 3:
-// 2 states spinVinyl and interact.
-// in the spin vinyl state click on the record and the track assigned to that record plays.
-// If you click to the left of centre it plays backwards and if you click to the right it plays forwards.
-// Click it again to stop. Hit space bar to switch between states. Interact state:
-// As you move your mouse the delay time for the entire track is modulated and the middle circles move to the pulse of the sounds.
+/**************************************************
+Installation 3 of 3: Spinning into Oblivion
+Alana M DeVito
+Spinning into Oblivion uses composed tracks and the user clicks on one of 4 sections of each record (the multi-circular design is intended to represent vinyl records) to play back the tracks at different rates, directions and combinations, replicating experimental turntablism .
 
-//state for turntable interaction
+Clicking the front half plays the tracks play forward, the back half plays them backwards, the upper section plays them faster and the lower half plays them slower. Mouse cursor changes the colour of active records.
+
+Visualization of records (circular pattern movement) is reflective of the speed and direction of track playback.
+
+Instructions visible when no records active and disappear when a record is activated.
+
+Composition composed by Am DeVito.
+
+See all code credits in Gallery README file.
+
+**************************************************/
 
 "use strict";
 
+//set variables to draw the circular shapes for the records
 let gap = 20;
 let cirNum = 15;
 let cirSize = 10;
@@ -123,6 +132,7 @@ function setup() {
   recordOne.color.r = mouseX;
   recordOne.color.b = mouseY;
 
+  //delay is used to 'fake' a back and slow playback speed because the program did not accept negative decimals which would playback the track slow and backward.
   delay = new p5.Delay();
 
   delay.setType("pingPong");
@@ -133,7 +143,7 @@ function draw() {
 
   noStroke();
   fill(0);
-  //show directions when all records are inactive, hide when interaction starts.
+  //show directions/instructions when all records are inactive, hide when interaction starts.
   if (
     !recordOne.activeF &&
     !recordOne.activeB &&
@@ -178,6 +188,7 @@ function draw() {
   spinRecords();
 }
 
+//assign records to locations related to users' screen
 function setUpRecords() {
   recordOne.x = 0;
   recordOne.y = height / 2;
@@ -262,7 +273,7 @@ function recordTwoDisplay() {
     stroke(255);
   }
   strokeWeight(1);
-
+  //draw this record's unique circular pattern
   for (let i = 0; i < cirNum; i++) {
     arc(
       0,
@@ -274,8 +285,6 @@ function recordTwoDisplay() {
     );
   }
   pop();
-
-  // recordTwoSpin();
 }
 
 function recordTwoSpinForward() {
@@ -295,6 +304,7 @@ function recordThreeDisplay() {
 
   noFill();
   stroke(255);
+  //colours of records change with mouse movement
   stroke(recordThree.color.r, recordThree.color.g, recordThree.color.b);
   if (recordThree.activeF) {
     recordThree.color.r = mouseX;
@@ -311,7 +321,7 @@ function recordThreeDisplay() {
     stroke(255);
   }
   strokeWeight(1);
-
+  //draw record's circular pattern
   for (let i = 0; i < cirNum; i++) {
     arc(
       0,
@@ -323,8 +333,6 @@ function recordThreeDisplay() {
     );
   }
   pop();
-
-  // recordThreeSpin();
 }
 
 function recordThreeSpinForward() {
@@ -344,6 +352,8 @@ function recordFourDisplay() {
 
   noFill();
   stroke(255);
+  //colours of records change with mouse movement
+
   stroke(recordFour.color.r, recordFour.color.g, recordFour.color.b);
   if (recordFour.activeF) {
     recordFour.color.r = mouseX;
@@ -360,7 +370,7 @@ function recordFourDisplay() {
     stroke(255);
   }
   strokeWeight(1);
-
+  //draw record's circular pattern
   for (let i = 0; i < cirNum; i++) {
     arc(
       0,
@@ -372,7 +382,6 @@ function recordFourDisplay() {
     );
   }
   pop();
-  // recordFourSpin();
 }
 
 function recordFourSpinForward() {
@@ -393,6 +402,8 @@ function recordFiveDisplay() {
 
   noFill();
   stroke(255);
+  //colours of records change with mouse movement
+
   stroke(recordFive.color.r, recordFive.color.g, recordFive.color.b);
   if (recordFive.activeF) {
     recordFive.color.r = mouseX;
@@ -410,12 +421,12 @@ function recordFiveDisplay() {
   }
   strokeWeight(1);
 
+  //draw record's circular pattern
   for (let i = 0; i < cirNum; i++) {
     arc(0, 0, cirSize + gap * i, cirSize + gap * i, 45, 360 - i - angle5);
   }
 
   pop();
-  // recordFiveSpin();
 }
 
 function recordFiveSpinForward() {
@@ -818,7 +829,7 @@ function checkMouseHover() {
 
 function spinRecords() {
   //record one - press mouse play record forward or backwards or stop playing.
-  //check if mouse is pressed while hovering over RECORD - change to play record when pressed. play forward if pressed to the right of center and play back wards if pressed to the left.
+  //check if mouse is pressed while hovering over RECORD - change to play record when pressed. Play forward if pressed to the right of center and play back wards if pressed to the left.
   if (recordOne.activeF) {
     recordOneSpinForward(); //play track one forward and spin record forward
   } else if (recordOne.activeB) {
@@ -858,4 +869,4 @@ function mousePressed() {
   checkMouseHover();
 }
 
-//code inspired by https://www.youtube.com/watch?v=QjCtbMNLRuc
+//Code inspired by https://www.youtube.com/watch?v=QjCtbMNLRuc

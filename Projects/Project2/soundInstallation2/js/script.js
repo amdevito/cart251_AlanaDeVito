@@ -6,6 +6,12 @@ Click mouse to start video. Click 1-8 number to start a track, click same number
 Use the mouse to modulate the play back speed and playback direction of the track and the video. down = slow, up = fast, left of half of screen = backwards, right of half of screen = forwards.
 Mouse movement up and down controls play back rate of video along with the sound.
 Mouse click shows and hides instructions.
+
+Composition collaboratively composed by Am DeVito, Michael Pinsonneault, Malte Leander, Charles J. Harding and Connor Cook.
+Arrangement by Am DeVito
+
+See all code credits in Gallery README file.
+
 **************************************************/
 "use strict";
 
