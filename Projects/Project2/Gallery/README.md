@@ -15,7 +15,7 @@ CODE CREDITS FOR PROJECT:
 Pippin Barr for CART 253 (Concordia University)
 Sabine Rosenberg at the C-LAB (Concordia University)
 Madeline Zaytsoff
-Zhang weidi https://www.youtube.com/watch?v=QjCtbMNLRuc
+Zhang Weidi https://www.youtube.com/watch?v=QjCtbMNLRuc
 
 Animated Fonts and wallpaper:
 https://freefrontend.com/css-text-effects/
