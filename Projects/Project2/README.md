@@ -23,3 +23,5 @@ Ben Szabo for ‘deconstructed’ HTML/CSS font animations inspiration
 And
 https://freefrontend.com/css-glow-text-effects/
 For Sonic Shop Signage/Logo
+
+Video display code borrowed from https://www.kirupa.com/html5/accessing_your_webcam_in_html5.htm
