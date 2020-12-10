@@ -265,7 +265,7 @@ function draw() {
     textAlign(CENTER);
     textFont("Monospace");
     text(
-      "You are exhausted by all the unwelcoming \ndialogue at the gallery and want to leave.\nA community full of microagressions \nis not a welcoming one.\nPlease press 'e' to exit the gallery and \nreturn to the homepage.",
+      "You are exhausted by all the unwelcoming \ndialogue at the gallery and want to leave.\nA community full of microaggressions \nis not a welcoming one.\nPlease press 'e' to exit the gallery and \nreturn to the homepage.",
       562,
       200
     );
